@@ -1,0 +1,11 @@
+.navbar{
+    display:flex;
+   justify-content: space-between;
+   background-color: #c5aa6a;
+   height: 60px;
+}
+.right{
+    display:flex;
+    gap:55px
+
+}
