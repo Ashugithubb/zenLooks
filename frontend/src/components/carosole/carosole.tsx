@@ -4,13 +4,13 @@ export default function Carosole() {
             <div id="carouselExampleAutoplaying" className="carousel slide " data-bs-ride="carousel" >
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="./image4.jpg" className="d-block w-100 h-160" alt="..."/>
+                        <img src="./handsome.jpg" className="d-block w-100 h-110" alt="..."/>
                     </div>
                     <div className="carousel-item">
-                        <img src="./image2.jpg" className="d-block w-100 h-160" alt="..."/>
+                        <img src="./AdobeStock.jpeg" className="d-block w-100 h-110" alt="..."/>
                     </div>
                     <div className="carousel-item">
-                        <img src="./image3.jpg" className="d-block w-100 h-160 " alt="..."/>
+                        <img src="./client.jpg" className="d-block w-100 h-110 " alt="..."/>
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

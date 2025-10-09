@@ -1,16 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
-import style from "./navbar.module.css"
+import style from "./navbar.module.css";
+
 export default function Navbar() {
-    return (
-        <>
-            <Box className = {style.navbar}>
-                <Typography>ZenAura</Typography>
-                <Box className={style.right}>
-                    <Typography>Home</Typography>
-                    <Typography>About</Typography>
-                    <Typography>Contact</Typography>
-                    <Button>Login</Button></Box>
-            </Box>
-        </>
-    )
+  return (
+    <Box className={style.navbar}>
+      <Typography className={style.logo}>ZenLook</Typography>
+      <Box className={style.right}>
+        <Typography className={style.link}>Home</Typography>
+        <Typography className={style.link}>About</Typography>
+        <Typography className={style.link}>Contact</Typography>
+         <Typography className={style.link}>Services</Typography>
+        <Button variant="contained" className={style.loginBtn}>
+          Login
+        </Button>
+      </Box>
+    </Box>
+  );
 }

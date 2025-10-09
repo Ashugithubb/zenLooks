@@ -19,9 +19,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/app/redux/hook/hook';
-import { UserInfo } from '@/app/redux/slice/user.slice';
-import { loginUser } from '@/app/redux/slice/auth.slice';
-
+// import { UserInfo } from '@/app/redux/slice/user.slice';
+// import { loginUser } from '@/app/redux/slice/auth.slice';
+import style from './page.module.css'
 
 
 export const loginSchema = z.object({
@@ -44,14 +44,14 @@ export default function LoginForm() {
   });
   const notify = () => toast("Login Successfull!");
   const onSubmit = async (data: LoginFormData) => {
-    const res = await dispatch(loginUser(data));
+    // const res = await dispatch(loginUser(data));
 
-    if (res.meta.requestStatus === 'fulfilled') {
-      toast.success("Login successful!");
-      router.push('/home');
-    } else {
-      toast.error(res.payload || "Login failed");
-    }
+    // if (res.meta.requestStatus === 'fulfilled') {
+    //   toast.success("Login successful!");
+    //   router.push('/home');
+    // } else {
+    //   toast.error(res.payload || "Login failed");
+    // }
   };
   
   const togglePasswordVisibility = () => {
@@ -59,70 +59,38 @@ export default function LoginForm() {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-      bgcolor="#f5f5f5"
-    >
-      <ToastContainer />
-      <Paper elevation={3} sx={{ padding: 4, width: 350 }}>
-        <Typography variant="h5" gutterBottom>
-          Login
+
+   
+     <Box className={style.loginContainer}>
+      <Box className={style.loginCard}>
+        <Typography className={style.title}>Welcome Back!</Typography>
+        <Typography className={style.subtitle}>
+          Log in to continue your ZenLook experience
         </Typography>
 
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Box className={style.form}>
           <TextField
             label="Email"
-            {...register('email')}
-            error={!!errors.email}
-            helperText={errors.email?.message}
+            variant="outlined"
             fullWidth
-            margin="normal"
+            className={style.input}
           />
-
           <TextField
             label="Password"
-            type={showPassword ? 'text' : 'password'}
-            {...register('password')}
-            error={!!errors.password}
-            helperText={errors.password?.message}
+            type="password"
+            variant="outlined"
             fullWidth
-            margin="normal"
-            slotProps={{
-              input: {
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={togglePasswordVisibility} edge="end">
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              },
-            }}
+            className={style.input}
           />
-
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{ mt: 2 }}
-          >
-            Log In
+          <Button variant="contained" fullWidth className={style.btn}>
+            Login
           </Button>
-          <ToastContainer />
-          <Box mt={2} textAlign="center">
-            <Typography variant="body2">
-              Don&apos;t have an account?{' '}
-              <MuiLink component={Link} href="/signup" underline="hover">
-                Sign up
-              </MuiLink>
-            </Typography>
-          </Box>
-        </form>
-      </Paper>
+        </Box>
+
+        <Typography className={style.footerText}>
+          Don’t have an account? <span>Sign Up</span>
+        </Typography>
+      </Box>
     </Box>
   );
 }

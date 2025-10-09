@@ -21,7 +21,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import MenuItem from '@mui/material/MenuItem';
 import { signupSchema } from './schema/user.schema';
 import { useAppDispatch } from '@/app/redux/hook/hook';
-import { signupUser } from '@/app/redux/thunk/signup.user';
+// import { signupUser } from '@/app/redux/thunk/signup.user';
+import style from './page.module.css'
 
 
 type SignupFormData = z.infer<typeof signupSchema>;
@@ -46,19 +47,64 @@ export default function SignupForm() {
     });
 
     const onSubmit = async (data: SignupFormData) => {
-        const res = await dispatch(signupUser(data));
-        if (res.meta.requestStatus === 'fulfilled') {
-            toast.success("Signup successful!");
-            router.push('/login');
-        } else {
-            toast.error(res.payload || "Signup failed");
-        }
+        // const res = await dispatch(signupUser(data));
+        // if (res.meta.requestStatus === 'fulfilled') {
+        //     toast.success("Signup successful!");
+        //     router.push('/login');
+        // } else {
+        //     toast.error(res.payload || "Signup failed");
+        // }
     };
 
     return (
         <>
             <ToastContainer />
-            <Box
+             <Box className={style.signupContainer}>
+      <Box className={style.signupCard}>
+        <Typography className={style.title}>Create Account</Typography>
+        <Typography className={style.subtitle}>
+          Join ZenLook and experience premium salon care
+        </Typography>
+
+        <Box className={style.form}>
+          <TextField
+            label="Full Name"
+            variant="outlined"
+            fullWidth
+            className={style.input}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            variant="outlined"
+            fullWidth
+            className={style.input}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            variant="outlined"
+            fullWidth
+            className={style.input}
+          />
+          <TextField
+            label="Confirm Password"
+            type="password"
+            variant="outlined"
+            fullWidth
+            className={style.input}
+          />
+          <Button variant="contained" fullWidth className={style.btn}>
+            Sign Up
+          </Button>
+        </Box>
+
+        <Typography className={style.footerText}>
+          Already have an account? <span>Login</span>
+        </Typography>
+      </Box>
+    </Box>
+            {/* <Box
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
@@ -146,7 +192,7 @@ export default function SignupForm() {
                         </Box>
                     </form>
                 </Paper>
-            </Box>
+            </Box> */}
         </>
     );
 }
