@@ -38,6 +38,7 @@ export class AuthService {
         return {
             "msg": "Loged In Successfully",
             "token": token,
+            "role":payload.role
         }
     }
 

@@ -8,6 +8,7 @@ import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
 import { BookingRepository } from 'src/booking/repository/booking.repo';
 import { BookingService } from 'src/booking/booking.service';
 import { UserService } from 'src/user/user.service';
+import { Multer } from 'multer';
 
 @Injectable()
 export class ServicesService {
@@ -69,9 +70,14 @@ export class ServicesService {
     return await this.bookingService.create(createBookingDto, userId, serviceId);
   }
 
-  async topBookedServices(){
+  async topBookedServices() {
     return await this.bookingService.topBookedServices()
   }
 
+  async uplodImage(file: Multer.File) {
+    const avtarUrl = 'http://localhost:3001/files/' + file.filename;
+    return avtarUrl;
+  }
+  }
 
-}
+

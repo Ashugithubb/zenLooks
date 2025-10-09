@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, UseGuards, UseInterceptors, UploadedFile, ParseFilePipe, MaxFileSizeValidator } from '@nestjs/common';
 import { ServicesService } from './services.service';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
@@ -6,6 +6,11 @@ import { GetServiceQueryDto } from './dto/query.dto';
 import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
 import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
 import { BookingService } from 'src/booking/booking.service';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { extname } from 'path';
+import { diskStorage } from 'multer';
+import { File as MulterFile } from 'multer';
+
 
 @Controller('services')
 export class ServicesController {
@@ -45,9 +50,28 @@ export class ServicesController {
   }
   @Get("/top/three")
   topBookedServices() {
-    console.log("yahah");
-    return  this.servicesService.topBookedServices();
+
+    return this.servicesService.topBookedServices();
   }
 
-  
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: './files',
+      filename: (req, file, callback) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        callback(null, `${file.fieldname}-${uniqueSuffix}-${extname(file.originalname)}`)
+      }
+    })
+  }))
+  async uploadFile(@UploadedFile(new ParseFilePipe({
+    fileIsRequired: true,
+  })) file: MulterFile) {
+    return this.servicesService.uplodImage(file);
+  }
 }
+
+
+
+

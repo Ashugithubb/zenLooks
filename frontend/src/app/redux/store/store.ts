@@ -1,19 +1,19 @@
 'use client';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-import mySubscriberReducer from '../slice/example.slice'
-
+import loginReducer from '../slice/login.slice'
+import serviceReducer from '../slice/services.slice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [],
+  whitelist: ['login'],
 };
 
 const rootReducer = combineReducers({
-  mySubscriber: mySubscriberReducer,
+  login: loginReducer,
+  service:serviceReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

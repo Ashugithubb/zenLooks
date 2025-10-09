@@ -3,8 +3,8 @@ import style from "./footer.module.css";
 
 export default function Footer() {
   return (
-    <Box className={style.footer}>
-      {/* ---- Left Section ---- */}
+    <Box id="footer" className={style.footer}>
+     
       <Box className={style.footerSection}>
         <Typography className={style.logo}>ZenLook</Typography>
         <Typography className={style.desc}>
@@ -13,7 +13,7 @@ export default function Footer() {
         </Typography>
       </Box>
 
-      {/* ---- Middle Links ---- */}
+      
       <Box className={style.footerSection}>
         <Typography className={style.sectionTitle}>Quick Links</Typography>
         <Typography className={style.link}>Home</Typography>
@@ -22,7 +22,7 @@ export default function Footer() {
         <Typography className={style.link}>Contact</Typography>
       </Box>
 
-      {/* ---- Right Newsletter ---- */}
+      
       <Box className={style.footerSection}>
         <Typography className={style.sectionTitle}>Stay Updated</Typography>
         <Typography className={style.desc}>

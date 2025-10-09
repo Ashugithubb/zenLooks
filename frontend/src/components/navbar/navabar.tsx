@@ -1,19 +1,48 @@
-import { Box, Button, Typography } from "@mui/material";
+"use client"
+import { Box, Button, Link, Typography } from "@mui/material";
 import style from "./navbar.module.css";
+import { Height } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hook/hook";
+import { clearUser } from "@/app/redux/slice/login.slice";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Navbar() {
-  return (
+  const router = useRouter();
+  const { loading } = useAppSelector((state) => state.login) ?? "";
+  const token = useAppSelector((state) => state.login.auth?.token);
+  const dispatch = useAppDispatch();
+  const handelLogin = () => {
+    router.push("/login");
+  }
+  const handelLogOut = () => {
+    try {
+      const res = dispatch(clearUser());
+      toast("log out successfully");
+    }
+    catch (error) {
+      toast.error("unable to log out");
+    }
+  }
+  return (<>
+    <ToastContainer />
     <Box className={style.navbar}>
-      <Typography className={style.logo}>ZenLook</Typography>
+      <Typography className={style.logo}> ZenLook</Typography>
       <Box className={style.right}>
-        <Typography className={style.link}>Home</Typography>
-        <Typography className={style.link}>About</Typography>
-        <Typography className={style.link}>Contact</Typography>
-         <Typography className={style.link}>Services</Typography>
-        <Button variant="contained" className={style.loginBtn}>
-          Login
-        </Button>
+        <Link href="/" className={style.link}>Home</Link>
+        <Link href="/#about" className={style.link}>About</Link>
+        <Link href="/#footer" className={style.link}>Contact</Link>
+        <Link href="/services" className={style.link}>Services</Link>
+        {
+          !token ? (<Button onClick={handelLogin} variant="contained" className={style.loginBtn}>
+            Login
+          </Button>) :
+
+            (< Button onClick={handelLogOut} variant="contained" className={style.loginBtn}>
+              Log out
+            </Button>)}
       </Box>
-    </Box>
+    </Box >
+  </>
   );
 }

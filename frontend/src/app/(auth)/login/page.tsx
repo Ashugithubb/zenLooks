@@ -19,16 +19,14 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/app/redux/hook/hook';
-// import { UserInfo } from '@/app/redux/slice/user.slice';
-// import { loginUser } from '@/app/redux/slice/auth.slice';
 import style from './page.module.css'
+import { loginUser } from '@/app/redux/thunk/auth/login.thunk';
 
 
 export const loginSchema = z.object({
-  email: z.string().min(6,{ message: 'Invalid email address' }),
+  email: z.string().min(6, { message: 'Invalid email address' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
 });
-
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
@@ -44,53 +42,65 @@ export default function LoginForm() {
   });
   const notify = () => toast("Login Successfull!");
   const onSubmit = async (data: LoginFormData) => {
-    // const res = await dispatch(loginUser(data));
+    const res = await dispatch(loginUser(data));
 
-    // if (res.meta.requestStatus === 'fulfilled') {
-    //   toast.success("Login successful!");
-    //   router.push('/home');
-    // } else {
-    //   toast.error(res.payload || "Login failed");
-    // }
+    if (res.meta.requestStatus === 'fulfilled') {
+      toast.success("Login successful!");
+      router.push('/');
+    } else {
+      toast.error(res.payload || "Login failed");
+    }
   };
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
   return (
 
-   
-     <Box className={style.loginContainer}>
-      <Box className={style.loginCard}>
-        <Typography className={style.title}>Welcome Back!</Typography>
-        <Typography className={style.subtitle}>
-          Log in to continue your ZenLook experience
-        </Typography>
+    <>
+      <ToastContainer />
+      <Box className={style.loginContainer}>
+        <Box className={style.loginCard}>
+          <Typography className={style.title}>Welcome Back!</Typography>
+          <Typography className={style.subtitle}>
+            Log in to continue your ZenLook experience
+          </Typography>
 
-        <Box className={style.form}>
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth
-            className={style.input}
-          />
-          <TextField
-            label="Password"
-            type="password"
-            variant="outlined"
-            fullWidth
-            className={style.input}
-          />
-          <Button variant="contained" fullWidth className={style.btn}>
-            Login
-          </Button>
+
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <Box className={style.form}>
+              <TextField
+                label="Email"
+                variant="outlined"
+                fullWidth
+                className={style.input}
+                {...register('email')}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              />
+              <TextField
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                {...register('password')}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+                className={style.input}
+              />
+              <Button type='submit' variant="contained" fullWidth className={style.btn}>
+                Login
+              </Button>
+            </Box>
+          </form>
+
+
+          <Typography className={style.footerText}>
+            Don’t have an account? <span onClick={() => router.push("/signup")}>Sign Up</span>
+          </Typography>
         </Box>
-
-        <Typography className={style.footerText}>
-          Don’t have an account? <span>Sign Up</span>
-        </Typography>
       </Box>
-    </Box>
+    </>
   );
 }
