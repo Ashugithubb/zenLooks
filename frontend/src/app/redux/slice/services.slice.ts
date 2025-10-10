@@ -4,7 +4,7 @@ import axios from 'axios';
 import qs from 'qs'
 import { stat } from 'fs';
 import { id } from 'zod/v4/locales';
-import { getServiceThunk } from '../thunk/service.thunk';
+import { deleteServiceThunk, getServiceThunk } from '../thunk/service.thunk';
 export interface Service {
     serviceId: number,
     title: string
@@ -56,12 +56,20 @@ const serviceSlice = createSlice({
             .addCase(getServiceThunk.fulfilled, (state, action) => {
                 state.loading = false;
                 state.servicelist = action.payload;
-                console.log('state.servicelist: ', state.servicelist);
             })
             .addCase(getServiceThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
             })
+            .addCase(deleteServiceThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                if (state.servicelist?.services) {
+                    state.servicelist.services = state.servicelist.services.filter(
+                        (s) => s.serviceId !== Number(action.payload)
+                    );
+                }
+            });
+
 
     }
 });

@@ -22,9 +22,9 @@ export default function Home() {
       </Box>
 
       <Box sx={{ display: "flex", gap: 2, justifyContent: "center", padding: "50px" }}>
-        <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50}/>
-        <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50}/>
-         <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50}/>
+        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./one.jpg"/>
+        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./one.jpg"/>
+         <ServiceCard  serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./one.jpg"/>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", alignContent: "center",padding:"100px" }}>
         <Button onClick={()=>router.push("/services")} variant="contained">View All Services</Button></Box>

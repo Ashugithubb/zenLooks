@@ -1,5 +1,5 @@
 import { Booking } from "src/booking/entities/booking.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Category } from "../enum/category.enum";
 
 @Entity("services")
@@ -34,6 +34,9 @@ export class Service {
 
     @UpdateDateColumn()
     updatedAt: Date
+    
+    @DeleteDateColumn()
+    deletedAt:Date
 
     @OneToMany(() => Booking, (b) => b.service)
     bookings: Booking[]

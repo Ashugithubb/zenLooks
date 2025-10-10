@@ -1,19 +1,21 @@
 "use client"
 import Navbar from "@/components/navbar/navabar";
 import ServiceCard from "@/components/service-card/card";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, colors, Typography } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch, useAppSelector } from "../redux/hook/hook";
 import CreateServiceDialog from "@/components/service/add-service";
 import { useEffect, useState } from "react";
-import { getServiceThunk } from "../redux/thunk/service.thunk";
+import { deleteServiceThunk, getServiceThunk } from "../redux/thunk/service.thunk";
+import { toast } from "react-toastify";
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const { total, page, limit, services } = useAppSelector((state) => state.service.servicelist) ?? {};
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getServiceThunk({}))
-    })
+    },[dispatch])
+
     return (
         <>
             <Navbar />
@@ -27,17 +29,7 @@ export default function Services() {
             </Box>
 
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, justifyContent: "space-evenly" }}>
-                {services?.map((s) => (<ServiceCard key={s.serviceId} title={s.title} description={s.description} price={s.price} discount={s.discount} imageUrl={s.imageUrl}/>)
-                )}
-                {/* <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} />
-                <ServiceCard title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} /> */}
+                {services?.length == 0 ? (<Typography>No Services found</Typography>) : services?.map((s) => (<ServiceCard key={s.serviceId} serviceId={s.serviceId} title={s.title} description={s.description} price={s.price} discount={s.discount} imageUrl={s.imageUrl} />))}
             </Box>
         </>
     )

@@ -17,6 +17,7 @@ import { useAppDispatch } from '@/app/redux/hook/hook';
 import { toast } from 'react-toastify';
 import { uploadImage } from '@/app/redux/thunk/upload.image';
 import { addService } from '@/app/redux/thunk/add.service';
+import { getServiceThunk } from '@/app/redux/thunk/service.thunk';
 interface CreateServiceDialogProps {
     isOpen: boolean;
     onClose: () => void;
@@ -70,6 +71,8 @@ export default function CreateServiceDialog() {
         const res = await dispatch(addService(data));
         if (res.meta.requestStatus === 'fulfilled') {
             toast.success("Service added successfully!");
+            dispatch(getServiceThunk({}))
+            handleClose()
 
         } else {
             toast.error(res.payload || "Failed");
