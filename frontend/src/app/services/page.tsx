@@ -1,36 +1,131 @@
-"use client"
+"use client";
 import Navbar from "@/components/navbar/navabar";
 import ServiceCard from "@/components/service-card/card";
-import { Box, Button, colors, Typography } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
+import {
+    Box,
+    Button,
+    Typography,
+    TextField,
+    Pagination,
+    Stack,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch, useAppSelector } from "../redux/hook/hook";
 import CreateServiceDialog from "@/components/service/add-service";
 import { useEffect, useState } from "react";
 import { deleteServiceThunk, getServiceThunk } from "../redux/thunk/service.thunk";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
-    const { total, page, limit, services } = useAppSelector((state) => state.service.servicelist) ?? {};
+    const { total = 0, page = 1, limit = 3, services = [] } =
+        useAppSelector((state) => state.service.servicelist) ?? {};
     const dispatch = useAppDispatch();
+    const router = useRouter();
+
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [currentPage, setCurrentPage] = useState(page);
+
+
     useEffect(() => {
-        dispatch(getServiceThunk({}))
-    },[dispatch])
+        dispatch(getServiceThunk({ page: currentPage, limit, search: searchTerm }));
+    }, [dispatch, currentPage, searchTerm]);
+
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+        setCurrentPage(1);
+    };
+
+
+    const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setCurrentPage(value);
+    };
 
     return (
         <>
             <Navbar />
 
-            <Typography sx={{ textAlign: "center" }} variant="h3">See all our Services</Typography>
-            <Box sx={{ paddingBottom: "50px", display: "flex", justifyContent: "space-between" }}>
-                {role === 'Admin' && <div>
-                    <CreateServiceDialog />
-                </div>}
-                {role === 'Admin' ? (<Button variant="contained">All Bookings</Button>) : <Button variant="contained">My Bookings</Button>}
+            <Typography sx={{ textAlign: "center", mt: 3 }} variant="h3">
+                See all our Services
+            </Typography>
+
+
+            <Box
+                sx={{
+                    paddingY: "20px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: 2,
+                }}
+            >
+                <TextField
+                    label="Search services..."
+                    variant="outlined"
+                    size="small"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    sx={{ width: "250px" }}
+                />
+
+                <Box sx={{ display: "flex", gap: 2 }}>
+                    {role === "Admin" && <CreateServiceDialog />}
+                    {role === "Admin" ? (
+                        <Button
+                            onClick={() => router.push("/services/allbookings")}
+                            variant="contained"
+                        >
+                            All Bookings
+                        </Button>
+                    ) : (
+                        <Button variant="contained">My Bookings</Button>
+                    )}
+                </Box>
             </Box>
 
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, justifyContent: "space-evenly" }}>
-                {services?.length == 0 ? (<Typography>No Services found</Typography>) : services?.map((s) => (<ServiceCard key={s.serviceId} serviceId={s.serviceId} title={s.title} description={s.description} price={s.price} discount={s.discount} imageUrl={s.imageUrl} />))}
+
+            <Box
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 3,
+                    justifyContent: "space-evenly",
+                    minHeight: "300px",
+                    paddingBottom: "30px",
+                }}
+            >
+                {services?.length === 0 ? (
+                    <Typography sx={{ mt: 5 }}>No Services found</Typography>
+                ) : (
+                    services.map((s) => (
+                        <ServiceCard
+                            key={s.serviceId}
+                            serviceId={s.serviceId}
+                            title={s.title}
+                            description={s.description}
+                            price={s.price}
+                            discount={s.discount}
+                            imageUrl={s.imageUrl}
+                        />
+                    ))
+                )}
             </Box>
+
+
+            {total > limit && (
+                <Stack spacing={2} alignItems="center" sx={{ pb: 5 }}>
+                    <Pagination
+                        count={Math.ceil(total / limit)}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        color="primary"
+                    />
+                </Stack>
+            )}
         </>
-    )
+    );
 }

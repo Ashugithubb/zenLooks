@@ -4,7 +4,7 @@ import axios from 'axios';
 import qs from 'qs'
 import { stat } from 'fs';
 import { id } from 'zod/v4/locales';
-import { deleteServiceThunk, getServiceThunk } from '../thunk/service.thunk';
+import { deleteServiceThunk, editServiceThunk, getServiceThunk } from '../thunk/service.thunk';
 export interface Service {
     serviceId: number,
     title: string
@@ -68,7 +68,16 @@ const serviceSlice = createSlice({
                         (s) => s.serviceId !== Number(action.payload)
                     );
                 }
-            });
+            })
+            .addCase(editServiceThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                if (state.servicelist?.services) {
+                    state.servicelist.services = state.servicelist.services.filter(
+                        (s) => s.serviceId !== Number(action.payload)
+                    );
+                }
+            })
+
 
 
     }

@@ -6,7 +6,7 @@ import axios from "axios";
 import { serviceSchema } from "@/components/service/schema/service.schema";
 import z from "zod";
 export const getServiceThunk = createAsyncThunk(
-  'contact/getcontact',
+  'service/getservice',
   async (query: GetServiceQuery, { rejectWithValue }) => {
     try {
       const response = await axios.get(`http://localhost:3001/services`, {
@@ -38,7 +38,7 @@ export const deleteServiceThunk = createAsyncThunk(
 );
 
 type ServiceData = z.infer<typeof serviceSchema>;
-export const editService = createAsyncThunk(
+export const editServiceThunk = createAsyncThunk(
     'contact/edit',
     async ({data,id}: {data:ServiceData,id:number}, thunkAPI) => {
         try {
@@ -54,4 +54,19 @@ export const editService = createAsyncThunk(
             return thunkAPI.rejectWithValue(errorMessage);
         }
     }
+);
+
+
+export const getTopServiceThunk = createAsyncThunk(
+  'topService/gettopservice',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/services/top/three`, {
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch service');
+    }
+  }
 );

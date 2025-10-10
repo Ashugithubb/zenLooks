@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { serviceSchema } from './schema/service.schema';
 import z from 'zod';
 import Button from '@mui/material/Button';
@@ -13,32 +13,50 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Avatar, Box, MenuItem, Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useAppDispatch } from '@/app/redux/hook/hook';
-import { toast } from 'react-toastify';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hook/hook';
+import { toast, ToastContainer } from 'react-toastify';
 import { uploadImage } from '@/app/redux/thunk/upload.image';
 import { addService } from '@/app/redux/thunk/add.service';
-import { getServiceThunk } from '@/app/redux/thunk/service.thunk';
-interface CreateServiceDialogProps {
-    isOpen: boolean;
-    onClose: () => void;
-    onSubmit: (data: ServiceData) => void;
-}
+import { editServiceThunk, getServiceThunk } from '@/app/redux/thunk/service.thunk';
+import { Service } from '@/app/redux/slice/services.slice';
+import { resetServiceState } from '@/app/redux/slice/edit.slice';
+
 type ServiceData = z.infer<typeof serviceSchema>;
 
 export default function CreateServiceDialog() {
     const [open, setOpen] = React.useState(false);
+    const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
+    const { editOpen, serviceId } = useAppSelector((state) => state.editService);
+    const [editService, setService] = React.useState<Service | null>(null);
+
+    useEffect(() => {
+        if (editOpen) {
+            setOpen(true);
+            if (serviceId) {
+                const found = allServices.find((s: Service) => s.serviceId === serviceId);
+                if (found) {
+                    setService(found)
+                    setAvatarPreview(found.imageUrl);
+                }
+            }
+        }
+    }, [editOpen, serviceId]);
+
 
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm<ServiceData>({
         resolver: zodResolver(serviceSchema),
         defaultValues: {
-            title: '',
-            description: '',
+            title: "",
+            description: "",
             price: 0,
             category: 'Male',
+            time: 0,
+            discount: 0,
         },
     });
     const handleClickOpen = () => {
@@ -47,8 +65,25 @@ export default function CreateServiceDialog() {
 
     const handleClose = () => {
         setOpen(false);
-    };
+        dispatch(resetServiceState());
+        setService(null);
 
+    };
+    useEffect(() => {
+        if (editService) {
+            reset({
+                title: editService.title,
+                description: editService.description,
+                price: editService.price,
+                category:
+                    editService.category === "Male" || editService.category === "Female"
+                        ? editService.category
+                        : "Male",
+                time: editService.time,
+                discount: editService.discount,
+            });
+        }
+    }, [editService, reset]);
     const dispatch = useAppDispatch();
 
     const [avtarUrl, setAvatarUrl] = useState('');
@@ -65,27 +100,40 @@ export default function CreateServiceDialog() {
     };
 
     const onSubmit = async (data: ServiceData) => {
-        data.imageUrl = avtarUrl;
+        try {
+            data.imageUrl = avtarUrl;
 
-        console.log(data);
-        const res = await dispatch(addService(data));
-        if (res.meta.requestStatus === 'fulfilled') {
-            toast.success("Service added successfully!");
-            dispatch(getServiceThunk({}))
-            handleClose()
+            let res;
+            if (editOpen && serviceId) {
+                res = await dispatch(editServiceThunk({ data, id: serviceId }));
+            } else {
+                res = await dispatch(addService(data));
+            }
 
-        } else {
-            toast.error(res.payload || "Failed");
+            if (res.meta.requestStatus === 'fulfilled') {
+                toast.success(editOpen ? 'Service updated successfully!' : 'Service added successfully!');
+                dispatch(getServiceThunk({}));
+
+                setTimeout(() => {
+                    handleClose();
+                }, 800);
+            } else {
+                toast.error(res.payload || 'Something went wrong!');
+            }
+        } catch (err) {
+            toast.error('An error occurred!');
         }
-
     };
 
     return (
         <>
+           
             <Button variant="outlined" onClick={handleClickOpen}>
                 Add Services<AddIcon />
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+             <ToastContainer />
+            <Dialog open={open}
+                onClose={handleClose}>
                 <DialogTitle> Add New Services Details</DialogTitle>
 
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -131,6 +179,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.title}
                                 helperText={errors.title?.message}
                                 fullWidth
+
                             />
 
                             <TextField
@@ -141,6 +190,8 @@ export default function CreateServiceDialog() {
                                 multiline
                                 rows={3}
                                 fullWidth
+
+
                             />
 
                             <TextField
@@ -150,6 +201,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.price}
                                 helperText={errors.price?.message}
                                 fullWidth
+
                             />
 
                             <TextField
@@ -159,6 +211,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.time}
                                 helperText={errors.time?.message}
                                 fullWidth
+
                             />
 
                             <TextField
@@ -168,6 +221,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.discount}
                                 helperText={errors.discount?.message}
                                 fullWidth
+
                             />
 
                             <TextField
@@ -177,6 +231,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.category}
                                 helperText={errors.category?.message}
                                 fullWidth
+
                             >
                                 <MenuItem value="Male">Male</MenuItem>
                                 <MenuItem value="Female">Female</MenuItem>
@@ -184,9 +239,12 @@ export default function CreateServiceDialog() {
 
                             <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
                                 <Button onClick={handleClose}>Cancel</Button>
-                                <Button type="submit" variant="contained">
+
+                                {serviceId ? <Button type="submit" variant="contained">
+                                    Update
+                                </Button> : <Button type="submit" variant="contained">
                                     Submit
-                                </Button>
+                                </Button>}
                             </Box>
                         </Box>
                     </form>

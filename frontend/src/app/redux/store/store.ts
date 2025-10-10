@@ -5,6 +5,8 @@ import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import loginReducer from '../slice/login.slice'
 import serviceReducer from '../slice/services.slice'
+import editReducer from '../slice/edit.slice'
+import bookingReducer from '../slice/booking.slice'
 const persistConfig = {
   key: 'root',
   storage,
@@ -13,7 +15,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  service:serviceReducer
+  service:serviceReducer,
+  editService:editReducer,
+  allBooking:bookingReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

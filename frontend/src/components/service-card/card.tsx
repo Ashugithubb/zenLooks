@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,9 +11,12 @@ import style from './card.module.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useAppDispatch } from '@/app/redux/hook/hook';
-import { deleteServiceThunk, editService } from '@/app/redux/thunk/service.thunk';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hook/hook';
+import { deleteServiceThunk } from '@/app/redux/thunk/service.thunk';
 import { toast } from 'react-toastify';
+import CreateServiceDialog from '../service/add-service';
+import { Service } from '@/app/redux/slice/services.slice';
+import { setEditOpen, setServiceId } from '@/app/redux/slice/edit.slice';
 interface cardProp {
   title: string;
   description: string;
@@ -24,6 +28,10 @@ interface cardProp {
 
 export default function ImgMediaCard(prop: cardProp) {
   const dispatch = useAppDispatch()
+  const role = useAppSelector((state) => state.login.auth?.role);
+  const services = useAppSelector((state) => state.service.servicelist?.services);
+
+
   const handleDelete = async () => {
     if (confirm(`Are you sure you want to delete "${prop.title}"?`)) {
       try {
@@ -31,25 +39,18 @@ export default function ImgMediaCard(prop: cardProp) {
         if (res.meta.requestStatus === "fulfilled") {
           toast.success("Service deleted successfully!");
         }
-
       } catch (err: any) {
         toast.error(err || "Failed to delete service");
       }
     }
   };
- const handleEdit = async () => {
-  
-      // try {
-      //   const res = await dispatch(editService({},prop.serviceId));
-      //   if (res.meta.requestStatus === "fulfilled") {
-      //     toast.success("Service deleted successfully!");
-      //   }
 
-      // } catch (err: any) {
-      //   toast.error(err || "Failed to delete service");
-      // }
-    
+  const handleEdit = async () => {
+    dispatch(setEditOpen(true));
+    dispatch(setServiceId(prop.serviceId));
   };
+
+
   return (
     <Card sx={{ maxWidth: 445 }}>
       <CardMedia
@@ -78,11 +79,22 @@ export default function ImgMediaCard(prop: cardProp) {
         </Typography>
       </CardContent>
       {prop.discount != 0 && <Typography>discount:{prop.discount}% off</Typography>}
-      <CardActions  sx={{ display: "flex", justifyContent: "space-between" }}>
-        <IconButton onClick={handleDelete} sx={{ color: "red" }}><DeleteIcon /></IconButton>
-        <IconButton onClick={handleEdit}><EditIcon /></IconButton>
+
+      {role != 'Admin' ? (<CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Button variant='contained' size="small">Book Now</Button>
-      </CardActions>
+      </CardActions>) :
+
+        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+          <IconButton onClick={handleDelete} sx={{ color: "red" }}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={handleEdit}>
+            <EditIcon />
+          </IconButton>
+          <Button variant='contained' size="small">Book Now</Button>
+        </CardActions>}
+
+
     </Card>
   );
 }
