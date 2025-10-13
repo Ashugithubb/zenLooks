@@ -4,7 +4,7 @@ import { z } from "zod";
 export const serviceSchema = z.object({
   title: z.string().min(6, { message: 'title is required' }),
   description: z.string().min(6, { message: 'description is required' }),
-  price: z.number().min(10,{ message: 'Enter Valid Phone number' }),
+  price: z.number().min(1,{ message: 'Enter Valid Price' }),
   time: z.number().min(1,{message:"Time feild cannot Empty"}),
   discount: z.number().optional(),
  category: z.enum(["Male", "Female"]),

@@ -29,6 +29,7 @@ export interface Booking {
     date: string;
     slot: string;
     phoneNo: string;
+    paymentStatus:string,
     bookedAt: string;
     service: Service;
     user: User;

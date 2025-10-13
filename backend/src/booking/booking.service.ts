@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
 import { BookingRepository } from './repository/booking.repo';
@@ -96,9 +96,11 @@ export class BookingService {
 
 
   async findAllBookings(query: GetBookingQueryDto, userId: number, role: Role) {
+
     if (role === Role.ADMIN) {
       return await this.allBookings(query);
     }
+
 
     const { page = 1, limit = 5, search, category, slot, startDate, endDate } = query;
 
@@ -177,7 +179,9 @@ export class BookingService {
   }
 
 
-
+  async remove(id: number) {
+    return await await this.bookingRepo.delete(id);
+  }
 
   findOne(id: number) {
     return `This action returns a #${id} booking`;
@@ -187,7 +191,5 @@ export class BookingService {
     return `This action updates a #${id} booking`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} booking`;
-  }
+
 }

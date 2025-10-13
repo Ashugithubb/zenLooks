@@ -1,4 +1,4 @@
-import { ConflictException, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, forwardRef, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
@@ -12,7 +12,9 @@ import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {
-    constructor(private userService: UserService,
+    constructor(
+         @Inject(forwardRef(() => UserService))
+        private userService: UserService,
         private hasingService: HasingService,
         private jwtService: JwtService,
         private configService: ConfigService,) { }
@@ -33,7 +35,7 @@ export class AuthService {
             httpOnly: true,
             secure: true,
             sameSite: 'strict',
-            maxAge: 2 * 60 * 10000,
+            maxAge: 2 * 60 * 100000,
         });
         return {
             "msg": "Loged In Successfully",

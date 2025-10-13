@@ -6,11 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { HasingModule } from 'src/hasing/hasing.module';
 import { BookingModule } from 'src/booking/booking.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 
 
 @Module({
-  imports:[TypeOrmModule.forFeature([User]),HasingModule],
+  imports:[TypeOrmModule.forFeature([User]),HasingModule,forwardRef(()=>AuthModule)],
   controllers: [UserController],
   providers: [UserService,UserRepository],
   exports:[UserService]

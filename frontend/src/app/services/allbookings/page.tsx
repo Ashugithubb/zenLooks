@@ -44,7 +44,7 @@ const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedV
     page: 1,
     limit: 10,
     search: filterValues.search || undefined,
-    category: filterValues.category || undefined, // rename to match backend
+    category: filterValues.category || undefined, 
    slot: filterValues.slot ? filterValues.slot.format("HH:mm") : undefined,
     startDate: filterValues.startDate ? filterValues.startDate.toISOString() : undefined,
     endDate: filterValues.endDate ? filterValues.endDate.toISOString() : undefined,

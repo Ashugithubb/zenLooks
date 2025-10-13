@@ -1,15 +1,22 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { Booking } from "@/app/redux/slice/booking.slice";
+import { Box } from "lucide-react";
+import { useAppDispatch } from "@/app/redux/hook/hook";
+import { cancelBookingThunk } from "@/app/redux/thunk/cancel.booking.thunk";
 interface BookingCardProps {
-    booking: Booking;
+  booking: Booking;
 }
-const SingleBookingCard = ({ booking }:BookingCardProps) => {
-
+const SingleBookingCard = ({ booking }: BookingCardProps) => {
+  const dispatch = useAppDispatch();
+  const handelCancelClicked = (id:number) => {
+    confirm("Are Sure want to cancel the  Booking Because If any Payment is done then it is not refundable");
+    dispatch(cancelBookingThunk(id))
+  }
   return (
-    <Card sx={{  maxWidth: 400, height: 650, margin: 1 }}>
-     
+    <Card sx={{ maxWidth: 400, height: 650, margin: 1 }}>
+
       <CardMedia
         component="img"
 
@@ -32,7 +39,7 @@ const SingleBookingCard = ({ booking }:BookingCardProps) => {
 
         <hr />
 
-      
+
         <Typography variant="body1">
           <strong>Booking Date:</strong> {booking.date}
         </Typography>
@@ -46,7 +53,11 @@ const SingleBookingCard = ({ booking }:BookingCardProps) => {
           <strong>Booked At:</strong>{" "}
           {new Date(booking.bookedAt).toLocaleString()}
         </Typography>
+        <Typography variant="body1" > <strong>Payment:</strong>:{booking.paymentStatus}</Typography>
       </CardContent>
+      <CardActions>
+        <Button variant="contained" onClick={()=>handelCancelClicked(booking.bookingId)}>Cance Booking</Button>
+      </CardActions>
     </Card>
   );
 };

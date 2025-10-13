@@ -12,6 +12,10 @@ export class CreateUserDto {
     @IsString()
     password: string
 
+    @IsString()
+    @IsOptional()
+    firebase:string
+
     @IsOptional()
     @IsEnum(Role)
     role: Role

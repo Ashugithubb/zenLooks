@@ -21,6 +21,9 @@ import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/app/redux/hook/hook';
 import style from './page.module.css'
 import { loginUser } from '@/app/redux/thunk/auth/login.thunk';
+import { auth } from '../../firbase/firebase'
+import { getAdditionalUserInfo, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { signupUser } from '@/app/redux/thunk/auth/signup.thunk';
 
 
 export const loginSchema = z.object({
@@ -55,6 +58,54 @@ export default function LoginForm() {
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+
+
+
+  const handelGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+
+
+      const additionalInfo = getAdditionalUserInfo(result);
+
+      const user = result.user;
+      const name = user.displayName || "Google User";
+      const email = user.email!;
+      const password = user.uid;
+      const firebase = "firbase";
+
+      console.log("Google user:", user);
+      console.log("Is new user?", additionalInfo?.isNewUser); 
+
+      if (additionalInfo?.isNewUser) {
+
+        const res = await dispatch(
+          signupUser({ name, email, password, confirmPassword: password,firebase })
+        );
+        if (res.meta.requestStatus === "fulfilled") {
+          toast.success("Account created successfully!");
+          router.push("/");
+        } else {
+          toast.error(res.payload || "Signup failed");
+        }
+      } else {
+
+        const res = await dispatch(loginUser({ email, password }));
+        if (res.meta.requestStatus === "fulfilled") {
+          toast.success("Login successful!");
+          router.push("/");
+        } else {
+          toast.error(res.payload || "Login failed");
+        }
+      }
+    } catch (error: any) {
+      console.error("Google login error:", error);
+      toast.error(error.message || "Login failed");
+    }
+  };
+
+
 
   return (
 
@@ -92,7 +143,12 @@ export default function LoginForm() {
               <Button type='submit' variant="contained" fullWidth className={style.btn}>
                 Login
               </Button>
+              <Button size='small' variant='outlined' onClick={handelGoogleLogin}>
+                <img src="./google.png" height="30px" width="30px" style={{ paddingRight: "10px" }} />
+                Continue with Google
+              </Button>
             </Box>
+
           </form>
 
 

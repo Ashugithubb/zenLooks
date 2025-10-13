@@ -14,7 +14,7 @@ import {
     Paper,
     TextField,
 } from "@mui/material";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import React, { useEffect, useState } from "react";
@@ -25,6 +25,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { bookServiceData, bookServiceThunk } from "@/app/redux/thunk/book.service.thunk";
 import { toast, ToastContainer } from "react-toastify";
 import { getUnavailableSlots } from "@/app/redux/thunk/slots/unavailable.slot.thunk";
+import PaymentSystem from "@/app/paymentSystem/page";
 
 export default function Bookings() {
     const param = useParams();
@@ -74,6 +75,7 @@ export default function Bookings() {
         }
     };
 
+    const router = useRouter();
     const handleBookNow = async () => {
         if (!bookingDate) return setError("Please select a booking date.");
         if (!selectedSlot) return setError("Please select a time slot.");
@@ -84,6 +86,12 @@ export default function Bookings() {
             const res = await dispatch(bookServiceThunk({ serviceId: id, date: bookingDate.toISOString(), slot: selectedSlot, phoneNo: mobileNumber }));
             if (res.meta.requestStatus == "fulfilled") {
                 toast.success("Booking Successfull See You Soon");
+                setTimeout(() => {
+                    router.push("/services/mybookings")
+                }, 3000)
+            }
+            else {
+                toast.error(res.payload || "Booking failed");
             }
         }
         catch (err) {
@@ -93,7 +101,7 @@ export default function Bookings() {
     useEffect(() => {
         dispatch(getUnavailableSlots());
     }, [dispatch])
-    
+
     const slots = useAppSelector((state) => state.unavailableSlot.slots);
 
     const disabledSlots = slots
@@ -108,7 +116,8 @@ export default function Bookings() {
             }
             return [];
         });
-
+    let amount;
+    const [disable, setDisable] = useState(false);
 
     return (
         <>
@@ -123,7 +132,7 @@ export default function Bookings() {
                     px: 3,
                 }}
             >
-               
+
 
                 <Card
                     sx={{
@@ -173,7 +182,7 @@ export default function Bookings() {
                             )}
                         </Box>
 
-                        {/* Duration */}
+
                         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                             <AccessTimeIcon fontSize="small" color="action" />
                             <Typography variant="body2" sx={{ ml: 1 }}>
@@ -250,7 +259,7 @@ export default function Bookings() {
                             />
                         </Box>
 
-                        {/* Billing Summary */}
+
                         {selectedSlot && bookingDate && (
                             <Paper
                                 elevation={2}
@@ -308,7 +317,7 @@ export default function Bookings() {
                                     <Typography variant="body1" fontWeight="bold">
                                         ₹
                                         {(
-                                            clickedService.price -
+                                            amount = clickedService.price -
                                             (clickedService.price * clickedService.discount) / 100
                                         ).toFixed(2)}
                                     </Typography>
@@ -326,18 +335,12 @@ export default function Bookings() {
                                 }
                                 onClick={handleBookNow}
                             >
-                                Book Now
+                                on Site Payemnt
                             </Button>
-                            <Button
-                                variant="outlined"
-                                size="large"
-                                disabled={
-                                    !selectedSlot || !bookingDate || mobileNumber.length !== 10
-                                }
-                                onClick={() => alert("Proceeding to payment...")}
-                            >
-                                Payment
-                            </Button>
+
+                            {selectedSlot && bookingDate && mobileNumber.length == 10 && <PaymentSystem amount={amount!} />}
+
+
                         </Box>
                     </CardContent>
                 </Card>

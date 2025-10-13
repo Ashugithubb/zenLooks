@@ -1,17 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
 import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
-
+import { Response } from 'express';
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  create(@Body() createUserDto: CreateUserDto, @Res({ passthrough: true }) res: Response) {
+    return this.userService.create(createUserDto, res);
   }
 
   @Get()
@@ -35,7 +35,7 @@ export class UserController {
   }
 
 
- 
 
-  
+
+
 }
