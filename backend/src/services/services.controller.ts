@@ -45,7 +45,7 @@ export class ServicesController {
   @UseGuards(JwtAuthGuard)
   @Post(":id/booking")
   bookService(@Param("id") id: number, @Body() createBookingDto: CreateBookingDto, @Req() req) {
-    const userId = req.user.userId;
+    const userId = req.user.id;
     return this.servicesService.bookService(createBookingDto, userId, id);
   }
   @Get("/top/three")

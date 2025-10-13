@@ -1,100 +1,58 @@
 .footer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
-  background: linear-gradient(135deg, #2d2d2d, #4a4a4a);
-  color: white;
-  padding: 60px 80px;
+   background: linear-gradient(135deg, #2d2d2d, #4a4a4a);
+  color: #eee;
+  padding-top: 3rem ;
 }
 
-.footerSection {
-  flex: 1;
-  min-width: 250px;
+.container {
+  display: flex;
+  gap:80;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .logo {
-  font-size: 2rem;
   font-weight: 700;
-  color: #c49a3a;
-  margin-bottom: 10px;
+  color: #f5c542;
+  margin-bottom: 0.5rem;
 }
 
-.desc {
-  font-size: 0.95rem;
-  color: #dcdcdc;
-  line-height: 1.6;
-  max-width: 280px;
-}
-
-.sectionTitle {
-  font-size: 1.3rem;
+.heading {
   font-weight: 600;
-  color: #c49a3a;
-  margin-bottom: 10px;
+  color: #f5c542;
+  margin-bottom: 0.5rem;
 }
 
-.link {
-  color: #f0f0f0;
-  font-size: 1rem;
-  margin-top: 6px;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.link:hover {
-  color: #c49a3a;
-  transform: translateX(4px);
-}
-
-.newsletter {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.input {
-  background: white;
-  border-radius: 4px;
-  flex: 1;
-}
-
-.btn {
-  background-color: #c49a3a !important;
-  color: #2d2d2d !important;
-  text-transform: none !important;
-  font-weight: 600 !important;
-  border-radius: 6px !important;
-}
-
-.btn:hover {
-  background-color: #e5c16e !important;
-}
-
-
-.footer::after {
-  content: "© 2025 ZenLook Salon. All rights reserved.";
-  display: block;
-  text-align: center;
+.text {
+  line-height: 1.5;
   color: #ccc;
-  font-size: 0.9rem;
-  margin-top: 40px;
-  width: 100%;
+  max-width: 350px;
 }
 
+.info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    text-align: center;
-    padding: 50px 30px;
-  }
+.social {
+  display: flex;
+  gap: 0.5rem;
+}
 
-  .desc {
-    margin: 0 auto;
-  }
+.divider {
+  margin: 2rem 0 1rem;
+  border-color: #444 !important;
+}
 
-  .newsletter {
-    justify-content: center;
-  }
+.copy {
+  text-align: center;
+  color: #999;
+  padding-top: 20px;
 }

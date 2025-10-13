@@ -10,5 +10,6 @@ import { UserModule } from 'src/user/user.module';
   imports:[TypeOrmModule.forFeature([UnavailableSlot]),UserModule],
   controllers: [UnavailableSlotsController],
   providers: [UnavailableSlotsService,UnavailableSlotRepository],
+  exports:[UnavailableSlotsService,UnavailableSlotRepository]
 })
 export class UnavailableSlotsModule {}

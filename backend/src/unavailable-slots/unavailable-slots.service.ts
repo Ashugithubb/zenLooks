@@ -23,8 +23,8 @@ export class UnavailableSlotsService {
 
 
 
-  findAll() {
-    return `This action returns all unavailableSlots`;
+  async findAll() {
+    return await this.unavailableSlotRepo.find();
   }
 
 

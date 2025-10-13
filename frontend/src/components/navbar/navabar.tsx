@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hook/hook";
 import { clearUser } from "@/app/redux/slice/login.slice";
 import { toast, ToastContainer } from "react-toastify";
+import { logoutUser } from "@/app/redux/thunk/auth/login.thunk";
 
 export default function Navbar() {
   const router = useRouter();
@@ -17,7 +18,9 @@ export default function Navbar() {
   }
   const handelLogOut = () => {
     try {
-      const res = dispatch(clearUser());
+     dispatch(clearUser());
+      const res = dispatch(logoutUser());
+      
       toast("log out successfully");
     }
     catch (error) {

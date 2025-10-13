@@ -10,7 +10,7 @@ export class Booking {
     @Column({type:"date"})
     date:string
 
-    @Column()
+    @Column({type:"time"})
     slot:string
 
     @Column()

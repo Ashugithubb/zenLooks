@@ -25,3 +25,23 @@ export const loginUser = createAsyncThunk(
         }
     }
 );
+
+
+export const logoutUser = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      
+      await axios.post(
+        'http://localhost:3001/auth/logout',
+        {},
+        { withCredentials: true }
+      );
+      return true;
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || 'Logout failed';
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);

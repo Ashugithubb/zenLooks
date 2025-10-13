@@ -1,5 +1,5 @@
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("unavailable_slots")
 export class UnavailableSlot {
@@ -9,16 +9,19 @@ export class UnavailableSlot {
     @Column({type:"date"})
     date:string
 
-    @Column()
+    @Column({type:"time"})
     start_time:string
 
-    @Column()
+    @Column({type:"time"})
     end_time:string
 
     @Column()
     reason:string
 
     @ManyToOne(()=>User)
+    @JoinColumn({
+        name:"userId"
+    })
     user:User
 
 }

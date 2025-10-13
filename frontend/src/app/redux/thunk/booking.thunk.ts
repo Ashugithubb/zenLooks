@@ -1,16 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Dayjs } from "dayjs";
 import qs from 'qs';
 
 export interface GetBookingServiceQuery {
   page?: number;
   limit?: number;
   search?: string;
-  category?: string;
-  startDate?: string;
-  endDate?: string;
-  slot?: string; 
+  category?: string;         
+  startDate?: string | null; 
+  endDate?: string | null;   
+  slot?: string | null;      
 }
+
 export const getAllBookings = createAsyncThunk(
   'allbookings/bookings',
   async (query: GetBookingServiceQuery, { rejectWithValue }) => {

@@ -25,13 +25,20 @@ export class GetBookingQueryDto {
     category?: Category
 
     @IsOptional()
+    @Transform(({ value }) => {
+        const date = new Date(value);
+        return isNaN(date.getTime()) ? undefined : date.toISOString();
+    })
     @IsDateString()
     startDate?: string;
 
-     @IsOptional()
+    @IsOptional()
+    @Transform(({ value }) => {
+        const date = new Date(value);
+        return isNaN(date.getTime()) ? undefined : date.toISOString();
+    })
     @IsDateString()
     endDate?: string;
-
 
     @IsOptional()
     @IsString()

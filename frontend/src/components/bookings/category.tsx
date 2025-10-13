@@ -14,8 +14,8 @@ const GenderSelectComponent: React.FC<GenderSelectProps> = ({ value, onChange, p
       style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
     >
       <option value="">{placeholder || "Select Gender"}</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
     </select>
   );
 };

@@ -4,13 +4,24 @@ export default function Carosole() {
             <div id="carouselExampleAutoplaying" className="carousel slide " data-bs-ride="carousel" >
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="./handsome.jpg" className="d-block w-100 h-110" alt="..."/>
+                        <img src="./saloon.jpeg" className="d-block w-100 h-110" alt="..." />
                     </div>
-                    <div className="carousel-item">
-                        <img src="./AdobeStock.jpeg" className="d-block w-100 h-110" alt="..."/>
+                    <div className="carousel-item active">
+                        <video
+                            className="d-block w-100  h-110"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            style={{ objectFit: "cover" }}
+                        >
+                            <source src="./video2.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
+
                     <div className="carousel-item">
-                        <img src="./client.jpg" className="d-block w-100 h-110 " alt="..."/>
+                        <img src="./client.jpg" className="d-block w-100 h-110 " alt="..." />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

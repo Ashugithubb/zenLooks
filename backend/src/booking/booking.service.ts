@@ -7,6 +7,8 @@ import { ServicesService } from 'src/services/services.service';
 import { GetBookingQueryDto } from './dto/query.dto';
 import { Role } from 'src/user/enum/user.role';
 import { ServiceRepository } from 'src/services/repository/service.repo';
+import { UnavailableSlotsService } from 'src/unavailable-slots/unavailable-slots.service';
+import dayjs from 'dayjs'
 
 @Injectable()
 export class BookingService {
@@ -14,7 +16,8 @@ export class BookingService {
     private readonly userService: UserService,
     @Inject(forwardRef(() => ServicesService))
     private readonly serviceService: ServicesService,
-    private readonly serviceRepo: ServiceRepository
+    private readonly serviceRepo: ServiceRepository,
+    private readonly unavilabeService: UnavailableSlotsService
 
   ) { }
 
@@ -30,6 +33,18 @@ export class BookingService {
       user,
       service
     })
+    const { date, slot } = createBookingDto;
+    const end_time = dayjs(`2000-01-01T${slot}`)
+      .add(30, 'minute')
+      .format('HH:mm');
+
+
+    await this.unavilabeService.create({
+      start_time: slot,
+      date,
+      end_time,
+      reason: "Booked slot"
+    }, userId)
     return await this.bookingRepo.save(newBooking);
   }
 
@@ -118,12 +133,10 @@ export class BookingService {
     } else if (endDate) {
       qb.andWhere("bookings.date <= :end", { end: endDate });
     }
-
     const [bookings, total] = await qb
       .skip((page - 1) * limit)
       .take(limit)
       .getManyAndCount();
-
     return {
       total,
       page,

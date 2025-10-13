@@ -67,6 +67,7 @@ export class ServicesService {
   }
 
   async bookService(createBookingDto: CreateBookingDto, userId: number, serviceId: number) {
+    
     return await this.bookingService.create(createBookingDto, userId, serviceId);
   }
 

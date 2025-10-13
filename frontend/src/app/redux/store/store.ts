@@ -7,6 +7,7 @@ import loginReducer from '../slice/login.slice'
 import serviceReducer from '../slice/services.slice'
 import editReducer from '../slice/edit.slice'
 import bookingReducer from '../slice/booking.slice'
+import unavilableReducer from '../slice/unavailable.slot.slice'
 const persistConfig = {
   key: 'root',
   storage,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   login: loginReducer,
   service:serviceReducer,
   editService:editReducer,
-  allBooking:bookingReducer
+  allBooking:bookingReducer,
+  unavailableSlot:unavilableReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

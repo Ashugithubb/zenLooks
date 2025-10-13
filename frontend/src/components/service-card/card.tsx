@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import CreateServiceDialog from '../service/add-service';
 import { Service } from '@/app/redux/slice/services.slice';
 import { setEditOpen, setServiceId } from '@/app/redux/slice/edit.slice';
+import { useRouter } from 'next/navigation';
 interface cardProp {
   title: string;
   description: string;
@@ -31,7 +32,6 @@ export default function ImgMediaCard(prop: cardProp) {
   const role = useAppSelector((state) => state.login.auth?.role);
   const services = useAppSelector((state) => state.service.servicelist?.services);
 
-
   const handleDelete = async () => {
     if (confirm(`Are you sure you want to delete "${prop.title}"?`)) {
       try {
@@ -44,12 +44,19 @@ export default function ImgMediaCard(prop: cardProp) {
       }
     }
   };
-
+  const router = useRouter()
   const handleEdit = async () => {
     dispatch(setEditOpen(true));
     dispatch(setServiceId(prop.serviceId));
   };
 
+  const handelBook = () => {
+    if(role==="User"){
+    router.push(`/services/booking/${prop.serviceId}`);}
+    else{
+      toast.error("Please Login to  Book Services");
+    }
+  }
 
   return (
     <Card sx={{ maxWidth: 445 }}>
@@ -81,7 +88,7 @@ export default function ImgMediaCard(prop: cardProp) {
       {prop.discount != 0 && <Typography>discount:{prop.discount}% off</Typography>}
 
       {role != 'Admin' ? (<CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button variant='contained' size="small">Book Now</Button>
+        <Button onClick={handelBook} variant='contained' size="small" className={style.bookNowBtn}>Book Now</Button>
       </CardActions>) :
 
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -91,7 +98,15 @@ export default function ImgMediaCard(prop: cardProp) {
           <IconButton onClick={handleEdit}>
             <EditIcon />
           </IconButton>
-          <Button variant='contained' size="small">Book Now</Button>
+          <Button
+            onClick={handelBook}
+            variant="contained"
+            size="medium"
+             className={style.bookNowBtn}
+             
+          >
+            Book Now
+          </Button>
         </CardActions>}
 
 

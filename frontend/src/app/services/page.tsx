@@ -47,11 +47,9 @@ export default function Services() {
     return (
         <>
             <Navbar />
-
             <Typography sx={{ textAlign: "center", mt: 3 }} variant="h3">
                 See all our Services
             </Typography>
-
 
             <Box
                 sx={{
@@ -69,7 +67,14 @@ export default function Services() {
                     size="small"
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    sx={{ width: "250px" }}
+                    sx={{
+                        width: "250px",
+                        "& .MuiOutlinedInput-root": {
+                            borderRadius: "30px",
+                            transition: "all 0.3s ease",
+
+                        },
+                    }}
                 />
 
                 <Box sx={{ display: "flex", gap: 2 }}>
@@ -82,7 +87,7 @@ export default function Services() {
                             All Bookings
                         </Button>
                     ) : (
-                        <Button variant="contained">My Bookings</Button>
+                        <Button onClick={() => router.push("/services/mybookings")} variant="contained">My Bookings</Button>
                     )}
                 </Box>
             </Box>

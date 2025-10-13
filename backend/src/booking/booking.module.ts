@@ -6,9 +6,10 @@ import { Booking } from './entities/booking.entity';
 import { BookingRepository } from './repository/booking.repo';
 import { UserModule } from 'src/user/user.module';
 import { ServicesModule } from 'src/services/services.module';
+import { UnavailableSlotsModule } from 'src/unavailable-slots/unavailable-slots.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Booking]),  forwardRef(()=>ServicesModule) ,UserModule],
+  imports:[TypeOrmModule.forFeature([Booking]),  forwardRef(()=>ServicesModule) ,UserModule,UnavailableSlotsModule],
   controllers: [BookingController],
   providers: [BookingService,BookingRepository],
   exports:[BookingService,BookingRepository]

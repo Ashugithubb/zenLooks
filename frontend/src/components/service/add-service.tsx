@@ -127,18 +127,21 @@ export default function CreateServiceDialog() {
 
     return (
         <>
-           
+
             <Button variant="outlined" onClick={handleClickOpen}>
                 Add Services<AddIcon />
             </Button>
-             <ToastContainer />
+            <ToastContainer />
             <Dialog open={open}
                 onClose={handleClose}>
                 <DialogTitle> Add New Services Details</DialogTitle>
 
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Box sx={{ position: "relative", display: "inline-block" }}>
-                        <img src={avatarPreview || ''} height={"50px"} width={"250px"} />
+                        {avatarPreview ? (
+                            <img src={avatarPreview} height="50px" width="250px" alt="Preview" />
+                        ) : null}
+
                         <Button
                             variant="outlined"
                             component="label"
