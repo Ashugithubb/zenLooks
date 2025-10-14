@@ -79,7 +79,7 @@ export default function Services() {
                         }}
                     /></Box>
 
-                <Box sx={{ display: "flex", gap: 2,paddingLeft:"40px" }}>
+                <Box sx={{ display: "flex", gap: 2, paddingLeft: "40px" }}>
                     {role === "Admin" && <CreateServiceDialog />}
                     {role === "Admin" ? (
                         <Button

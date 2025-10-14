@@ -125,13 +125,13 @@ export default function ImgMediaCard(prop: cardProp) {
           <IconButton onClick={handleEdit}>
             <EditIcon />
           </IconButton>
-          <Button
+          {role != 'Admin' && <Button
             onClick={handelBook}
             variant="contained"
             size="medium"
             className={style.bookNowBtn}>
             Book Now
-          </Button>
+          </Button>}
         </CardActions>}
 
 

@@ -22,9 +22,9 @@ export default function Home() {
       </Box>
 
       <Box className={style.card}>
-        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./salon-service.jpg"/>
-        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./one.jpg"/>
-         <ServiceCard  serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./cream.png"/>
+        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={500} discount={0} imageUrl="./salon-service.jpg"/>
+          <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={1150} discount={0} imageUrl="./image4.jpg"/>
+         <ServiceCard  serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={650} discount={0} imageUrl="./cream.png"/>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", alignContent: "center",padding:"100px" }}>
         <Button onClick={()=>router.push("/services")} className={style.viewAllBtn} variant="contained">View All Services</Button></Box>

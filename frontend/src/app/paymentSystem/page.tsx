@@ -13,14 +13,13 @@ interface paymentProp {
 export default function PaymentSystem({ amount }: paymentProp) {
 
   useEffect(() => {
-    // Dynamically load the Razorpay script
+
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     document.body.appendChild(script);
 
     return () => {
-      // Clean up the script if the component unmounts
       document.body.removeChild(script);
     };
   }, []);
@@ -45,15 +44,15 @@ export default function PaymentSystem({ amount }: paymentProp) {
 
       const order = await response.json();
 
-      // Open Razorpay Checkout
+
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, //rzp_test_PgdcAVbkK0t1Ue
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
         name: "ZenLook",
         description: "Test Transaction",
-        order_id: order.id, // This is the order_id created in the backend
-        callback_url: "/api/verify-payment", // Your success URL
+        order_id: order.id,
+        callback_url: "/api/verify-payment",
         prefill: {
           name: "Ashutosh Kumar",
           email: "itsray650@gmail.com",

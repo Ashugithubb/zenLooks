@@ -32,27 +32,11 @@ export default function ImgMediaCard2(prop: cardProp) {
   const role = useAppSelector((state) => state.login.auth?.role);
   const services = useAppSelector((state) => state.service.servicelist?.services);
 
-//   const handleDelete = async () => {
-//     if (confirm(`Are you sure you want to delete "${prop.title}"?`)) {
-//       try {
-//         const res = await dispatch(deleteServiceThunk(prop.serviceId));
-//         if (res.meta.requestStatus === "fulfilled") {
-//           toast.success("Service deleted successfully!");
-//         }
-//       } catch (err: any) {
-//         toast.error(err || "Failed to delete service");
-//       }
-//     }
-//   };
   const router = useRouter()
-//   const handleEdit = async () => {
-//     dispatch(setEditOpen(true));
-//     dispatch(setServiceId(prop.serviceId));
-//   };
-
+ 
   const handelBook = () => {
     if (role === "User") {
-      router.push(`/services/booking/${prop.serviceId}`);
+      router.push(`/services`);
     }
     else if (role === "Admin") {
       toast.error("Admin cannot Book a service");
@@ -71,8 +55,10 @@ export default function ImgMediaCard2(prop: cardProp) {
         component="img"
         alt="green iguana"
         height="160"
+        
         image={prop.imageUrl}
         sx={{
+          objectFit: "cover", 
           cursor: 'pointer',
           transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
           '&:hover': {

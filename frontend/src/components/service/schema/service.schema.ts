@@ -7,7 +7,7 @@ export const serviceSchema = z.object({
   price: z.number().min(1,{ message: 'Enter Valid Price' }),
   time: z.number().min(1,{message:"Time feild cannot Empty"}),
   discount: z.number().optional(),
- category: z.enum(["Male", "Female"]),
+ category: z.enum(["Male", "Female",""]),
   imageUrl:z.string().optional()
 });
 

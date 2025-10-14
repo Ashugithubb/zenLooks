@@ -48,13 +48,14 @@ export default function CreateServiceDialog() {
         handleSubmit,
         formState: { errors },
         reset,
+        watch
     } = useForm<ServiceData>({
         resolver: zodResolver(serviceSchema),
         defaultValues: {
             title: "",
             description: "",
             price: 0,
-            category: undefined,
+            category:"" ,
             time: 0,
             discount: 0,
         },
@@ -188,8 +189,6 @@ export default function CreateServiceDialog() {
                                 rows={3}
                                 fullWidth
                                 className={style.title}
-
-
                             />
 
                             <TextField
@@ -227,6 +226,7 @@ export default function CreateServiceDialog() {
                                 select
                                 label="Category"
                                 {...register("category")}
+                                 value={watch("category") || ""}
                                 error={!!errors.category}
                                 helperText={errors.category?.message}
                                 fullWidth

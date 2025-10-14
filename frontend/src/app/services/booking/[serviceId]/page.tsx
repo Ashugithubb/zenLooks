@@ -26,6 +26,7 @@ import { bookServiceData, bookServiceThunk } from "@/app/redux/thunk/book.servic
 import { toast, ToastContainer } from "react-toastify";
 import { getUnavailableSlots } from "@/app/redux/thunk/slots/unavailable.slot.thunk";
 import PaymentSystem from "@/app/paymentSystem/page";
+import { setBookingDetails } from "@/app/redux/slice/add.b00king.slice";
 
 export default function Bookings() {
     const param = useParams();
@@ -102,6 +103,19 @@ export default function Bookings() {
         dispatch(getUnavailableSlots());
     }, [dispatch])
 
+    useEffect(() => {
+    if (bookingDate && selectedSlot && mobileNumber.length === 10) {
+        dispatch(
+            setBookingDetails({
+                serviceId: id,
+                date: bookingDate.toISOString(),
+                slot: selectedSlot,
+                phoneNo: mobileNumber,
+            })
+        );
+    }
+}, [bookingDate, selectedSlot, mobileNumber, id, dispatch]);
+
     const slots = useAppSelector((state) => state.unavailableSlot.slots);
 
     const disabledSlots = slots
@@ -165,7 +179,7 @@ export default function Bookings() {
 
                         <Divider sx={{ my: 2 }} />
 
-                        \
+                     
                         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                             <CurrencyRupeeIcon fontSize="small" />
                             <Typography variant="h6" sx={{ ml: 0.5 }}>
@@ -325,7 +339,7 @@ export default function Bookings() {
                             </Paper>
                         )}
 
-                  
+
                         <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
                             <Button
                                 variant="contained"
@@ -338,7 +352,7 @@ export default function Bookings() {
                                 on Site Payemnt
                             </Button>
 
-                            {selectedSlot && bookingDate && mobileNumber.length == 10 && <PaymentSystem amount={amount!} />}
+                            {selectedSlot && bookingDate && mobileNumber.length == 10 && <PaymentSystem amount={amount!}/>}
 
 
                         </Box>
