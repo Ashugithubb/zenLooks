@@ -25,7 +25,7 @@ type FormData = z.infer<typeof createUnavailableSlotSchema>;
 
 export default function AddUnavailableSlotDialog() {
   const [open, setOpen] = useState(false);
-const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -47,7 +47,7 @@ const dispatch = useAppDispatch();
 
   const onSubmit = (data: FormData) => {
     console.log("Form Data:", data);
-   dispatch(createUnavailableSlot(data))
+    dispatch(createUnavailableSlot(data))
     handleClose();
   };
 
@@ -60,16 +60,23 @@ const dispatch = useAppDispatch();
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Unavailable Slot</DialogTitle>
         <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}>
-          
+
           <DatePicker
             label="Select Date"
             value={selectedDate ? dayjs(selectedDate) : null}
             onChange={(newDate: Dayjs | null) => setValue("date", newDate?.toISOString() || "")}
             disablePast
+            slotProps={{
+              textField: {
+                error: !!errors.date,
+                helperText: errors.date?.message,
+              },
+            }}
           />
-          {errors.date && <span style={{ color: "red" }}>{errors.date.message}</span>}
 
-         
+        
+
+
           <TextField
             label="Start Time (HH:mm)"
             {...register("start_time")}

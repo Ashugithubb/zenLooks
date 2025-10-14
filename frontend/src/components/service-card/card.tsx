@@ -53,8 +53,11 @@ export default function ImgMediaCard(prop: cardProp) {
   const handelBook = () => {
     if(role==="User"){
     router.push(`/services/booking/${prop.serviceId}`);}
+    else if (role==="Admin") {
+      toast.error("Admin cannot Book a service");
+    }
     else{
-      toast.error("Please Login to  Book Services");
+         toast.error("Please Login to  Book Services");
     }
   }
 

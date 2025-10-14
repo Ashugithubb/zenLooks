@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { deleteServiceThunk, getServiceThunk } from "../redux/thunk/service.thunk";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
+import style from './page.module.css'
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const { total = 0, page = 1, limit = 3, services = [] } =
@@ -61,23 +61,25 @@ export default function Services() {
                     gap: 2,
                 }}
             >
-                <TextField
-                    label="Search services..."
-                    variant="outlined"
-                    size="small"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    sx={{
-                        width: "250px",
-                        "& .MuiOutlinedInput-root": {
-                            borderRadius: "30px",
-                            transition: "all 0.3s ease",
+                <Box className={style.searchBox}>
+                    <TextField
+                        label="Search services..."
+                        variant="outlined"
+                        size="small"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className={style.searchField}
+                        sx={{
+                            width: "250px",
+                            "& .MuiOutlinedInput-root": {
+                                borderRadius: "30px",
+                                transition: "all 0.3s ease",
 
-                        },
-                    }}
-                />
+                            },
+                        }}
+                    /></Box>
 
-                <Box sx={{ display: "flex", gap: 2 }}>
+                <Box sx={{ display: "flex", gap: 2,paddingLeft:"40px" }}>
                     {role === "Admin" && <CreateServiceDialog />}
                     {role === "Admin" ? (
                         <Button
@@ -87,7 +89,7 @@ export default function Services() {
                             All Bookings
                         </Button>
                     ) : (
-                        <Button onClick={() => router.push("/services/mybookings")} variant="contained">My Bookings</Button>
+                        <Button className={style.myBooking} onClick={() => router.push("/services/mybookings")} variant="contained">My Bookings</Button>
                     )}
                 </Box>
             </Box>

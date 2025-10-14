@@ -21,7 +21,7 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box sx={{ display: "flex", gap: 2, justifyContent: "center", padding: "50px" }}>
+      <Box className={style.card}>
         <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./salon-service.jpg"/>
         <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./one.jpg"/>
          <ServiceCard  serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-" price={50} discount={0} imageUrl="./cream.png"/>

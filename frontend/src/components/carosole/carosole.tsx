@@ -1,14 +1,16 @@
+import styles from './carosloe.module.css';
+
 export default function Carosole() {
     return (
         <>
             <div id="carouselExampleAutoplaying" className="carousel slide " data-bs-ride="carousel" >
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="./saloon.jpeg" className="d-block w-100 h-110" alt="..." />
+                        <img src="./saloon.jpeg" className={`d-block w-100 ${styles.images}`} alt="..." />
                     </div>
                     <div className="carousel-item active">
                         <video
-                            className="d-block w-100  h-110"
+                            className={`d-block w-100 ${styles.images}`}
                             autoPlay
                             loop
                             muted
@@ -21,7 +23,7 @@ export default function Carosole() {
                     </div>
 
                     <div className="carousel-item">
-                        <img src="./client.jpg" className="d-block w-100 h-110 " alt="..." />
+                        <img src="./client.jpg" className={`d-block w-100 ${styles.images}`} alt="..." />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

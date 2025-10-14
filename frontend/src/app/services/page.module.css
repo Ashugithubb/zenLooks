@@ -26,3 +26,22 @@
 .searchField input {
     padding: 10px 14px  !important;
 }
+.searchBox{
+   display:flex; 
+}
+ .myBooking{
+    background-color: #c49a3a!important;
+  }
+@media screen and (max-width: 768px) {
+
+ .searchBox {
+   display:flex; 
+   justify-content: center;
+   align-content: center;
+   padding-left: 70;
+  }
+  .myBooking{
+    margin-left:230px !important;
+    background-color: #c49a3a!important;
+  }
+}

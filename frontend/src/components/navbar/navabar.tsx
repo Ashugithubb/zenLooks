@@ -18,9 +18,11 @@ export default function Navbar() {
   }
   const handelLogOut = () => {
     try {
-     dispatch(clearUser());
+      dispatch(clearUser());
       const res = dispatch(logoutUser());
       toast("log out successfully");
+     router.push("/services");
+
     }
     catch (error) {
       toast.error("unable to log out");

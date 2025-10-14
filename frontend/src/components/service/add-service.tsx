@@ -20,9 +20,9 @@ import { addService } from '@/app/redux/thunk/add.service';
 import { editServiceThunk, getServiceThunk } from '@/app/redux/thunk/service.thunk';
 import { Service } from '@/app/redux/slice/services.slice';
 import { resetServiceState } from '@/app/redux/slice/edit.slice';
-
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 type ServiceData = z.infer<typeof serviceSchema>;
-
+import style from "./add.module.css"
 export default function CreateServiceDialog() {
     const [open, setOpen] = React.useState(false);
     const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
@@ -54,7 +54,7 @@ export default function CreateServiceDialog() {
             title: "",
             description: "",
             price: 0,
-            category: 'Male',
+            category: undefined,
             time: 0,
             discount: 0,
         },
@@ -133,7 +133,9 @@ export default function CreateServiceDialog() {
             </Button>
             <ToastContainer />
             <Dialog open={open}
-                onClose={handleClose}>
+                onClose={handleClose}
+                className={style.form}
+            >
                 <DialogTitle> Add New Services Details</DialogTitle>
 
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -147,19 +149,10 @@ export default function CreateServiceDialog() {
                             component="label"
                             size="small"
                             sx={{
-                                minWidth: 0,
-                                position: "absolute",
-
-                                bottom: 0,
-                                right: 20,
-                                marginTop: "500%",
-
-                                padding: "4px",
-                                borderRadius: "50%",
-                                backgroundColor: "white",
+                                border: "none"
                             }}
                         >
-                            <EditIcon />
+                            <AddPhotoAlternateIcon />
                             <input
                                 type="file"
                                 hidden
@@ -182,6 +175,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.title}
                                 helperText={errors.title?.message}
                                 fullWidth
+                                className={style.title}
 
                             />
 
@@ -193,6 +187,7 @@ export default function CreateServiceDialog() {
                                 multiline
                                 rows={3}
                                 fullWidth
+                                className={style.title}
 
 
                             />
@@ -204,7 +199,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.price}
                                 helperText={errors.price?.message}
                                 fullWidth
-
+                                className={style.title}
                             />
 
                             <TextField
@@ -214,6 +209,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.time}
                                 helperText={errors.time?.message}
                                 fullWidth
+                                className={style.title}
 
                             />
 
@@ -224,7 +220,7 @@ export default function CreateServiceDialog() {
                                 error={!!errors.discount}
                                 helperText={errors.discount?.message}
                                 fullWidth
-
+                                className={style.title}
                             />
 
                             <TextField
@@ -234,13 +230,14 @@ export default function CreateServiceDialog() {
                                 error={!!errors.category}
                                 helperText={errors.category?.message}
                                 fullWidth
-
+                                className={style.title}
+                                
                             >
                                 <MenuItem value="Male">Male</MenuItem>
                                 <MenuItem value="Female">Female</MenuItem>
                             </TextField>
 
-                            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+                            <Box className={style.button} >
                                 <Button onClick={handleClose}>Cancel</Button>
 
                                 {serviceId ? <Button type="submit" variant="contained">
