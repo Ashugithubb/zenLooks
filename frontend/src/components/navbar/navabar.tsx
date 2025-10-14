@@ -31,7 +31,8 @@ export default function Navbar() {
   return (<>
     <ToastContainer />
     <Box className={style.navbar}>
-      <Typography className={style.logo}> ZenLook</Typography>
+      {/* <Typography className={style.logo}> ZenLook</Typography> */}
+       <Link href="/" className={style.logo}>ZenLook</Link>
       <Box className={style.right}>
         <Link href="/" className={style.link}>Home</Link>
         <Link href="/#about" className={style.link}>About</Link>

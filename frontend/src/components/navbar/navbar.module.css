@@ -18,6 +18,8 @@
   letter-spacing: 1px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  text-decoration: none !important;
+   color: #2d2d2d !important;
 }
 
 .logo:hover {

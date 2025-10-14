@@ -2,7 +2,7 @@
 import Carosole from "@/components/carosole/carosole";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navabar";
-import ServiceCard from "@/components/service-card/card";
+import ServiceCard from "@/components/service-card/p.card";
 import { Box, Button } from "@mui/material";
 import Image from "next/image";
 import style from '../app/style/page.module.css'
@@ -34,5 +34,4 @@ export default function Home() {
 
   );
 }
-
 
