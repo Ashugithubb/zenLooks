@@ -56,7 +56,7 @@ const [open,setOpen] = useState(false);
   return (
     <>
       <Navbar />
- <UnavailableSlotForm/>
+ <Box sx={{paddingTop:"15px"}}><UnavailableSlotForm/></Box>
       <Box sx={{ mt: 8, px: 4 }}>
         <Card
           sx={{

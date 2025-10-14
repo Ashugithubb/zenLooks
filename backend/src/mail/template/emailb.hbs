@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Booking Confirmation - {{service.title}}</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      max-width: 600px;
+      margin: 30px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      background-color: #673ab7;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .header h2 {
+      margin: 0;
+    }
+    .content {
+      padding: 20px 30px;
+      color: #333;
+    }
+    .service-img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #444;
+    }
+    .info {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .highlight {
+      color: #673ab7;
+      font-weight: 600;
+    }
+    .footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 13px;
+      color: #888;
+      border-top: 1px solid #eee;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #673ab7;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Booking Confirmed 🎉</h2>
+      <p>Thank you for booking with <strong>ZenLook Salon</strong></p>
+    </div>
+
+    <div class="content">
+      <img src="{{service.imageUrl}}" alt="{{service.title}}" class="service-img" />
+
+      <div class="info">
+        <p class="section-title">Service Details</p>
+        <p><strong>{{service.title}}</strong></p>
+        <p>{{service.description}}</p>
+        <p>Price: <span class="highlight">₹{{service.price}}</span></p>
+        {{#if service.discount}}
+        <p>Discount: <span class="highlight">{{service.discount}}%</span></p>
+        {{/if}}
+        <p>Category: {{service.category}}</p>
+        <p>Duration: {{service.time}} minutes</p>
+      </div>
+
+      <div class="info">
+        <p class="section-title">Booking Details</p>
+        <p>Booking ID: <strong>{{bookingId}}</strong></p>
+        <p>Date: {{date}}</p>
+        <p>Slot: {{slot}}</p>
+        <p>Booked At: {{bookedAt}}</p>
+      </div>
+
+      <div class="info">
+        <p class="section-title">User Details</p>
+        <p>Name: {{user.name}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Phone: {{phoneNo}}</p>
+      </div>
+
+      <a href="https://zenlook.com" class="btn">Visit Our Website</a>
+    </div>
+
+    <div class="footer">
+      &copy; {{year}} ZenLook Salon. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

@@ -11,13 +11,40 @@ import { UnavailableSlotsModule } from './unavailable-slots/unavailable-slots.mo
 import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
+import { MailModule } from './mail/mail.module';
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync(typeOrmConfig), UserModule, ServicesModule,
     BookingModule, UnavailableSlotsModule, AuthModule, ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'files'),
       serveRoot: '/files',
-    })],
+    }), MailerModule.forRoot({
+      preview:true,
+      transport: {
+        service: 'gmail',
+        port: 1025,
+        ignoreTLS: true,
+        secure: false,
+      
+        auth: {
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS,
+        },
+      },
+      defaults: {
+        from: '"ZenLook Salon" <no-reply@zenlook.com>',
+      },
+
+
+      template: {
+        dir: process.cwd() + '/src/mail/template',
+        adapter: new HandlebarsAdapter(),
+        options: {
+          strict: true,
+        },
+      },
+    }), MailModule],
   controllers: [AppController],
   providers: [AppService],
 })

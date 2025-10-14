@@ -21,7 +21,7 @@ import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/app/redux/hook/hook';
 import style from './page.module.css'
 import { loginUser } from '@/app/redux/thunk/auth/login.thunk';
-import { auth } from '../../firbase/firebase'
+import { auth } from '../../fierbase/firebase'
 import { getAdditionalUserInfo, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { signupUser } from '@/app/redux/thunk/auth/signup.thunk';
 
@@ -79,7 +79,7 @@ export default function LoginForm() {
       console.log("Is new user?", additionalInfo?.isNewUser); 
 
       if (additionalInfo?.isNewUser) {
-
+         
         const res = await dispatch(
           signupUser({ name, email, password, confirmPassword: password,firebase })
         );

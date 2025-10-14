@@ -20,7 +20,6 @@ export default function Navbar() {
     try {
      dispatch(clearUser());
       const res = dispatch(logoutUser());
-      
       toast("log out successfully");
     }
     catch (error) {

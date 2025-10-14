@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
@@ -5,14 +6,25 @@ import { Booking } from "@/app/redux/slice/booking.slice";
 import { Box } from "lucide-react";
 import { useAppDispatch } from "@/app/redux/hook/hook";
 import { cancelBookingThunk } from "@/app/redux/thunk/cancel.booking.thunk";
+import { toast } from "react-toastify";
+
+import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
+import { useRouter } from "next/navigation";
 interface BookingCardProps {
   booking: Booking;
 }
 const SingleBookingCard = ({ booking }: BookingCardProps) => {
   const dispatch = useAppDispatch();
-  const handelCancelClicked = (id:number) => {
+  const router = useRouter();
+  const handelCancelClicked = async (id:number) => {
     confirm("Are Sure want to cancel the  Booking Because If any Payment is done then it is not refundable");
-    dispatch(cancelBookingThunk(id))
+    const res = await dispatch(cancelBookingThunk(id));
+     if (res.meta.requestStatus === 'fulfilled') {
+          toast.success("Your Booking Got Cancled!");
+         dispatch(getAllBookings({}));
+        } else {
+          toast.error(res.payload || "Unable to cancel Booking");
+        }
   }
   return (
     <Card sx={{ maxWidth: 400, height: 650, margin: 1 }}>
@@ -56,7 +68,7 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
         <Typography variant="body1" > <strong>Payment:</strong>:{booking.paymentStatus}</Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" onClick={()=>handelCancelClicked(booking.bookingId)}>Cance Booking</Button>
+        <Button variant="contained" onClick={()=>handelCancelClicked(booking.bookingId)}>Cancel Booking</Button>
       </CardActions>
     </Card>
   );

@@ -9,6 +9,8 @@ import { Role } from 'src/user/enum/user.role';
 import { ServiceRepository } from 'src/services/repository/service.repo';
 import { UnavailableSlotsService } from 'src/unavailable-slots/unavailable-slots.service';
 import dayjs from 'dayjs'
+import { UnavailableSlotRepository } from 'src/unavailable-slots/repository/unavailable-slots';
+import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
 export class BookingService {
@@ -17,7 +19,9 @@ export class BookingService {
     @Inject(forwardRef(() => ServicesService))
     private readonly serviceService: ServicesService,
     private readonly serviceRepo: ServiceRepository,
-    private readonly unavilabeService: UnavailableSlotsService
+    private readonly unavilabeService: UnavailableSlotsService,
+    private readonly unavilableRepo: UnavailableSlotRepository,
+    private readonly mailService:MailService
 
   ) { }
 
@@ -34,9 +38,7 @@ export class BookingService {
       service
     })
     const { date, slot } = createBookingDto;
-    const end_time = dayjs(`2000-01-01T${slot}`)
-      .add(30, 'minute')
-      .format('HH:mm');
+    const end_time = slot;
 
 
     await this.unavilabeService.create({
@@ -45,7 +47,10 @@ export class BookingService {
       end_time,
       reason: "Booked slot"
     }, userId)
-    return await this.bookingRepo.save(newBooking);
+   const booking =  await this.bookingRepo.save(newBooking);
+
+   await this.mailService.sendBookingMail( booking )
+
   }
 
 
@@ -178,10 +183,30 @@ export class BookingService {
     return enrichedServices;
   }
 
-
-  async remove(id: number) {
-    return await await this.bookingRepo.delete(id);
+async remove(id: number) {
+  
+  const booking = await this.bookingRepo.findOne({
+    where:{bookingId: id},
+    relations:["user","service"]
+     },
+  );
+  console.log("first",booking);
+  if (!booking) {
+    throw new Error('Booking not found');
   }
+  const { slot, date } = booking;
+
+  console.log("slot","date",slot," ",date);
+  await this.unavilableRepo.delete({
+    start_time: slot,
+    date,
+  });
+  
+    await this.bookingRepo.softDelete(id);
+ 
+    await this.mailService.sendBookingCancelationMail(booking);
+}
+
 
   findOne(id: number) {
     return `This action returns a #${id} booking`;

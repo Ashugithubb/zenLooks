@@ -35,7 +35,7 @@ export class AuthService {
             httpOnly: true,
             secure: true,
             sameSite: 'strict',
-            maxAge: 2 * 60 * 100000,
+            maxAge: 2 * 60 * 10000,
         });
         return {
             "msg": "Loged In Successfully",

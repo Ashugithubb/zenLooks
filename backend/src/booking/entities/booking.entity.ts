@@ -1,6 +1,6 @@
 import { Service } from "src/services/entities/service.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PaymentStatus } from "../enum/payement.status";
 
 @Entity("bookings")
@@ -27,6 +27,8 @@ export class Booking {
     })
     paymentStatus: PaymentStatus;
 
+    @DeleteDateColumn()
+    deletedAt:Date
 
     @ManyToOne(() => Service, (s) => s.bookings)
     @JoinColumn({ name: "serviceId" })
