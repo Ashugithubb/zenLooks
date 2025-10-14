@@ -51,13 +51,17 @@ export default function ImgMediaCard(prop: cardProp) {
   };
 
   const handelBook = () => {
-    if(role==="User"){
-    router.push(`/services/booking/${prop.serviceId}`);}
-    else if (role==="Admin") {
+    if (role === "User") {
+      router.push(`/services/booking/${prop.serviceId}`);
+    }
+    else if (role === "Admin") {
       toast.error("Admin cannot Book a service");
     }
-    else{
-         toast.error("Please Login to  Book Services");
+    else {
+      toast.error("Please Login to  Book Services");
+      setTimeout(() => {
+        router.push("/login");
+      }, 2000);
     }
   }
 
@@ -89,25 +93,25 @@ export default function ImgMediaCard(prop: cardProp) {
         </Typography>
       </CardContent>
       {prop.discount !== 0 && (
-  <Box
-    sx={{
-      display: 'inline-block',
-      backgroundColor: '#c4a842ff',
-      color: 'white',
-      fontWeight: 'bold',
-      px: 1.5,
-      py: 0.5,
-      borderRadius: '12px',
-      fontSize: '0.9rem',
-      mt: 1,
-      ml: 2,
-      width: 'fit-content',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-    }}
-  >
-    {prop.discount}% OFF
-  </Box>
-)}
+        <Box
+          sx={{
+            display: 'inline-block',
+            backgroundColor: '#c4a842ff',
+            color: 'white',
+            fontWeight: 'bold',
+            px: 1.5,
+            py: 0.5,
+            borderRadius: '12px',
+            fontSize: '0.9rem',
+            mt: 1,
+            ml: 2,
+            width: 'fit-content',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+          }}
+        >
+          {prop.discount}% OFF
+        </Box>
+      )}
 
 
       {role != 'Admin' ? (<CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -125,9 +129,7 @@ export default function ImgMediaCard(prop: cardProp) {
             onClick={handelBook}
             variant="contained"
             size="medium"
-             className={style.bookNowBtn}
-             
-          >
+            className={style.bookNowBtn}>
             Book Now
           </Button>
         </CardActions>}
