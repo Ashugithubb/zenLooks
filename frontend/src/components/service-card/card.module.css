@@ -1,6 +1,7 @@
 .card {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
+
 .bookNowBtn {
   background: linear-gradient(135deg, #cfb838 0%, #f5c542 100%) !important;
   color: #fff !important;
@@ -8,6 +9,7 @@
   border-radius: 25px !important;
   text-transform: none !important;
   padding: 8px 24px !important;
+
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
   transition: all 0.3s ease !important;
 }
