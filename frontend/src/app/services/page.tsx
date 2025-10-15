@@ -15,8 +15,10 @@ import CreateServiceDialog from "@/components/service/add-service";
 import { useEffect, useState } from "react";
 import { deleteServiceThunk, getServiceThunk } from "../redux/thunk/service.thunk";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import style from './page.module.css'
+import Cookies from "js-cookie";
+import { clearUser } from "../redux/slice/login.slice";
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const { total = 0, page = 1, limit = 3, services = [] } =
@@ -43,6 +45,22 @@ export default function Services() {
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setCurrentPage(value);
     };
+
+    const handleAllBookings = () => {
+        const token = Cookies.get("access_token");
+
+        if (token) {
+            router.push("/services/allbookings");
+        }
+        else {
+            dispatch(clearUser());
+            toast.error("Login again!");
+           
+        }
+
+    };
+
+
 
     return (
         <>
@@ -83,7 +101,7 @@ export default function Services() {
                     {role === "Admin" && <CreateServiceDialog />}
                     {role === "Admin" ? (
                         <Button
-                            onClick={() => router.push("/services/allbookings")}
+                            onClick={handleAllBookings}
                             variant="contained"
                         >
                             All Bookings
@@ -135,4 +153,5 @@ export default function Services() {
             )}
         </>
     );
+
 }

@@ -42,10 +42,13 @@ const FiltersComponent = () => {
   const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedValues)]);
 
   useEffect(() => {
+ 
+    if (filterValues.search && filterValues.search.trim().length === 0) return;
+
     const formattedFilters = {
       page: 1,
       limit: 10,
-      search: filterValues.search || undefined,
+      search: filterValues.search?.trim() || undefined,
       category: filterValues.category || undefined,
       slot: filterValues.slot ? filterValues.slot.format("HH:mm") : undefined,
       startDate: filterValues.startDate ? filterValues.startDate.toISOString() : undefined,
@@ -54,6 +57,7 @@ const FiltersComponent = () => {
 
     dispatch(getAllBookings(formattedFilters));
   }, [filterValues, dispatch]);
+
   const [open, setOpen] = useState(false);
   return (
     <>

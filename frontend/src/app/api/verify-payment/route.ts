@@ -36,7 +36,6 @@ export async function POST(req: Request) {
         );
 
         if (!isValidSignature) {
-            console.log("Payment verification failed");
             return Response.json(
                 { status: "verification_failed" },
                 { status: 400 }

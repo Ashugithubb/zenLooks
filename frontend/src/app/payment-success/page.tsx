@@ -10,32 +10,6 @@ export default function PaymentSuccess() {
   const dispatch = useAppDispatch();
   const booking = useAppSelector((state) => state.b00king);
 
-  useEffect(() => {
-    const bookAndClear = async () => {
-      if (
-        booking.serviceId &&
-        booking.date &&
-        booking.slot &&
-        booking.phoneNo
-      ) {
-       
-        const res = await dispatch(
-          bookServiceThunk({
-            serviceId: booking.serviceId,
-            date: booking.date,
-            slot: booking.slot,
-            phoneNo: booking.phoneNo,
-            paymentStatus:"Paid"
-          })
-        );
-        if (res.meta.requestStatus === "fulfilled") {
-          dispatch(resetBooking());
-        }
-      }
-    };
-    bookAndClear();
-  }, [dispatch]);
-
   return (
     <>
       <Navbar />

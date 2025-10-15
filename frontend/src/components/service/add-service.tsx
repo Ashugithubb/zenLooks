@@ -55,7 +55,7 @@ export default function CreateServiceDialog() {
             title: "",
             description: "",
             price: 0,
-            category:"" ,
+            category: "",
             time: 0,
             discount: 0,
         },
@@ -104,9 +104,15 @@ export default function CreateServiceDialog() {
         try {
             data.imageUrl = avtarUrl;
 
+            if(data.title.trim().length === 0 ||data.description.trim().length ===0){
+                toast.error("Empty name or Description is not submited");
+                return;
+            }
+
             let res;
             if (editOpen && serviceId) {
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
+                dispatch(getServiceThunk({}));
             } else {
                 res = await dispatch(addService(data));
             }
@@ -116,6 +122,19 @@ export default function CreateServiceDialog() {
                 dispatch(getServiceThunk({}));
 
                 setTimeout(() => {
+                    reset({
+                        title: "",
+                        description: "",
+                        price: 0,
+                        category: "",
+                        time: 0,
+                        discount: 0,
+                    });
+
+
+                    setAvatarPreview(null);
+                    setAvatarFile(null);
+                    setAvatarUrl("");
                     handleClose();
                 }, 800);
             } else {
@@ -171,7 +190,7 @@ export default function CreateServiceDialog() {
                     <form onSubmit={handleSubmit(onSubmit)} noValidate>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "500px", paddingTop: "20px" }}>
                             <TextField
-                                label="Title"
+                                label="Service Name"
                                 {...register("title")}
                                 error={!!errors.title}
                                 helperText={errors.title?.message}
@@ -194,6 +213,7 @@ export default function CreateServiceDialog() {
                             <TextField
                                 label="Price"
                                 type="number"
+                                inputProps={{ min: 0 }}
                                 {...register("price", { valueAsNumber: true })}
                                 error={!!errors.price}
                                 helperText={errors.price?.message}
@@ -202,8 +222,9 @@ export default function CreateServiceDialog() {
                             />
 
                             <TextField
-                                label="Time (minutes)"
+                                label="Duration(Minutes)"
                                 type="number"
+                                inputProps={{ min: 0 }}
                                 {...register("time", { valueAsNumber: true })}
                                 error={!!errors.time}
                                 helperText={errors.time?.message}
@@ -215,6 +236,7 @@ export default function CreateServiceDialog() {
                             <TextField
                                 label="Discount (%)"
                                 type="number"
+                                inputProps={{ min: 0 }}
                                 {...register("discount", { valueAsNumber: true })}
                                 error={!!errors.discount}
                                 helperText={errors.discount?.message}
@@ -226,12 +248,12 @@ export default function CreateServiceDialog() {
                                 select
                                 label="Category"
                                 {...register("category")}
-                                 value={watch("category") || ""}
+                                value={watch("category") || ""}
                                 error={!!errors.category}
                                 helperText={errors.category?.message}
                                 fullWidth
                                 className={style.title}
-                                
+
                             >
                                 <MenuItem value="Male">Male</MenuItem>
                                 <MenuItem value="Female">Female</MenuItem>

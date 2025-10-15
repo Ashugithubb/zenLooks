@@ -197,13 +197,13 @@ export class BookingService {
       relations: ["user", "service"]
     },
     );
-    console.log("first", booking);
+  
     if (!booking) {
       throw new Error('Booking not found');
     }
     const { slot, date } = booking;
 
-    console.log("slot", "date", slot, " ", date);
+ 
     await this.unavilableRepo.delete({
       start_time: slot,
       date,

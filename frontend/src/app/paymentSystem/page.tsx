@@ -1,6 +1,9 @@
 "use client"
 import { Button, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hook/hook";
+import { bookServiceThunk } from "../redux/thunk/book.service.thunk";
+import { resetBooking } from "../redux/slice/add.booking.slice";
 declare global {
   interface Window {
     Razorpay: any;
@@ -11,7 +14,8 @@ interface paymentProp {
 }
 
 export default function PaymentSystem({ amount }: paymentProp) {
-
+  const dispatch = useAppDispatch();
+  const booking = useAppSelector((state) => state.b00king);
   useEffect(() => {
 
     const script = document.createElement("script");
@@ -76,7 +80,32 @@ export default function PaymentSystem({ amount }: paymentProp) {
             .then((res) => res.json())
             .then((data) => {
               if (data.status === "ok") {
-                window.location.href = "/payment-success";
+                const bookAndClear = async () => {
+                  if (
+                    booking.serviceId &&
+                    booking.date &&
+                    booking.slot &&
+                    booking.phoneNo
+                  ) {
+                    console.log("how many times");
+                    const res = await dispatch(
+                      bookServiceThunk({
+                        serviceId: booking.serviceId,
+                        date: booking.date,
+                        slot: booking.slot,
+                        phoneNo: booking.phoneNo,
+                        paymentStatus: "Paid"
+                      })
+                    );
+                    if (res.meta.requestStatus === "fulfilled") {
+                      dispatch(resetBooking());
+                    }
+                  }
+                };
+                bookAndClear();
+                setTimeout(() => {
+                  window.location.href = "/payment-success";
+                }, 3000)
               } else {
                 alert("Payment verification failed");
               }

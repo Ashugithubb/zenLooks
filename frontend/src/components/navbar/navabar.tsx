@@ -12,6 +12,7 @@ export default function Navbar() {
   const router = useRouter();
   const { loading } = useAppSelector((state) => state.login) ?? "";
   const token = useAppSelector((state) => state.login.auth?.token);
+  console.log("token",token);
   const dispatch = useAppDispatch();
   const handelLogin = () => {
     router.push("/login");
@@ -21,7 +22,7 @@ export default function Navbar() {
       dispatch(clearUser());
       const res = dispatch(logoutUser());
       toast("log out successfully");
-     router.push("/services");
+     router.push("/");
 
     }
     catch (error) {
@@ -29,9 +30,9 @@ export default function Navbar() {
     }
   }
   return (<>
-    <ToastContainer />
+    {/* <ToastContainer /> */}
     <Box className={style.navbar}>
-      {/* <Typography className={style.logo}> ZenLook</Typography> */}
+
        <Link href="/" className={style.logo}>ZenLook</Link>
       <Box className={style.right}>
         <Link href="/" className={style.link}>Home</Link>

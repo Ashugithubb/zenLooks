@@ -281,7 +281,7 @@ export default function Bookings() {
                             </Paper>
                         )}
 
-                        {/* Actions */}
+                       
                         <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
                             <Button
                                 variant="contained"

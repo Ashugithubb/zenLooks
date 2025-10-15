@@ -75,9 +75,6 @@ export default function LoginForm() {
       const password = user.uid;
       const firebase = "firbase";
 
-      console.log("Google user:", user);
-      console.log("Is new user?", additionalInfo?.isNewUser); 
-
       if (additionalInfo?.isNewUser) {
          
         const res = await dispatch(
