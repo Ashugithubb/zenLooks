@@ -16,6 +16,6 @@ const AppDataSource = new DataSource({
     database: process.env.DB_DATABASE,
    entities:[User,Service,Booking,UnavailableSlot],
     migrations: [__dirname + '/migrations/*.{ts,js}'],
-    synchronize: false,
+    synchronize: true,
 });
 export default AppDataSource;

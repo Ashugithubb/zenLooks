@@ -21,7 +21,7 @@ export class BookingService {
     private readonly serviceRepo: ServiceRepository,
     private readonly unavilabeService: UnavailableSlotsService,
     private readonly unavilableRepo: UnavailableSlotRepository,
-    private readonly mailService:MailService
+    private readonly mailService: MailService
 
   ) { }
 
@@ -37,19 +37,26 @@ export class BookingService {
       user,
       service
     })
-    const { date, slot } = createBookingDto;
-    const end_time = slot;
 
+    const booking = await this.bookingRepo.save(newBooking);
+    const { date, slot } = createBookingDto;
+
+    const bookingDate = dayjs(date).format("YYYY-MM-DD"); // only YYYY-MM-DD for Postgres
+
+    const startTime = dayjs(`${bookingDate}T${slot}`);
+    if (!startTime.isValid()) throw new Error("Invalid start time");
+
+    const endTime = startTime.add(booking.service.time, "minute").format("HH:mm");
 
     await this.unavilabeService.create({
-      start_time: slot,
-      date,
-      end_time,
+      date: bookingDate,
+      start_time: startTime.format("HH:mm"),
+      end_time: endTime,
       reason: "Booked slot"
-    }, userId)
-   const booking =  await this.bookingRepo.save(newBooking);
+    }, userId);
 
-   await this.mailService.sendBookingMail( booking )
+
+    await this.mailService.sendBookingMail(booking)
 
   }
 
@@ -183,29 +190,29 @@ export class BookingService {
     return enrichedServices;
   }
 
-async remove(id: number) {
-  
-  const booking = await this.bookingRepo.findOne({
-    where:{bookingId: id},
-    relations:["user","service"]
-     },
-  );
-  console.log("first",booking);
-  if (!booking) {
-    throw new Error('Booking not found');
-  }
-  const { slot, date } = booking;
+  async remove(id: number) {
 
-  console.log("slot","date",slot," ",date);
-  await this.unavilableRepo.delete({
-    start_time: slot,
-    date,
-  });
-  
+    const booking = await this.bookingRepo.findOne({
+      where: { bookingId: id },
+      relations: ["user", "service"]
+    },
+    );
+    console.log("first", booking);
+    if (!booking) {
+      throw new Error('Booking not found');
+    }
+    const { slot, date } = booking;
+
+    console.log("slot", "date", slot, " ", date);
+    await this.unavilableRepo.delete({
+      start_time: slot,
+      date,
+    });
+
     await this.bookingRepo.softDelete(id);
- 
+
     await this.mailService.sendBookingCancelationMail(booking);
-}
+  }
 
 
   findOne(id: number) {

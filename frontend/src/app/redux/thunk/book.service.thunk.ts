@@ -9,6 +9,7 @@ export interface bookServiceData {
     slot: string,
     phoneNo: string
     serviceId:number
+    paymentStatus?:string
 }
 
 export const bookServiceThunk = createAsyncThunk(

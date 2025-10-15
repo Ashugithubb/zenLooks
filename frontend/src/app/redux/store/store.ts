@@ -8,7 +8,7 @@ import serviceReducer from '../slice/services.slice'
 import editReducer from '../slice/edit.slice'
 import bookingReducer from '../slice/booking.slice'
 import unavilableReducer from '../slice/unavailable.slot.slice'
-import b00kingReducer from '../slice/add.b00king.slice'
+import b00kingReducer from '../slice/add.booking.slice'
 const persistConfig = {
   key: 'root',
   storage,

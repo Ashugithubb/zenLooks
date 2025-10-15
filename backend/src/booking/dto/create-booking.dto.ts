@@ -1,4 +1,5 @@
-import { IsDateString, IsString } from "class-validator";
+import { IsDateString, IsEnum, IsOptional, IsString } from "class-validator";
+import { PaymentStatus } from "../enum/payement.status";
 
 export class CreateBookingDto {
     @IsDateString()
@@ -9,4 +10,8 @@ export class CreateBookingDto {
 
     @IsString()
     phoneNo: string
+
+    @IsEnum(PaymentStatus)
+    @IsOptional()
+    paymentStatus?: PaymentStatus;
 }

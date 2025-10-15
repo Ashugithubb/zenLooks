@@ -33,11 +33,10 @@ export class UserService {
 
    const user =  await this.userRepo.save(createUserDto);
 
-    // if (createUserDto.firebase) {
-    //   console.log(createUserDto.firebase,"djshfschsfdf");
-    //  const role = createUserDto.role;
-    //     await this.authService.login({id:user.userId,email,role},res);
-    // }
+    if (createUserDto.firebase) {
+    const payload = { id: user.userId, email: user.email, role: user.role };
+    await this.authService.login(payload, res); 
+}
     return { "msg": "User Registred Successfully" }
   }
 

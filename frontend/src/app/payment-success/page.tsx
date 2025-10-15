@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Navbar from "@/components/navbar/navabar";
 import { useAppDispatch, useAppSelector } from "../redux/hook/hook";
 import { bookServiceThunk } from "../redux/thunk/book.service.thunk";
-import { resetBooking } from "../redux/slice/add.b00king.slice";
+import { resetBooking } from "../redux/slice/add.booking.slice";
 
 export default function PaymentSuccess() {
   const dispatch = useAppDispatch();
@@ -25,10 +25,10 @@ export default function PaymentSuccess() {
             date: booking.date,
             slot: booking.slot,
             phoneNo: booking.phoneNo,
+            paymentStatus:"Paid"
           })
         );
         if (res.meta.requestStatus === "fulfilled") {
-          console.log("fulfilled jaa raha huu me na")
           dispatch(resetBooking());
         }
       }
