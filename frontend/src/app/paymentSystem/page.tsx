@@ -16,8 +16,8 @@ interface paymentProp {
 export default function PaymentSystem({ amount }: paymentProp) {
   const dispatch = useAppDispatch();
   const booking = useAppSelector((state) => state.b00king);
+  
   useEffect(() => {
-
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
@@ -81,6 +81,11 @@ export default function PaymentSystem({ amount }: paymentProp) {
             .then((data) => {
               if (data.status === "ok") {
                 const bookAndClear = async () => {
+
+                      
+
+
+
                   if (
                     booking.serviceId &&
                     booking.date &&

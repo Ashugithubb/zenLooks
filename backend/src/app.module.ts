@@ -14,6 +14,7 @@ import { join } from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
 import { MailModule } from './mail/mail.module';
+import { ServiceDeliveredModule } from './service-delivered/service-delivered.module';
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync(typeOrmConfig), UserModule, ServicesModule,
     BookingModule, UnavailableSlotsModule, AuthModule, ServeStaticModule.forRoot({
@@ -44,7 +45,7 @@ import { MailModule } from './mail/mail.module';
           strict: true,
         },
       },
-    }), MailModule],
+    }), MailModule, ServiceDeliveredModule],
   controllers: [AppController],
   providers: [AppService],
 })

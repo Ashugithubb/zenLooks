@@ -30,10 +30,15 @@ export default function Services() {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(page);
 
-
     useEffect(() => {
-        dispatch(getServiceThunk({ page: currentPage, limit, search: searchTerm }));
+        const trimmedSearch = searchTerm.trim();
+
+      
+        if (trimmedSearch.length > 0 || searchTerm === "") {
+            dispatch(getServiceThunk({ page: currentPage, limit, search: trimmedSearch || undefined }));
+        }
     }, [dispatch, currentPage, searchTerm]);
+
 
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +60,7 @@ export default function Services() {
         else {
             dispatch(clearUser());
             toast.error("Login again!");
-           
+
         }
 
     };

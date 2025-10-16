@@ -197,13 +197,13 @@ export class BookingService {
       relations: ["user", "service"]
     },
     );
-  
+
     if (!booking) {
       throw new Error('Booking not found');
     }
     const { slot, date } = booking;
 
- 
+
     await this.unavilableRepo.delete({
       start_time: slot,
       date,
@@ -215,9 +215,13 @@ export class BookingService {
   }
 
 
-  findOne(id: number) {
-    return `This action returns a #${id} booking`;
+  async findOne(id: number) {
+    return await this.bookingRepo.findOne({
+      where: { bookingId: id },
+      relations: ["user"],
+    });
   }
+
 
   update(id: number, updateBookingDto: UpdateBookingDto) {
     return `This action updates a #${id} booking`;

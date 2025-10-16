@@ -30,6 +30,7 @@ export interface Booking {
     slot: string;
     phoneNo: string;
     paymentStatus:string,
+    bookingStatus:string
     bookedAt: string;
     service: Service;
     user: User;

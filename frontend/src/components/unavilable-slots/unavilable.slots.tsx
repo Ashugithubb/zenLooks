@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Typography,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DatePicker, TimePicker } from "@mui/x-date-pickers";
@@ -36,6 +37,7 @@ export default function AddUnavailableSlotDialog() {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(createUnavailableSlotSchema),
+     mode: "onChange"
   });
 
   const selectedDate = watch("date");
@@ -69,8 +71,9 @@ export default function AddUnavailableSlotDialog() {
           <DatePicker
             label="Select Date"
             value={selectedDate ? dayjs(selectedDate) : null}
-            onChange={(newDate: Dayjs | null) => setValue("date", newDate?.toISOString() || "")}
+            onChange={(newDate: Dayjs | null) => setValue("date", newDate?.toISOString() || "",)}
             disablePast
+         
             slotProps={{
               textField: {
                 error: !!errors.date,
@@ -82,10 +85,9 @@ export default function AddUnavailableSlotDialog() {
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['TimePicker']}>
-              <TimePicker label="Basic time picker"
+              <TimePicker label="Start Time"
                 ampm={false}
-                // minutesStep={30}
-                onChange={(newDate: Dayjs | null) =>
+               onChange={(newDate: Dayjs | null) =>
                   setValue("start_time", newDate ? newDate.format("HH:mm:ss") : "")
                 }
                 slotProps={{
@@ -103,8 +105,6 @@ export default function AddUnavailableSlotDialog() {
             error={!!errors.start_time}
             helperText={errors.start_time?.message}
           /> */}
-
-
           {/* <TextField
             label="End Time (HH:mm)"
             {...register("end_time")}
@@ -114,13 +114,15 @@ export default function AddUnavailableSlotDialog() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['TimePicker']}>
               <TimePicker
-                label="Basic time picker"
+                label="End Time"
                 ampm={false}
                 onChange={(newDate: Dayjs | null) =>
                   setValue("end_time", newDate ? newDate.format("HH:mm:ss") : "")
                 }
+                
                 slotProps={{
                   textField: {
+
                     error: !!errors.end_time,
                     helperText: errors.end_time?.message,
                   },

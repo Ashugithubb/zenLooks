@@ -35,18 +35,20 @@ export default function Bookings() {
     const [mobileNumber, setMobileNumber] = useState<string>("");
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(dayjs());
     const [error, setError] = useState<string>("");
+    const [pay, setPay] = useState(false);
 
     const dispatch = useAppDispatch();
     const router = useRouter();
 
     const slots = useAppSelector((state) => state.unavailableSlot.slots);
 
-    // Fetch unavailable slots
+
+
     useEffect(() => {
         dispatch(getUnavailableSlots());
     }, [dispatch]);
 
-    // Update booking details in redux
+
     useEffect(() => {
         if (bookingDate && selectedSlot && mobileNumber.length === 10) {
             dispatch(
@@ -60,7 +62,7 @@ export default function Bookings() {
         }
     }, [bookingDate, selectedSlot, mobileNumber, id, dispatch]);
 
-    // Convert unavailable slots to Dayjs ranges
+
     const disabledRanges = slots
         .filter((slot) => bookingDate && dayjs(slot.date).isSame(bookingDate, "day"))
         .map((slot) => ({
@@ -68,7 +70,7 @@ export default function Bookings() {
             end: dayjs(`${slot.date}T${slot.end_time}`),
         }));
 
-    // Check if selected time is in disabled range
+
     const isTimeDisabled = (time: Dayjs) => {
         return disabledRanges.some(
             (range) => (time.isSame(range.start) || time.isAfter(range.start)) && time.isBefore(range.end)
@@ -84,13 +86,14 @@ export default function Bookings() {
     };
 
     const handleBookNow = async () => {
+        setPay(true);
         if (!bookingDate) return setError("Please select a booking date.");
         if (!selectedSlot) return setError("Please select a time.");
-        if (mobileNumber.length !== 10)
-            return setError("Enter a valid 10-digit mobile number.");
-
+        if (mobileNumber.length !== 10) return setError("Enter a valid 10-digit mobile number.");
         if (isTimeDisabled(selectedSlot)) {
+               setPay(false);
             return toast.error("Selected time is unavailable. Please choose another time.");
+         
         }
 
         try {
@@ -103,6 +106,7 @@ export default function Bookings() {
                     paymentStatus: 'Pending'
                 })
             );
+
             if (res.meta.requestStatus === "fulfilled") {
                 toast.success("Booking successful! See you soon.");
                 setTimeout(() => router.push("/services/mybookings"), 3000);
@@ -171,7 +175,6 @@ export default function Bookings() {
                             Category: <strong style={{ color: "#1976d2" }}>{clickedService.category}</strong>
                         </Typography>
 
-                        {/* Booking Date */}
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Select Booking Date
@@ -186,7 +189,6 @@ export default function Bookings() {
                             </LocalizationProvider>
                         </Box>
 
-                        {/* Time Picker */}
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Select Time
@@ -202,12 +204,17 @@ export default function Bookings() {
                                         };
                                     }}
                                     minutesStep={5}
+                                    minTime={
+                                        bookingDate && dayjs(bookingDate).isSame(dayjs(), "day")
+                                            ? dayjs()
+                                            : dayjs("00:00", "HH:mm")
+                                    }
                                     ampm={false}
                                     slotProps={{ textField: { fullWidth: true } }}
                                 />
                             </LocalizationProvider>
                         </Box>
-                        {/* Show Unavailable Slots */}
+
                         {disabledRanges.length > 0 && (
                             <Box sx={{ mt: 2 }}>
                                 <Typography variant="subtitle2" color="error" gutterBottom>
@@ -250,7 +257,7 @@ export default function Bookings() {
                             />
                         </Box>
 
-                        {/* Billing Summary */}
+
                         {selectedSlot && bookingDate && (
                             <Paper elevation={2} sx={{ p: 2, mt: 3, borderRadius: 2, backgroundColor: "#f9f9f9" }}>
                                 <Typography variant="subtitle1" fontWeight="bold">
@@ -281,12 +288,12 @@ export default function Bookings() {
                             </Paper>
                         )}
 
-                       
+
                         <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
                             <Button
                                 variant="contained"
                                 size="large"
-                                disabled={!selectedSlot || !bookingDate || mobileNumber.length !== 10}
+                                disabled={!selectedSlot || !bookingDate || mobileNumber.length !== 10 || pay}
                                 onClick={handleBookNow}
                             >
                                 On Site Payment

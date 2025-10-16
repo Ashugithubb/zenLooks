@@ -19,11 +19,14 @@ export class ServicesService {
 
   async create(createServiceDto: CreateServiceDto, role: Role) {
     if (role === Role.ADMIN) {
+      const { imageUrl } = createServiceDto;
+      if (imageUrl.length == 0) {
+        createServiceDto.imageUrl = 'http://localhost:3001/files/file-1760616583196-748381937-.jpg';
+      }
       return await this.serviceRepo.save(createServiceDto);
     }
     throw new UnauthorizedException("Only Admin can Add Service");
   }
-
 
   async findAll(query: GetServiceQueryDto) {
     const { page = 1, limit = 5, search, category } = query;
@@ -36,11 +39,9 @@ export class ServicesService {
         { search: `%${search}%` }
       );
     }
-
     if (category) {
       qb.andWhere('services.category = :category', { category });
     }
-
     const [services, total] = await qb
       .skip((page - 1) * limit)
       .take(limit)
@@ -67,7 +68,7 @@ export class ServicesService {
   }
 
   async bookService(createBookingDto: CreateBookingDto, userId: number, serviceId: number) {
-    
+
     return await this.bookingService.create(createBookingDto, userId, serviceId);
   }
 
@@ -79,6 +80,6 @@ export class ServicesService {
     const avtarUrl = 'http://localhost:3001/files/' + file.filename;
     return avtarUrl;
   }
-  }
+}
 
 

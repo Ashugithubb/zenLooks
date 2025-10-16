@@ -50,12 +50,11 @@ export default function ImgMediaCard2(prop: cardProp) {
   }
 
   return (
-    <Card sx={{ maxWidth: 445 }}>
+    <Card sx={{ maxWidth: 445 , height: "100%"}}>
       <CardMedia
         component="img"
         alt="green iguana"
-        height="160"
-        
+        height="160"  
         image={prop.imageUrl}
         sx={{
           objectFit: "cover", 

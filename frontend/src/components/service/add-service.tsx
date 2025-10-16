@@ -55,7 +55,7 @@ export default function CreateServiceDialog() {
             title: "",
             description: "",
             price: 0,
-            category: "",
+            category: undefined,
             time: 0,
             discount: 0,
         },
@@ -76,10 +76,7 @@ export default function CreateServiceDialog() {
                 title: editService.title,
                 description: editService.description,
                 price: editService.price,
-                category:
-                    editService.category === "Male" || editService.category === "Female"
-                        ? editService.category
-                        : "Male",
+                category: undefined, 
                 time: editService.time,
                 discount: editService.discount,
             });
@@ -102,13 +99,7 @@ export default function CreateServiceDialog() {
 
     const onSubmit = async (data: ServiceData) => {
         try {
-            data.imageUrl = avtarUrl;
-
-            if(data.title.trim().length === 0 ||data.description.trim().length ===0){
-                toast.error("Empty name or Description is not submited");
-                return;
-            }
-
+            data.imageUrl =  avtarUrl;
             let res;
             if (editOpen && serviceId) {
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
@@ -126,7 +117,7 @@ export default function CreateServiceDialog() {
                         title: "",
                         description: "",
                         price: 0,
-                        category: "",
+                        category: undefined,
                         time: 0,
                         discount: 0,
                     });

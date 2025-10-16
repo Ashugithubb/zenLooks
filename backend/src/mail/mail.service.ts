@@ -88,5 +88,27 @@ export class MailService {
     }
   }
 
+  async sendOtpToUser(otp: string, userName: string, email: string ): Promise<void> {
+    try {
+      const context = {
+        userName,
+        otp: otp,
+       currentYear: new Date().getFullYear(),
+      };
+
+      await this.mailerService.sendMail({
+        to: email,
+        from: process.env.MAIL_USER,
+        subject: `Verifiction OTP from zenLook`,
+        template: 'email-otp',
+        context,
+      });
+
+     
+    } catch (error) {
+      console.error('Failed to send OTP email:', error);
+    }
+  }
+
 
 }

@@ -1,7 +1,8 @@
 import { Service } from "src/services/entities/service.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { PaymentStatus } from "../enum/payement.status";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BookingStatus, PaymentStatus } from "../enum/payement.status";
+import { ServiceDelivered } from "src/service-delivered/entities/service-delivered.entity";
 
 @Entity("bookings")
 export class Booking {
@@ -27,8 +28,18 @@ export class Booking {
     })
     paymentStatus: PaymentStatus;
 
+    @Column({
+        type:"enum",
+        enum:BookingStatus,
+        default:BookingStatus.PENDING
+    })
+    bookingStatus:BookingStatus
+
+
     @DeleteDateColumn()
     deletedAt:Date
+
+    
 
     @ManyToOne(() => Service, (s) => s.bookings)
     @JoinColumn({ name: "serviceId" })
@@ -37,6 +48,9 @@ export class Booking {
     @ManyToOne(() => User, (u) => u.bookings)
     @JoinColumn({ name: "userId" })
     user: User
+
+    @OneToMany(()=>ServiceDelivered,(s)=>s.booking)
+    serviceDelivered:ServiceDelivered[]
 
 }
 

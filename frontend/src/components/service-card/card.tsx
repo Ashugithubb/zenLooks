@@ -66,10 +66,10 @@ export default function ImgMediaCard(prop: cardProp) {
   }
 
   return (
-    <Card sx={{ maxWidth: 445 }}>
+    <Card sx={{ maxWidth: 445, height: "100%"}}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="service image"
         height="160"
         image={prop.imageUrl}
         sx={{
@@ -129,7 +129,7 @@ export default function ImgMediaCard(prop: cardProp) {
             onClick={handelBook}
             variant="contained"
             size="medium"
-            className={style.bookNowBtn}>
+          >
             Book Now
           </Button>}
         </CardActions>}

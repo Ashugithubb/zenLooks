@@ -26,7 +26,7 @@ interface FilterValues {
 const FiltersComponent = () => {
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
   const dispatch = useAppDispatch();
-
+  
   const { control, watch, setValue } = useForm<FilterValues>({
     defaultValues: {
       search: "",
@@ -88,10 +88,7 @@ const FiltersComponent = () => {
               justifyContent="center"
               gap={2}
             >
-              <Box
-                flexBasis={{ xs: "100%", sm: "48%", md: "23%" }}
-                flexGrow={1}
-              >
+              <Box>
                 <Controller
                   name="search"
                   control={control}
@@ -102,8 +99,7 @@ const FiltersComponent = () => {
               </Box>
 
               <Box
-                flexBasis={{ xs: "100%", sm: "48%", md: "18%" }}
-                flexGrow={1}
+             
               >
                 <Controller
                   name="category"
@@ -115,8 +111,7 @@ const FiltersComponent = () => {
               </Box>
 
               <Box
-                flexBasis={{ xs: "100%", sm: "48%", md: "18%" }}
-                flexGrow={1}
+                
               >
                 <Controller
                   name="slot"
@@ -128,8 +123,7 @@ const FiltersComponent = () => {
               </Box>
 
               <Box
-                flexBasis={{ xs: "100%", sm: "48%", md: "33%" }}
-                flexGrow={1}
+                
               >
                 <Controller
                   name="startDate"

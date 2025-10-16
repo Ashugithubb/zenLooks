@@ -4,6 +4,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Service } from 'src/services/entities/service.entity';
 import { Booking } from 'src/booking/entities/booking.entity';
 import { UnavailableSlot } from 'src/unavailable-slots/entities/unavailable-slot.entity';
+import { ServiceDelivered } from 'src/service-delivered/entities/service-delivered.entity';
 
 
 
@@ -17,7 +18,7 @@ export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
     username: configService.get<string>('DB_USERNAME'),
     password: configService.get<string>('DB_PASSWORD'),
     database: configService.get<string>('DB_DATABASE'),
-    entities:[User,Service,Booking,UnavailableSlot],
+    entities:[User,Service,Booking,UnavailableSlot,ServiceDelivered],
     synchronize: true,
   }),
 };
