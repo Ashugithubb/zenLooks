@@ -92,7 +92,7 @@ export default function PaymentSystem({ amount }: paymentProp) {
                     booking.slot &&
                     booking.phoneNo
                   ) {
-                    console.log("how many times");
+                  
                     const res = await dispatch(
                       bookServiceThunk({
                         serviceId: booking.serviceId,

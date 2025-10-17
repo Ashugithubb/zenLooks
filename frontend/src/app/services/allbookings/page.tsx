@@ -63,8 +63,8 @@ const FiltersComponent = () => {
     <>
       <Navbar />
       <Box sx={{ paddingTop: "15px" }}><UnavailableSlotForm /></Box>
-      <Box sx={{ mt: 8, px: 4 }}>
-        <Card
+     <Box sx={{ mt: 8, px: 4 }}>
+       {bookings.length>0 ?  <Card
           sx={{
             borderRadius: 3,
             boxShadow: 3,
@@ -141,7 +141,7 @@ const FiltersComponent = () => {
             </Box>
 
           </CardContent>
-        </Card>
+        </Card> : (<Box></Box>)}
 
         {bookings.length === 0 ? (
           <Typography

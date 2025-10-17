@@ -14,7 +14,7 @@ export const getServiceThunk = createAsyncThunk(
         params: query,
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
       });
-      console.log("services", response.data);
+   
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch service');

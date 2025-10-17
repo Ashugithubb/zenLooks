@@ -12,7 +12,7 @@ export default function Navbar() {
   const router = useRouter();
   const { loading } = useAppSelector((state) => state.login) ?? "";
   const token = useAppSelector((state) => state.login.auth?.token);
-  console.log("token",token);
+
   const dispatch = useAppDispatch();
   const handelLogin = () => {
     router.push("/login");

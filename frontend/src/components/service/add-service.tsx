@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { serviceSchema } from './schema/service.schema';
+import { Gender, serviceSchema } from './schema/service.schema';
 import z from 'zod';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -72,11 +72,17 @@ export default function CreateServiceDialog() {
     };
     useEffect(() => {
         if (editService) {
+            const categoryValue =
+                editService.category === "Male"
+                    ? Gender.MALE
+                    : editService.category === "Female"
+                        ? Gender.Female
+                        : undefined;
             reset({
                 title: editService.title,
                 description: editService.description,
                 price: editService.price,
-                category: undefined, 
+                category: categoryValue,
                 time: editService.time,
                 discount: editService.discount,
             });
@@ -99,12 +105,15 @@ export default function CreateServiceDialog() {
 
     const onSubmit = async (data: ServiceData) => {
         try {
-            data.imageUrl =  avtarUrl;
             let res;
             if (editOpen && serviceId) {
+                if(avtarUrl.length>0){
+                    data.imageUrl=avtarUrl
+                }
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
                 dispatch(getServiceThunk({}));
             } else {
+                  data.imageUrl = avtarUrl;
                 res = await dispatch(addService(data));
             }
 
@@ -227,7 +236,8 @@ export default function CreateServiceDialog() {
                             <TextField
                                 label="Discount (%)"
                                 type="number"
-                                inputProps={{ min: 0 }}
+
+                                inputProps={{ min: 0, max: 100 }}
                                 {...register("discount", { valueAsNumber: true })}
                                 error={!!errors.discount}
                                 helperText={errors.discount?.message}

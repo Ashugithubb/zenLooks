@@ -16,7 +16,7 @@ export const loginUser = createAsyncThunk(
                 data,
                 { withCredentials: true }
             );
-            console.log(data);
+            
             return response.data;
         } catch (error: any) {
             const errorMessage =

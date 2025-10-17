@@ -84,7 +84,7 @@ export default function Services() {
                     gap: 2,
                 }}
             >
-                <Box className={style.searchBox}>
+              { services.length>0 && <Box className={style.searchBox}>
                     <TextField
                         label="Search services..."
                         variant="outlined"
@@ -100,7 +100,7 @@ export default function Services() {
 
                             },
                         }}
-                    /></Box>
+                    /></Box>}
 
                 <Box sx={{ display: "flex", gap: 2, paddingLeft: "40px" }}>
                     {role === "Admin" && <CreateServiceDialog />}

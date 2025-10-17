@@ -51,7 +51,7 @@ export async function POST(req: Request) {
             writeData(orders);
         }
 
-        console.log("Payment verification successful");
+       
         return Response.json({ status: "ok" }, { status: 200 });
 
     } catch (error) {
