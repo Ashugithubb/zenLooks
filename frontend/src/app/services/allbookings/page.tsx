@@ -8,7 +8,7 @@ import GenderSelectComponent from "@/components/bookings/category";
 import Navbar from "@/components/navbar/navabar";
 import TimeSelector from "@/components/bookings/slot";
 import { Dayjs } from "dayjs";
-import DateRangeFilter from "@/components/bookings/date";
+import DateRangeFilter from "@/components/bookings/date.filter/date";
 import BookingCard from "@/components/bookings/booking-cards";
 import { Typography, Card, CardContent, Box } from "@mui/material";
 import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots";

@@ -21,7 +21,13 @@ export default function DateRangeFilter({
 }: DateRangeFilterProps) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box display="flex" gap={2}>
+      <Box
+        display="flex"
+        sx={{
+          flexDirection: { xs: "column", md: "row" }, 
+        }}
+        gap={2}
+      >
         <DatePicker
           label="Start Date"
           value={startDate}

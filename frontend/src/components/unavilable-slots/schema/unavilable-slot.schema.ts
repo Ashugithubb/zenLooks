@@ -1,16 +1,9 @@
 import { z } from 'zod';
 
 export const createUnavailableSlotSchema = z.object({
-  date: z.string().refine(
-    (val) => !isNaN(Date.parse(val)),
-    { message: "Please Select Date" }
-  ),
-  start_time: z.string().regex(/^([0-1]\d|2[0-3]):([0-5]\d)$/, {
-    message: "Please Select Start Time"
-  }),
-  end_time: z.string().regex(/^([0-1]\d|2[0-3]):([0-5]\d)$/, {
-    message: "Please Select End Time"
-  }),
+  date: z.string().nonempty("Date is required"),
+   start_time: z.string().nonempty("Start time is required"),
+  end_time: z.string().nonempty("End time is required"),
   reason: z.string().trim().min(1, { message: "Reason is required" }),
 });
 
