@@ -104,13 +104,13 @@ export default function ImgMediaCard2(prop: cardProp) {
       </CardActions>) :
 
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Button
+         { role!='Admin' && <Button
             onClick={handelBook}
             variant="contained"
             size="medium"
             className={style.bookNowBtn}>
             Book Now
-          </Button>
+          </Button>}
         </CardActions>}
 
 
