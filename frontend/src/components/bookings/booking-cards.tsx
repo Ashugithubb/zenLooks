@@ -17,8 +17,8 @@ export default function BookingCard({ booking }: BookingCardProps) {
     const [otpVerified, setOtpVerified] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const bookingDateTime = new Date(`${booking.date}T${booking.slot}`);
-    const gracePeriodMs = (booking.service.time + 5) * 60 * 1000;
+    const bookingDateTime = new Date(`${booking?.date}T${booking?.slot}`);
+    const gracePeriodMs = (booking?.service?.time + 5) * 60 * 1000;
     const bookingEndTime = new Date(bookingDateTime.getTime() + gracePeriodMs);
     const isExpired = bookingEndTime.getTime() < new Date().getTime();
 
@@ -39,7 +39,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
     const handleVerifyOtp = async () => {
         setLoading(true);
         try {
-            dispatch(verifyOtpThunk({ id: booking.bookingId, otp }));
+            dispatch(verifyOtpThunk({ id: booking?.bookingId, otp }));
             dispatch(getAllBookings({}))
             setOtpVerified(true);
             alert("OTP verified successfully!");
@@ -74,14 +74,14 @@ export default function BookingCard({ booking }: BookingCardProps) {
                         Discount: {booking.service.discount}%
                     </Typography>
                 </Stack>
-                <Typography variant="body2">Category: {booking.service.category}</Typography>
-                <Typography variant="body2">Duration: {booking.service.time} minutes</Typography>
+                <Typography variant="body2">Category: {booking?.service?.category}</Typography>
+                <Typography variant="body2">Duration: {booking?.service?.time} minutes</Typography>
 
                 <Box sx={{ mt: 1 }}>
                     <Typography variant="subtitle2">Booking Details</Typography>
-                    <Typography variant="body2">Booking ID: {booking.bookingId}</Typography>
-                    <Typography variant="body2">Date: {booking.date}</Typography>
-                    <Typography variant="body2">Slot: {booking.slot}</Typography>
+                    <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
+                    <Typography variant="body2">Date: {booking?.date}</Typography>
+                    <Typography variant="body2">Slot: {booking?.slot}</Typography>
                     <Typography variant="body2">
                         Booked At: {new Date(booking.bookedAt).toLocaleString()}
                     </Typography>
@@ -89,9 +89,9 @@ export default function BookingCard({ booking }: BookingCardProps) {
 
                 <Box sx={{ mt: 1 }}>
                     <Typography variant="subtitle2">User Details</Typography>
-                    <Typography variant="body2">Name: {booking.user.name}</Typography>
-                    <Typography variant="body2">Email: {booking.user.email}</Typography>
-                    <Typography variant="body2">Phone: {booking.phoneNo}</Typography>
+                    <Typography variant="body2">Name: {booking?.user?.name}</Typography>
+                    <Typography variant="body2">Email: {booking?.user?.email}</Typography>
+                    <Typography variant="body2">Phone: {booking?.phoneNo}</Typography>
                 </Box>
 
                 <Box sx={{ mt: 2, textAlign: "center" }}>

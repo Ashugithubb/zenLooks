@@ -93,7 +93,6 @@ export default function Bookings() {
         if (isTimeDisabled(selectedSlot)) {
                setPay(false);
             return toast.error("Selected time is unavailable. Please choose another time.");
-         
         }
 
         try {

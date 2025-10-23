@@ -22,6 +22,7 @@ export const getAllBookings = createAsyncThunk(
         params: query,
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
       });
+      console.log("asdgfhh",response.data);
 
       return response.data;
     } catch (error: any) {

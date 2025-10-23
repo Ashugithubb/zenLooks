@@ -20,7 +20,7 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
   const bookingDateTime = new Date(`${booking.date}T${booking.slot}`);
 
 
-  const gracePeriodMs = (booking.service.time + 5) * 60 * 1000;
+  const gracePeriodMs = (booking?.service?.time + 5) * 60 * 1000;
   const bookingEndTime = new Date(bookingDateTime.getTime() + gracePeriodMs);
 
   const isExpired = bookingEndTime.getTime() < new Date().getTime();
