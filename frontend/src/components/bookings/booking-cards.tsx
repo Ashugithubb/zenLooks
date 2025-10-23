@@ -57,21 +57,21 @@ export default function BookingCard({ booking }: BookingCardProps) {
             <CardMedia
                 component="img"
                 height="180"
-                image={booking.service.imageUrl}
-                alt={booking.service.title}
+                image={booking?.service?.imageUrl ?? ""}
+                alt={booking?.service?.title}
                 sx={{ borderRadius: 1 }}
             />
 
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                <Typography variant="h6">{booking.service.title}</Typography>
+                <Typography variant="h6">{booking?.service?.title}</Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {booking.service.description}
+                    {booking?.service?.description}
                 </Typography>
 
                 <Stack direction="row" spacing={2}>
-                    <Typography variant="body2">Price: ₹{booking.service.price}</Typography>
+                    <Typography variant="body2">Price: ₹{booking?.service?.price}</Typography>
                     <Typography variant="body2" color="primary">
-                        Discount: {booking.service.discount}%
+                        Discount: {booking?.service?.discount}%
                     </Typography>
                 </Stack>
                 <Typography variant="body2">Category: {booking?.service?.category}</Typography>
@@ -83,7 +83,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
                     <Typography variant="body2">Date: {booking?.date}</Typography>
                     <Typography variant="body2">Slot: {booking?.slot}</Typography>
                     <Typography variant="body2">
-                        Booked At: {new Date(booking.bookedAt).toLocaleString()}
+                        Booked At: {new Date(booking?.bookedAt).toLocaleString()}
                     </Typography>
                 </Box>
 
@@ -95,7 +95,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
                 </Box>
 
                 <Box sx={{ mt: 2, textAlign: "center" }}>
-                    {booking.bookingStatus === "Completed" ? (
+                    {booking?.bookingStatus === "Completed" ? (
                         <Button variant="outlined" color="success" disabled sx={{ fontWeight: "bold" }}>
                             Service Completed
                         </Button>

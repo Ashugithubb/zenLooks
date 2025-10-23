@@ -252,7 +252,8 @@ async findAllBookings(query: GetBookingQueryDto, userId: number, role: Role) {
 
     const booking = await this.bookingRepo.findOne({
       where: { bookingId: id },
-      relations: ["user", "service"]
+      relations: ["user", "service"],
+      withDeleted:true
     },
     );
 
