@@ -31,7 +31,7 @@ export default function Bookings() {
     const service = useAppSelector((state) => state.service.servicelist?.services);
     const clickedService = service?.find((s) => s.serviceId === id);
 
-    const [selectedSlot, setSelectedSlot] = useState<Dayjs | null>(dayjs());
+    const [selectedSlot, setSelectedSlot] = useState<Dayjs | null>(null);
     const [mobileNumber, setMobileNumber] = useState<string>("");
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(dayjs());
     const [error, setError] = useState<string>("");
@@ -131,6 +131,15 @@ export default function Bookings() {
 
     const amount = clickedService.price - (clickedService.price * clickedService.discount) / 100;
 
+    const shouldDisableTime = (timeValue: Dayjs, view: string) => {
+  if (!bookingDate) return false;
+  const testTime = dayjs(bookingDate)
+    .hour(timeValue.hour())
+    .minute(timeValue.minute());
+  return isTimeDisabled(testTime);
+};
+
+
     return (
         <>
             <Navbar />
@@ -211,6 +220,7 @@ export default function Bookings() {
                                     }
                                     ampm={false}
                                     slotProps={{ textField: { fullWidth: true } }}
+                                    shouldDisableTime={shouldDisableTime}
                                 />
                             </LocalizationProvider>
                         </Box>
@@ -240,7 +250,7 @@ export default function Bookings() {
                             </Box>
                         )}
 
-                        {/* Mobile Number */}
+                       
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Enter Mobile Number
