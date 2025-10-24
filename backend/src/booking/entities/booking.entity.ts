@@ -1,8 +1,8 @@
 import { Service } from "../../services/entities/service.entity";
-import { User } from "src/user/entities/user.entity";
+import { User } from "../../user/entities/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BookingStatus, PaymentStatus } from "../enum/payement.status";
-import { ServiceDelivered } from "src/service-delivered/entities/service-delivered.entity";
+import { ServiceDelivered } from "../../service-delivered/entities/service-delivered.entity";
 
 @Entity("bookings")
 export class Booking {

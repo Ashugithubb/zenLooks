@@ -13,7 +13,7 @@ export const sendOtpThunk = createAsyncThunk(
     async (data: otpSchema, thunkAPI) => {
         try {
             const response = await axios.post(
-                'http://localhost:3001/service-delivered',
+                `${process.env.NEXT_PUBLIC_API_URL}/service-delivered`,
                 data,
                 { withCredentials: true }
             );
@@ -32,7 +32,7 @@ export const verifyOtpThunk = createAsyncThunk(
     async (data: otpSchema, thunkAPI) => {
         try {
             const response = await axios.post(
-                'http://localhost:3001/service-delivered/verify',
+                `${process.env.NEXT_PUBLIC_API_URL}/service-delivered/verify`,
                 data,
                 { withCredentials: true }
             );
