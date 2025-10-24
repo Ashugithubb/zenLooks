@@ -22,7 +22,9 @@ export const getAllBookings = createAsyncThunk(
         params: query,
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
       });
+      console.log("booking deatils",response.data);
       return response.data;
+      
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch service');
     }

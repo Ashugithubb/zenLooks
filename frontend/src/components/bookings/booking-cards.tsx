@@ -103,35 +103,36 @@ export default function BookingCard({ booking }: BookingCardProps) {
                         <Button variant="outlined" color="error" disabled sx={{ fontWeight: "bold" }}>
                             Booking Expired
                         </Button>
-                    ) : otpVerified ? (
-                        <Button variant="outlined" color="success" disabled sx={{ fontWeight: "bold" }}>
-                            OTP Verified
-                        </Button>
-                    ) : otpGenerated ? (
-                        <Box sx={{ display: "flex", gap: 1, flexDirection: "column", alignItems: "center" }}>
-                            <TextField
-                                label="Enter OTP"
-                                value={otp}
-                                onChange={(e) => setOtp(e.target.value)}
-                                size="small"
-                            />
-                            <Button variant="contained" onClick={handleVerifyOtp} disabled={loading}>
-                                Verify OTP
+                    ) : booking.deletedAt ? (<Typography color="error">Booking is canceled</Typography>)
+                        : otpVerified ? (
+                            <Button variant="outlined" color="success" disabled sx={{ fontWeight: "bold" }}>
+                                OTP Verified
                             </Button>
-                            <Button variant="contained" onClick={() => { setOtpGenerated(false) }} disabled={loading}>
-                                Cancel
-                            </Button>
-                        </Box>
-                    ) : (
-                        <>
-                            <Button variant="contained" onClick={handleGenerateOtp} disabled={loading}>
-                                Generate OTP
-                            </Button>
+                        ) : otpGenerated ? (
+                            <Box sx={{ display: "flex", gap: 1, flexDirection: "column", alignItems: "center" }}>
+                                <TextField
+                                    label="Enter OTP"
+                                    value={otp}
+                                    onChange={(e) => setOtp(e.target.value)}
+                                    size="small"
+                                />
+                                <Button variant="contained" onClick={handleVerifyOtp} disabled={loading}>
+                                    Verify OTP
+                                </Button>
+                                <Button variant="contained" onClick={() => { setOtpGenerated(false) }} disabled={loading}>
+                                    Cancel
+                                </Button>
+                            </Box>
+                        ) : (
+                            <>
+                                <Button variant="contained" onClick={handleGenerateOtp} disabled={loading}>
+                                    Generate OTP
+                                </Button>
 
 
-                        </>
+                            </>
 
-                    )}
+                        )}
                 </Box>
             </CardContent>
         </Card>

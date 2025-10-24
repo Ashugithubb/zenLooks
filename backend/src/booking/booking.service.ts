@@ -6,7 +6,7 @@ import { UserService } from '../user/user.service';
 import { ServicesService } from '../services/services.service';
 import { GetBookingQueryDto } from './dto/query.dto';
 import { Role } from '../user/enum/user.role';
-import { ServiceRepository } from '../../src/services/repository/service.repo';
+import { ServiceRepository } from '../services/repository/service.repo';
 import { UnavailableSlotsService } from '../unavailable-slots/unavailable-slots.service';
 import dayjs from 'dayjs'
 import { UnavailableSlotRepository } from '../unavailable-slots/repository/unavailable-slots';
@@ -62,159 +62,151 @@ export class BookingService {
   }
 
 
+  async allBookings(query: GetBookingQueryDto) {
+    const { page = 1, limit = 5, search, category, slot, startDate, endDate } = query;
+
+    const qb = this.bookingRepo
+      .createQueryBuilder("bookings")
+      .leftJoinAndSelect("bookings.user", "users")
+      .withDeleted();
 
 
+    if (slot) {
+      qb.andWhere("bookings.slot = :slot", { slot });
+    }
+
+    if (startDate && endDate) {
+      qb.andWhere("bookings.date BETWEEN :start AND :end", {
+        start: startDate,
+        end: endDate,
+      });
+    } else if (startDate) {
+      qb.andWhere("bookings.date >= :start", { start: startDate });
+    } else if (endDate) {
+      qb.andWhere("bookings.date <= :end", { end: endDate });
+    }
 
 
-async allBookings(query: GetBookingQueryDto) {
-  const { page = 1, limit = 5, search, category, slot, startDate, endDate } = query;
+    const [bookings, total] = await qb
+      .skip((page - 1) * limit)
+      .take(limit)
+      .getManyAndCount();
 
-  const qb = this.bookingRepo
-    .createQueryBuilder("bookings")
-    .leftJoinAndSelect("bookings.user", "users")
-    
+    if (!bookings.length) {
+      return { total, page, limit, bookings: [] };
+    }
 
-  if (search) {
-    qb.andWhere("(bookings.bookingStatus ILIKE :search OR users.name ILIKE :search)", {
-      search: `%${search}%`,
+
+    const bookingIds = bookings.map((b) => b.bookingId);
+
+    const result = await this.bookingRepo.find({
+      where: { bookingId: In(bookingIds) },
+      relations: ["service", "user"],
+      withDeleted: true,
     });
-  }
-
-  if (slot) {
-    qb.andWhere("bookings.slot = :slot", { slot });
-  }
-
-  if (startDate && endDate) {
-    qb.andWhere("bookings.date BETWEEN :start AND :end", {
-      start: startDate,
-      end: endDate,
-    });
-  } else if (startDate) {
-    qb.andWhere("bookings.date >= :start", { start: startDate });
-  } else if (endDate) {
-    qb.andWhere("bookings.date <= :end", { end: endDate });
-  }
-
- 
-  const [bookings, total] = await qb
-    .skip((page - 1) * limit)
-    .take(limit)
-    .getManyAndCount();
-
-  if (!bookings.length) {
-    return { total, page, limit, bookings: [] };
-  }
-
-  
-  const bookingIds = bookings.map((b) => b.bookingId);
-
-  const result = await this.bookingRepo.find({
-    where: { bookingId: In(bookingIds) },
-    relations: ["service", "user"], 
-    withDeleted: true, 
-  });
 
 
-  let filteredResult = result;
-  if (category) {
-    filteredResult = result.filter(
-      (b) => b.service?.category === category
-    );
-  }
-
-  return {
-    total,
-    page,
-    limit,
-    bookings: filteredResult,
-  };
-}
-
-
-
-
-async findAllBookings(query: GetBookingQueryDto, userId: number, role: Role) {
- 
-  if (role === Role.ADMIN) {
-    return await this.allBookings(query);
-  }
-
-  const { page = 1, limit = 5, search, category, slot, startDate, endDate } = query;
-
- 
-  const qb = this.bookingRepo
-    .createQueryBuilder("bookings")
-    .leftJoinAndSelect("bookings.user", "users")
- 
-
-  qb.andWhere("users.userId = :userId", { userId });
-
+    let filteredResult = result;
+    if (category) {
+      filteredResult = result.filter(
+        (b) => b.service?.category === category
+      );
+    }
+      
   if (search) {
-    qb.andWhere(
-      "(bookings.bookingStatus ILIKE :search OR bookings.phoneNo ILIKE :search)",
-      { search: `%${search}%` }
-    );
-  }
-
-  if (slot) {
-    qb.andWhere("bookings.slot = :slot", { slot });
-  }
-
-  if (startDate && endDate) {
-    qb.andWhere("bookings.date BETWEEN :start AND :end", {
-      start: startDate,
-      end: endDate,
-    });
-  } else if (startDate) {
-    qb.andWhere("bookings.date >= :start", { start: startDate });
-  } else if (endDate) {
-    qb.andWhere("bookings.date <= :end", { end: endDate });
-  }
-
-  const [bookings, total] = await qb
-    .skip((page - 1) * limit)
-    .take(limit)
-    .getManyAndCount();
-
-  if (!bookings.length) {
-    return { total, page, limit, bookings: [] };
-  }
-
-  const bookingIds = bookings.map((b) => b.bookingId);
-
-  const result = await this.bookingRepo.find({
-    where: { bookingId: In(bookingIds) },
-    relations: ["service", "user"], 
-    withDeleted: true, 
-  });
-
- 
-  let filteredResult = result;
-  if (category) {
-    filteredResult = filteredResult.filter(
-      (b) => b.service?.category === category
-    );
-
-  }
-
-  
-  if (search) {
+    const lowerSearch = search.toLowerCase();
     filteredResult = filteredResult.filter(
       (b) =>
-        b.service?.title?.toLowerCase().includes(search.toLowerCase()) ||
-        b.service?.description?.toLowerCase().includes(search.toLowerCase()) ||
+        b.service?.title?.toLowerCase().includes(lowerSearch) ||
+        b.service?.description?.toLowerCase().includes(lowerSearch) ||
         b.phoneNo?.includes(search)
     );
   }
 
+    return {
+      total,
+      page,
+      limit,
+      bookings: filteredResult,
+    };
+  }
 
-  return {
-    total,
-    page,
-    limit,
-    bookings: filteredResult,
-  };
-}
+
+
+
+  async findAllBookings(query: GetBookingQueryDto, userId: number, role: Role) {
+
+    if (role === Role.ADMIN) {
+      return await this.allBookings(query);
+    }
+
+    const { page = 1, limit = 5, search, category, slot, startDate, endDate } = query;
+
+
+    const qb = this.bookingRepo
+      .createQueryBuilder("bookings")
+      .leftJoinAndSelect("bookings.user", "users")
+
+
+    qb.andWhere("users.userId = :userId", { userId });
+
+
+    if (slot) {
+      qb.andWhere("bookings.slot = :slot", { slot });
+    }
+
+    if (startDate && endDate) {
+      qb.andWhere("bookings.date BETWEEN :start AND :end", {
+        start: startDate,
+        end: endDate,
+      });
+    } else if (startDate) {
+      qb.andWhere("bookings.date >= :start", { start: startDate });
+    } else if (endDate) {
+      qb.andWhere("bookings.date <= :end", { end: endDate });
+    }
+
+    const [bookings, total] = await qb
+      .skip((page - 1) * limit)
+      .take(limit)
+      .getManyAndCount();
+
+    if (!bookings.length) {
+      return { total, page, limit, bookings: [] };
+    }
+
+    const bookingIds = bookings.map((b) => b.bookingId);
+
+    const result = await this.bookingRepo.find({
+      where: { bookingId: In(bookingIds) },
+      relations: ["service", "user"],
+      withDeleted: true,
+    });
+
+
+    let filteredResult = result;
+    if (category) {
+      filteredResult = filteredResult.filter(
+        (b) => b.service?.category === category
+      );
+
+    }
+
+    if (search) {
+      filteredResult = filteredResult.filter(
+        (b) =>
+          b.service?.title?.toLowerCase().includes(search.toLowerCase()) ||
+          b.service?.description?.toLowerCase().includes(search.toLowerCase()) ||
+          b.phoneNo?.includes(search)
+      );
+    }
+    return {
+      total,
+      page,
+      limit,
+      bookings: filteredResult,
+    };
+  }
 
 
   async topBookedServices() {
@@ -253,7 +245,7 @@ async findAllBookings(query: GetBookingQueryDto, userId: number, role: Role) {
     const booking = await this.bookingRepo.findOne({
       where: { bookingId: id },
       relations: ["user", "service"],
-      withDeleted:true
+      withDeleted: true
     },
     );
 

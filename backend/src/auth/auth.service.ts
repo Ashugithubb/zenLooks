@@ -7,7 +7,7 @@ import { HasingService } from '../hasing/hasing.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthJwtPayload } from './type/auth.payload';
-import { UserService } from '../../src/user/user.service';
+import { UserService } from '../user/user.service';
 
 
 @Injectable()

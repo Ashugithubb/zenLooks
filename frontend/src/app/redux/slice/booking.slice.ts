@@ -32,6 +32,7 @@ export interface Booking {
     paymentStatus:string,
     bookingStatus:string
     bookedAt: string;
+    deletedAt:string;
     service: Service;
     user: User;
 }
