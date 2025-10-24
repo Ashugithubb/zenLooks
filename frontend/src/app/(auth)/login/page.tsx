@@ -63,8 +63,6 @@ export default function LoginForm() {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-
-
       const additionalInfo = getAdditionalUserInfo(result);
 
       const user = result.user;

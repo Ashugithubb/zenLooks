@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import AppDataSource from 'src/data.source';
+import AppDataSource from '../data.source';
 import AdminSeeder from './seeds/admin.seed';
 
 

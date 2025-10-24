@@ -1,6 +1,6 @@
 import { Seeder } from '@jorgebodega/typeorm-seeding';
-import { User } from 'src/user/entities/user.entity';
-import { Role } from 'src/user/enum/user.role';
+import { User } from '../../user/entities/user.entity';
+import { Role } from '../../user/enum/user.role';
 import * as bcrypt from 'bcrypt';
 import { DataSource } from 'typeorm';
 
