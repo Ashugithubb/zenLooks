@@ -56,23 +56,28 @@ export class ServicesController {
   }
 
 
-  @Post('upload')
-  // @UseInterceptors(FileInterceptor('file', {
-  //   storage: diskStorage({
-  //     destination: './files',
-  //     filename: (req, file, callback) => {
-  //       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-  //       callback(null, `${file.fieldname}-${uniqueSuffix}-${extname(file.originalname)}`)
-  //     }
-  //   })
-  // }))
-  async uploadFile(@UploadedFile(new ParseFilePipe({
-    fileIsRequired: true,
-  })) file: MulterFile) {
-    return this.servicesService.uplodImage(file);
+@Post('upload')
+ async uploadFile() {
+    return this.servicesService.uplodImage();
   }
-}
 
+//   @Post('upload')
+//   @UseInterceptors(FileInterceptor('file', {
+//     storage: diskStorage({
+//       destination: './files',
+//       filename: (req, file, callback) => {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         callback(null, `${file.fieldname}-${uniqueSuffix}-${extname(file.originalname)}`)
+//       }
+//     })
+//   }))
+//   async uploadFile(@UploadedFile(new ParseFilePipe({
+//     fileIsRequired: true,
+//   })) file: MulterFile) {
+//     return this.servicesService.uplodImage(file);
+//   }
+// }
+}
 
 
 

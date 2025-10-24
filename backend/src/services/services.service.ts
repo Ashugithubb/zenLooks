@@ -76,10 +76,15 @@ export class ServicesService {
     return await this.bookingService.topBookedServices()
   }
 
-  async uplodImage(file: Multer.File) {
-    const avtarUrl = 'http://localhost:3001/files/' + file.filename;
+
+  async uplodImage() {
+    const avtarUrl = "";
     return avtarUrl;
   }
+  // async uplodImage(file: Multer.File) {
+  //   const avtarUrl = 'http://localhost:3001/files/' + file.filename;
+  //   return avtarUrl;
+  // }
 }
 
 
