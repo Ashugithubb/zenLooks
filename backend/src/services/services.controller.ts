@@ -59,7 +59,7 @@ export class ServicesController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
-      destination: './tmp',
+      destination: './files',
       filename: (req, file, callback) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
         callback(null, `${file.fieldname}-${uniqueSuffix}-${extname(file.originalname)}`)
