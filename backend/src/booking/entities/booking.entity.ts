@@ -1,4 +1,4 @@
-import { Service } from "src/services/entities/service.entity";
+import { Service } from "../../services/entities/service.entity";
 import { User } from "src/user/entities/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BookingStatus, PaymentStatus } from "../enum/payement.status";
@@ -8,7 +8,6 @@ import { ServiceDelivered } from "src/service-delivered/entities/service-deliver
 export class Booking {
     @PrimaryGeneratedColumn()
     bookingId: number
-
     @Column({ type: "date" })
     date: string
 
