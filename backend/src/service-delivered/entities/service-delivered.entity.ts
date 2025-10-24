@@ -1,4 +1,4 @@
-import { Booking } from "src/booking/entities/booking.entity";
+import { Booking } from "../../booking/entities/booking.entity";
 import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("service-delivered")

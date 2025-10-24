@@ -1,4 +1,4 @@
-import { Booking } from "src/booking/entities/booking.entity";
+import { Booking } from "../../booking/entities/booking.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "../enum/user.role";
 import { UnavailableSlot } from "src/unavailable-slots/entities/unavailable-slot.entity";

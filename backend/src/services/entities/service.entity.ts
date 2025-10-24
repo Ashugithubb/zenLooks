@@ -1,4 +1,4 @@
-import { Booking } from "src/booking/entities/booking.entity";
+import { Booking } from "../../booking/entities/booking.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Category } from "../enum/category.enum";
 

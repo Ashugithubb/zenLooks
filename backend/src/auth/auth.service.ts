@@ -34,7 +34,7 @@ export class AuthService {
         res.cookie('access_token', token, {
             httpOnly: false,
             secure: true,
-            sameSite: 'strict',
+            sameSite: 'none',
             maxAge: 4 * 60 * 100000,
         });
         return {
