@@ -4,10 +4,10 @@ import { UpdateServiceDeliveredDto } from './dto/update-service-delivered.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ServiceDelivered } from './entities/service-delivered.entity';
 import { Repository } from 'typeorm';
-import { BookingService } from 'src/booking/booking.service';
-import { MailService } from 'src/mail/mail.service';
-import { BookingStatus } from 'src/booking/enum/payement.status';
-import { BookingRepository } from 'src/booking/repository/booking.repo';
+import { BookingService } from '../booking/booking.service';
+import { MailService } from '../mail/mail.service';
+import { BookingStatus } from '../booking/enum/payement.status';
+import { BookingRepository } from '../booking/repository/booking.repo';
 
 @Injectable()
 export class ServiceDeliveredService {

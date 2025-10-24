@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } fro
 import { UnavailableSlotsService } from './unavailable-slots.service';
 import { CreateUnavailableSlotDto } from './dto/create-unavailable-slot.dto';
 import { UpdateUnavailableSlotDto } from './dto/update-unavailable-slot.dto';
-import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
+import { JwtAuthGuard } from '../auth/guard/jwt.auth';
 
 @Controller('unavailable-slots')
 export class UnavailableSlotsController {

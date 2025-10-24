@@ -3,11 +3,11 @@ import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 import { ServiceRepository } from './repository/service.repo';
 import { GetServiceQueryDto } from './dto/query.dto';
-import { Role } from 'src/user/enum/user.role';
-import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
-import { BookingRepository } from 'src/booking/repository/booking.repo';
-import { BookingService } from 'src/booking/booking.service';
-import { UserService } from 'src/user/user.service';
+import { Role } from '../user/enum/user.role';
+import { CreateBookingDto } from '../booking/dto/create-booking.dto';
+import { BookingRepository } from '../booking/repository/booking.repo';
+import { BookingService } from '../booking/booking.service';
+import { UserService } from '../user/user.service';
 import { Multer } from 'multer';
 
 @Injectable()

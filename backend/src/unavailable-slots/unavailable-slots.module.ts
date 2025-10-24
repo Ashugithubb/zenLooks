@@ -4,7 +4,7 @@ import { UnavailableSlotsController } from './unavailable-slots.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UnavailableSlot } from './entities/unavailable-slot.entity';
 import { UnavailableSlotRepository } from './repository/unavailable-slots';
-import { UserModule } from 'src/user/user.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports:[TypeOrmModule.forFeature([UnavailableSlot]),UserModule],

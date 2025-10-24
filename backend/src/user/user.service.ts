@@ -6,10 +6,10 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserRepository } from './repository/user.repo';
 import { error } from 'console';
-import { HasingService } from 'src/hasing/hasing.service';
-import { CreateBookingDto } from 'src/booking/dto/create-booking.dto';
-import { BookingService } from 'src/booking/booking.service';
-import { AuthService } from 'src/auth/auth.service';
+import { HasingService } from '../hasing/hasing.service';
+import { CreateBookingDto } from '../booking/dto/create-booking.dto';
+import { BookingService } from '../booking/booking.service';
+import { AuthService } from '../auth/auth.service';
 import { Response } from 'express';
 @Injectable()
 export class UserService {

@@ -4,10 +4,10 @@ import { BookingController } from './booking.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Booking } from './entities/booking.entity';
 import { BookingRepository } from './repository/booking.repo';
-import { UserModule } from 'src/user/user.module';
-import { ServicesModule } from 'src/services/services.module';
-import { UnavailableSlotsModule } from 'src/unavailable-slots/unavailable-slots.module';
-import { MailModule } from 'src/mail/mail.module';
+import { UserModule } from '../user/user.module';
+import { ServicesModule } from '../services/services.module';
+import { UnavailableSlotsModule } from '../unavailable-slots/unavailable-slots.module';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports:[TypeOrmModule.forFeature([Booking]),  forwardRef(()=>ServicesModule) ,

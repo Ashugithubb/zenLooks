@@ -3,8 +3,8 @@ import { ServiceDeliveredService } from './service-delivered.service';
 import { ServiceDeliveredController } from './service-delivered.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServiceDelivered } from './entities/service-delivered.entity';
-import { BookingModule } from 'src/booking/booking.module';
-import { MailModule } from 'src/mail/mail.module';
+import { BookingModule } from '../booking/booking.module';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports:[TypeOrmModule.forFeature([ServiceDelivered]),BookingModule,MailModule],

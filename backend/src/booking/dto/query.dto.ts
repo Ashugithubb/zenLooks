@@ -1,7 +1,7 @@
 import { IsArray, IsBoolean, IsDateString, IsEnum, IsIn, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
 import { boolean } from 'zod';
-import { Category } from 'src/services/enum/category.enum';
+import { Category } from '../../services/enum/category.enum';
 
 
 

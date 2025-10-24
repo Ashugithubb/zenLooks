@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Quer
 import { BookingService } from './booking.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
-import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
+import { JwtAuthGuard } from '../../src/auth/guard/jwt.auth';
 import { GetBookingQueryDto } from './dto/query.dto';
 
 @Controller('booking')

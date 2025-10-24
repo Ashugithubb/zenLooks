@@ -3,11 +3,11 @@ import { ConfigService, ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { Request } from 'express';
-import { HasingService } from 'src/hasing/hasing.service';
+import { HasingService } from '../hasing/hasing.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthJwtPayload } from './type/auth.payload';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../../src/user/user.service';
 
 
 @Injectable()

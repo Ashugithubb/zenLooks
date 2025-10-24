@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUnavailableSlotDto } from './dto/create-unavailable-slot.dto';
 import { UpdateUnavailableSlotDto } from './dto/update-unavailable-slot.dto';
 import { UnavailableSlotRepository } from './repository/unavailable-slots';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class UnavailableSlotsService {

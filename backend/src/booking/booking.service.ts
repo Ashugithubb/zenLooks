@@ -2,15 +2,15 @@ import { forwardRef, Inject, Injectable, NotFoundException, UnauthorizedExceptio
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
 import { BookingRepository } from './repository/booking.repo';
-import { UserService } from 'src/user/user.service';
-import { ServicesService } from 'src/services/services.service';
+import { UserService } from '../user/user.service';
+import { ServicesService } from '../services/services.service';
 import { GetBookingQueryDto } from './dto/query.dto';
-import { Role } from 'src/user/enum/user.role';
-import { ServiceRepository } from 'src/services/repository/service.repo';
-import { UnavailableSlotsService } from 'src/unavailable-slots/unavailable-slots.service';
+import { Role } from '../user/enum/user.role';
+import { ServiceRepository } from '../../src/services/repository/service.repo';
+import { UnavailableSlotsService } from '../unavailable-slots/unavailable-slots.service';
 import dayjs from 'dayjs'
-import { UnavailableSlotRepository } from 'src/unavailable-slots/repository/unavailable-slots';
-import { MailService } from 'src/mail/mail.service';
+import { UnavailableSlotRepository } from '../unavailable-slots/repository/unavailable-slots';
+import { MailService } from '../mail/mail.service';
 import { In } from 'typeorm';
 
 @Injectable()
