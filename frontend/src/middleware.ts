@@ -24,9 +24,9 @@ export async function middleware(req: NextRequest) {
     }
 
 
-    if (pathname === "/services/allbookings" && payload?.role !== "Admin") {
-        return NextResponse.redirect(new URL("/services", req.url));
-    }
+    // if (pathname === "/services/allbookings" && payload?.role !== "Admin") {
+    //     return NextResponse.redirect(new URL("/services", req.url));
+    // }
 
 
 
