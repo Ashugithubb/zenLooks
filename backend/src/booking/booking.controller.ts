@@ -40,3 +40,6 @@ export class BookingController {
     return this.bookingService.remove(+id);
   }
 }
+
+
+
