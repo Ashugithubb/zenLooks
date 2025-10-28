@@ -53,10 +53,12 @@ export default function Services() {
 
   const handleAllBookings = () => {
   if (typeof window === "undefined") return;
-
-
+ const token2 = Cookies.get("access_token");
+console.log("token2",token2);
   setTimeout(() => {
     const token = Cookies.get("access_token");
+    console.log("insode token setTimeOUT",token);
+    console.log(token,"token AYA YA NAHI")
 
     if (token) {
       router.push("/services/allbookings");
