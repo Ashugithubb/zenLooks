@@ -52,10 +52,10 @@ export default function Services() {
     };
 
     const handleAllBookings = () => {
-        // const token = Cookies.get("access_token");
-        console.log("why not pusing to allbookings page");
-        if (role=="Admin") {
-              console.log("inside the booking page role is ",role);
+         if (typeof window === "undefined") return; 
+        const token = Cookies.get("access_token");
+
+        if (token) {
             router.push("/services/allbookings");
         }
         else {
