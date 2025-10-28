@@ -12,7 +12,7 @@ import b00kingReducer from '../slice/add.booking.slice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['login'],
+  whitelist: ['login']
 };
 
 const rootReducer = combineReducers({

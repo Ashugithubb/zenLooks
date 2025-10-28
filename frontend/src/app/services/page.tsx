@@ -52,9 +52,8 @@ export default function Services() {
     };
 
     const handleAllBookings = () => {
-        const token = Cookies.get("access_token");
-
-        if (token) {
+        // const token = Cookies.get("access_token");
+        if (role==="Admin") {
             router.push("/services/allbookings");
         }
         else {
