@@ -51,20 +51,22 @@ export default function Services() {
         setCurrentPage(value);
     };
 
-    const handleAllBookings = () => {
-         if (typeof window === "undefined") return; 
-        const token = Cookies.get("access_token");
+  const handleAllBookings = () => {
+  if (typeof window === "undefined") return;
 
-        if (token) {
-            router.push("/services/allbookings");
-        }
-        else {
-            dispatch(clearUser());
-            toast.error("Login again!");
 
-        }
+  setTimeout(() => {
+    const token = Cookies.get("access_token");
 
-    };
+    if (token) {
+      router.push("/services/allbookings");
+    } else {
+      dispatch(clearUser());
+      toast.error("Login again!");
+    }
+  }, 2000);
+};
+
 
 
 
