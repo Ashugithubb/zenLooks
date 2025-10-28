@@ -53,7 +53,9 @@ export default function Services() {
 
     const handleAllBookings = () => {
         // const token = Cookies.get("access_token");
-        if (role==="Admin") {
+        console.log("why not pusing to allbookings page");
+        if (role=="Admin") {
+              console.log("inside the booking page role is ",role);
             router.push("/services/allbookings");
         }
         else {
