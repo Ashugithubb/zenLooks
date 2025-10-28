@@ -18,6 +18,7 @@ import CreateServiceDialog from '../service/add-service';
 import { Service } from '@/app/redux/slice/services.slice';
 import { setEditOpen, setServiceId } from '@/app/redux/slice/edit.slice';
 import { useRouter } from 'next/navigation';
+
 interface cardProp {
   title: string;
   description: string;
@@ -66,7 +67,7 @@ export default function ImgMediaCard(prop: cardProp) {
   }
 
   return (
-    <Card sx={{ maxWidth: 445, height: "100%"}}>
+    <Card className={style.card}sx={{ maxWidth: 445, height: "100%", padding:"16px"}}>
       <CardMedia
         component="img"
         alt="service image"

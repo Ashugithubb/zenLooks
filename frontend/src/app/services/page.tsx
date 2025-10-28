@@ -19,6 +19,7 @@ import { toast, ToastContainer } from "react-toastify";
 import style from './page.module.css'
 import Cookies from "js-cookie";
 import { clearUser } from "../redux/slice/login.slice";
+
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const { total = 0, page = 1, limit = 3, services = [] } =
@@ -33,7 +34,7 @@ export default function Services() {
     useEffect(() => {
         const trimmedSearch = searchTerm.trim();
 
-      
+
         if (trimmedSearch.length > 0 || searchTerm === "") {
             dispatch(getServiceThunk({ page: currentPage, limit, search: trimmedSearch || undefined }));
         }
@@ -55,7 +56,7 @@ export default function Services() {
         // const token = Cookies.get("access_token");
 
         // if (token) {
-            router.push("/services/allbookings");
+        router.push("/services/allbookings");
         // }
         // else {
         //     dispatch(clearUser());
@@ -84,7 +85,7 @@ export default function Services() {
                     gap: 2,
                 }}
             >
-              { services.length>0 && <Box className={style.searchBox}>
+                {services.length > 0 && <Box className={style.searchBox}>
                     <TextField
                         label="Search services..."
                         variant="outlined"
@@ -125,7 +126,7 @@ export default function Services() {
                     gap: 3,
                     justifyContent: "space-evenly",
                     minHeight: "300px",
-                    paddingBottom: "30px",
+                    padding: "30px",
                 }}
             >
                 {services?.length === 0 ? (

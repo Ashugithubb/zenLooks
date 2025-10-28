@@ -23,6 +23,7 @@ import { resetServiceState } from '@/app/redux/slice/edit.slice';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 type ServiceData = z.infer<typeof serviceSchema>;
 import style from "./add.module.css"
+import { uploadToCloudinary } from '@/app/api/uploadToCloudinary/route';
 export default function CreateServiceDialog() {
     const [open, setOpen] = React.useState(false);
     const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
@@ -95,11 +96,15 @@ export default function CreateServiceDialog() {
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
     const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (file) {
-            setAvatarFile(file);
-            setAvatarPreview(URL.createObjectURL(file));
-            const res = await dispatch(uploadImage(file));
-            setAvatarUrl(res.payload)
+        if (!file) return;
+
+        setAvatarFile(file);
+        setAvatarPreview(URL.createObjectURL(file));
+
+        const url = await uploadToCloudinary(file);
+        if (url) {
+            setAvatarUrl(url);
+            console.log("Uploaded image URL:", url);
         }
     };
 
@@ -107,13 +112,13 @@ export default function CreateServiceDialog() {
         try {
             let res;
             if (editOpen && serviceId) {
-                if(avtarUrl.length>0){
-                    data.imageUrl=avtarUrl
+                if (avtarUrl.length > 0) {
+                    data.imageUrl = avtarUrl
                 }
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
                 dispatch(getServiceThunk({}));
             } else {
-                  data.imageUrl = avtarUrl;
+                data.imageUrl = avtarUrl;
                 res = await dispatch(addService(data));
             }
 

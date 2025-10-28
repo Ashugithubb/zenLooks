@@ -21,7 +21,7 @@ export class ServicesService {
     if (role === Role.ADMIN) {
       const { imageUrl } = createServiceDto;
       if (imageUrl.length == 0) {
-        createServiceDto.imageUrl = 'http://localhost:3001/files/file-1760616583196-748381937-.jpg';
+        createServiceDto.imageUrl = 'https://res.cloudinary.com/dwbvusidd/image/upload/v1761652895/ChatGPT_Image_Oct_9_2025_10_18_07_AM_drfior.png';
       }
       return await this.serviceRepo.save(createServiceDto);
     }
