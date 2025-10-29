@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/app/redux/hook/hook";
 import { sendOtpThunk, verifyOtpThunk } from "@/app/redux/thunk/otp-verification/otp";
 import { bookServiceThunk } from "@/app/redux/thunk/book.service.thunk";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
+import { toast } from "react-toastify";
 
 interface BookingCardProps {
     booking: Booking;
@@ -26,7 +27,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
     const handleGenerateOtp = async () => {
         setLoading(true);
         try {
-            dispatch(sendOtpThunk({ id: booking.bookingId }))
+            await dispatch(sendOtpThunk({ id: booking.bookingId }));
             setOtpGenerated(true);
         } catch (err) {
             console.error(err);
@@ -38,16 +39,15 @@ export default function BookingCard({ booking }: BookingCardProps) {
 
     const handleVerifyOtp = async () => {
         setLoading(true);
-        try {
-            dispatch(verifyOtpThunk({ id: booking?.bookingId, otp }));
+        const res = await dispatch(verifyOtpThunk({ id: booking?.bookingId, otp }));
+        if (res.meta.requestStatus === "fulfilled") {
             dispatch(getAllBookings({}))
             setOtpVerified(true);
             alert("OTP verified successfully!");
             window.location.reload();
-        } catch (err) {
-            console.error(err);
-            alert("Invalid OTP");
-        } finally {
+        }
+        else {
+            toast.error(res.payload || "Invalid OTP");
             setLoading(false);
         }
     };
@@ -70,9 +70,9 @@ export default function BookingCard({ booking }: BookingCardProps) {
 
                 <Stack direction="row" spacing={2}>
                     <Typography variant="body2">Price: ₹{booking?.service?.price}</Typography>
-                    <Typography variant="body2" color="primary">
+                    {booking?.service?.discount > 0 && <Typography variant="body2" color="primary">
                         Discount: {booking?.service?.discount}%
-                    </Typography>
+                    </Typography>}
                 </Stack>
                 <Typography variant="body2">Category: {booking?.service?.category}</Typography>
                 <Typography variant="body2">Duration: {booking?.service?.time} minutes</Typography>
@@ -84,6 +84,9 @@ export default function BookingCard({ booking }: BookingCardProps) {
                     <Typography variant="body2">Slot: {booking?.slot}</Typography>
                     <Typography variant="body2">
                         Booked At: {new Date(booking?.bookedAt).toLocaleString()}
+                    </Typography>
+                    <Typography variant="body1">
+                        Payment: {booking?.paymentStatus === 'Pending' ? (" Cash") : booking?.paymentStatus}
                     </Typography>
                 </Box>
 

@@ -56,7 +56,7 @@ export class BookingService {
       reason: "Booked slot"
     }, userId);
 
-
+    console.log("calling mail service");
     await this.mailService.sendBookingMail(booking)
 
   }
@@ -68,7 +68,9 @@ export class BookingService {
     const qb = this.bookingRepo
       .createQueryBuilder("bookings")
       .leftJoinAndSelect("bookings.user", "users")
-      .withDeleted();
+      .withDeleted()
+      .orderBy('bookings.bookingId', 'DESC')
+
 
 
     if (slot) {
@@ -105,23 +107,25 @@ export class BookingService {
       withDeleted: true,
     });
 
-
-    let filteredResult = result;
+    const orderedResult = bookingIds.map(
+      id => result.find(b => b.bookingId === id)!
+    );
+    let filteredResult = orderedResult;
     if (category) {
       filteredResult = result.filter(
         (b) => b.service?.category === category
       );
     }
-      
-  if (search) {
-    const lowerSearch = search.toLowerCase();
-    filteredResult = filteredResult.filter(
-      (b) =>
-        b.service?.title?.toLowerCase().includes(lowerSearch) ||
-        b.service?.description?.toLowerCase().includes(lowerSearch) ||
-        b.phoneNo?.includes(search)
-    );
-  }
+
+    if (search) {
+      const lowerSearch = search.toLowerCase();
+      filteredResult = filteredResult.filter(
+        (b) =>
+          b.service?.title?.toLowerCase().includes(lowerSearch) ||
+          b.service?.description?.toLowerCase().includes(lowerSearch) ||
+          b.phoneNo?.includes(search)
+      );
+    }
 
     return {
       total,
@@ -146,7 +150,7 @@ export class BookingService {
     const qb = this.bookingRepo
       .createQueryBuilder("bookings")
       .leftJoinAndSelect("bookings.user", "users")
-
+      .orderBy('bookings.bookingId', 'DESC')
 
     qb.andWhere("users.userId = :userId", { userId });
 
@@ -183,8 +187,11 @@ export class BookingService {
       withDeleted: true,
     });
 
+    const orderedResult = bookingIds.map(
+      id => result.find(b => b.bookingId === id)!
+    );
+    let filteredResult = orderedResult;
 
-    let filteredResult = result;
     if (category) {
       filteredResult = filteredResult.filter(
         (b) => b.service?.category === category

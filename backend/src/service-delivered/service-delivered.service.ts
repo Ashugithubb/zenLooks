@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateServiceDeliveredDto } from './dto/create-service-delivered.dto';
 import { UpdateServiceDeliveredDto } from './dto/update-service-delivered.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -50,14 +50,14 @@ export class ServiceDeliveredService {
       },
     });
     if (!latestOtp) throw new NotFoundException();
-
+console.log("latestOtp",latestOtp," comming otp",otp);
     if (otp === latestOtp.otp) {
       await this.serviceDeleviredRepo.update(latestOtp.id, { verified: true });
       await this.bookingRepository.update(booking.bookingId, { bookingStatus: BookingStatus.COMPLETED });
       return { msg: "OTP Verified" };
-    } else {
-      return { msg: "Invalid OTP", verified: false };
-    }
+    } 
+      throw new BadRequestException("Invalid Otp");
+    
   }
 
   findAll() {

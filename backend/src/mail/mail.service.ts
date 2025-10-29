@@ -9,6 +9,7 @@ export class MailService {
     booking: any
   ): Promise<void> {
     try {
+      console.log("inside the try block");
       const context = {
         bookingId: booking.bookingId,
         date: booking.date,
@@ -35,12 +36,13 @@ export class MailService {
       await this.mailerService.sendMail({
 
         to: booking.user?.email,
-        from: process.env.MAIL_USER,
+        // from: process.env.MAIL_USER,
         subject: 'Confirmation of Boooking at ZenLook Salon',
         template: 'emailb',
 
         context
       });
+      console.log("mail sended");
     } catch (error) {
       console.error('Failed to send NewsLetter email:', error);
     }
@@ -77,7 +79,7 @@ export class MailService {
       await this.mailerService.sendMail({
 
         to: booking.user?.email,
-        from: process.env.MAIL_USER,
+        // from: process.env.MAIL_USER,
         subject: 'Confirmation of Cancleation of Booking at ZenLook Salon',
         template: 'emailc',
 
@@ -98,7 +100,7 @@ export class MailService {
 
       await this.mailerService.sendMail({
         to: email,
-        from: process.env.MAIL_USER,
+        // from: process.env.MAIL_USER,
         subject: `Verifiction OTP from zenLook`,
         template: 'email-otp',
         context,
