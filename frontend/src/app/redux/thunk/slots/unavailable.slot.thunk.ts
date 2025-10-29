@@ -24,7 +24,7 @@ export const getUnavailableSlots = createAsyncThunk(
   "unavailableSlot/getUnavailableSlots",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:3001/unavailable-slots",
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/unavailable-slots`,
         {
         withCredentials:true
       }
