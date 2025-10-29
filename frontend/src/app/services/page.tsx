@@ -33,8 +33,6 @@ export default function Services() {
 
     useEffect(() => {
         const trimmedSearch = searchTerm.trim();
-
-
         if (trimmedSearch.length > 0 || searchTerm === "") {
             dispatch(getServiceThunk({ page: currentPage, limit, search: trimmedSearch || undefined }));
         }

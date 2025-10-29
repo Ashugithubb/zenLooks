@@ -10,7 +10,7 @@ import TimeSelector from "@/components/bookings/slot";
 import { Dayjs } from "dayjs";
 import DateRangeFilter from "@/components/bookings/date.filter/date";
 import BookingCard from "@/components/bookings/booking-cards";
-import { Typography, Card, CardContent, Box } from "@mui/material";
+import { Typography, Card, CardContent, Box, Stack, Pagination } from "@mui/material";
 import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots";
 import Grid from "@mui/material/Grid";
 
@@ -25,8 +25,9 @@ interface FilterValues {
 
 const FiltersComponent = () => {
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
+  const { total, page, limit } = useAppSelector((state) => state.allBooking);
   const dispatch = useAppDispatch();
-  
+
   const { control, watch, setValue } = useForm<FilterValues>({
     defaultValues: {
       search: "",
@@ -40,14 +41,14 @@ const FiltersComponent = () => {
   const watchedValues = watch();
 
   const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedValues)]);
-
+ const [currentPage, setCurrentPage] = useState(page);
   useEffect(() => {
- 
+
     if (filterValues.search && filterValues.search.trim().length === 0) return;
 
     const formattedFilters = {
-      page: 1,
-      limit: 10,
+      page: currentPage,
+      limit: 3,
       search: filterValues.search?.trim() || undefined,
       category: filterValues.category || undefined,
       slot: filterValues.slot ? filterValues.slot.format("HH:mm") : undefined,
@@ -56,15 +57,20 @@ const FiltersComponent = () => {
     };
 
     dispatch(getAllBookings(formattedFilters));
-  }, [filterValues, dispatch]);
+  }, [filterValues, dispatch,currentPage]);
 
   const [open, setOpen] = useState(false);
+ 
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
   return (
     <>
       <Navbar />
       <Box sx={{ paddingTop: "15px" }}><UnavailableSlotForm /></Box>
-     <Box sx={{ mt: 8, px: 4 }}>
-       <Card
+      <Box sx={{ mt: 8, px: 4 }}>
+        <Card
           sx={{
             borderRadius: 3,
             boxShadow: 3,
@@ -99,7 +105,7 @@ const FiltersComponent = () => {
               </Box>
 
               <Box
-             
+
               >
                 <Controller
                   name="category"
@@ -111,7 +117,7 @@ const FiltersComponent = () => {
               </Box>
 
               <Box
-                
+
               >
                 <Controller
                   name="slot"
@@ -123,7 +129,7 @@ const FiltersComponent = () => {
               </Box>
 
               <Box
-            
+
               >
                 <Controller
                   name="startDate"
@@ -141,7 +147,7 @@ const FiltersComponent = () => {
             </Box>
 
           </CardContent>
-        </Card> 
+        </Card>
 
         {bookings.length === 0 ? (
           <Typography
@@ -171,6 +177,18 @@ const FiltersComponent = () => {
 
         )}
       </Box>
+
+
+      {total > limit && (
+        <Stack spacing={2} alignItems="center" sx={{ pb: 5 }}>
+          <Pagination
+            count={Math.ceil(total / limit)}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+          />
+        </Stack>
+      )}
     </>
   );
 };
