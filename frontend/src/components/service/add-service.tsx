@@ -60,9 +60,26 @@ export default function CreateServiceDialog() {
             discount: 0,
         },
     });
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+  const handleClickOpen = () => {
+
+  setAvatarPreview(null);
+  setAvatarFile(null);
+  setAvatarUrl("");
+  reset({
+    title: "",
+    description: "",
+    price: 0,
+    category: undefined,
+    time: 0,
+    discount: 0,
+  });
+
+  setOpen(true);
+
+  dispatch(resetServiceState());
+  setService(null);
+};
+
 
     const handleClose = () => {
         setOpen(false);

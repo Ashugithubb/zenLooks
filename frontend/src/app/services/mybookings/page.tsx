@@ -4,6 +4,7 @@ import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import SingleBookingCard from "@/components/bookings/my-bookings.card";
 import Navbar from "@/components/navbar/navabar";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import { Teachers } from "next/font/google";
 import { useEffect } from "react";
 
 export default function MyBookings() {
@@ -46,3 +47,6 @@ const {loading} = useAppSelector((state)=>state.allBooking);
         </>
     );
 }
+
+
+
