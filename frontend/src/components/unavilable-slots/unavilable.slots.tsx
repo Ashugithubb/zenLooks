@@ -25,7 +25,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { createUnavailableSlotSchema } from "./schema/unavilable-slot.schema";
 import { useAppDispatch } from "@/app/redux/hook/hook";
 import { createUnavailableSlot } from "@/app/redux/thunk/slots/unavailable.slot.thunk";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 type FormData = z.infer<typeof createUnavailableSlotSchema>;
 
@@ -60,13 +60,17 @@ export default function AddUnavailableSlotDialog() {
     const res = await dispatch(createUnavailableSlot(data));
     if (res.meta.requestStatus === "fulfilled") {
       toast.success("Unavailable slot added successfully!");
-      handleClose();
+      setTimeout(()=>{
+          handleClose();
+      },200)
     } else {
       toast.error(res.payload || "Failed to add slot");
     }
   };
 
   return (
+    <>
+    <ToastContainer/>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Button variant="contained" onClick={handleOpen}>
         Add Unavailable Slot
@@ -87,8 +91,9 @@ export default function AddUnavailableSlotDialog() {
                 label="Select Date"
                 value={field.value ? dayjs(field.value) : null}
                 onChange={(newDate: Dayjs | null) =>
-                  field.onChange(newDate ? newDate.toISOString() : "")
+                  field.onChange(newDate ? newDate.format("YYYY-MM-DD") : "")
                 }
+
                 disablePast
                 slotProps={{
                   textField: {
@@ -175,5 +180,6 @@ export default function AddUnavailableSlotDialog() {
         </DialogActions>
       </Dialog>
     </LocalizationProvider>
+    </>
   );
 }
