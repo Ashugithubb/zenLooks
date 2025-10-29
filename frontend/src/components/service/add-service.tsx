@@ -23,7 +23,6 @@ import { resetServiceState } from '@/app/redux/slice/edit.slice';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 type ServiceData = z.infer<typeof serviceSchema>;
 import style from "./add.module.css"
-import { uploadToCloudinary } from '@/app/api/uploadToCloudinary/route';
 export default function CreateServiceDialog() {
     const [open, setOpen] = React.useState(false);
     const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
@@ -101,7 +100,17 @@ export default function CreateServiceDialog() {
         setAvatarFile(file);
         setAvatarPreview(URL.createObjectURL(file));
 
-        const url = await uploadToCloudinary(file);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const res = await fetch("/api/uploadToCloudinary", {
+            method: "POST",
+            body: formData,
+        });
+        const data = await res.json();
+        setAvatarUrl(data.url);
+        const url = data.url;
+        
         if (url) {
             setAvatarUrl(url);
             console.log("Uploaded image URL:", url);
