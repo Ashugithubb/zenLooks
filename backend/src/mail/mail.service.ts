@@ -9,7 +9,7 @@ export class MailService {
     booking: any
   ): Promise<void> {
     try {
-      console.log("inside the try block");
+
       const context = {
         bookingId: booking.bookingId,
         date: booking.date,
@@ -42,7 +42,7 @@ export class MailService {
 
         context
       });
-      console.log("mail sended");
+
     } catch (error) {
       console.error('Failed to send NewsLetter email:', error);
     }
@@ -90,12 +90,12 @@ export class MailService {
     }
   }
 
-  async sendOtpToUser(otp: string, userName: string, email: string ): Promise<void> {
+  async sendOtpToUser(otp: string, userName: string, email: string): Promise<void> {
     try {
       const context = {
         userName,
         otp: otp,
-       currentYear: new Date().getFullYear(),
+        currentYear: new Date().getFullYear(),
       };
 
       await this.mailerService.sendMail({
@@ -106,7 +106,7 @@ export class MailService {
         context,
       });
 
-     
+
     } catch (error) {
       console.error('Failed to send OTP email:', error);
     }
