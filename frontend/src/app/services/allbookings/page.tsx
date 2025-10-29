@@ -10,7 +10,7 @@ import TimeSelector from "@/components/bookings/slot";
 import { Dayjs } from "dayjs";
 import DateRangeFilter from "@/components/bookings/date.filter/date";
 import BookingCard from "@/components/bookings/booking-cards";
-import { Typography, Card, CardContent, Box, Stack, Pagination } from "@mui/material";
+import { Typography, Card, CardContent, Box, Stack, Pagination, CircularProgress } from "@mui/material";
 import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots";
 import Grid from "@mui/material/Grid";
 
@@ -64,7 +64,7 @@ const FiltersComponent = () => {
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
-
+const {loading} = useAppSelector((state)=>state.allBooking);
   return (
     <>
       <Navbar />
@@ -149,7 +149,9 @@ const FiltersComponent = () => {
           </CardContent>
         </Card>
 
-        {bookings.length === 0 ? (
+        {loading ? (<Box sx={{ display: 'flex' ,justifyContent:"center"}}>
+                            <CircularProgress />
+                        </Box>):bookings.length === 0 ? (
           <Typography
             variant="h6"
             color="text.secondary"

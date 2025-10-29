@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/app/redux/hook/hook";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import SingleBookingCard from "@/components/bookings/my-bookings.card";
 import Navbar from "@/components/navbar/navabar";
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { useEffect } from "react";
 
 export default function MyBookings() {
@@ -13,7 +13,7 @@ export default function MyBookings() {
     useEffect(() => {
         dispatch(getAllBookings({}));
     }, [dispatch]);
-
+const {loading} = useAppSelector((state)=>state.allBooking);
     return (
         <>
             <Navbar />
@@ -21,7 +21,9 @@ export default function MyBookings() {
                 All Your Bookings
             </Typography>
 
-            {booking.length === 0 ? (
+            {loading ? (<Box sx={{ display: 'flex' ,justifyContent:"center"}}>
+                                        <CircularProgress />
+                                    </Box>):booking.length === 0 ? (
                 <Typography sx={{ fontSize: "20px", textAlign: "center", mt: 5 }}>
                     No bookings found.
                 </Typography>

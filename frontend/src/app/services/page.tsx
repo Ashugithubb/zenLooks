@@ -8,6 +8,7 @@ import {
     TextField,
     Pagination,
     Stack,
+    CircularProgress,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch, useAppSelector } from "../redux/hook/hook";
@@ -22,7 +23,8 @@ import { clearUser } from "../redux/slice/login.slice";
 
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
-    const { total = 0, page = 1, limit = 3, services = [] } =
+    const { loading } = useAppSelector((state) => state.service);
+    const { total = 0, page = 1, limit = 3, services = [], } =
         useAppSelector((state) => state.service.servicelist) ?? {};
     const dispatch = useAppDispatch();
     const router = useRouter();
@@ -127,7 +129,9 @@ export default function Services() {
                     padding: "30px",
                 }}
             >
-                {services?.length === 0 ? (
+                {loading ? (<Box sx={{ display: 'flex' ,justifyContent:"center"}}>
+                    <CircularProgress />
+                </Box>) : services?.length === 0 ? (
                     <Typography sx={{ mt: 5 }}>No Services found</Typography>
                 ) : (
                     services.map((s) => (
