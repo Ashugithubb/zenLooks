@@ -9,7 +9,7 @@ import Navbar from "@/components/navbar/navabar";
 import TimeSelector from "@/components/bookings/slot";
 import { Dayjs } from "dayjs";
 import DateRangeFilter from "@/components/bookings/date.filter/date";
-import BookingCard from "@/components/bookings/booking-cards";
+import BookingCard from "@/components/bookings/booking.card/booking-cards";
 import { Typography, Card, CardContent, Box, Stack, Pagination, CircularProgress } from "@mui/material";
 import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots";
 import Grid from "@mui/material/Grid";
@@ -182,7 +182,7 @@ const {loading} = useAppSelector((state)=>state.allBooking);
 
 
       {total > limit && (
-        <Stack spacing={2} alignItems="center" sx={{ pb: 5 }}>
+        <Stack spacing={2} alignItems="center" sx={{ pb: 5,marginTop:"30px" }}>
           <Pagination
             count={Math.ceil(total / limit)}
             page={currentPage}

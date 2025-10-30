@@ -22,11 +22,11 @@ export default function Home() {
       </Box>
 
       <Box className={style.card}>
-        <ServiceCard serviceId={1} title="Hair Wash & Scalp Treatment" description="A relaxing hair wash and scalp treatment that cleanses and nourishes the hair, promoting healthy, shiny, and refreshed hair. Perfect for preparing your hair for styling or other treatments while providing a soothing experience" price={500} discount={0} imageUrl="./salon-service.jpg" />
-        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert color treatments and precision cuts. Our stylists use premium products to achieve stunning, long-lasting results that enhance your natural beauty and leave your hair looking vibrant, healthy, and full of life and a " price={1150} discount={0} imageUrl="./image4.jpg" />
-        <ServiceCard serviceId={1} title="Luxury Facial Treatment" description="A premium skincare experience designed to deeply cleanse, exfoliate, and rejuvenate your skin, leaving it radiant, hydrated, and refreshed. Our luxury facial treatment combines advanced techniques and high-quality products to improve elasticity,restore a glow" price={650} discount={0} imageUrl="./cream.png" />
+        <ServiceCard serviceId={1} title="Hair Wash & Treatment" description="A relaxing hair wash and scalp treatment that cleanses, nourishes, and revitalizes your hair. It promotes a healthy, shiny, and refreshed look while providing a soothing experience. Perfect for preparing your hair for styling or other treatments, ensuring it feels soft, smooth, and rejuvenated, beautiful, and ready to shine." price={500} discount={0} imageUrl="./salon-service.jpg" />
+        <ServiceCard serviceId={1} title="Hair Coloring & Styling" description="Transform your look with our expert haircuts and color treatments. Our stylists use premium products and precision techniques to create vibrant, long-lasting results that enhance your natural beauty. Experience healthy, glossy hair that radiates confidence and style, leaving you feeling refreshed, beautiful, and  to shine." price={1150} discount={0} imageUrl="./one.jpg" />
+        <ServiceCard serviceId={1} title="Luxury Facial Treatment" description="A premium skincare experience designed to cleanse, exfoliate, and rejuvenate your skin deeply. Using advanced techniques and high-quality products, this facial boosts hydration, restores elasticity, and enhances your natural glow. Enjoy smoother, softer, and more radiant skin with every luxurious and refreshing session." price={650} discount={0} imageUrl="./cream.png" />
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "center", alignContent: "center", padding: "100px" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignContent: "center", paddingBottom: "50px" }}>
         <Button onClick={() => router.push("/services")} className={style.viewAllBtn} variant="contained">View All Services</Button></Box>
       <Footer />
 

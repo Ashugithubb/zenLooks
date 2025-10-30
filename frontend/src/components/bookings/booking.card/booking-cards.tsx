@@ -7,7 +7,7 @@ import { sendOtpThunk, verifyOtpThunk } from "@/app/redux/thunk/otp-verification
 import { bookServiceThunk } from "@/app/redux/thunk/book.service.thunk";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { toast } from "react-toastify";
-
+import style from './booking.module.css'
 interface BookingCardProps {
     booking: Booking;
 }
@@ -53,9 +53,9 @@ export default function BookingCard({ booking }: BookingCardProps) {
     };
 
     return (
-        <Card sx={{ width: 350, display: "flex", flexDirection: "column", gap: 1, p: 2 }}>
-            <CardMedia
-                component="img"
+        <Card className={style.booking}>
+            <CardMedia                
+            component="img"
                 height="180"
                 image={booking?.service?.imageUrl ?? ""}
                 alt={booking?.service?.title}

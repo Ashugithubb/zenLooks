@@ -1,0 +1,13 @@
+.booking {
+  width: 300px;
+  margin: 10px;
+  background-color: brown!important;
+}
+@media screen and (max-width: 903px) {
+  .booking {
+    width:100%;
+    margin: 5px 0;
+    background-color: blue!important;
+  }
+    
+}

@@ -2,11 +2,11 @@
 .servicesSection {
   text-align: center;
   padding: 10px 20px;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
   background: linear-gradient(135deg, #fff8f0, #f5e1c8);
   color: #2d2d2d;
   height: auto;
-
+  margin-top: 50px;
 
 }
 
@@ -18,17 +18,10 @@
   margin-bottom: 10px;
   text-transform: uppercase;
   position: relative;
+  text-decoration: underline;
+
 }
 
-.heading::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #c49a3a;
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
 
 .subHeading {
   font-size: 1.8rem;
@@ -41,11 +34,9 @@
   font-size: 1.1rem;
   font-weight: 400;
   color: #555;
-  margin-top: 15px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
 }
 
 @keyframes fadeInUp {
@@ -112,3 +103,5 @@
     /* padding: 50px; */
   }
 }
+
+

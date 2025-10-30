@@ -33,7 +33,7 @@ export default function ImgMediaCard2(prop: cardProp) {
   const services = useAppSelector((state) => state.service.servicelist?.services);
 
   const router = useRouter()
- 
+
   const handelBook = () => {
     if (role === "User") {
       router.push(`/services`);
@@ -50,14 +50,27 @@ export default function ImgMediaCard2(prop: cardProp) {
   }
 
   return (
-    <Card sx={{ maxWidth: 445 , height: "100%"}}>
+    <Card
+      className={style.card}
+      sx={{
+        maxWidth: "30%",
+        display: "flex",
+        flexDirection: "column",
+        padding: "16px"
+      }}
+    >
+
       <CardMedia
         component="img"
         alt="green iguana"
-        height="160"  
+        height="160"
         image={prop.imageUrl}
         sx={{
-          objectFit: "cover", 
+          height: 300,
+          width: '100%',
+          objectFit: 'cover',
+          borderTopLeftRadius: '4px',
+          borderTopRightRadius: '4px',
           cursor: 'pointer',
           transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
           '&:hover': {
@@ -66,14 +79,15 @@ export default function ImgMediaCard2(prop: cardProp) {
           },
         }}
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
+
         <Typography gutterBottom variant="h5" component="div">
           {prop.title}
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {prop.description}
         </Typography>
-        <Typography variant="h3" sx={{ color: 'text.secondary' }}>
+        <Typography variant="h3" sx={{ color: 'text.secondary', marginTop: "6px" }}>
           <CurrencyRupeeIcon />{prop.price}
         </Typography>
       </CardContent>
@@ -99,21 +113,9 @@ export default function ImgMediaCard2(prop: cardProp) {
       )}
 
 
-      {role != 'Admin' ? (<CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+      {role != 'Admin' && (<CardActions sx={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={handelBook} variant='contained' size="small" className={style.bookNowBtn}>Book Now</Button>
-      </CardActions>) :
-
-        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-         { role!='Admin' && <Button
-            onClick={handelBook}
-            variant="contained"
-            size="medium"
-            className={style.bookNowBtn}>
-            Book Now
-          </Button>}
-        </CardActions>}
-
-
+      </CardActions>)}
     </Card>
   );
 }

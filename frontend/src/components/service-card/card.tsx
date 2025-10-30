@@ -65,15 +65,30 @@ export default function ImgMediaCard(prop: cardProp) {
       }, 2000);
     }
   }
+  const orgPrice = (prop.price - ((prop.discount / 100) * prop.price))
 
   return (
-    <Card className={style.card}sx={{ maxWidth: 445, height: "100%", padding:"16px"}}>
+    <Card
+      className={style.card}
+      sx={{
+        maxWidth: "30%",
+        display: "flex",
+        flexDirection: "column",
+        padding: "16px"
+      }}
+    >
+
       <CardMedia
         component="img"
         alt="service image"
         height="160"
         image={prop.imageUrl}
         sx={{
+          height: 300,
+          width: '100%',
+          objectFit: 'cover',
+          borderTopLeftRadius: '4px',
+          borderTopRightRadius: '4px',
           cursor: 'pointer',
           transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
           '&:hover': {
@@ -82,40 +97,50 @@ export default function ImgMediaCard(prop: cardProp) {
           },
         }}
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
+
         <Typography gutterBottom variant="h5" component="div">
           {prop.title}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" className={style.descriptionClamp} sx={{ color: 'text.secondary', }}>
           {prop.description}
         </Typography>
-        <Typography variant="h3" sx={{ color: 'text.secondary' }}>
-          <CurrencyRupeeIcon />{prop.price}
-        </Typography>
+        {prop.discount !== 0 ? (
+          <Typography variant="h4" sx={{ color: 'text.secondary', fontWeight: 600, }}>
+            <CurrencyRupeeIcon fontSize="small" />
+            {orgPrice}
+            <Typography
+              component="span"
+              sx={{
+                ml: 1,
+                textDecoration: 'line-through',
+                color: 'error.main',
+                fontSize: '1rem'
+              }}
+            >
+              <CurrencyRupeeIcon fontSize="inherit" />
+              {prop.price}
+            </Typography>
+            <Typography
+              component="span"
+              sx={{ ml: 1, color: 'success.main', fontWeight: 500 }}
+            >
+              ({prop.discount}% off)
+            </Typography>
+          </Typography>
+        ) : (
+          <Typography variant="h4" sx={{ color: 'text.secondary', fontWeight: 600 }}>
+            <CurrencyRupeeIcon fontSize="small" />
+            {prop.price}
+          </Typography>
+        )}
+
+
       </CardContent>
-      {prop.discount !== 0 && (
-        <Box
-          sx={{
-            display: 'inline-block',
-            backgroundColor: '#c4a842ff',
-            color: 'white',
-            fontWeight: 'bold',
-            px: 1.5,
-            py: 0.5,
-            borderRadius: '12px',
-            fontSize: '0.9rem',
-            mt: 1,
-            ml: 2,
-            width: 'fit-content',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
-          {prop.discount}% OFF
-        </Box>
-      )}
 
 
-      {role != 'Admin' ? (<CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+
+      {role != 'Admin' ? (<CardActions sx={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={handelBook} variant='contained' size="small" className={style.bookNowBtn}>Book Now</Button>
       </CardActions>) :
 

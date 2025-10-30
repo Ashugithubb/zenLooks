@@ -91,7 +91,7 @@ export default function Bookings() {
         if (!selectedSlot) return setError("Please select a time.");
         if (mobileNumber.length !== 10) return setError("Enter a valid 10-digit mobile number.");
         if (isTimeDisabled(selectedSlot)) {
-               setPay(false);
+            setPay(false);
             return toast.error("Selected time is unavailable. Please choose another time.");
         }
 
@@ -131,12 +131,12 @@ export default function Bookings() {
     const amount = clickedService.price - (clickedService.price * clickedService.discount) / 100;
 
     const shouldDisableTime = (timeValue: Dayjs, view: string) => {
-  if (!bookingDate) return false;
-  const testTime = dayjs(bookingDate)
-    .hour(timeValue.hour())
-    .minute(timeValue.minute());
-  return isTimeDisabled(testTime);
-};
+        if (!bookingDate) return false;
+        const testTime = dayjs(bookingDate)
+            .hour(timeValue.hour())
+            .minute(timeValue.minute());
+        return isTimeDisabled(testTime);
+    };
 
 
     return (
@@ -212,11 +212,13 @@ export default function Bookings() {
                                         };
                                     }}
                                     minutesStep={5}
-                                    minTime={
-                                        bookingDate && dayjs(bookingDate).isSame(dayjs(), "day")
-                                            ? dayjs()
-                                            : dayjs("00:00", "HH:mm")
-                                    }
+                                    // minTime={
+                                    //     bookingDate && dayjs(bookingDate).isSame(dayjs(), "day")
+                                    //         ? dayjs()
+                                    //         : dayjs("00:00", "HH:mm")
+                                    // } 
+                                    minTime={dayjs("09:00", "HH:mm")}   // restrict start time
+                                    maxTime={dayjs("21:00", "HH:mm")}
                                     ampm={false}
                                     slotProps={{ textField: { fullWidth: true } }}
                                     shouldDisableTime={shouldDisableTime}
@@ -249,7 +251,7 @@ export default function Bookings() {
                             </Box>
                         )}
 
-                       
+
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Enter Mobile Number

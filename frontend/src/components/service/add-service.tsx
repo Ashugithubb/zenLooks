@@ -28,6 +28,8 @@ export default function CreateServiceDialog() {
     const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
     const { editOpen, serviceId } = useAppSelector((state) => state.editService);
     const [editService, setService] = React.useState<Service | null>(null);
+    const page= useAppSelector((state)=>state.service.servicelist?.page)
+    const limit = useAppSelector((state)=>state.service.servicelist?.limit)
 
     useEffect(() => {
         if (editOpen) {
@@ -60,25 +62,25 @@ export default function CreateServiceDialog() {
             discount: 0,
         },
     });
-  const handleClickOpen = () => {
+    const handleClickOpen = () => {
 
-  setAvatarPreview(null);
-  setAvatarFile(null);
-  setAvatarUrl("");
-  reset({
-    title: "",
-    description: "",
-    price: 0,
-    category: undefined,
-    time: 0,
-    discount: 0,
-  });
+        setAvatarPreview(null);
+        setAvatarFile(null);
+        setAvatarUrl("");
+        reset({
+            title: "",
+            description: "",
+            price: 0,
+            category: undefined,
+            time: 0,
+            discount: 0,
+        });
 
-  setOpen(true);
+        setOpen(true);
 
-  dispatch(resetServiceState());
-  setService(null);
-};
+        dispatch(resetServiceState());
+        setService(null);
+    };
 
 
     const handleClose = () => {
@@ -110,10 +112,13 @@ export default function CreateServiceDialog() {
     const [avtarUrl, setAvatarUrl] = useState('');
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+    const [imageUploading, setImageUploading] = useState(false);
+
     const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
-
+        setImageUploading(true);
         setAvatarFile(file);
         setAvatarPreview(URL.createObjectURL(file));
 
@@ -127,22 +132,29 @@ export default function CreateServiceDialog() {
         const data = await res.json();
         setAvatarUrl(data.url);
         const url = data.url;
-        
+
         if (url) {
             setAvatarUrl(url);
+            setImageUploading(false);
             console.log("Uploaded image URL:", url);
         }
     };
 
     const onSubmit = async (data: ServiceData) => {
+        if (imageUploading) {
+            toast.info("Please wait, image is still uploading...");
+            return;
+        }
         try {
+
             let res;
             if (editOpen && serviceId) {
                 if (avtarUrl.length > 0) {
+                    console.log("sindie the try2");
                     data.imageUrl = avtarUrl
                 }
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
-                dispatch(getServiceThunk({}));
+                dispatch(getServiceThunk({page,limit}));
             } else {
                 data.imageUrl = avtarUrl;
                 res = await dispatch(addService(data));
@@ -150,7 +162,7 @@ export default function CreateServiceDialog() {
 
             if (res.meta.requestStatus === 'fulfilled') {
                 toast.success(editOpen ? 'Service updated successfully!' : 'Service added successfully!');
-                dispatch(getServiceThunk({}));
+                dispatch(getServiceThunk({page,limit}));
 
                 setTimeout(() => {
                     reset({

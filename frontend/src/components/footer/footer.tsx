@@ -18,8 +18,8 @@ const Footer = () => {
        
         <Box className={style.section}>
           <Typography variant="h6" className={style.heading}>Opening Hours</Typography>
-          <Typography>Mon - Fri: 09:00 AM - 6:00 PM</Typography>
-          <Typography>Saturday: 10:00 AM - 7:00 PM</Typography>
+          <Typography>Mon - Fri: 09:00 AM - 9:00 PM</Typography>
+          <Typography>Saturday: 10:00 AM - 9:00 PM</Typography>
           
         </Box>
 
@@ -41,11 +41,12 @@ const Footer = () => {
         <Box className={style.section}>
           <Typography variant="h6" className={style.heading}>Follow Us</Typography>
           <Box className={style.social}>
-            <IconButton href="https://instagram.com" target="_blank"><img src="./instagram.png" height={"30px"} width={"30px"}/></IconButton>
-            <IconButton href="https://facebook.com" target="_blank"><img src="./communication.png" height={"30px"} width={"30px"}/></IconButton>
-            <IconButton href="https://twitter.com" target="_blank"><img src="./twitter.png" height={"30px"} width={"30px"}/></IconButton>
+            <a href="https://instagram.com" target="_blank"><img src="./instagram.png" height={"30px"} width={"30px"}/></a>
+            <a href="https://facebook.com" target="_blank"><img src="./communication.png" height={"30px"} width={"30px"}/></a>
+            <a href="https://twitter.com" target="_blank"><img src="./icons8-x-50.png" height={"30px"} width={"30px"}/></a>
           </Box>
         </Box>
+        
       </Box>
 
       <Divider className={style.divider} />

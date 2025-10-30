@@ -30,13 +30,12 @@ export default function Navbar() {
     }
   }
   return (<>
-    {/* <ToastContainer /> */}
+    <ToastContainer />
     <Box className={style.navbar}>
 
        <Link href="/" className={style.logo}>ZenLook</Link>
       <Box className={style.right}>
         <Link href="/" className={style.link}>Home</Link>
-        <Link href="/#about" className={style.link}>About</Link>
         <Link href="/#footer" className={style.link}>Contact</Link>
         <Link href="/services" className={style.link}>Services</Link>
         {

@@ -11,6 +11,7 @@ import {
     InputAdornment,
     IconButton,
     Link as MuiLink,
+    CircularProgress,
 } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import MenuItem from '@mui/material/MenuItem';
 import { signupSchema } from './schema/user.schema';
-import { useAppDispatch } from '@/app/redux/hook/hook';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hook/hook';
 import style from './page.module.css'
 import { signupUser } from '@/app/redux/thunk/auth/signup.thunk';
 
@@ -31,6 +32,7 @@ export default function SignupForm() {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const [loading, setLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -46,12 +48,16 @@ export default function SignupForm() {
     });
 
     const onSubmit = async (data: SignupFormData) => {
+        setLoading(true)
         const res = await dispatch(signupUser(data));
         if (res.meta.requestStatus === 'fulfilled') {
             toast.success("Signup successful!");
+            setLoading(false)
             router.push('/login');
+
         } else {
             toast.error(res.payload || "Signup failed");
+            setLoading(false)
         }
     };
 
@@ -117,9 +123,17 @@ export default function SignupForm() {
                                 error={!!errors.confirmPassword}
                                 helperText={errors.confirmPassword?.message}
                             />
-                            <Button type='submit' variant="contained" fullWidth className={style.btn}>
-                                Sign Up
-                            </Button>
+
+                            {loading ? (
+                                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                    <CircularProgress size={30} />
+                                </Box>
+                            ) : (
+                                <Button type='submit' variant="contained" fullWidth className={style.btn}>
+                                    Sign Up
+                                </Button>
+                            )}
+
                         </Box>
                     </form>
                     <Typography className={style.footerText}>

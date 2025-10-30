@@ -3,12 +3,13 @@ import styles from './carosloe.module.css';
 export default function Carosole() {
     return (
         <>
-            <div id="carouselExampleAutoplaying" className="carousel slide " data-bs-ride="carousel" >
+            <div id="carouselExampleAutoplaying" className="carousel slide " data-bs-ride="carousel" data-bs-interval="3000"
+  data-bs-wrap="true">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="./saloon.jpeg" className={`d-block w-100 ${styles.images}`} alt="..." />
+                        <img src="./main.jpg" className={`d-block w-100 ${styles.images}`} alt="..." />
                     </div>
-                    <div className="carousel-item active">
+                    <div className="carousel-item">
                         <video
                             className={`d-block w-100 ${styles.images}`}
                             autoPlay
@@ -23,7 +24,7 @@ export default function Carosole() {
                     </div>
 
                     <div className="carousel-item">
-                        <img src="./client.jpg" className={`d-block w-100 ${styles.images}`} alt="..." />
+                        <img src="./pexels-thgusstavo-1813272.jpg" className={`d-block w-100 ${styles.images}`} alt="..." />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

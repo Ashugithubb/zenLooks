@@ -12,13 +12,14 @@ import {
   Paper,
   InputAdornment,
   IconButton,
+  CircularProgress,
 } from '@mui/material';
 import Link from 'next/link';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
-import { useAppDispatch } from '@/app/redux/hook/hook';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hook/hook';
 import style from './page.module.css'
 import { loginUser } from '@/app/redux/thunk/auth/login.thunk';
 import { auth } from '../../fierbase/firebase'
@@ -57,6 +58,7 @@ export default function LoginForm() {
     setShowPassword((prev) => !prev);
   };
 
+  const loading = useAppSelector((state) => state.login.loading);
 
 
   const handelGoogleLogin = async () => {
@@ -72,9 +74,9 @@ export default function LoginForm() {
       const firebase = "firbase";
 
       if (additionalInfo?.isNewUser) {
-         
+
         const res = await dispatch(
-          signupUser({ name, email, password, confirmPassword: password,firebase })
+          signupUser({ name, email, password, confirmPassword: password, firebase })
         );
         if (res.meta.requestStatus === "fulfilled") {
           toast.success("Account created successfully!");
@@ -133,9 +135,18 @@ export default function LoginForm() {
                 helperText={errors.password?.message}
                 className={style.input}
               />
-              <Button type='submit' variant="contained" fullWidth className={style.btn}>
-                Login
-              </Button>
+
+              {loading ? (
+                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                  <CircularProgress size={30} />
+                </Box>
+              ) : (
+                <Button type='submit' variant="contained" fullWidth className={style.btn}>
+                  Login
+                </Button>
+              )}
+
+
               <Button size='small' variant='outlined' onClick={handelGoogleLogin}>
                 <img src="./google.png" height="30px" width="30px" style={{ paddingRight: "10px" }} />
                 Continue with Google

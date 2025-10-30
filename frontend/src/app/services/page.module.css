@@ -1,47 +1,72 @@
 .searchField {
-    width: 280px !important;
-    background-color: #fff  !important;
-    border-radius: 30px  !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)  !important;
+  width: 280px !important;
+  background-color: #fff !important;
+  border-radius: 30px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 .searchField .MuiOutlinedInput-root {
-    border-radius: 30px  !important;
-    transition: all 0.3s ease  !important;
+  border-radius: 30px !important;
+  transition: all 0.3s ease !important;
 }
 
 .searchField .MuiOutlinedInput-root:hover fieldset {
-    border-color: #c49a3a  !important; 
+  border-color: #c49a3a !important;
 }
 
 .searchField .MuiOutlinedInput-root.Mui-focused fieldset {
-    border-color: #c49a3a  !important;
-    box-shadow: 0 0 8px rgba(196, 154, 58, 0.4)  !important;
+  border-color: #c49a3a !important;
+  box-shadow: 0 0 8px rgba(196, 154, 58, 0.4) !important;
 }
 
 .searchField .MuiInputLabel-root.Mui-focused {
-    color: #c49a3a  !important;
+  color: #c49a3a !important;
 }
 
 .searchField input {
-    padding: 10px 14px  !important;
+  padding: 10px 14px !important;
 }
-.searchBox{
-   display:flex; 
-}
- .myBooking{
-    background-color: #c49a3a!important;
-  }
-@media screen and (max-width: 768px) {
 
- .searchBox {
-   display:flex; 
-   justify-content: center;
-   align-content: center;
-   padding-left: 70;
+.searchBox {
+  display: flex;
+}
+
+.myBooking {
+  background-color: #c49a3a !important;
+  margin-left: auto !important;
+  margin-right: 8px !important;
+  margin-top: 22px !important;
+}
+.allBookings {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto !important;
+  margin-right: 8px !important;
+  margin-top: 22px !important;
+  gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+   .searchBox {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
   }
-  .myBooking{
-    margin-left:230px !important;
-    background-color: #c49a3a!important;
+
+  .allBookings {
+    width: 100%;
+    justify-content: center !important;
+    margin: 10px 0 !important;
+  }
+
+  .myBooking {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
+
+
+
+
+

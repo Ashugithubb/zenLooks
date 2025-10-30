@@ -75,16 +75,16 @@ export default function Services() {
                 See all our Services
             </Typography>
 
-            <Box
+            {/* <Box className={style.main}
                 sx={{
                     paddingY: "20px",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    flexWrap: "wrap",
+                    
                     gap: 2,
                 }}
-            >
+            > */}
                 <Box className={style.searchBox}>
                     <TextField
                         label="Search services..."
@@ -103,7 +103,7 @@ export default function Services() {
                         }}
                     /></Box>
 
-                <Box sx={{ display: "flex", gap: 2, paddingLeft: "40px" }}>
+                <Box  className={style.allBookings} >
                     {role === "Admin" && <CreateServiceDialog />}
                     {role === "Admin" ? (
                         <Button
@@ -112,11 +112,11 @@ export default function Services() {
                         >
                             All Bookings
                         </Button>
-                    ) : (
+                    ) :(role=="User") ?(
                         <Button className={style.myBooking} onClick={() => router.push("/services/mybookings")} variant="contained">My Bookings</Button>
-                    )}
+                    ):(<></>)}
                 </Box>
-            </Box>
+            {/* </Box> */}
 
 
             <Box

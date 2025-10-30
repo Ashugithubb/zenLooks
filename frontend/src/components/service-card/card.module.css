@@ -9,7 +9,6 @@
   border-radius: 25px !important;
   text-transform: none !important;
   padding: 8px 24px !important;
-
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
   transition: all 0.3s ease !important;
 }
@@ -20,10 +19,18 @@
   transform: scale(1.05) !important;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 951px) {
   .card {
     max-width: 100% !important;
     padding: "16px" !important;
   }
-  
+
 }
+.descriptionClamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
