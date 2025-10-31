@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: black;
   padding: 0 60px;
   height: 65px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -12,6 +12,7 @@
 }
 
 .logo {
+ background-color: #000;
   font-size: 30px !important;
   font-weight: 700 !important;
   color: #2d2d2d;
@@ -34,21 +35,22 @@
 }
 
 .link {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #2d2d2d !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+
+  color: white !important;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
   text-decoration: none !important;
 }
 
 .link:hover {
-  color: rgb(182, 28, 53);
+  color: #f68043 !important;
   transform: translateY(-2px);
 }
 
 .loginBtn {
-  background-color: #2d2d2d !important;
+  background-color: #f68043 !important;
   color: #fff !important;
   padding: 6px 18px !important;
   border-radius: 25px !important;
@@ -58,7 +60,9 @@
 }
 
 .loginBtn:hover {
-  background-color: #000 !important;
+  background-color:#fff !important;
+  color: #f68043 !important;
+  border: 1px sloid #f68043 !important;
   transform: translateY(-2px);
 }
 

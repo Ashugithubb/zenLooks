@@ -70,21 +70,23 @@ export default function Services() {
 
     return (
         <>
+
             <Navbar />
             <Typography sx={{ textAlign: "center", mt: 3 }} variant="h3">
                 See all our Services
             </Typography>
-
-            {/* <Box className={style.main}
+<Box className={style.body}>
+            <Box className={style.mainBOX}
                 sx={{
                     paddingY: "20px",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    
+                    // background:"red",
                     gap: 2,
+                    padding:"0 125px"
                 }}
-            > */}
+            >
                 <Box className={style.searchBox}>
                     <TextField
                         label="Search services..."
@@ -116,7 +118,7 @@ export default function Services() {
                         <Button className={style.myBooking} onClick={() => router.push("/services/mybookings")} variant="contained">My Bookings</Button>
                     ):(<></>)}
                 </Box>
-            {/* </Box> */}
+            </Box>
 
 
             <Box
@@ -159,6 +161,7 @@ export default function Services() {
                     />
                 </Stack>
             )}
+            </Box>
         </>
     );
 

@@ -1,0 +1,19 @@
+.smallImage {
+  position: absolute;
+  top: 300px;
+  left: 120px;
+  z-index: 10;
+  animation: floatMove 3s ease-in-out infinite;
+}
+
+@keyframes floatMove {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px); 
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

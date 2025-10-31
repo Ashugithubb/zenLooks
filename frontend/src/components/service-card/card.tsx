@@ -71,7 +71,7 @@ export default function ImgMediaCard(prop: cardProp) {
     <Card
       className={style.card}
       sx={{
-        maxWidth: "30%",
+        maxWidth: "25%",
         display: "flex",
         flexDirection: "column",
         padding: "16px"

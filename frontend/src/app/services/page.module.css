@@ -1,3 +1,6 @@
+.body{
+  background-color: 	#bbbbbb;
+}
 .searchField {
   width: 280px !important;
   background-color: #fff !important;
@@ -33,20 +36,23 @@
 
 .myBooking {
   background-color: #c49a3a !important;
-  margin-left: auto !important;
+  /* margin-left: auto !important;
   margin-right: 8px !important;
-  margin-top: 22px !important;
+  margin-top: 22px !important; */
 }
 .allBookings {
-  display: flex;
+  /* display: flex;
   justify-content: flex-end;
   margin-left: auto !important;
   margin-right: 8px !important;
   margin-top: 22px !important;
-  gap: 10px;
+  gap: 10px; */
+}
+.mainBOX{
+  
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
    .searchBox {
     display: flex;
     justify-content: center;
@@ -55,15 +61,25 @@
   }
 
   .allBookings {
-    width: 100%;
+    /* width: 100%;
     justify-content: center !important;
-    margin: 10px 0 !important;
+    margin: 10px 0 !important; */
   }
 
   .myBooking {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    /* margin-left: 0 !important;
+    margin-right: 0 !important; */
   }
+ .mainBOX{
+  padding-top: 5px !important;
+  background-color: red;
+  display: flex !important;
+  /* flex-direction: column !important; */
+  justify-content: flex-start !important;
+  /* align-items: center !important; */
+  height: 100px;
+  padding-bottom: 0px !important;
+ }
 }
 
 
