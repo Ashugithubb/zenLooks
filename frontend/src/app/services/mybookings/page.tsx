@@ -39,7 +39,7 @@ const {loading} = useAppSelector((state)=>state.allBooking);
                         px: 2,
                     }}
                 >
-                    {booking.map((b) => (
+                    {booking.map((b:any) => (
                         <SingleBookingCard key={b.bookingId} booking={b} />
                     ))}
                 </Box>

@@ -21,7 +21,7 @@ import { toast, ToastContainer } from "react-toastify";
 import style from './page.module.css'
 import Cookies from "js-cookie";
 import { clearUser } from "../redux/slice/login.slice";
-import SearchBar from "@/components/Home/dummy/SearchBar";
+
 import EventIcon from '@mui/icons-material/Event';
 import SearchIcon from "@mui/icons-material/Search";
 export default function Services() {
