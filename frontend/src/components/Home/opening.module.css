@@ -1,0 +1,100 @@
+.openingContainer {
+    background-color: #0a132e;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.openingContent {
+    padding: 70px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.infoBox {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.heading {
+    color: white;
+    margin: 0;
+}
+
+.text {
+    color: #ffffff99;
+    margin: 0;
+}
+
+.flowerShape {
+    position: absolute;
+    top: 127%;
+    left: 45%;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media (max-width: 1300px) {
+    .flowerShape {
+        position: absolute;
+        top: 5%;
+        left: 30%;
+        z-index: 50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .openingContent {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .flowerShape {
+        top: 60%;
+        left: 25%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .heading {
+        font-size: 18px;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+
+    .flowerShape {
+        top: 35%;
+        left: 16%;
+    }
+}

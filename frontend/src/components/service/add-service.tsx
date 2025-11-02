@@ -28,8 +28,8 @@ export default function CreateServiceDialog() {
     const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
     const { editOpen, serviceId } = useAppSelector((state) => state.editService);
     const [editService, setService] = React.useState<Service | null>(null);
-    const page= useAppSelector((state)=>state.service.servicelist?.page)
-    const limit = useAppSelector((state)=>state.service.servicelist?.limit)
+    const page = useAppSelector((state) => state.service.servicelist?.page)
+    const limit = useAppSelector((state) => state.service.servicelist?.limit)
 
     useEffect(() => {
         if (editOpen) {
@@ -154,7 +154,7 @@ export default function CreateServiceDialog() {
                     data.imageUrl = avtarUrl
                 }
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
-                dispatch(getServiceThunk({page,limit}));
+                dispatch(getServiceThunk({ page, limit }));
             } else {
                 data.imageUrl = avtarUrl;
                 res = await dispatch(addService(data));
@@ -162,7 +162,7 @@ export default function CreateServiceDialog() {
 
             if (res.meta.requestStatus === 'fulfilled') {
                 toast.success(editOpen ? 'Service updated successfully!' : 'Service added successfully!');
-                dispatch(getServiceThunk({page,limit}));
+                dispatch(getServiceThunk({ page, limit }));
 
                 setTimeout(() => {
                     reset({
@@ -190,8 +190,7 @@ export default function CreateServiceDialog() {
 
     return (
         <>
-
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button variant="outlined" className={style.addService} onClick={handleClickOpen}>
                 Add Services<AddIcon />
             </Button>
             <ToastContainer />
@@ -231,7 +230,16 @@ export default function CreateServiceDialog() {
                     </DialogContentText>
 
                     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "500px", paddingTop: "20px" }}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: 3,
+                                width: { xs: "100%", sm: "450px", md: "500px" },
+                                paddingTop: "20px",
+                            }}
+                        >
+
                             <TextField
                                 label="Service Name"
                                 {...register("title")}

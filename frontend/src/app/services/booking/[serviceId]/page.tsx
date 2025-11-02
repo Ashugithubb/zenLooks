@@ -24,7 +24,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { getUnavailableSlots } from "@/app/redux/thunk/slots/unavailable.slot.thunk";
 import PaymentSystem from "@/app/paymentSystem/page";
 import { setBookingDetails } from "@/app/redux/slice/add.booking.slice";
-
+import style from "./page.module.css"
 export default function Bookings() {
     const param = useParams();
     const id = Number(param.serviceId);
@@ -143,35 +143,132 @@ export default function Bookings() {
         <>
             <Navbar />
             <ToastContainer />
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "flex-start", mt: 5, px: 3 }}>
-                <Card sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, width: "90%", maxWidth: 900, boxShadow: 4, borderRadius: 4 }}>
+            <Box sx={{
+                textAlign: "center", mt: 8, py: 6,
+                background: "linear-gradient(180deg, #fffaf3, #ffffff)",
+            }}>
+                <Typography
+                    variant="h3"
+                    sx={{
+                        fontWeight: 700,
+                        color: "#1a1a1a",
+                        letterSpacing: "0.5px",
+                        fontFamily: "'Playfair Display', serif",
+                    }}
+                >
+                    Book Your{" "}
+                    <Box
+                        component="span"
+                        sx={{
+                            background: "linear-gradient(90deg, #c5a446, #e6cf95)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                        }}
+                    >
+                        Luxe
+                    </Box>{" "}
+                    Experience
+                </Typography>
+
+                <Typography
+                    variant="subtitle1"
+                    sx={{
+                        color: "#6b6b6b",
+                        mt: 1,
+                        fontFamily: "'Poppins', sans-serif",
+
+                    }}
+                >
+                    Reserve your appointment with our expert stylists and transform your look today
+                </Typography>
+            </Box>
+
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    mb: 10,
+                    px: 3,
+
+                }}
+            >
+                <Card
+                    sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", md: "row" },
+                        width: "95%",
+                        maxWidth: 950,
+                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                        borderRadius: 5,
+                        overflow: "hidden",
+                        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                        "&:hover": {
+                            transform: "scale(1.02)",
+                            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+                        },
+                        background: "linear-gradient(135deg, #ffffff, #f7f9fc)",
+                    }}
+                >
+                    {/* Image Section */}
                     <CardMedia
                         component="img"
                         image={clickedService.imageUrl}
                         alt={clickedService.title}
-                        sx={{ width: { xs: "100%", md: "45%" }, height: 300, borderRadius: "16px 0 0 16px", objectFit: "cover" }}
+                        sx={{
+                            width: { xs: "100%", md: "45%" },
+                            height: { xs: 250, md: "auto" },
+                            objectFit: "cover",
+                            transition: "transform 0.4s ease",
+                            "&:hover": { transform: "scale(1.05)" },
+                        }}
                     />
-                    <CardContent sx={{ flex: 1, p: 4 }}>
-                        <Typography variant="h4" fontWeight="bold" gutterBottom>
+
+                    {/* Content Section */}
+                    <CardContent sx={{ flex: 1, p: { xs: 3, md: 5 } }}>
+                        <Typography
+                            variant="h4"
+                            fontWeight="bold"
+                            gutterBottom
+                            sx={{
+                                color: "#1e293b",
+                                letterSpacing: "0.5px",
+                            }}
+                        >
                             {clickedService.title}
                         </Typography>
-                        <Typography variant="body1" color="text.secondary" mb={2}>
+
+                        <Typography variant="body1" color="text.secondary" mb={2} sx={{ lineHeight: 1.6 }}>
                             {clickedService.description}
                         </Typography>
+
                         <Divider sx={{ my: 2 }} />
 
+                        {/* Price Section */}
                         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                            <CurrencyRupeeIcon fontSize="small" />
-                            <Typography variant="h6" sx={{ ml: 0.5 }}>
+                            <CurrencyRupeeIcon fontSize="small" color="primary" />
+                            <Typography variant="h6" sx={{ ml: 0.5, color: "#0f172a" }}>
                                 {clickedService.price}
                             </Typography>
                             {clickedService.discount > 0 && (
-                                <Typography variant="body2" color="green" sx={{ ml: 2, fontWeight: "bold" }}>
+                                <Typography
+                                    variant="body2"
+                                    sx={{
+                                        ml: 2,
+                                        fontWeight: "bold",
+                                        color: "#16a34a",
+                                        backgroundColor: "rgba(22,163,74,0.1)",
+                                        px: 1,
+                                        py: 0.5,
+                                        borderRadius: 1,
+                                    }}
+                                >
                                     {clickedService.discount}% OFF
                                 </Typography>
                             )}
                         </Box>
 
+                        {/* Time Section */}
                         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                             <AccessTimeIcon fontSize="small" color="action" />
                             <Typography variant="body2" sx={{ ml: 1 }}>
@@ -180,9 +277,11 @@ export default function Bookings() {
                         </Box>
 
                         <Typography variant="body2" color="text.secondary">
-                            Category: <strong style={{ color: "#1976d2" }}>{clickedService.category}</strong>
+                            Category:{" "}
+                            <strong style={{ color: "#1976d2" }}>{clickedService.category}</strong>
                         </Typography>
 
+                        {/* Date Picker */}
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Select Booking Date
@@ -192,11 +291,20 @@ export default function Bookings() {
                                     value={bookingDate}
                                     minDate={dayjs()}
                                     onChange={(newDate) => setBookingDate(newDate)}
-                                    slotProps={{ textField: { fullWidth: true } }}
+                                    slotProps={{
+                                        textField: {
+                                            fullWidth: true,
+                                            sx: {
+                                                backgroundColor: "#fff",
+                                                borderRadius: 2,
+                                            },
+                                        },
+                                    }}
                                 />
                             </LocalizationProvider>
                         </Box>
 
+                        {/* Time Picker */}
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Select Time
@@ -208,24 +316,25 @@ export default function Bookings() {
                                         if (newTime && !isTimeDisabled(newTime)) setSelectedSlot(newTime);
                                         else {
                                             toast.error("This Time slot is Booked");
-                                            setSelectedSlot(null)
-                                        };
+                                            setSelectedSlot(null);
+                                        }
                                     }}
                                     minutesStep={5}
-                                    // minTime={
-                                    //     bookingDate && dayjs(bookingDate).isSame(dayjs(), "day")
-                                    //         ? dayjs()
-                                    //         : dayjs("00:00", "HH:mm")
-                                    // } 
-                                    minTime={dayjs("09:00", "HH:mm")}   // restrict start time
+                                    minTime={dayjs("09:00", "HH:mm")}
                                     maxTime={dayjs("21:00", "HH:mm")}
                                     ampm={false}
-                                    slotProps={{ textField: { fullWidth: true } }}
+                                    slotProps={{
+                                        textField: {
+                                            fullWidth: true,
+                                            sx: { backgroundColor: "#fff", borderRadius: 2 },
+                                        },
+                                    }}
                                     shouldDisableTime={shouldDisableTime}
                                 />
                             </LocalizationProvider>
                         </Box>
 
+                        {/* Disabled Slots */}
                         {disabledRanges.length > 0 && (
                             <Box sx={{ mt: 2 }}>
                                 <Typography variant="subtitle2" color="error" gutterBottom>
@@ -239,8 +348,8 @@ export default function Bookings() {
                                                 px: 1.5,
                                                 py: 0.5,
                                                 borderRadius: 1,
-                                                backgroundColor: "#f5f5f5",
-                                                color: "#d32f2f",
+                                                backgroundColor: "#fee2e2",
+                                                color: "#b91c1c",
                                                 fontSize: "0.85rem",
                                             }}
                                         >
@@ -251,7 +360,7 @@ export default function Bookings() {
                             </Box>
                         )}
 
-
+                        {/* Mobile Number */}
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Enter Mobile Number
@@ -265,12 +374,25 @@ export default function Bookings() {
                                 inputProps={{ maxLength: 10 }}
                                 error={!!error && mobileNumber.length !== 10}
                                 helperText={error && mobileNumber.length !== 10 ? error : ""}
+                                sx={{
+                                    "& .MuiOutlinedInput-root": {
+                                        borderRadius: 2,
+                                    },
+                                }}
                             />
                         </Box>
 
-
+                        {/* Billing Summary */}
                         {selectedSlot && bookingDate && (
-                            <Paper elevation={2} sx={{ p: 2, mt: 3, borderRadius: 2, backgroundColor: "#f9f9f9" }}>
+                            <Paper
+                                elevation={3}
+                                sx={{
+                                    p: 2,
+                                    mt: 3,
+                                    borderRadius: 3,
+                                    backgroundColor: "#f8fafc",
+                                }}
+                            >
                                 <Typography variant="subtitle1" fontWeight="bold">
                                     Billing Summary
                                 </Typography>
@@ -299,13 +421,26 @@ export default function Bookings() {
                             </Paper>
                         )}
 
-
-                        <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
+                        {/* Buttons */}
+                        <Box  className={style.buttonBox} sx={{ mt: 4, display: "flex",justifyContent: "space-between", flexWrap: "wrap" }}>
                             <Button
                                 variant="contained"
                                 size="large"
                                 disabled={!selectedSlot || !bookingDate || mobileNumber.length !== 10 || pay}
                                 onClick={handleBookNow}
+                                sx={{
+                                    borderRadius: 3,
+                                    px: 4,
+                                    py: 1.2,
+                                    textTransform: "none",
+                                    fontSize: "1rem",
+                                    backgroundColor: "#d9a521", // gold shade
+                                    boxShadow: "0 4px 14px rgba(25, 118, 210, 0.3)",
+                                    "&:hover": {
+                                        backgroundColor: "#b5891b", // darker gold on hover
+                                        boxShadow: "0 6px 18px rgba(25, 118, 210, 0.4)",
+                                    },
+                                }}
                             >
                                 On Site Payment
                             </Button>
@@ -317,6 +452,7 @@ export default function Bookings() {
                     </CardContent>
                 </Card>
             </Box>
+
         </>
     );
 }

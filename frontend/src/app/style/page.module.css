@@ -6,7 +6,7 @@
   color: #2d2d2d;
   height: auto;
   margin-top: 50px;
-
+  overflow: hidden !important;
 }
 
 .heading {
@@ -20,7 +20,6 @@
   text-decoration: underline;
 
 }
-
 
 .subHeading {
   font-size: 1.8rem;
@@ -112,4 +111,104 @@
   margin-right: 0;
   top: 100px;
   left: 33%;
+}
+
+.flower {
+  position: absolute;
+  -webkit-animation: 0.8s 0.8s fadeInUp both;
+  animation: 0.8s 0.8s fadeInUp both;
+  text-align: right;
+  margin-right: 0;
+  top: 100px;
+  left: 33%;
+  width: 150px;
+ 
+}
+
+.text {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  color: black;
+  max-width: 600px;
+}
+.header{
+  margin-top: 7px;
+}
+@media (max-width: 898px) {
+  .flower {
+    top: 60px;
+    left: 33%;
+    width: 120px;
+  }
+
+
+}
+
+@media (max-width: 1300px) {
+  .text {
+    position: absolute;
+    top: 30%;
+    left: 3%;
+    color: black;
+    max-width: 600px;
+  }
+  .header {
+    font-size: 20px !important;
+     display: flex !important; 
+    gap: 2!important;
+
+      margin-top: 10px;
+  }
+  .header2 {
+    font-size: 26px !important;
+  }
+  .header3{
+    font-size: 15px !important;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .text {
+    position: absolute;
+    top: 30%;
+    left: 3%;
+    color: black;
+    max-width: 600px;
+  }
+  
+
+  .header {
+    font-size: 11px !important;
+    display: flex; 
+    gap: 2
+  }
+
+  .header2 {
+    font-size: 16px !important;
+  }
+.header3{
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .flower {
+    top: 60px;
+    left: 18%;
+    width: 90px;
+  }
+.header3{
+    font-size: 12px !important;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .flower {
+    top: 50px;
+    left: 12%;
+    width: 70px;
+  }
 }

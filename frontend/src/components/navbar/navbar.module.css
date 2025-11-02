@@ -3,16 +3,20 @@
   justify-content: space-between;
   align-items: center;
   background: black;
-  padding: 0 60px;
+  padding: 0 18px;
   height: 65px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  top: 0;
+ 
+   position: fixed !important;
+top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
+
 }
 
 .logo {
- background-color: #000;
+  background-color: #000;
   font-size: 30px !important;
   font-weight: 700 !important;
   color: #2d2d2d;
@@ -20,12 +24,11 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   text-decoration: none !important;
-   color: #2d2d2d !important;
+  color: white !important;
 }
 
 .logo:hover {
   transform: scale(1.05);
-
 }
 
 .right {
@@ -35,9 +38,8 @@
 }
 
 .link {
-  font-size: 1rem !important;
+  font-size: 16px !important;
   font-weight: 800 !important;
-
   color: white !important;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -50,34 +52,31 @@
 }
 
 .loginBtn {
-  background-color: #f68043 !important;
+  background-color: #eea751 !important;
   color: #fff !important;
-  padding: 6px 18px !important;
-  border-radius: 25px !important;
+  padding: 4px 12px !important; /* ↓ reduced padding */
+  border-radius: 20px !important; /* ↓ slightly smaller curve */
+  font-size: 13px !important; /* ↓ reduced text size */
   text-transform: none !important;
   font-weight: 500 !important;
   transition: background-color 0.3s ease, transform 0.3s ease !important;
 }
 
 .loginBtn:hover {
-  background-color:#fff !important;
+  background-color: #fff !important;
   color: #f68043 !important;
   border: 1px sloid #f68043 !important;
   transform: translateY(-2px);
 }
 
-@media screen and (max-width: 768px) {
-
-  body {
-    font-size: 14px;
-  }
-
-  .navbar {
-    padding: 10px;
-  }
+@media screen and (max-width: 650px) {
 
   .logo {
-    font-size: medium !important;
+    font-size: 12px !important;
+  }
+
+  .link {
+    font-size: 9px !important;
   }
 
   .right {
@@ -85,8 +84,12 @@
     gap: 10px;
     align-items: center;
   }
-  .loginBtn{
-    font-size: small !important;
+
+  .loginBtn {
+    padding: 3px 10px !important; 
+  border-radius: 15px !important;
+  font-size: 11px !important; 
+    
   }
 
 }

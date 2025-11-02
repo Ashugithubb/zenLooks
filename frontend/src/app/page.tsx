@@ -12,13 +12,12 @@ import About from "@/components/Home/About/about";
 import OurServices from "@/components/Home/ourservice/service.card";
 import ServiceSection from "@/components/Home/ourservice/service.scection";
 import WhyToChoose from "@/components/Home/choose.us/choose.section";
+// import Navbar from "@/components/Home/navbar2/navbar2";
 export default function Home() {
   const router = useRouter();
   return (
     <>
       <Navbar />
-
-
 
       <div style={{ position: "relative", width: "100%" }}>
         <img
@@ -30,19 +29,13 @@ export default function Home() {
         <Box className={style.flower}><img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/10/hero-shape-2.png" /></Box>
 
         <div
-          style={{
-            position: "absolute",
-            top: "30%",
-            left: "15%",
-            color: "black",
-            maxWidth: "600px"
-          }}
-        >
-          <Box sx={{ display: "flex", gap: 2 }}><img src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png" /><h4 > <b>SATISFACTION GAURANTEE </b></h4></Box>
-          <h1 style={{ fontWeight: 700, fontSize: "52px" }}>Ultimate Reluxtion Pamper Yourself Today</h1>
+        className={style.text}
 
+        >
+          <Box sx={{ display: "flex", gap: 2 }}><img src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png" /><h4 className={style.header} > <b>SATISFACTION GAURANTEE </b></h4></Box>
+          <h1 className={style.header2} style={{ fontWeight: 700, fontSize: "52px" }}>Ultimate Reluxtion Pamper Yourself Today</h1>
           <hr />
-          <p>Conveniently unleash interoperable ideas with multimedia based convergence massage</p>
+          <p className={style.header3}>Conveniently unleash interoperable ideas with multimedia based convergence massage</p>
         </div>
 
       </div>
@@ -50,7 +43,7 @@ export default function Home() {
       <About />
 
       <ServiceSection />
-          <WhyToChoose/>
+      <WhyToChoose />
       {/* <Box className={style.servicesSection}>
         <Box className={style.heading}>Our Services</Box>
         <Box className={style.subHeading}>Top 3 Popular Services</Box>

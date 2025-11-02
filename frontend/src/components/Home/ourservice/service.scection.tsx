@@ -1,26 +1,64 @@
 import { Box, Typography } from "@mui/material";
-import style from "./service.module.css"
+import style from "./service.module.css";
 import MyImageBelowCard from "./service.card";
+
 export default function ServiceSection() {
-    return (
-        <>
+  return (
+    <>
+      <Box className={style.serviceSection}>
+        <Box className={style.serviceContainer}>
+          <Box className={style.header}>
+            <Typography className={style.our}>Our Services</Typography>
+            <h2 className={style.heading}>
+              Experience the Art of Relaxation with Our Exclusive Spa Services
+            </h2>
+          </Box>
 
-            <Box sx={{ backgroundColor: "#0A132E", height: "1032px", width: "100%" }}>
-                <Box sx={{ padding: "73px 0px 100px", display: "flex", flexDirection: "column", gap: "100px" }}>
+          <Box className={style.cardContainer}>
+            <MyImageBelowCard
+              logo={
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"
+              }
+              title={"Revitalize Facial"}
+              description={
+                "This is some descriptive text. Dramatic explotite to contunially cultivate"
+              }
+              duration={30}
+              serviceimagelink={
+                "./hair-wash.jpg"
+              }
+            />
 
-                    <Box sx={{display:"flex", flexDirection:"column",gap:3}}> <Typography sx={{ color: "orange", textAlign: "center" }}>Our Services</Typography>
-                        <h2 style={{ color: "white", fontWeight: "bolder", fontSize: "22x", textAlign: "center" }}>
-                            Experience the Art of Relaxation with
-                            Our Exclusive Spa Services</h2></Box>
-                    <Box sx={{ display: "flex", gap: "16px", justifyContent: "center" }}>
-                        <MyImageBelowCard logo={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"} title={" Revitalize Facial"} description={"This is some descriptive text. Dramatic explotite to contunially cultivate"} duration={30} serviceimagelink={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"} />
-                        <MyImageBelowCard logo={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"} title={" Revitalize Facial"} description={"This is some descriptive text. Dramatic explotite to contunially cultivate"} duration={30} serviceimagelink={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"} />
-                        <MyImageBelowCard logo={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"} title={" Revitalize Facial"} description={"This is some descriptive text. Dramatic explotite to contunially cultivate"} duration={30} serviceimagelink={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"} />
-                    </Box></Box>
-            </Box>
+            <MyImageBelowCard
+              logo={
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"
+              }
+              title={"Relaxing Massage"}
+              description={
+                "This is some descriptive text. Dramatic explotite to contunially cultivate"
+              }
+              duration={45}
+              serviceimagelink={
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"
+              }
+            />
 
-
-
-        </>
-    )
+            <MyImageBelowCard
+              logo={
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"
+              }
+              title={"Aromatherapy"}
+              description={
+                "This is some descriptive text. Dramatic explotite to contunially cultivate"
+              }
+              duration={60}
+              serviceimagelink={
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"
+              }
+            />
+          </Box>
+        </Box>
+      </Box>
+    </>
+  );
 }

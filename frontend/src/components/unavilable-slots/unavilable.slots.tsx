@@ -72,7 +72,7 @@ export default function AddUnavailableSlotDialog() {
     <>
     <ToastContainer/>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button variant="contained" onClick={handleOpen} sx={{backgroundColor:"#eea84f"}}>
         Add Unavailable Slot
       </Button>
 

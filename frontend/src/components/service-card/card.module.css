@@ -1,36 +1,169 @@
 .card {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  width: 100% !important;
+  max-width: 380px !important ;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 510px !important;
 }
 
-.bookNowBtn {
-  background: linear-gradient(135deg, #cfb838 0%, #f5c542 100%) !important;
+
+ .card:hover {
+  transform: scale(1.04); /* 👈 gentle zoom-in */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+.imageContainer {
+  position: relative !important;
+}
+
+.image {
+  width: 100% !important;
+ height: 250px !important;
+  object-fit: cover !important;
+}
+
+.discountTag {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  background: #ff4d4f !important;
   color: #fff !important;
-  font-weight: 600;
-  border-radius: 25px !important;
+  font-weight: 600 !important;
+  padding: 4px 8px !important;
+  border-radius: 8px !important;
+  font-size: 0.8rem !important;
+}
+
+.cardContent {
+  padding: 16px !important;
+}
+
+.title {
+  font-weight: 700 !important;
+  color: #222 !important;
+  margin-bottom: 8px !important;
+}
+
+.descriptionClamp {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  color: #555 !important;
+  margin-bottom: 16px !important;
+}
+
+.price {
+  font-size: 1.2rem  !important; 
+  font-weight: 800 !important;
+  color: #111  !important;
+}
+
+.oldPrice {
+  text-decoration: line-through !important;
+  color: #888 !important;
+  margin-left: 6px !important;
+  font-size: 1rem !important;
+}
+
+.actions {
+  padding: 0 16px 20px 16px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+
+.bookNowBtn {
+  background:#f1ac48 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
   text-transform: none !important;
-  padding: 8px 24px !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
-  transition: all 0.3s ease !important;
+  padding: 7px 0 !important;
+  width: 95% !important;
+  font-size: 1rem !important;
+  box-shadow: none !important;
+  transition: background 0.3s ease, transform 0.2s ease !important;
 }
 
 .bookNowBtn:hover {
-  background: linear-gradient(135deg, #c1995c 0%, #ffb300 100%) !important;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3) !important;
-  transform: scale(1.05) !important;
+  background: linear-gradient(135deg, #d4a05d 0%, #c98c44 100%) !important;
+  transform: translateY(-2px) !important;
+}
+
+
+.adminActions {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 16px 16px !important;
 }
 
 @media screen and (max-width: 951px) {
   .card {
     max-width: 100% !important;
-    padding: "16px" !important;
   }
-
 }
-.descriptionClamp {
-  display: -webkit-box;
-  -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+/* Admin action buttons container */
+.adminActions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  padding: 10px 15px !important;
+  border-top: 1px solid #f0f0f0 !important;
+  background-color: #fafafa !important;
+}
+
+/* Edit button */
+.editBtn {
+  color: #1976d2 !important;
+  background-color: rgba(25, 118, 210, 0.1) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 12px !important;
+  padding: 8px !important;
+}
+
+.editBtn:hover {
+  background-color: #1976d2 !important;
+  color: white !important;
+  transform: scale(1.1) !important;
+}
+
+/* Delete button */
+.deleteBtn {
+  color: #d32f2f !important;
+  background-color: rgba(211, 47, 47, 0.1) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 12px !important;
+  padding: 8px !important;
+}
+
+.deleteBtn:hover {
+  background-color: #d32f2f !important;
+  color: white !important;
+  transform: scale(1.1) !important;
+}
+
+/* Card hover enhancement */
+.card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
 }
 

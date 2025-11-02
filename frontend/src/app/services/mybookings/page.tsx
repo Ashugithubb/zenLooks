@@ -18,11 +18,11 @@ const {loading} = useAppSelector((state)=>state.allBooking);
     return (
         <>
             <Navbar />
-            <Typography sx={{ fontSize: "40px", textAlign: "center", mt: 3 }}>
+            <Typography sx={{ fontSize: "60px", textAlign: "center", mt: 10,fontWeight:800 }}>
                 All Your Bookings
             </Typography>
 
-            {loading ? (<Box sx={{ display: 'flex' ,justifyContent:"center"}}>
+            {loading ? (<Box sx={{ display: 'flex' ,justifyContent:"center",alignItems:"center"}}>
                                         <CircularProgress />
                                     </Box>):booking.length === 0 ? (
                 <Typography sx={{ fontSize: "20px", textAlign: "center", mt: 5 }}>

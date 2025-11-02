@@ -1,0 +1,15 @@
+
+.cash{
+
+}
+.online{
+
+}
+@media (max-width: 550px) {
+.buttonBox{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 9;
+
+}
+}

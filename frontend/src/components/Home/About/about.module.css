@@ -1,22 +1,133 @@
+.aboutContainer {
+  background-color: #f8f5f0;
+  padding: 80px 0 100px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.aboutImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.aboutContent {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
 .aboutus {
+  font-size: 18px !important;
+  padding-left: 48px !important;
+  display: inline-block !important;
+  color: #f68043 !important;
+  font-weight: 400 !important;
+  margin: 0 0 17px !important;
+  font-family: "Carattere", cursive !important;
+}
+
+.pursuit {
+  font-size: 209px !important;
+  font-weight: bolder !important;
+  color: black;
+}
+
+.description {
+  line-height: 26px;
+  margin: 15px 0 0 0;
+  color: #8b8b8b;
+}
+
+/* Feature section */
+.featuresRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.featureItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.featureItem p {
+  margin: 0;
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* ------------------- RESPONSIVE DESIGN ------------------- */
+
+/* Tablets (≤768px) */
+@media (max-width: 768px) {
+  .aboutContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+  }
+
+  .aboutContent {
+    max-width: 90%;
+  }
+
+  .pursuit h3 {
+    font-size: 36px !important;
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .featuresRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .featureItem {
+    justify-content: center;
+  }
+}
+
+/* Mobile (≤480px) */
+@media (max-width: 480px) {
+  .aboutContainer {
+    padding: 40px 10px;
+  }
+
+  .aboutus {
+    padding-left: 0 !important;
     font-size: 16px !important;
-    padding-left: 40px !important;
-    display: inline-block !important;
-    font-size: 18px !important;
-    color: #f68043 !important;
-    font-weight: 400 !important;
-    margin: 0 0 17px !important;
-    padding-left: 48px !important;
-    font-family: "Carattere", cursive!important;
-}
-.pursuit{
-    font-size: 209px !important;
-    font-weight:bolder !important;
-    color:black;
-    
-}
-.description{
-    line-height: 26px;
-    margin: 15px 0px 0px 0px;
-    color: #8b8b8b;
+    text-align: center;
+  }
+
+  .pursuit h3 {
+    font-size: 28px !important;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .description {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .featureItem img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .featureItem p {
+    font-size: 13px;
+    margin-top: 10px;
+  }
 }

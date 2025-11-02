@@ -16,7 +16,7 @@ interface paymentProp {
 export default function PaymentSystem({ amount }: paymentProp) {
   const dispatch = useAppDispatch();
   const booking = useAppSelector((state) => state.b00king);
-  
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -82,7 +82,7 @@ export default function PaymentSystem({ amount }: paymentProp) {
               if (data.status === "ok") {
                 const bookAndClear = async () => {
 
-                      
+
 
 
 
@@ -92,7 +92,7 @@ export default function PaymentSystem({ amount }: paymentProp) {
                     booking.slot &&
                     booking.phoneNo
                   ) {
-                  
+
                     const res = await dispatch(
                       bookServiceThunk({
                         serviceId: booking.serviceId,
@@ -145,6 +145,21 @@ export default function PaymentSystem({ amount }: paymentProp) {
           disabled={
             !amount
           }
+          sx={{
+            borderRadius: 3,
+            width:"100%",
+            border: "none",
+            px: 6.5,
+            py: 1.4,
+            textTransform: "none",
+            fontSize: "1rem",
+            color: "black",
+            boxShadow: "0 4px 14px grey",
+            "&:hover": {
+              backgroundColor: "#b5891b", // darker gold on hover
+              boxShadow: "0 6px 18px grey",
+            },
+          }}
         >
           Pay Online
         </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardMedia, Typography, Box, Stack, Button, TextField } from "@mui/material";
 import { Booking } from "@/app/redux/slice/booking.slice";
 import axios from "axios";
@@ -11,6 +11,7 @@ import style from './booking.module.css'
 interface BookingCardProps {
     booking: Booking;
 }
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function BookingCard({ booking }: BookingCardProps) {
     const [otp, setOtp] = useState("");
@@ -51,93 +52,169 @@ export default function BookingCard({ booking }: BookingCardProps) {
             setLoading(false);
         }
     };
+  
+  const discountedPrice =
+    booking?.service?.price -
+    (booking?.service?.price * booking?.service?.discount) / 100;
+
 
     return (
         <Card className={style.booking}>
-            <CardMedia                
-            component="img"
-                height="180"
-                image={booking?.service?.imageUrl ?? ""}
-                alt={booking?.service?.title}
-                sx={{ borderRadius: 1 }}
-            />
+      {/* Image + Discount Tag */}
+      <Box sx={{ position: "relative" }}>
+        <CardMedia
+          component="img"  
+          image={booking?.service?.imageUrl ?? ""}
+          alt={booking?.service?.title}
+          sx={{ borderRadius: "16px 16px 0 0" , objectFit: "cover",height:300}}
+        />
+        {booking?.service?.discount > 0 && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              backgroundColor: "#ff4d4f",
+              color: "#fff",
+              fontWeight: 600,
+              borderRadius: "12px",
+              px: 1.2,
+              py: 0.5,
+              fontSize: "0.8rem",
+              boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+            }}
+          >
+            {booking?.service?.discount}% off
+          </Box>
+        )}
+      </Box>
 
-            <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                <Typography variant="h6">{booking?.service?.title}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {booking?.service?.description}
-                </Typography>
+      <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+        <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.2rem" }}>
+          {booking?.service?.title}
+        </Typography>
 
-                <Stack direction="row" spacing={2}>
-                    <Typography variant="body2">Price: ₹{booking?.service?.price}</Typography>
-                    {booking?.service?.discount > 0 && <Typography variant="body2" color="primary">
-                        Discount: {booking?.service?.discount}%
-                    </Typography>}
-                </Stack>
-                <Typography variant="body2">Category: {booking?.service?.category}</Typography>
-                <Typography variant="body2">Duration: {booking?.service?.time} minutes</Typography>
+        <Typography
+  variant="body2"
+  color="text.secondary"
+  sx={{
+    display: "-webkit-box",
+    WebkitLineClamp: 4, 
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    minHeight: "60px", 
+  }}
+>
+  {booking?.service?.description}
+</Typography>
 
-                <Box sx={{ mt: 1 }}>
-                    <Typography variant="subtitle2">Booking Details</Typography>
-                    <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
-                    <Typography variant="body2">Date: {booking?.date}</Typography>
-                    <Typography variant="body2">Slot: {booking?.slot}</Typography>
-                    <Typography variant="body2">
-                        Booked At: {new Date(booking?.bookedAt).toLocaleString()}
-                    </Typography>
-                    <Typography variant="body1">
-                        Payment: {booking?.paymentStatus === 'Pending' ? (" Cash") : booking?.paymentStatus}
-                    </Typography>
-                </Box>
+       
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Typography sx={{ fontSize: "1.2rem", fontWeight: 700 }}>
+            ₹{discountedPrice.toFixed(1)}
+          </Typography>
+          {booking?.service?.discount > 0 && (
+            <Typography
+              sx={{
+                textDecoration: "line-through",
+                color: "#9e9e9e",
+                fontSize: "1rem",
+              }}
+            >
+              ₹{booking?.service?.price}
+            </Typography>
+          )}
+        </Box>
 
-                <Box sx={{ mt: 1 }}>
-                    <Typography variant="subtitle2">User Details</Typography>
-                    <Typography variant="body2">Name: {booking?.user?.name}</Typography>
-                    <Typography variant="body2">Email: {booking?.user?.email}</Typography>
-                    <Typography variant="body2">Phone: {booking?.phoneNo}</Typography>
-                </Box>
+        <Typography variant="body2" color="text.secondary">
+          Category: {booking?.service?.category} • Duration:{" "}
+          {booking?.service?.time} min
+        </Typography>
 
-                <Box sx={{ mt: 2, textAlign: "center" }}>
-                    {booking?.bookingStatus === "Completed" ? (
-                        <Button variant="outlined" color="success" disabled sx={{ fontWeight: "bold" }}>
-                            Service Completed
-                        </Button>
-                    ) : isExpired ? (
-                        <Button variant="outlined" color="error" disabled sx={{ fontWeight: "bold" }}>
-                            Booking Expired
-                        </Button>
-                    ) : booking.deletedAt ? (<Typography color="error">Booking is canceled</Typography>)
-                        : otpVerified ? (
-                            <Button variant="outlined" color="success" disabled sx={{ fontWeight: "bold" }}>
-                                OTP Verified
-                            </Button>
-                        ) : otpGenerated ? (
-                            <Box sx={{ display: "flex", gap: 1, flexDirection: "column", alignItems: "center" }}>
-                                <TextField
-                                    label="Enter OTP"
-                                    value={otp}
-                                    onChange={(e) => setOtp(e.target.value)}
-                                    size="small"
-                                />
-                                <Button variant="contained" onClick={handleVerifyOtp} disabled={loading}>
-                                    Verify OTP
-                                </Button>
-                                <Button variant="contained" onClick={() => { setOtpGenerated(false) }} disabled={loading}>
-                                    Cancel
-                                </Button>
-                            </Box>
-                        ) : (
-                            <>
-                                <Button variant="contained" onClick={handleGenerateOtp} disabled={loading}>
-                                    Generate OTP
-                                </Button>
+       
 
+        {/* Booking Info */}
+        <Box>
+          <Typography sx={{ fontWeight: 700, mb: 0.5 }}>Booking Details</Typography>
+          <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
+          <Typography variant="body2">Date: {booking?.date}</Typography>
+          <Typography variant="body2">Slot: {booking?.slot}</Typography>
+          <Typography variant="body2">
+            Booked At: {new Date(booking?.bookedAt).toLocaleString()}
+          </Typography>
+          <Typography variant="body2">
+            Payment:{" "}
+            {booking?.paymentStatus === "Pending" ? "Cash" : booking?.paymentStatus}
+          </Typography>
+        </Box>
 
-                            </>
+   
 
-                        )}
-                </Box>
-            </CardContent>
-        </Card>
+        {/* User Info */}
+        <Box>
+          <Typography sx={{ fontWeight: 700, mb: 0.5 }}>
+            <PersonIcon sx={{ fontSize: 18, verticalAlign: "middle" }} /> User Details
+          </Typography>
+          <Typography variant="body2">Name: {booking?.user?.name}</Typography>
+          <Typography variant="body2">Email: {booking?.user?.email}</Typography>
+          <Typography variant="body2">Phone: {booking?.phoneNo}</Typography>
+        </Box>
+
+        {/* OTP Section */}
+        <Box sx={{ mt: 2, textAlign: "center" }}>
+          {booking?.bookingStatus === "Completed" ? (
+            <Button variant="outlined" color="success" disabled>
+              Service Completed
+            </Button>
+          ) : isExpired ? (
+            <Button variant="outlined" color="error" disabled>
+              Booking Expired
+            </Button>
+          ) : booking.deletedAt ? (
+            <Typography color="error">Booking is canceled</Typography>
+          ) : otpVerified ? (
+            <Button variant="outlined" color="success" disabled>
+              OTP Verified
+            </Button>
+          ) : otpGenerated ? (
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <TextField
+                label="Enter OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                size="small"
+              />
+              <Button variant="contained" onClick={handleVerifyOtp} disabled={loading}>
+                Verify OTP
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => setOtpGenerated(false)}
+                disabled={loading}
+              >
+                Cancel
+              </Button>
+            </Box>
+          ) : (
+            <Button
+              variant="contained"
+              onClick={handleGenerateOtp}
+              disabled={loading}
+              sx={{
+                backgroundColor: "#ffb703",
+                color: "#fff",
+                fontWeight: 600,
+                borderRadius: 2,
+                "&:hover": { backgroundColor: "#f48c06" },
+              }}
+            >
+              Generate OTP
+            </Button>
+          )}
+        </Box>
+      </CardContent>
+    </Card>
     );
 }

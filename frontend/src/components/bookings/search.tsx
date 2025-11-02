@@ -15,6 +15,7 @@ const SearchComponent: React.FC<SearchProps> = ({ value, onChange, placeholder }
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
+     sx={{ width: "100%"}}
     />
   );
 };
