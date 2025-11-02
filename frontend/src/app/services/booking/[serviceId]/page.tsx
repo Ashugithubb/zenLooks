@@ -99,7 +99,7 @@ export default function Bookings() {
             const res = await dispatch(
                 bookServiceThunk({
                     serviceId: id,
-                    date: bookingDate.toISOString(),
+                    date: bookingDate.format("YYYY-MM-DD"),
                     slot: selectedSlot.format("HH:mm"),
                     phoneNo: mobileNumber,
                     paymentStatus: 'Pending'

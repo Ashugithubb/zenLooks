@@ -60,7 +60,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
 
     return (
         <Card className={style.booking}>
-      {/* Image + Discount Tag */}
+      
       <Box sx={{ position: "relative" }}>
         <CardMedia
           component="img"  
