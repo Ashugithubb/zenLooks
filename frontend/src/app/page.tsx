@@ -12,7 +12,7 @@ import About from "@/components/Home/About/about";
 import OurServices from "@/components/Home/ourservice/service.card";
 import ServiceSection from "@/components/Home/ourservice/service.scection";
 import WhyToChoose from "@/components/Home/choose.us/choose.section";
-// import Navbar from "@/components/Home/navbar2/navbar2";
+
 export default function Home() {
   const router = useRouter();
   return (
@@ -32,9 +32,17 @@ export default function Home() {
           className={style.text}
 
         >
-          <Box sx={{ display: "flex", gap: 2 }}><img src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png" /><h4 className={style.header} > <b>SATISFACTION GAURANTEE </b></h4></Box>
-          <h1 className={style.header2} style={{ fontWeight: 700, fontSize: "52px" }}>Ultimate Reluxtion Pamper Yourself Today</h1>
-          <hr />
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <img
+              src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png"
+              className={style.heroShape}
+              alt="title shape"
+            />
+            <h4 className={style.header}><b>SATISFACTION GAURANTEE</b></h4>
+          </Box>
+
+          <h1 className={style.header2} >Ultimate Reluxtion Pamper Yourself Today</h1>
+
           <p className={style.header3}>Conveniently unleash interoperable ideas with multimedia based convergence massage</p>
         </div>
 

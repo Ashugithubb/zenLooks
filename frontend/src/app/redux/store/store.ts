@@ -12,16 +12,16 @@ import b00kingReducer from '../slice/add.booking.slice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['login']
+  whitelist: ['login', 'service']
 };
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  service:serviceReducer,
-  editService:editReducer,
-  allBooking:bookingReducer,
-  unavailableSlot:unavilableReducer,
-  b00king:b00kingReducer
+  service: serviceReducer,
+  editService: editReducer,
+  allBooking: bookingReducer,
+  unavailableSlot: unavilableReducer,
+  b00king: b00kingReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

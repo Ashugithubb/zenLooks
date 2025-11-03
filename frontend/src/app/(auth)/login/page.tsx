@@ -75,17 +75,10 @@ export default function LoginForm() {
 
       if (additionalInfo?.isNewUser) {
 
-
-
-
-
-
-        
-
-        await dispatch(
+       await dispatch(
           signupUser({ name, email, password, confirmPassword: password, firebase })
         );
-        const res = await dispatch(loginUser({ email, password }));
+         const res = await dispatch(loginUser({email, password}));
         if (res.meta.requestStatus === "fulfilled") {
           toast.success("Account created successfully!");
           router.push("/");
@@ -155,7 +148,7 @@ export default function LoginForm() {
               )}
 
 
-              <Button size='small' variant='outlined' onClick={handelGoogleLogin}>
+              <Button size='large' variant='outlined' onClick={handelGoogleLogin}>
                 <img src="./google.png" height="30px" width="30px" style={{ paddingRight: "10px" }} />
                 Continue with Google
               </Button>

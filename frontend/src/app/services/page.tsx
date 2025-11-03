@@ -77,7 +77,9 @@ export default function Services() {
             <Typography className={style.seeAll} sx={{ textAlign: "center", mt: 3, fontSize: "60px", fontWeight: "700", color: "black", marginTop: "6%" }}>
                 See all our Services
             </Typography>
+
             <Box className={style.body}>
+                <ToastContainer />
                 <Box className={style.mainBOX}
                     sx={{
 
@@ -86,7 +88,7 @@ export default function Services() {
                         alignItems: "center",
                         // background:"red",
                         gap: 2,
-                        padding: "0 125px"
+                        padding: "0 300px"
                     }}
                 >
                     <Box className={style.searchBox}>
@@ -129,19 +131,19 @@ export default function Services() {
                     </Box>
 
 
-                    
+
 
                     {role === "Admin" ? (
                         <>
-                         <CreateServiceDialog />
-                        <Button
-                            onClick={handleAllBookings}
-                            variant="contained"
-                            className={style.allBooking}
-                            sx={{top:-2}}
-                        >
-                            <EventIcon sx={{ marginRight: "6px" }} /> All Bookings
-                        </Button></>
+                            <CreateServiceDialog />
+                            <Button
+                                onClick={handleAllBookings}
+                                variant="contained"
+                                className={style.allBooking}
+                                sx={{ top: -2 }}
+                            >
+                                <EventIcon sx={{ marginRight: "6px" }} /> All Bookings
+                            </Button></>
 
                     ) : (role == "User") ? (
                         <Button
@@ -161,10 +163,10 @@ export default function Services() {
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: 3,
-                        justifyContent: "space-evenly",
+                        gap: 10,
+                        justifyContent: "center",
                         minHeight: "300px",
-                        padding: "30px",
+                        padding: "30px 100px",
                     }}
                 >
                     {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
@@ -187,7 +189,7 @@ export default function Services() {
                 </Box>
 
 
-                { !loading && total > limit && (
+                {!loading && total > limit && (
                     <Stack spacing={2} alignItems="center" sx={{ pb: 5 }}>
                         <Pagination
                             count={Math.ceil(total / limit)}
@@ -195,7 +197,7 @@ export default function Services() {
                             onChange={handlePageChange}
                             sx={{
                                 "& .MuiPaginationItem-root": {
-                                    color: "black", // text color
+                                    color: "black",
                                 },
                                 "& .MuiPaginationItem-root.Mui-selected": {
                                     backgroundColor: "#e59b68",

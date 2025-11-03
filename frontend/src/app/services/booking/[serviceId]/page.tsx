@@ -36,11 +36,10 @@ export default function Bookings() {
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(dayjs());
     const [error, setError] = useState<string>("");
     const [pay, setPay] = useState(false);
-
     const dispatch = useAppDispatch();
     const router = useRouter();
-
     const slots = useAppSelector((state) => state.unavailableSlot.slots);
+
 
 
 
@@ -208,7 +207,7 @@ export default function Bookings() {
                             boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
                         },
                         background: "linear-gradient(135deg, #ffffff, #f7f9fc)",
-                       
+
                     }}
                 >
                     {/* Image Section */}
@@ -423,7 +422,7 @@ export default function Bookings() {
                         )}
 
                         {/* Buttons */}
-                        <Box  className={style.buttonBox} sx={{ mt: 4, display: "flex",justifyContent: "space-between", flexWrap: "wrap", mb: 2 }}>
+                        <Box className={style.buttonBox} sx={{ mt: 4, display: "flex", justifyContent: "space-between", flexWrap: "wrap", mb: 2 }}>
                             <Button
                                 variant="contained"
                                 size="large"

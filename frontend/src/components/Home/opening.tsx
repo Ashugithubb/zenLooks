@@ -15,7 +15,7 @@ export default function OpeningHours() {
             <Box>
               <h4 className={style.heading}>Opening Hours</h4>
               <p className={style.text}>Monday - Saturday : 9am - 9pm</p>
-              <p className={style.text}>Sunday: 10am - 8pm</p>
+              <p className={style.text}>Sunday: 10am - 9pm</p>
             </Box>
           </Box>
 
