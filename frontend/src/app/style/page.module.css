@@ -133,6 +133,9 @@
   max-width: 600px;
   animation: fadeInUp 1s 0.8s both;
   -webkit-animation: fadeInUp 1s 0.8s both;
+  display: flex;
+  flex-direction: column;
+  gap: 7;
 }
 
 .header {

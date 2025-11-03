@@ -1,7 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import style from "./chhose.module.css";
 import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 export default function WhyToChoose() {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.3,
+    });
     return (
         <>
             <Box className={style.chooseSection}>
@@ -59,21 +64,24 @@ export default function WhyToChoose() {
                             <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon1.png" />
                             <Box>
 
-                                <Typography sx={{color:"black",fontSize:"30px",fontWeight:800}}>
-                                    <span style={{ color: "black" }}>
-                                        <CountUp end={1200} duration={2} />
-                                    </span> +
-                                </Typography>
-                                <Typography className={style.statSubtitle}>
-                                    Satisfied Customers
-                                </Typography>
+                                <div ref={ref} style={{ textAlign: "center", }}>
+                                    <Typography sx={{ color: "black", fontSize: "30px", fontWeight: 800 }}>
+                                        <span style={{ color: "black" }}>
+                                            {inView && <CountUp end={1200} duration={2} />}
+                                        </span>{" "}
+                                        +
+                                    </Typography>
+                                    <Typography className={style.statSubtitle}>
+                                        Satisfied Customers
+                                    </Typography>
+                                </div>
                             </Box>
                         </Box>
 
                         <Box className={style.statBox}>
                             <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon2.png" />
                             <Box>
-                                <Typography className={style.statTitle} sx={{color:"black",fontSize:"30px",fontWeight:800}}>100%</Typography>
+                                <Typography className={style.statTitle} sx={{ color: "black", fontSize: "30px", fontWeight: 800 }}>100%</Typography>
                                 <Typography className={style.statSubtitle}>
                                     Satisfied Customers
                                 </Typography>

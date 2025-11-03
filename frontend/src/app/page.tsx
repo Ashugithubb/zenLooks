@@ -32,17 +32,17 @@ export default function Home() {
           className={style.text}
 
         >
-        <Box sx={{ display: "flex", gap: 1 }}>
-  <img
-    src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png"
-    className={style.heroShape}
-    alt="title shape"
-  />
-  <h4 className={style.header}><b>SATISFACTION GAURANTEE</b></h4>
-</Box>
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <img
+              src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png"
+              className={style.heroShape}
+              alt="title shape"
+            />
+            <h4 className={style.header}><b>SATISFACTION GAURANTEE</b></h4>
+          </Box>
 
           <h1 className={style.header2} >Ultimate Reluxtion Pamper Yourself Today</h1>
-          
+
           <p className={style.header3}>Conveniently unleash interoperable ideas with multimedia based convergence massage</p>
         </div>
 
