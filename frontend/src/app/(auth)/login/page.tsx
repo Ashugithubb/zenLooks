@@ -75,9 +75,10 @@ export default function LoginForm() {
 
       if (additionalInfo?.isNewUser) {
 
-        const res = await dispatch(
+       await dispatch(
           signupUser({ name, email, password, confirmPassword: password, firebase })
         );
+         const res = await dispatch(loginUser({email, password}));
         if (res.meta.requestStatus === "fulfilled") {
           toast.success("Account created successfully!");
           router.push("/");

@@ -77,7 +77,9 @@ export default function Services() {
             <Typography className={style.seeAll} sx={{ textAlign: "center", mt: 3, fontSize: "60px", fontWeight: "700", color: "black", marginTop: "6%" }}>
                 See all our Services
             </Typography>
+           
             <Box className={style.body}>
+                 <ToastContainer  />
                 <Box className={style.mainBOX}
                     sx={{
 

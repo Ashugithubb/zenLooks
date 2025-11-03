@@ -42,6 +42,7 @@ export default function RootLayout({
           pauseOnFocusLoss
           draggable
           pauseOnHover
+          
         />
         </ReduxProvider>
         <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" strategy="beforeInteractive" />
