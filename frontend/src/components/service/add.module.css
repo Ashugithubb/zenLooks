@@ -18,7 +18,7 @@
   align-items: center !important;
   gap: 6px !important;
   border: none !important;
-margin-top: -12px           !important;
+margin-top: -12px !important;
 }
 
 .addService:hover {
@@ -34,9 +34,15 @@ margin-top: -12px           !important;
     font-size: 14px !important;
     border-radius: 25px !important;
     justify-content: center !important;
+  margin-top: 17px !important;
   }
 }
-
+@media screen and (max-width: 1668px) {
+  .addService {
+    
+    margin-top: -4px !important;
+  }
+}
 @media screen and (max-width: 768px) {
     .button {
         display: flex;

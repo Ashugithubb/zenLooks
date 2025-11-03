@@ -138,6 +138,7 @@ export default function Services() {
                             onClick={handleAllBookings}
                             variant="contained"
                             className={style.allBooking}
+                            sx={{top:-2}}
                         >
                             <EventIcon sx={{ marginRight: "6px" }} /> All Bookings
                         </Button></>
