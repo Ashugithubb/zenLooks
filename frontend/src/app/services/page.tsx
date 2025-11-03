@@ -161,7 +161,7 @@ export default function Services() {
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: 3,
+                        gap: 5,
                         justifyContent: "space-evenly",
                         minHeight: "300px",
                         padding: "30px",
@@ -195,7 +195,7 @@ export default function Services() {
                             onChange={handlePageChange}
                             sx={{
                                 "& .MuiPaginationItem-root": {
-                                    color: "black", // text color
+                                    color: "black", 
                                 },
                                 "& .MuiPaginationItem-root.Mui-selected": {
                                     backgroundColor: "#e59b68",

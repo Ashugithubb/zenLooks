@@ -11,6 +11,7 @@
 .aboutImage {
   max-width: 100%;
   height: auto;
+
 }
 
 .aboutContent {
@@ -29,6 +30,7 @@
   font-weight: 400 !important;
   margin: 0 0 17px !important;
   font-family: "Carattere", cursive !important;
+  margin-left: -40px !important;
 }
 
 .pursuit {

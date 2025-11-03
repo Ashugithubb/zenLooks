@@ -147,7 +147,7 @@ export default function LoginForm() {
               )}
 
 
-              <Button size='small' variant='outlined' onClick={handelGoogleLogin}>
+              <Button size='large' variant='outlined' onClick={handelGoogleLogin}>
                 <img src="./google.png" height="30px" width="30px" style={{ paddingRight: "10px" }} />
                 Continue with Google
               </Button>
