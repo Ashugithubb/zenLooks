@@ -17,7 +17,7 @@
   max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1;
 }
 
 
@@ -71,10 +71,19 @@
 @media (max-width: 768px) {
   .aboutContainer {
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 60px 20px;
   }
+.aboutImage {
+    margin: 0 auto;
+    display: block;
+  }
 
+  .aboutus {
+    padding-left: 0 !important;
+    text-align: center;
+  }
   .aboutContent {
     max-width: 90%;
   }
@@ -129,5 +138,13 @@
   .featureItem p {
     font-size: 13px;
     margin-top: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .aboutImage {
+    display: block;
+    margin: 0 auto !important;  
+    padding: 0 !important;
+    width: 90% !important;       
   }
 }

@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 8px;
+    
 }
 
 .addService {
@@ -17,6 +18,7 @@
   align-items: center !important;
   gap: 6px !important;
   border: none !important;
+margin-top: -12px           !important;
 }
 
 .addService:hover {

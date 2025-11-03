@@ -208,6 +208,7 @@ export default function Bookings() {
                             boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
                         },
                         background: "linear-gradient(135deg, #ffffff, #f7f9fc)",
+                       
                     }}
                 >
                     {/* Image Section */}
@@ -422,7 +423,7 @@ export default function Bookings() {
                         )}
 
                         {/* Buttons */}
-                        <Box  className={style.buttonBox} sx={{ mt: 4, display: "flex",justifyContent: "space-between", flexWrap: "wrap" }}>
+                        <Box  className={style.buttonBox} sx={{ mt: 4, display: "flex",justifyContent: "space-between", flexWrap: "wrap", mb: 2 }}>
                             <Button
                                 variant="contained"
                                 size="large"

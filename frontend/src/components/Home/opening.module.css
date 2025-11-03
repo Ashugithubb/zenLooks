@@ -98,3 +98,27 @@
         left: 16%;
     }
 }
+
+.icon {
+  width: 60px;          /* adjust size as you like — try 30px, 35px, etc. */
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.05); /* subtle hover effect */
+}
+
+@media (max-width: 768px) {
+  .icon {
+    width: 70px;
+    height: auto;
+  }
+  .openingContainer{
+    height: 290px !important;
+  }
+  .openingContent{
+    padding: 50px 0;
+  }
+}

@@ -80,8 +80,8 @@ const FiltersComponent = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ paddingTop: "70px" }}><UnavailableSlotForm /></Box>
-      <Box sx={{ mt: 8, px: 4 }}>
+      <Box sx={{ paddingTop: "80px",paddingLeft: "40px"  }}><UnavailableSlotForm /></Box>
+      <Box sx={{ mt: 2, px: 4 }}>
         <Card
           sx={{
             borderRadius: 3,

@@ -15,6 +15,18 @@ export default function MyBookings() {
         dispatch(getAllBookings({}));
     }, [dispatch]);
 const {loading} = useAppSelector((state)=>state.allBooking);
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [loading]);
     return (
         <>
             <Navbar />
@@ -37,6 +49,7 @@ const {loading} = useAppSelector((state)=>state.allBooking);
                         gap: 3,
                         mt: 3,
                         px: 2,
+                        mb:5
                     }}
                 >
                     {booking.map((b:any) => (

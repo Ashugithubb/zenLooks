@@ -53,7 +53,7 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 59px;
   flex: 1 1 45%;
 }
 
@@ -155,11 +155,7 @@
 
 /* Mobile */
 @media (max-width: 600px) {
-  .chooseSection {
-    margin: 0 10px !important;
-    padding: 40px 10px !important;
-  }
-
+ 
   .imageContainer {
     flex: 1 1 100%;
     justify-content: center;
@@ -174,11 +170,6 @@
   .mainHeading {
     font-size: 22px !important;
     max-width: 100%;
-  }
-
-  .featureBox {
-    max-width: 100%;
-    padding: 16px;
   }
 
   .statsContainer {
@@ -197,4 +188,11 @@
     left: 40px !important;
     width: 60px !important;
   }
+
+  .chooseSection {
+  margin-right: 60px !important;
+  
 }
+ 
+}
+

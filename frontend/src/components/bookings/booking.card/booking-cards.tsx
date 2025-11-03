@@ -12,7 +12,7 @@ interface BookingCardProps {
     booking: Booking;
 }
 import PersonIcon from '@mui/icons-material/Person';
-
+import StyleIcon from '@mui/icons-material/Style';
 export default function BookingCard({ booking }: BookingCardProps) {
     const [otp, setOtp] = useState("");
     const [otpGenerated, setOtpGenerated] = useState(false);
@@ -136,7 +136,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
 
         {/* Booking Info */}
         <Box>
-          <Typography sx={{ fontWeight: 700, mb: 0.5 }}>Booking Details</Typography>
+          <Typography sx={{ fontWeight: 700, mb: 0.5 }}><StyleIcon sx={{ fontSize: 18, verticalAlign: "middle" }} /> Booking Details</Typography>
           <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
           <Typography variant="body2">Date: {booking?.date}</Typography>
           <Typography variant="body2">Slot: {booking?.slot}</Typography>

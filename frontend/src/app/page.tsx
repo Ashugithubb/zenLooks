@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <div style={{ position: "relative", width: "100%" }}>
+      <div style={{ position: "relative", width: "100%", marginTop: "15px" }}>
         <img
           src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/hero-bg.jpg"
           alt="Hero background"
@@ -29,7 +29,7 @@ export default function Home() {
         <Box className={style.flower}><img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/10/hero-shape-2.png" /></Box>
 
         <div
-        className={style.text}
+          className={style.text}
 
         >
           <Box sx={{ display: "flex", gap: 2 }}><img src="https://wp.dreamitsolution.net/spaclub/wp-content/uploads/2024/10/hero-title-shape.png" /><h4 className={style.header} > <b>SATISFACTION GAURANTEE </b></h4></Box>

@@ -43,7 +43,7 @@ const Footer = () => {
           <Box className={style.social}>
             <a href="https://instagram.com" target="_blank"><img src="./instagram.png" height={"30px"} width={"30px"}/></a>
             <a href="https://facebook.com" target="_blank"><img src="./communication.png" height={"30px"} width={"30px"}/></a>
-            <a href="https://twitter.com" target="_blank"><img src="./icons8-x-50.png"   height={"30px"} width={"30px"}/></a>
+            <a href="https://twitter.com" target="_blank"><img src="./x-social-media-logo-icon 1.svg"  height={"30px"} width={"30px"}/></a>
           </Box>
         </Box>
         

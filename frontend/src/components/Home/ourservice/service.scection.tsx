@@ -25,13 +25,13 @@ export default function ServiceSection() {
               }
               duration={30}
               serviceimagelink={
-                "./hair-wash.jpg"
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"
               }
             />
 
             <MyImageBelowCard
               logo={
-                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon2.png"
               }
               title={"Relaxing Massage"}
               description={
@@ -39,13 +39,13 @@ export default function ServiceSection() {
               }
               duration={45}
               serviceimagelink={
-                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/10/service-img2.png"
               }
             />
 
             <MyImageBelowCard
               logo={
-                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon1.png"
+                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-icon3.png"
               }
               title={"Aromatherapy"}
               description={
@@ -53,7 +53,7 @@ export default function ServiceSection() {
               }
               duration={60}
               serviceimagelink={
-                "https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/service-img1.png"
+                "https://preview--radiant-salon-view.lovable.app/assets/hair-coloring-DAptfMcB.jpg"
               }
             />
           </Box>

@@ -53,7 +53,8 @@ function MyImageBelowCard(prop:propValue) {
                 sx={{
                     marginTop: "auto",
                     position: "relative",
-                    zIndex: 3
+                    zIndex: 3,
+                    height:"280px"
                 }}
             />
         </Card>
