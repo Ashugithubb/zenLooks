@@ -43,6 +43,7 @@ export default function Bookings() {
     const slots = useAppSelector((state) => state.unavailableSlot.slots);
 
 
+    
 
     useEffect(() => {
         dispatch(getUnavailableSlots());
