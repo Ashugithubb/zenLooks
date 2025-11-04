@@ -1,451 +1,120 @@
-.servicesSection {
-  text-align: center;
-  padding: 10px 20px;
-  padding-bottom: 20px;
-  background: linear-gradient(135deg, #fff8f0, #f5e1c8);
-  color: #2d2d2d;
-  height: auto;
-  margin-top: 50px;
-  overflow: hidden !important;
+.textBox {
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  color: #f5e1d5;
+  animation: slideDown 1.2s ease-out forwards;
+  opacity: 0;
 }
 
-.heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #c49a3a;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  position: relative;
-  text-decoration: underline;
 
-}
-
-.subHeading {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #2d2d2d;
-  margin-top: 20px;
-}
-
-.description {
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #555;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@keyframes fadeInUp {
-  from {
+@keyframes slideDown {
+  0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(-70px);
   }
-
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.servicesSection {
-  animation: fadeInUp 1s ease-in-out;
+.tagline {
+  font-family: "Dancing Script", cursive;
+  font-size: 38px;
+  font-weight: 400;
+  color: #d4a26a;    
+  letter-spacing: 4px;
+  text-transform: lowercase;
+  margin-bottom: 12px;
+  opacity: 0.9;
 }
-
-.viewAllBtn {
-  background: linear-gradient(135deg, #c49a3a 0%, #f5c542 100%);
-  color: #fff !important;
-  font-weight: 600;
-  border-radius: 30px !important;
-  text-transform: none !important;
-  padding: 10px 28px !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease !important;
-  font-size: 1rem;
-}
-
-.viewAllBtn:hover {
-  background: linear-gradient(135deg, #b48a2e 0%, #ffdb70 100%) !important;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  transform: scale(1.05);
-}
-
-.card {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  padding: 50px;
-}
-
-@media (max-width: 950px) {
-  .heading {
-    font-size: 2rem;
-  }
-
-  .subHeading {
-    font-size: 1.4rem;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .card {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 16px;
-    /* padding: 50px; */
-  }
+.tagline {
+  text-shadow: 0px 2px 6px rgba(212,162,106,0.4);
 }
 
 
-.flower {
-  position: absolute;
-  -webkit-animation: 0.8s 0.8s fadeInUp both;
-  animation: 0.8s 0.8s fadeInUp both;
-  text-align: right;
-  margin-right: 0;
-  top: 100px;
-  left: 33%;
+.title {
+  font-size: 75px;
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0;
+  position: relative;
 }
 
-.flower {
-  position: absolute;
-  -webkit-animation: 0.8s 0.8s fadeInUp both;
-  animation: 0.8s 0.8s fadeInUp both;
-  text-align: right;
-  margin-right: 0;
-  top: 100px;
-  left: 33%;
-  width: 150px;
-
+.lastLine {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.text {
-  position: absolute;
-  top: 30%;
-  left: 10%;
-  color: black;
-  max-width: 600px;
-  animation: fadeInUp 1s 0.8s both;
-  -webkit-animation: fadeInUp 1s 0.8s both;
-  display: flex;
-  flex-direction: column;
-  gap: 7;
+.heroIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
 
-.header {
-  margin-top: 7px;
+.heroIcon {
+  width: 80px;
+  height: 80px;
+  margin-left: 15px;
+  border-radius: 50%;
+  vertical-align: middle;
 }
 
-@media (max-width: 898px) {
-  .flower {
-    top: 60px;
-    left: 33%;
-    width: 120px;
-  }
-
+.heroBtn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  border: 1px solid #d5a275;
+  background: transparent;
+  color: #d5a275;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-transform: uppercase;
 }
 
-@media (max-width: 1300px) {
-  .text {
-    position: absolute;
-    top: 30%;
-    left: 3%;
-    color: black;
-    max-width: 600px;
-  }
-
-  .header {
-    font-size: 20px !important;
-    display: flex !important;
-    gap: 2 !important;
-
-    margin-top: 10px;
-  }
-
-  .header2 {
-    font-size: 26px !important;
-  }
-
-  .header3 {
-    font-size: 15px !important;
-  }
-
+.heroBtn:hover {
+  background: #d5a275;
+  color: #000;
 }
 
-@media (max-width: 768px) {
-  .text {
-    position: absolute;
-    top: 30%;
-    left: 3%;
-    color: black;
-    max-width: 600px;
+/* Responsive Breakpoints */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .title {
+    font-size: 55px;
   }
-
-
-  .header {
-    font-size: 11px !important;
-    display: flex;
-    gap: 2
-  }
-
-  .header2 {
-    font-size: 16px !important;
-  }
-
-  .header3 {
-    font-size: 12px !important;
+  .heroIcon {
+    width: 65px;
+    height: 65px;
   }
 }
 
-@media (max-width: 480px) {
-  .flower {
-    top: 60px;
-    left: 18%;
-    width: 90px;
-  }
-
-  .header3 {
-    font-size: 12px !important;
-  }
-}
-
-
-
-
-@media (max-width: 1300px) {
-  .text {
-    top: 28%;
-    left: 5%;
-    max-width: 500px;
-  }
-
-  .header {
-    font-size: 20px !important;
-    display: flex !important;
-    gap: 2 !important;
-    margin-top: 10px;
-  }
-
-  .header2 {
-    font-size: 26px !important;
-  }
-
-  .header3 {
-    font-size: 15px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .text {
-    position: absolute;
-    top: 35%;
-    left: 4%;
-    max-width: 85%;
-    text-align: left;
-  }
-
-  .header {
-    font-size: 13px !important;
-    display: flex;
-    gap: 2;
-  }
-
-  .header2 {
-    font-size: 20px !important;
-    line-height: 1.3;
-  }
-
-  .header3 {
-    font-size: 12px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .text {
-    top: 30%;
-    left: 6%;
-    max-width: 90%;
-    text-align: left;
-  }
-
-  .header2 {
-    font-size: 18px !important;
-  }
-
-  .header3 {
-    font-size: 11px !important;
-  }
-}
-
-.text hr {
-  width: 580px;
-  
-  height: 3px;
- 
-  border: none;
-  background-color: #c49a3a;
- 
-  margin: 16px 0;
-
-  animation: fadeInUp 1s 1s both;
- 
-}
-
-@media (max-width: 1268px) {
-  .text hr {
-    width: 90%;
-    height: 1px;
-  }
-}
-
-@media (max-width: 480px) {
-
-   .text {
-    position: absolute;
-    top: 28%;
-    left: 2%;
-    max-width: 450px;
-    text-align: left;
-    color: black;
-    gap: 1;
-  }
-
-  .header {
-    font-size: 10px !important;
-    display: flex !important;
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  .header2 {
-    font-size:1px !important;
-    line-height: 1;
-    font-weight: 600!important
-   
-  }
-
-  .header3 {
-    font-size: 7px !important;
-  }
-  .text hr {
-    width: 90%;
-    height: 1px;
-  }
-}
-
-@media (max-width: 1050px) {
-  .text {
-    position: absolute;
-    top: 28%;
-    left: 2%;
-    max-width: 450px;
-    text-align: left;
-    color: black;
-  }
-
-  .header {
-    font-size: 18px !important;
-    display: flex !important;
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  .header2 {
-    font-size: 30px !important;
-    line-height: 1.3;
-    font-weight: 700;
-  }
-
-  .header3 {
-    font-size: 14px !important;
-  }
-
-  .text hr {
-    width: 80%;
-    height: 2px;
-  }
-}
+/* Mobile */
 @media (max-width: 600px) {
-  .text {
-    position: absolute;
-    top: 28%;
-    left: 2%;
-   
-    text-align: left;
-    color: black;
-  }
-
-  .header {
-    font-size: 13px !important;
-    display: flex !important;
-    gap: 2px;
-    margin-top: 8px;
-  }
-
-  .header2 {
-    font-size: 20px !important;
-    line-height: 1.3;
-    font-weight: 600;
-  }
-
-  .header3 {
-    font-size: 12px !important;
-  }
-
-  .text hr {
-    width: 80%;
-    height: 2px;
-  }
-}
-
-@media (max-width: 390px) {
-   .text {
-    position: absolute;
-    top: 38%;
-    left: 2%;
-    max-width: 450px;
-    text-align: left;
-    color: black;
-    gap: 1;
-  }
-
-
-  .header {
-    font-size: 7px !important;
-    display: flex !important;
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  .header2 {
-    font-size:10px !important;
-    line-height: 1;
-    font-weight: 600!important
-   
-  }
-
-  .header3 {
-    font-size: 7px !important;
+  .textBox {
+    top: 25%;
+    left: 5%;
   }
   
-}
-.heroShape {
-  width: 50px;
-  height: auto;
-  transition: all 0.3s ease-in-out;
-}
+  .tagline {
+    font-size: 20px;
+  }
+  
+  .title {
+    font-size: 36px;
+    line-height: 1.2;
+  }
 
-/* For screens 480px and below */
-@media (max-width: 480px) {
-  .heroShape {
-    width: 20px;     /* smaller width */
-    height: auto;
-    margin-top: 5px !important;    /* keeps aspect ratio */
+  .heroIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .heroBtn {
+    padding: 10px 18px;
+    font-size: 14px;
   }
 }

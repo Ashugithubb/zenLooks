@@ -1,0 +1,46 @@
+.mainBox {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 101px 90px;
+    
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 70
+}
+.right{
+     display: flex;
+    flex-direction: column;
+    gap: 80
+}
+.p {
+  max-width: 750px;       
+  margin: 0 auto;       
+  text-align: center;     
+  line-height: 1.9;      
+  font-size: 22px;        
+  font-style: italic;   
+  color: #7e7e7e;         
+  font-weight: 400;      
+  padding: 10px 20px;  
+  font-weight: 500;   
+}
+.juklin{
+   color: #0a132e !important;
+   font-size: 22px;
+   font-weight: 700;
+  text-align: center;
+}
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../../public/teasti-bg.png');
+    align-items: center;
+    gap:12px;
+    padding:10px;
+    max-width: 1000px;
+   
+}

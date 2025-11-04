@@ -84,10 +84,10 @@ export default function Services() {
                     sx={{
 
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "flex-start",
                         alignItems: "center",
                         // background:"red",
-                        gap: 2,
+                        gap: "30px",
                         padding: "0 300px"
                     }}
                 >
@@ -100,7 +100,7 @@ export default function Services() {
                             onChange={handleSearchChange}
                             className={style.searchField}
                             sx={{
-                                width: "300px",
+                                width: "500px",
                                 backgroundColor: "#fff",
                                 borderRadius: "50px",
                                 "& .MuiOutlinedInput-root": {

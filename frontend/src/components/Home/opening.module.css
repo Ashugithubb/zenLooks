@@ -1,5 +1,8 @@
 .openingContainer {
-    background-color: #0a132e;
+    background-color: #111214;
+    /* #0a132e; */
+
+
     position: relative;
     overflow-x: hidden;
 }
@@ -37,8 +40,8 @@
 
 .flowerShape {
     position: absolute;
-    top: 127%;
-    left: 45%;
+    top: 125%;
+    left: 40%;
     z-index: 50;
     display: flex;
     justify-content: center;
@@ -100,25 +103,29 @@
 }
 
 .icon {
-  width: 60px;          /* adjust size as you like — try 30px, 35px, etc. */
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+    width: 60px;
+    /* adjust size as you like — try 30px, 35px, etc. */
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
 .icon:hover {
-  transform: scale(1.05); /* subtle hover effect */
+    transform: scale(1.05);
+    /* subtle hover effect */
 }
 
 @media (max-width: 768px) {
-  .icon {
-    width: 70px;
-    height: auto;
-  }
-  .openingContainer{
-    height: 290px !important;
-  }
-  .openingContent{
-    padding: 50px 0;
-  }
+    .icon {
+        width: 70px;
+        height: auto;
+    }
+
+    .openingContainer {
+        height: 290px !important;
+    }
+
+    .openingContent {
+        padding: 50px 0;
+    }
 }

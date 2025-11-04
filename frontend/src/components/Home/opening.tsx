@@ -34,10 +34,10 @@ export default function OpeningHours() {
       </Box>
 
       <Box className={style.flowerShape}>
-        {/* <img
+        <img
           src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/hero-flower-shape.png"
           alt="Flower Shape"
-        /> */}
+        />
       </Box>
     </>
   );

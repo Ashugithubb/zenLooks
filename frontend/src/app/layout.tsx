@@ -3,9 +3,14 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "./redux/ReduxProvider";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Dancing_Script } from "next/font/google";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
+
+const dancing = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,17 +38,17 @@ export default function RootLayout({
       >
         <ReduxProvider>{children}
           <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          
-        />
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+
+          />
         </ReduxProvider>
         <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" strategy="beforeInteractive" />
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" strategy="afterInteractive" />

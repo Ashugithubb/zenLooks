@@ -1,0 +1,71 @@
+.footer {
+    background-color: #0A132E;
+    color: white;
+
+}
+
+.footerBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -120px !important;
+    font-size: 16px !important;
+    padding-left: 280px;
+    padding-right: 280px;
+    padding-bottom: 90px;
+}
+
+
+.zenLook {
+    color: white !important;
+    font-size: 38px !important;
+    font-weight: 700 !important
+}
+
+.des {
+    font-size: 18px !important;
+    color: #8B8B8B !important;
+    max-width: 350px;
+
+}
+
+.social {
+    display: flex;
+    gap: 10
+}
+
+.first {
+    display: flex;
+    flex-direction: column;
+    gap: 15;
+}
+
+.second {
+    display: flex;
+    flex-direction: column;
+    gap: 15;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px !important;
+}
+
+.link {
+    text-decoration: none !important;
+    color: white !important;
+    font-weight: 500;
+}
+
+.link:hover {
+    color: #f68043 !important;
+    /* example hover */
+}
+
+.third {
+    display: flex;
+    flex-direction: column;
+    gap: 15;
+    margin-top: 30px;
+    font-family: 16px;
+    color: white;
+    font-weight: 500;
+}

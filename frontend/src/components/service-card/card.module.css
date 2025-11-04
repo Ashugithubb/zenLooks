@@ -117,7 +117,7 @@
 /* Admin action buttons container */
 .adminActions {
   display: flex !important;
-  justify-content: flex-end !important;
+  justify-content: flex-start !important;
   gap: 10px !important;
   padding: 10px 15px !important;
   border-top: 1px solid #f0f0f0 !important;
