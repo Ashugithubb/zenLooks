@@ -86,9 +86,8 @@ export default function Services() {
                         display: "flex",
                         justifyContent: "flex-start",
                         alignItems: "center",
-                        // background:"red",
                         gap: "30px",
-                        padding: "0 300px"
+                        padding: "0 120px"
                     }}
                 >
                     <Box className={style.searchBox}>
@@ -119,14 +118,21 @@ export default function Services() {
                                 "& .MuiInputBase-input": {
                                     padding: "8px 12px 8px 0",
                                 },
+                                '& .MuiInputBase-root': {
+                                    paddingLeft: 0,   // removes extra gap
+                                },
+                                '& .MuiInputAdornment-root': {
+                                    marginRight: '-10px', // reduces gap between icon and text
+                                }
                             }}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <SearchIcon sx={{ color: "#6e6e6e", ml: 1, mr: 1 }} />
+                                        <SearchIcon sx={{ color: "#6e6e6e", ml: 1, }} />
                                     </InputAdornment>
                                 ),
                             }}
+                           
                         />
                     </Box>
 
@@ -165,6 +171,7 @@ export default function Services() {
                         flexWrap: "wrap",
                         gap: 10,
                         justifyContent: "center",
+                        alignItems: "center",
                         minHeight: "300px",
                         padding: "30px 100px",
                     }}

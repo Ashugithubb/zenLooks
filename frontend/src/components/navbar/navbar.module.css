@@ -55,11 +55,8 @@
   background-color: #eea751 !important;
   color: #fff !important;
   padding: 4px 12px !important;
-  /* ↓ reduced padding */
   border-radius: 20px !important;
-  /* ↓ slightly smaller curve */
   font-size: 13px !important;
-  /* ↓ reduced text size */
   text-transform: none !important;
   font-weight: 500 !important;
   transition: background-color 0.3s ease, transform 0.3s ease !important;
@@ -72,8 +69,7 @@
   transform: translateY(-2px);
 }
 
-@media screen and (max-width: 650px) {
-
+@media screen and (max-width: 768px) {
   .logo {
     font-size: 12px !important;
   }
@@ -94,12 +90,40 @@
     font-size: 11px !important;
 
   }
+
   .navbar {
-  
-  padding: 0 28px !important;
-  
+    padding: 0 22px !important;
+
+  }
 
 }
 
+@media screen and (max-width: 328px) {
+  .logo {
+    font-size: 11px !important;
+  }
+
+  .link {
+    font-size: 9px !important;
+  }
+
+  .right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .loginBtn {
+    padding: 2px 7px !important;
+    border-radius: 10px !important;
+    font-size: 6px !important;
+
+  }
+
+  .navbar {
+    padding: 0 18px !important;
+
+  }
 
 }
+

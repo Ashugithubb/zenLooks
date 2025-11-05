@@ -312,13 +312,44 @@ export default function CreateServiceDialog() {
                             </TextField>
 
                             <Box className={style.button} >
-                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button
+                                    onClick={handleClose}
+                                    variant="outlined"
+                                    sx={{
+                                        borderColor: "#9CA3AF",
+                                        color: "#9CA3AF",
+                                        "&:hover": {
+                                            borderColor: "#6B7280",
+                                            color: "#6B7280"
+                                        }
+                                    }}
+                                >
+                                    Cancel
+                                </Button>
+                                {serviceId ? (
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{
+                                            backgroundColor: "#f68043",
+                                            "&:hover": { backgroundColor: "#d9652f" }
+                                        }}
+                                    >
+                                        Update
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{
+                                            backgroundColor: "#f68043",
+                                            "&:hover": { backgroundColor: "#d9652f" }
+                                        }}
+                                    >
+                                        Submit
+                                    </Button>
+                                )}
 
-                                {serviceId ? <Button type="submit" variant="contained">
-                                    Update
-                                </Button> : <Button type="submit" variant="contained">
-                                    Submit
-                                </Button>}
                             </Box>
                         </Box>
                     </form>

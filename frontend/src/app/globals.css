@@ -6,6 +6,16 @@
 html, body {
   overflow-x: hidden;
 }
+.swiper-pagination-bullet-active {
+  background: #d5a275 !important;   /* apna color */
+}
+
+/* Inactive dots color */
+.swiper-pagination-bullet {
+  background: #78111180 !important; /* thoda light */
+  opacity: 1; /* ensure visible */
+}
+
 
 :root {
   --background: #ffffff;

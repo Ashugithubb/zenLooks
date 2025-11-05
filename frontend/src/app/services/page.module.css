@@ -68,17 +68,7 @@
     margin-top: 80px !important;
   }
 
-  .mainBOX {
-    padding-top: 15px !important;
-    display: flex !important;
-    gap: 2;
-    /* flex-direction: column !important; */
-    justify-content: space-between !important;
-    align-items: center !important;
-    /* background-color: #f9f8f6 !important; */
-    height: 100px;
-    padding-bottom: 0px !important;
-  }
+
 }
 
 @media screen and (max-width: 968px) {

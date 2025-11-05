@@ -9,12 +9,13 @@ export default function About() {
           src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/about-thumb.png"
           className={style.aboutImage}
           alt="About thumbnail"
+        
         />
 
-        <Box id="about" className={style.aboutContent}>
-          <p className={style.aboutus}>About Us</p>
+        <Box   id="about" className={style.aboutContent}>
+          <p  className={style.aboutus}>About Us</p>
 
-          <Box className={style.pursuit}>
+          <Box    className={style.pursuit}>
             <h3>Pursuit of Perfect Relaxation Crafting Oasis Calm</h3>
           </Box>
 

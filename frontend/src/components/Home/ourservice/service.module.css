@@ -1,7 +1,7 @@
 .serviceSection {
   background-color: #0a132e;
   width: 100%;
-  padding: 73px 0 100px 0;
+  padding: 73px 0 73px 0 !important;
 }
 
 .serviceContainer {
@@ -10,6 +10,8 @@
   gap: 100px;
   justify-content: center;
   align-items: center;
+ 
+  padding-bottom: 50px !important;
 }
 
 .header {
@@ -32,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 22px;
   flex-wrap: wrap;
 }
 
@@ -170,8 +172,7 @@
     display: inline-block !important;
     font-size: 18px !important;;
     color: #f68043 !important;;
-    font-weight: 400 !important;;
-    margin: 0 0 17px !important;;
-    padding-left: 48px !important;;
+   text-align: center !important;
+ 
     font-family: "Carattere", cursive !important;;
 }

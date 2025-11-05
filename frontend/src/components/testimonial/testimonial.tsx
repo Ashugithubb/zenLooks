@@ -3,9 +3,12 @@ import { Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
-import { Autoplay } from "swiper/modules";
-import style from "./testimonial.module.css";
 
+import style from "./testimonial.module.css";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 export default function Testinomial() {
     const testimonials = [
         {
@@ -30,10 +33,13 @@ export default function Testinomial() {
                 <Box className={style.left}>
                     <img
                         src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/08/shape2.png"
-                        style={{ width: "205px", height: "261px" }}
+                        className={style.shapeA}
                     />
 
-                    <img src={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-shape1.png"} style={{ width: "160px", height: "171px", transform: "translateX(80px)" }} />
+                    <img
+                        src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-shape1.png"
+                        className={style.shapeB}
+                    />
                 </Box>
 
                 <Box className={style.middle} >
@@ -41,45 +47,45 @@ export default function Testinomial() {
                         slidesPerView={1}
                         spaceBetween={20}
                         loop={true}
-                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false
+                        }}
+                        pagination={{ clickable: true, }}
                         breakpoints={{
                             768: { slidesPerView: 1 }
                         }}
-                        modules={[Autoplay]}
+                        modules={[Autoplay, Pagination, Navigation]}
                         style={{ width: "100%", padding: "20px 0" }}
                     >
-
 
                         {testimonials.map((t, index) => (
                             <SwiperSlide key={index}>
                                 <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png" />
 
-                                <p className={style.p} >{t.text}</p>
-                                <h4 className={style.juklin} >{t.name}</h4>
-                                <p style={{ textAlign: "center", color: "#acacac", fontWeight: 600 }}>{t.role}</p>
+                                <p className={style.p}>{t.text}</p>
+                                <h4 className={style.juklin}>{t.name}</h4>
+                                <p style={{ textAlign: "center", color: "#acacac", fontWeight: 600 }}>
+                                    {t.role}
+                                </p>
                             </SwiperSlide>
                         ))}
 
-
-
                     </Swiper>
-
-
-
-                    {/* <img src={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png"} />
-                    <p className={style.p}>
-                        Experience elevated wellness through thoughtfully curated experiences and mindful attention to detail. Seamlessly blend modern comfort with timeless relaxation techniques designed to refresh body and spirit. Inspire deeper balance through harmonious environments and intuitive care that prioritizes personal rejuvenation. Discover a sanctuary where calm meets sophistication and every moment feels intentionally crafted for your well-being.
-
-                    </p> */}
-                    {/* <Box>
-                        <h4 className={style.juklin}>Jakulin Farnandez</h4>
-                        <p style={{ textAlign: "center", color: "#acacac", fontWeight: 600 }}>Co-Founder</p></Box> */}
 
                 </Box>
 
                 <Box className={style.right}>
-                    <img src={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-shape2.png"} style={{ width: "161px", height: "171px" }} />
-                    <img src={"https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/leaf.png"} style={{ width: "294px", height: "214px", transform: "translateY(80px)" }} />
+                    <img
+                        src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-shape2.png"
+                        className={style.shapeC}
+                    />
+
+                    <img
+                        src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/leaf.png"
+                        className={style.leafShape}
+                    />
                 </Box>
             </Box>
         </>

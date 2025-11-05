@@ -45,7 +45,7 @@
   color: #8b8b8b;
 }
 
-/* Feature section */
+
 .featuresRow {
   display: flex;
   justify-content: space-between;
@@ -67,25 +67,27 @@
   color: #333;
 }
 
-/* ------------------- RESPONSIVE DESIGN ------------------- */
 
-/* Tablets (≤768px) */
-@media (max-width: 768px) {
+@media (max-width: 868px) {
   .aboutContainer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
+    padding: 60px 20px !important;
   }
-.aboutImage {
-    margin: 0 auto;
+
+  .aboutImage {
     display: block;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 90% !important;
   }
 
   .aboutus {
     padding-left: 0 !important;
     text-align: center;
   }
+
   .aboutContent {
     max-width: 90%;
   }
@@ -109,7 +111,7 @@
   }
 }
 
-/* Mobile (≤480px) */
+
 @media (max-width: 480px) {
   .aboutContainer {
     padding: 40px 10px;
@@ -142,11 +144,5 @@
     margin-top: 10px;
   }
 }
-@media (max-width: 768px) {
-  .aboutImage {
-    display: block;
-    margin: 0 auto !important;  
-    padding: 0 !important;
-    width: 90% !important;       
-  }
-}
+
+@media (max-width: 768px) {}

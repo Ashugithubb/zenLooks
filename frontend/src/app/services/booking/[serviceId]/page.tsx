@@ -70,11 +70,26 @@ export default function Bookings() {
         }));
 
 
-    const isTimeDisabled = (time: Dayjs) => {
-        return disabledRanges.some(
-            (range) => (time.isSame(range.start) || time.isAfter(range.start)) && time.isBefore(range.end)
-        );
+    const isTimeDisabled = (time:any) => {
+        const serviceDuration = clickedService !.time;
+
+        const requestedStart = normalize(time);
+        const requestedEnd = normalize(time.add(serviceDuration, "minute"));
+
+        return disabledRanges.some((range) => {
+            const rangeStart = normalize(range.start);
+            const rangeEnd = normalize(range.end);
+
+            // allow back-to-back
+            const noOverlap =
+                requestedEnd.isSame(rangeStart) || requestedEnd.isBefore(rangeStart) ||
+                requestedStart.isSame(rangeEnd) || requestedStart.isAfter(rangeEnd);
+
+            return !noOverlap; // means overlap → disable
+        });
     };
+
+
 
     const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -128,14 +143,29 @@ export default function Bookings() {
     }
 
     const amount = clickedService.price - (clickedService.price * clickedService.discount) / 100;
+    function normalize(t: any) {
+        return t.second(0).millisecond(0);
+    }
 
-    const shouldDisableTime = (timeValue: Dayjs, view: string) => {
+    const shouldDisableTime = (timeValue: any) => {
         if (!bookingDate) return false;
-        const testTime = dayjs(bookingDate)
-            .hour(timeValue.hour())
-            .minute(timeValue.minute());
-        return isTimeDisabled(testTime);
+
+        const serviceDuration = clickedService.time;
+
+        const testStart = normalize(dayjs(bookingDate).hour(timeValue.hour()).minute(timeValue.minute()));
+        const testEnd = normalize(testStart.add(serviceDuration, "minute"));
+
+        return disabledRanges.some(range => {
+            const rangeStart = normalize(range.start);
+            const rangeEnd = normalize(range.end);
+            const noOverlap =
+                testEnd.isSame(rangeStart) || testEnd.isBefore(rangeStart) ||
+                testStart.isSame(rangeEnd) || testStart.isAfter(rangeEnd);
+
+            return !noOverlap;
+        });
     };
+
 
 
     return (
@@ -319,7 +349,7 @@ export default function Bookings() {
                                             setSelectedSlot(null);
                                         }
                                     }}
-                                    minutesStep={5}
+                                    minutesStep={15}
                                     minTime={dayjs("09:00", "HH:mm")}
                                     maxTime={dayjs("21:00", "HH:mm")}
                                     ampm={false}

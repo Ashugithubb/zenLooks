@@ -48,7 +48,7 @@ export default function WhyToChoose() {
                             <img
                                 src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/check1.png"
                             />
-                            Revitalize Your Senses
+                             Revitalize Your Senses
                         </Typography>
 
                         <Typography className={style.feature}>

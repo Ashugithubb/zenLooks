@@ -71,8 +71,8 @@
     }
 
     .icon {
-        width: 70px;
-        height: 70px;
+        width: 50px !important;
+        height: 50px !important;
     }
 
     .flowerShape {

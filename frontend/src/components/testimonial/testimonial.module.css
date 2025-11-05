@@ -2,45 +2,200 @@
     display: flex !important;
     justify-content: space-between !important;
     padding: 101px 90px;
-    
-}
-
-.left {
-    display: flex;
-    flex-direction: column;
-    gap: 70
-}
-.right{
-     display: flex;
-    flex-direction: column;
-    gap: 80
-}
-.p {
-  max-width: 750px;       
-  margin: 0 auto;       
-  text-align: center;     
-  line-height: 1.9;      
-  font-size: 22px;        
-  font-style: italic;   
-  color: #7e7e7e;         
-  font-weight: 400;      
-  padding: 10px 20px;  
-  font-weight: 500;   
-}
-.juklin{
-   color: #0a132e !important;
-   font-size: 22px;
-   font-weight: 700;
-  text-align: center;
-}
-
-.middle{
-    display: flex;
-    flex-direction: column;
-    background-image: url('../../../public/teasti-bg.png');
     align-items: center;
-    gap:12px;
-    padding:10px;
-    max-width: 1000px;
-   
+    gap: 40px;
+}
+
+/* LEFT + RIGHT SHAPES */
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* MIDDLE SWIPER AREA */
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 20px;
+    max-width: 900px;
+    background-image: url('../../../public/teasti-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* TEXT */
+.p {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.9;
+    font-size: 22px;
+    color: #7e7e7e;
+    font-weight: 500;
+    padding: 10px 20px;
+    font-style: italic;
+}
+
+.juklin {
+    color: #0a132e !important;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+.shapeA {
+    width: 205px;
+    height: 261px;
+}
+
+.shapeB {
+    width: 160px;
+    height: 171px;
+    transform: translateX(80px);
+}
+
+.shapeC {
+    width: 161px;
+    height: 171px;
+}
+
+.leafShape {
+    width: 294px;
+    height: 214px;
+    transform: translateY(80px);
+}
+
+/* ---------------------------- */
+/* ✅ RESPONSIVENESS */
+/* ---------------------------- */
+
+/* Large screens (1200px-) */
+@media (max-width: 1200px) {
+    .mainBox {
+        padding: 80px 40px;
+    }
+
+    .p {
+        max-width: 650px;
+        font-size: 20px;
+    }
+
+}
+
+@media(max-width:1350px) {
+
+    .shapeA,
+    .shapeB,
+    .shapeC,
+    .leafShape {
+        display: none;
+
+    }
+}
+
+@media (max-width: 1400px) {
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: 300px;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 200px;
+    }
+
+    .shapeA {
+        width: 155px;
+        height: 161px;
+    }
+
+    .shapeB {
+        width: 160px;
+        height: 171px;
+        transform: translateX(80px);
+    }
+
+    .shapeC {
+        width: 161px;
+        height: 171px;
+    }
+
+    .leafShape {
+        width: 94px;
+        height: 114px;
+        transform: translateY(16px);
+    }
+
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .mainBox {
+        padding: 60px 30px;
+        gap: 30px;
+    }
+
+    .left,
+    .right {
+        display: none;
+    }
+
+    .middle {
+        max-width: 100%;
+        padding: 30px 10px;
+    }
+
+    .p {
+        font-size: 18px;
+        line-height: 1.7;
+        max-width: 600px;
+    }
+
+    .juklin {
+        font-size: 20px;
+    }
+
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .mainBox {
+        padding: 50px 20px;
+    }
+
+    .p {
+        font-size: 16px;
+        padding: 6px;
+        line-height: 1.6;
+        max-width: 100%;
+    }
+
+    .juklin {
+        font-size: 18px;
+    }
+
+    .middle {
+        padding: 20px 5px;
+        gap: 10px;
+        background-size: 100% auto;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 380px) {
+    .p {
+        font-size: 15px;
+    }
+
+    .juklin {
+        font-size: 16px;
+    }
 }

@@ -1,7 +1,6 @@
 .footer {
     background-color: #0A132E;
     color: white;
-
 }
 
 .footerBox {
@@ -9,46 +8,51 @@
     justify-content: space-between;
     align-items: center;
     margin-top: -120px !important;
+    padding: 0 280px 90px 280px;
     font-size: 16px !important;
-    padding-left: 280px;
-    padding-right: 280px;
-    padding-bottom: 90px;
 }
 
-
 .zenLook {
-    color: white !important;
     font-size: 38px !important;
-    font-weight: 700 !important
+    font-weight: 700 !important;
+    color: white !important;
 }
 
 .des {
     font-size: 18px !important;
     color: #8B8B8B !important;
     max-width: 350px;
-
 }
 
 .social {
     display: flex;
-    gap: 10
+    gap: 10px;
 }
 
-.first {
+
+.first,
+.second,
+.third {
     display: flex;
     flex-direction: column;
-    gap: 15;
+    gap: 15px;
+    font-weight: 500 !important;
+    color: white !important;
 }
 
+/* unique parts remain */
 .second {
-    display: flex;
-    flex-direction: column;
-    gap: 15;
-    font-size: 16px;
-    font-weight: 500;
     margin-top: 10px !important;
+    font-size: 16p !important;
 }
 
+
+.third {
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+/* links */
 .link {
     text-decoration: none !important;
     color: white !important;
@@ -57,15 +61,231 @@
 
 .link:hover {
     color: #f68043 !important;
-    /* example hover */
+
 }
 
+a.link.MuiLink-root:hover {
+    color: #f68043 !important;
+}
+
+.topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* footer images */
+.footerImgBox {
+    display: flex;
+}
+
+.footerImg1,
+.footerImg2 {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+.footerImg2 {
+    margin-right: -140px;
+    margin-top: -40px;
+    z-index: 2;
+}
+
+/* call section */
+.callBox {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.callIcon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 18;
+}
+
+.callText {
+    font-size: 18px;
+    font-weight: 700;
+   
+}
+
+.iconWhite {
+    color: white !important;
+}
+
+/* social icons */
+.fbIcon {
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+}
+
+.socialImg {
+    width: 30px;
+    height: 30px;
+}
+
+.footer {
+    background-color: #0A132E;
+    color: white;
+    width: 100%;
+}
+
+.footerBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 80px 160px;
+    gap: 60px;
+}
+
+/* Brand Section */
+.zenLook {
+    font-size: 38px !important;
+    font-weight: 700 !important;
+    color: white !important;
+}
+
+.des {
+    font-size: 18px;
+    color: #8B8B8B;
+    max-width: 380px;
+    line-height: 1.5;
+}
+
+/* Social Icon Row */
+.social {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.socialImg {
+    width: 30px;
+    height: 30px;
+    transition: 0.3s;
+}
+
+.socialImg:hover {
+    transform: scale(1.15);
+}
+
+/* Column Headings */
+.second,
 .third {
     display: flex;
     flex-direction: column;
-    gap: 15;
-    margin-top: 30px;
-    font-family: 16px;
+    gap: 14px;
+    font-size: 17px;
+}
+
+.first {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-size: 17px;
+
+}
+
+.first h3,
+.second h3,
+.third h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+/* Links */
+.link {
     color: white;
-    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.link:hover {
+    color: #f68043;
+}
+
+/* Working hours section */
+.third p {
+    margin: 3px 0;
+    color: #bcbcbc;
+}
+
+/* Call box */
+.callBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.callText {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* 🌍 RESPONSIVE DESIGN */
+
+/* Tablet view */
+@media (max-width: 1024px) {
+    .footerBox {
+        padding: 60px 80px;
+        gap: 50px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .footerBox {
+
+        padding: 100px 40px;
+        padding-top: 150px;
+        gap: 40px;
+    }
+
+    .zenLook {
+        font-size: 32px;
+    }
+
+    .footerImg1,
+    .footerImg2 {
+        display: none !important;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+
+    .footerBox {
+        padding: 150px 25px;
+        gap: 35px;
+    }
+
+    .zenLook {
+        font-size: 28px;
+    }
+
+    .des {
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    .first,
+    .second,
+    .third {
+        font-size: 16px;
+    }
+
+    .socialImg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .callText {
+        font-size: 16px;
+    }
 }
