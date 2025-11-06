@@ -10,7 +10,7 @@
   gap: 100px;
   justify-content: center;
   align-items: center;
- 
+
   padding-bottom: 50px !important;
 }
 
@@ -39,13 +39,17 @@
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1234px) {
+  .our{
+    font-size: 45px !important;
+  }
   .heading {
-    font-size: 28px;
+    font-size: 38px;
   }
 
   .cardContainer {
-    gap: 24px;  
+    flex-direction: column;
+    gap: 34px !important;
   }
 }
 
@@ -57,7 +61,7 @@
   .cardContainer {
     flex-direction: column;
     gap: 30px;
-     padding: 0 20px !important;
+    padding: 0 20px !important;
   }
 }
 
@@ -66,7 +70,8 @@
     font-size: 20px;
     padding: 0 16px;
   }
-  .mainCrad{
+
+  .mainCrad {
     width: 356px !important;
     height: 561px !important
   }
@@ -77,106 +82,109 @@
 
 
 .card {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
 
 }
 
 /* Content block */
 .content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    padding: 32px 25px 52px;
-    font-weight: bolder !important;
-    padding-bottom: 40px !important;
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  padding: 32px 25px 52px;
+  font-weight: bolder !important;
+  padding-bottom: 40px !important;
 }
 
 /* Two overlay layers for the orange sliding effect */
 .card::before,
 .card::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    left: 0;
-    background-color: #ff8400;
-    transition: transform 0.9s ease;
-    z-index: 1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  background-color: #ff8400;
+  transition: transform 0.9s ease;
+  z-index: 1;
 }
 
 /* Top half slides down */
 .card::before {
-    top: 0;
-    transform: translateY(-100%);
+  top: 0;
+  transform: translateY(-100%);
 }
 
 /* Bottom half slides up */
 .card::after {
-    bottom: 0;
-    transform: translateY(100%);
+  bottom: 0;
+  transform: translateY(100%);
 }
 
 /* Hover animation */
 .card:hover::before {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .card:hover::after {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* Duration circle */
 .duration {
-    font-size: 14px;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #5b635d;
-    line-height: 60px;
-    position: absolute;
-    bottom: 45%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    text-align: center;
-    z-index: 500000 !important;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #5b635d;
+  line-height: 60px;
+  position: absolute;
+  bottom: 45%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  z-index: 500000 !important;
 
-    position: absolute !important;
+  position: absolute !important;
 }
 
 
 /* Duration circle turns blue on hover */
 .card:hover .duration {
-    background-color: #0A132E;
+  background-color: #0A132E;
 }
 
 .description {}
 
 .card:hover .description {
-    color: white !important
+  color: white !important
 }
 
 .logo img {
-    transition: filter 0.3s ease;
-    z-index: 100;
+  transition: filter 0.3s ease;
+  z-index: 100;
 }
 
 .card:hover .logo img {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 
 .our {
-    display: inline-block !important;
-    font-size: 18px !important;;
-    color: #f68043 !important;;
-   text-align: center !important;
- 
-    font-family: "Carattere", cursive !important;;
+  display: inline-block !important;
+  font-size: 18px !important;
+  ;
+  color: #f68043 !important;
+  ;
+  text-align: center !important;
+
+  font-family: "Carattere", cursive !important;
+  ;
 }

@@ -141,6 +141,7 @@ export default function Services() {
 
                     {role === "Admin" ? (
                         <>
+                       { console.log("role",role)}
                             <CreateServiceDialog />
                             <Button
                                 onClick={handleAllBookings}

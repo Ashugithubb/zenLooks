@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { Gender, serviceSchema } from './schema/service.schema';
 import z from 'zod';
@@ -51,7 +52,7 @@ export default function CreateServiceDialog() {
         formState: { errors },
         reset,
         watch
-    } = useForm<ServiceData>({
+    } = useForm({
         resolver: zodResolver(serviceSchema),
         defaultValues: {
             title: "",
@@ -62,6 +63,7 @@ export default function CreateServiceDialog() {
             discount: 0,
         },
     });
+
     const handleClickOpen = () => {
 
         setAvatarPreview(null);
@@ -89,6 +91,7 @@ export default function CreateServiceDialog() {
         setService(null);
 
     };
+    
     useEffect(() => {
         if (editService) {
             const categoryValue =
@@ -97,6 +100,7 @@ export default function CreateServiceDialog() {
                     : editService.category === "Female"
                         ? Gender.Female
                         : undefined;
+
             reset({
                 title: editService.title,
                 description: editService.description,
@@ -107,6 +111,14 @@ export default function CreateServiceDialog() {
             });
         }
     }, [editService, reset]);
+
+
+
+
+
+
+
+
     const dispatch = useAppDispatch();
 
     const [avtarUrl, setAvatarUrl] = useState('');
@@ -114,6 +126,8 @@ export default function CreateServiceDialog() {
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
     const [imageUploading, setImageUploading] = useState(false);
+
+    const [disable,setDisable] = useState(false);
 
     const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -149,13 +163,14 @@ export default function CreateServiceDialog() {
 
             let res;
             if (editOpen && serviceId) {
+                setDisable(true)
                 if (avtarUrl.length > 0) {
-                    console.log("sindie the try2");
                     data.imageUrl = avtarUrl
                 }
                 res = await dispatch(editServiceThunk({ data, id: serviceId }));
                 dispatch(getServiceThunk({ page, limit }));
             } else {
+                setDisable(true)
                 data.imageUrl = avtarUrl;
                 res = await dispatch(addService(data));
             }
@@ -180,10 +195,13 @@ export default function CreateServiceDialog() {
                     setAvatarUrl("");
                     handleClose();
                 }, 800);
+                setDisable(false);
             } else {
+                setDisable(false)
                 toast.error(res.payload || 'Something went wrong!');
             }
         } catch (err) {
+            setDisable(false)
             toast.error('An error occurred!');
         }
     };
@@ -328,6 +346,7 @@ export default function CreateServiceDialog() {
                                 </Button>
                                 {serviceId ? (
                                     <Button
+                                    disabled={disable}
                                         type="submit"
                                         variant="contained"
                                         sx={{
@@ -341,6 +360,7 @@ export default function CreateServiceDialog() {
                                     <Button
                                         type="submit"
                                         variant="contained"
+                                         disabled={disable}
                                         sx={{
                                             backgroundColor: "#f68043",
                                             "&:hover": { backgroundColor: "#d9652f" }
