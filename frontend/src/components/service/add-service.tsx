@@ -374,7 +374,7 @@ export default function CreateServiceDialog() {
                                         type="submit"
                                         variant="contained"
                                         sx={{
-                                            backgroundColor: "#f68043",
+                                            backgroundColor: "#eea84f",
                                             "&:hover": { backgroundColor: "#d9652f" }
                                         }}
                                     >
@@ -386,7 +386,7 @@ export default function CreateServiceDialog() {
                                         variant="contained"
                                         disabled={disable}
                                         sx={{
-                                            backgroundColor: "#f68043",
+                                            backgroundColor: "#eea84f",
                                             "&:hover": { backgroundColor: "#d9652f" }
                                         }}
                                     >

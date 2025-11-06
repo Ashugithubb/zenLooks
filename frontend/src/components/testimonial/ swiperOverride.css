@@ -1,0 +1,19 @@
+/* Increase Swiper pagination bullet size */
+.swiper-pagination-bullet {
+    width: 14px;
+    /* default is 8px */
+    height: 14px;
+    /* make it larger */
+    background: #eea84f;
+    /* optional: custom color */
+    opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+    width: 16px;
+    /* slightly larger active dot */
+    height: 16px;
+    background: #eea84f;
+    /* highlight color */
+    opacity: 1;
+}

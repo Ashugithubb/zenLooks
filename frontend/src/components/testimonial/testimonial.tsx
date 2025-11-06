@@ -52,7 +52,7 @@ export default function Testinomial() {
                             delay: 3000,
                             disableOnInteraction: false
                         }}
-                        pagination={{ clickable: true, }}
+                        pagination={{ clickable: true,  }}
                         breakpoints={{
                             768: { slidesPerView: 1 }
                         }}

@@ -41,7 +41,7 @@ export default function Footer() {
                         <Box className={style.social}>
                             <a href="https://instagram.com" target="_blank"><InstagramIcon className={style.iconWhite} /></a>
                             <a href="https://facebook.com" target="_blank"><FacebookOutlinedIcon className={style.fbIcon} /></a>
-                            <a href="https://twitter.com" target="_blank"><img src="./twitter-x-logo-png_seeklogo-492396 (1).png" className={style.socialImg} /></a>
+                            <a href="https://twitter.com" target="_blank"><img src="./x-social-media-logo-icon 1.svg" className={style.socialImg} /></a>
                             <a href="https://twitter.com" target="_blank"><img src="./69cb8fbc8de12644eb9dd67bae58ce68.jpg" className={style.socialImg} /></a>
                         </Box>
                     </Box>

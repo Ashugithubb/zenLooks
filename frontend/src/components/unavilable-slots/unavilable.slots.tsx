@@ -182,7 +182,7 @@ export default function AddUnavailableSlotDialog() {
               }
             }}>Cancel</Button>
             <Button variant="contained" onClick={handleSubmit(onSubmit)} sx={{
-              backgroundColor: "#f68043",
+              backgroundColor: "#eea84f",
               "&:hover": { backgroundColor: "#d9652f" }
             }}>
               Save
