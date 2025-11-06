@@ -6,9 +6,7 @@ export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
     let payload;
 
-    if(!token){
-  
-    }
+  console.log("token");
     if (token) {
         try {
             payload = JSON.parse(atob(token.split('.')[1]));
@@ -27,12 +25,14 @@ export async function middleware(req: NextRequest) {
     }
 
 
-    if (pathname === "/services/allbookings" && payload?.role !== "Admin") {
-        return NextResponse.redirect(new URL("/services", req.url));
-    }
-    if (pathname === "/services/mybookings" && payload?.role !== "User") {
-        return NextResponse.redirect(new URL("/services", req.url));
-    }
+    // if (pathname === "/services/allbookings" && payload?.role !== "Admin") {
+    //     console.log("all booking")
+    //     return NextResponse.redirect(new URL("/services", req.url));
+    // }
+    // if (pathname === "/services/mybookings" && payload?.role !== "User") {
+    //      console.log("my booking booking")
+    //     return NextResponse.redirect(new URL("/services", req.url));
+    // }
 
 
     return NextResponse.next();
