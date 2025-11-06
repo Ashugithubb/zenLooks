@@ -5,17 +5,25 @@ import { clearUser } from "@/app/redux/slice/login.slice";
 import { useEffect } from "react";
 
 export default function useAuthCleanup() {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     async function checkAuth() {
-      const res = await fetch("/api/useAuthCleanup");;
-      const data = await res.json();
+      try {
+        const res = await fetch("/api/useAuthCleanup");
+        const data = await res.json();
+        if (!data.token) {
+          console.log("No token found → clearing localStorage");
+          localStorage.clear();
+          dispatch(clearUser());
+        }
 
-      // if (!data.token) {
-      //   console.log("No token found → clearing localStorage");
-      //   localStorage.clear();
-      //    dispatch(clearUser());
-      // }
+      }
+      catch (error) {
+        console.log("error",error);
+      }
+
+
+
     }
 
     checkAuth();
