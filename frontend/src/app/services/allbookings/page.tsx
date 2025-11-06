@@ -14,6 +14,7 @@ import { Typography, Card, CardContent, Box, Stack, Pagination, CircularProgress
 import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots";
 import Grid from "@mui/material/Grid";
 import style from "./page.module.css"
+import { useRouter } from "next/navigation";
 
 interface FilterValues {
   search: string;
@@ -77,10 +78,18 @@ const FiltersComponent = () => {
     };
   }, [loading]);
 
+  const role = useAppSelector((state) => state.login.auth?.role)
+  const router = useRouter()
+  useEffect(() => {
+    if (role === undefined || role === "User") {
+      console.log("object")
+      router.push("/services");
+    }
+  }, [role, router]);
   return (
     <>
       <Navbar />
-      <Box sx={{ paddingTop: "80px",paddingLeft: "40px"  }}><UnavailableSlotForm /></Box>
+      <Box sx={{ paddingTop: "80px", paddingLeft: "40px" }}><UnavailableSlotForm /></Box>
       <Box sx={{ mt: 2, px: 4 }}>
         <Card
           sx={{
@@ -105,7 +114,7 @@ const FiltersComponent = () => {
               flexWrap="wrap"
               justifyContent="center"
               gap={2}
-              className = {style.filter}
+              className={style.filter}
             >
               <Box>
                 <Controller

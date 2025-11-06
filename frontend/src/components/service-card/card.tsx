@@ -26,7 +26,6 @@ interface cardProp {
   discount: number;
   serviceId: number;
 }
-
 export default function ImgMediaCard(prop: cardProp) {
   const dispatch = useAppDispatch();
   const role = useAppSelector((state) => state.login.auth?.role);

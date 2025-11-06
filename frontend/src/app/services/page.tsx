@@ -55,7 +55,9 @@ export default function Services() {
         setCurrentPage(value);
     };
 
- 
+    const handleAllBookings = () => {
+        router.push("/services/allbookings");
+    };
 
 
     return (
@@ -132,7 +134,8 @@ export default function Services() {
                             {console.log("role", role)}
                             <CreateServiceDialog />
                             <Button
-                               variant="contained"
+                                onClick={handleAllBookings}
+                                variant="contained"
                                 className={style.allBooking}
                                 sx={{ top: -2 }}
                             >

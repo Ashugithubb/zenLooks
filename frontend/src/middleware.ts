@@ -15,29 +15,29 @@ export async function middleware(req: NextRequest) {
         }
     }
 
-    if (pathname === "/services") {
-        return NextResponse.next();
-    }
+    // if (pathname === "/services") {
+    //     return NextResponse.next();
+    // }
 
 
-    if (pathname === "/services/mybookings" && payload?.role === "Admin") {
-        return NextResponse.redirect(new URL("/services", req.url));
-    }
+    // if (pathname === "/services/mybookings" && payload?.role === "Admin") {
+    //     return NextResponse.redirect(new URL("/services", req.url));
+    // }
 
 
-    if (pathname === "/services/allbookings" && payload?.role !== "Admin") {
+    // if (pathname === "/services/allbookings" && payload?.role !== "Admin") {
 
-        return NextResponse.redirect(new URL("/services", req.url));
-    }
-    if (pathname === "/services/mybookings" && payload?.role !== "User") {
+    //     return NextResponse.redirect(new URL("/services", req.url));
+    // }
+    // if (pathname === "/services/mybookings" && payload?.role !== "User") {
 
-        return NextResponse.redirect(new URL("/services", req.url));
-    }
+    //     return NextResponse.redirect(new URL("/services", req.url));
+    // }
 
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/login", "/services/:path*"],
+    matcher: ["/login"],
 };
