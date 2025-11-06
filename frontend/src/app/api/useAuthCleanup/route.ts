@@ -15,7 +15,8 @@
 import { cookies } from "next/headers";
 
 export async function GET() {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("access_token");
+  const cookieStore = await cookies(); // no need for await
+  const token = cookieStore.get("access_token");
+
   return Response.json({ token: token?.value || null });
 }

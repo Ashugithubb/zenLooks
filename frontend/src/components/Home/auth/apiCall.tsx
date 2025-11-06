@@ -7,7 +7,7 @@ export default function useAuthCleanup() {
     const dispatch = useAppDispatch();
   useEffect(() => {
     async function checkAuth() {
-      const res = await fetch("/api/useAuthCleanup");
+      const res = await fetch(" /app/api/useAuthCleanup/route.ts");
       const data = await res.json();
 
       if (!data.token) {
