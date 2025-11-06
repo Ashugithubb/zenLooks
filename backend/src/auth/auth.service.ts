@@ -13,7 +13,7 @@ import { UserService } from '../user/user.service';
 @Injectable()
 export class AuthService {
     constructor(
-         @Inject(forwardRef(() => UserService))
+        @Inject(forwardRef(() => UserService))
         private userService: UserService,
         private hasingService: HasingService,
         private jwtService: JwtService,
@@ -24,7 +24,7 @@ export class AuthService {
         if (!user) throw new UnauthorizedException("User email not found");
         const matched = await this.hasingService.compare(password, user.password);
         if (!matched) throw new UnauthorizedException("Invalid password");
-        return { email: user.email, id: user.userId, role:user.role };
+        return { email: user.email, id: user.userId, role: user.role };
     }
 
 
@@ -35,12 +35,12 @@ export class AuthService {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
-             maxAge: 60 * 60 * 1000,
+            maxAge: 60 * 60 * 1000,
         });
         return {
             "msg": "Loged In Successfully",
             "token": token,
-            "role":payload.role
+            "role": payload.role
         }
     }
 

@@ -55,19 +55,7 @@ export default function Services() {
         setCurrentPage(value);
     };
 
-    const handleAllBookings = () => {
-        // const token = Cookies.get("access_token");
-
-        // if (token) {
-        router.push("/services/allbookings");
-        // }
-        // else {
-        //     dispatch(clearUser());
-        //     toast.error("Login again!");
-
-        // }
-
-    };
+ 
 
 
     return (
@@ -75,7 +63,7 @@ export default function Services() {
 
             <Navbar />
             <Typography className={style.seeAll} sx={{ textAlign: "center", mt: 3, fontSize: "60px", fontWeight: "700", color: "black", marginTop: "6%" }}>
-                 Our Services
+                Our Services
             </Typography>
 
             <Box className={style.body}>
@@ -141,11 +129,10 @@ export default function Services() {
 
                     {role === "Admin" ? (
                         <>
-                       { console.log("role",role)}
+                            {console.log("role", role)}
                             <CreateServiceDialog />
                             <Button
-                                onClick={handleAllBookings}
-                                variant="contained"
+                               variant="contained"
                                 className={style.allBooking}
                                 sx={{ top: -2 }}
                             >
@@ -167,7 +154,7 @@ export default function Services() {
 
 
                 <Box
-                className={style.cardBox}
+                    className={style.cardBox}
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
@@ -176,7 +163,7 @@ export default function Services() {
                         alignItems: "center",
                         minHeight: "300px",
                         padding: "30px 120px",
-                        
+
                     }}
                 >
                     {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>

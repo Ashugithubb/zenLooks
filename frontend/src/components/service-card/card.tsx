@@ -16,6 +16,7 @@ import { deleteServiceThunk } from '@/app/redux/thunk/service.thunk';
 import { toast } from 'react-toastify';
 import { setEditOpen, setServiceId } from '@/app/redux/slice/edit.slice';
 import { useRouter } from 'next/navigation';
+import { clearUser } from '@/app/redux/slice/login.slice';
 
 interface cardProp {
   title: string;
@@ -36,7 +37,18 @@ export default function ImgMediaCard(prop: cardProp) {
       const res = await dispatch(deleteServiceThunk(prop.serviceId));
       if (res.meta.requestStatus === "fulfilled") {
         toast.success("Service deleted successfully!");
-      } else toast.error("Failed to delete service");
+      } else {
+        if (res.meta.requestStatus == "rejected") {
+          toast.error("Session expired. Please log in again.")
+
+          setTimeout(() => {
+            localStorage.clear();
+            dispatch(clearUser())
+          }, 3000)
+
+        }
+        toast.error("Failed to delete service");
+      }
     }
   };
 
@@ -88,30 +100,30 @@ export default function ImgMediaCard(prop: cardProp) {
         )}
       </CardContent>
 
-{role !== 'Admin' ? (
-  <CardActions className={style.actions}>
-    <Button onClick={handleBook} className={style.bookNowBtn}>
-      Book Now
-    </Button>
-  </CardActions>
-) : (
-  <CardActions className={style.adminActions}>
-    <IconButton
-      onClick={handleEdit}
-      className={style.editBtn}
-      title="Edit Service"
-    >
-      <EditIcon />
-    </IconButton>
-    <IconButton
-      onClick={handleDelete}
-      className={style.deleteBtn}
-      title="Delete Service"
-    >
-      <DeleteIcon />
-    </IconButton>
-  </CardActions>
-)}
+      {role !== 'Admin' ? (
+        <CardActions className={style.actions}>
+          <Button onClick={handleBook} className={style.bookNowBtn}>
+            Book Now
+          </Button>
+        </CardActions>
+      ) : (
+        <CardActions className={style.adminActions}>
+          <IconButton
+            onClick={handleEdit}
+            className={style.editBtn}
+            title="Edit Service"
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            onClick={handleDelete}
+            className={style.deleteBtn}
+            title="Delete Service"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </CardActions>
+      )}
 
     </Card>
   );

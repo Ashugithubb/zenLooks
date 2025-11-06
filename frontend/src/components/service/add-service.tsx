@@ -24,6 +24,9 @@ import { resetServiceState } from '@/app/redux/slice/edit.slice';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 type ServiceData = z.infer<typeof serviceSchema>;
 import style from "./add.module.css"
+import { clearUser } from '@/app/redux/slice/login.slice';
+
+
 export default function CreateServiceDialog() {
     const [open, setOpen] = React.useState(false);
     const allServices = useAppSelector((state) => state.service.servicelist?.services) ?? [];
@@ -91,7 +94,7 @@ export default function CreateServiceDialog() {
         setService(null);
 
     };
-    
+
     useEffect(() => {
         if (editService) {
             const categoryValue =
@@ -127,7 +130,7 @@ export default function CreateServiceDialog() {
 
     const [imageUploading, setImageUploading] = useState(false);
 
-    const [disable,setDisable] = useState(false);
+    const [disable, setDisable] = useState(false);
 
     const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -173,6 +176,16 @@ export default function CreateServiceDialog() {
                 setDisable(true)
                 data.imageUrl = avtarUrl;
                 res = await dispatch(addService(data));
+
+                if (res.meta.requestStatus == "rejected") {
+                    toast.error("Session expired. Please log in again.")
+
+                    setTimeout(() => {
+                        localStorage.clear();
+                        dispatch(clearUser())
+                    }, 3000)
+
+                }
             }
 
             if (res.meta.requestStatus === 'fulfilled') {
@@ -199,8 +212,19 @@ export default function CreateServiceDialog() {
             } else {
                 setDisable(false)
                 toast.error(res.payload || 'Something went wrong!');
+
+                if (res.meta.requestStatus == "rejected") {
+                    toast.error("Session expired. Please log in again.")
+
+                    setTimeout(() => {
+                        localStorage.clear();
+                        dispatch(clearUser())
+                    }, 3000)
+
+                }
             }
         } catch (err) {
+            console.log("3")
             setDisable(false)
             toast.error('An error occurred!');
         }
@@ -346,7 +370,7 @@ export default function CreateServiceDialog() {
                                 </Button>
                                 {serviceId ? (
                                     <Button
-                                    disabled={disable}
+                                        disabled={disable}
                                         type="submit"
                                         variant="contained"
                                         sx={{
@@ -360,7 +384,7 @@ export default function CreateServiceDialog() {
                                     <Button
                                         type="submit"
                                         variant="contained"
-                                         disabled={disable}
+                                        disabled={disable}
                                         sx={{
                                             backgroundColor: "#f68043",
                                             "&:hover": { backgroundColor: "#d9652f" }

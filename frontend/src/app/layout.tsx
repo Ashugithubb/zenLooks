@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dancing_Script } from "next/font/google";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
-import ClientAuthWrapper from "@/components/Home/auth/ClientAuthWrapper";
+
 
 const dancing = Dancing_Script({
   subsets: ["latin"],
@@ -31,17 +31,16 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) 
-{
+}>) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-           <ClientAuthWrapper> 
-            {children}
-          </ClientAuthWrapper>
+
+          {children}
+
           <ToastContainer
             position="top-right"
             autoClose={3000}
