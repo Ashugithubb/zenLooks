@@ -1,6 +1,7 @@
 "use client";
 
-import useAuthCleanup from "../../../app/redux/hook/useAuthCleanup.ts";
+import useAuthCleanup from "@/components/useAuthCleanup";
+
 
 export default function ClientAuthWrapper({ children }: { children: React.ReactNode }) {
   useAuthCleanup(); 
