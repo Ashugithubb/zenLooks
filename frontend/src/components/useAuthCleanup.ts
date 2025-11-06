@@ -11,11 +11,11 @@ export default function useAuthCleanup() {
   useEffect(() => {
     const token = Cookies.get("access_token");
 
-    if (!token) {
-      console.log("Token missing → Clearing localStorage");
-      localStorage.clear();
-      dispatch(clearUser());
+    // if (!token) {
+    //   console.log("Token missing → Clearing localStorage");
+    //   localStorage.clear();
+    //   dispatch(clearUser());
 
-    }
+    // }
   }, []);
 }
