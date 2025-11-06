@@ -20,7 +20,7 @@ export class AuthController {
     @Post('logout')
     logout(@Res({ passthrough: true }) res: Response) {
         res.clearCookie('access_token', {
-            httpOnly: false,
+            httpOnly: true,
             secure: false,
             sameSite: 'none',
             path: '/',

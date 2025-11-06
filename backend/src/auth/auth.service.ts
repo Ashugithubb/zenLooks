@@ -32,7 +32,7 @@ export class AuthService {
 
         const token = await this.jwtService.sign(payload)
         res.cookie('access_token', token, {
-            httpOnly: false,
+            httpOnly: true,
             secure: false,
             sameSite: 'none',
             domain: 'zen-looks.vercel.app',
