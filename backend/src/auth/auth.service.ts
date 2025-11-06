@@ -35,7 +35,7 @@ export class AuthService {
             httpOnly: false,
             secure: true,
             sameSite: 'none',
-            domain: '.vercel.app',
+            domain: 'zen-looks.vercel.app',
             maxAge: 60 * 60 * 1000,
         });
         return {
