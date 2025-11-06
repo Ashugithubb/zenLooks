@@ -6,6 +6,9 @@ export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
     let payload;
 
+    if(!token){
+  
+    }
     if (token) {
         try {
             payload = JSON.parse(atob(token.split('.')[1]));
