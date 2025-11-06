@@ -11,11 +11,11 @@ export default function useAuthCleanup() {
       const res = await fetch("/api/useAuthCleanup");;
       const data = await res.json();
 
-      if (!data.token) {
-        console.log("No token found → clearing localStorage");
-        localStorage.clear();
-         dispatch(clearUser());
-      }
+      // if (!data.token) {
+      //   console.log("No token found → clearing localStorage");
+      //   localStorage.clear();
+      //    dispatch(clearUser());
+      // }
     }
 
     checkAuth();
