@@ -75,7 +75,7 @@ export default function Services() {
 
             <Navbar />
             <Typography className={style.seeAll} sx={{ textAlign: "center", mt: 3, fontSize: "60px", fontWeight: "700", color: "black", marginTop: "6%" }}>
-                See all our Services
+                 Our Services
             </Typography>
 
             <Box className={style.body}>
@@ -87,7 +87,7 @@ export default function Services() {
                         justifyContent: "flex-start",
                         alignItems: "center",
                         gap: "30px",
-                        padding: "0 120px"
+                        padding: "0 18%"
                     }}
                 >
                     <Box className={style.searchBox}>
@@ -132,7 +132,7 @@ export default function Services() {
                                     </InputAdornment>
                                 ),
                             }}
-                           
+
                         />
                     </Box>
 
@@ -166,14 +166,16 @@ export default function Services() {
 
 
                 <Box
+                className={style.cardBox}
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: 10,
+                        gap: 5,
                         justifyContent: "center",
                         alignItems: "center",
                         minHeight: "300px",
-                        padding: "30px 100px",
+                        padding: "30px 120px",
+                        
                     }}
                 >
                     {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>

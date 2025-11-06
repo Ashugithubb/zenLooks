@@ -1,9 +1,9 @@
 .button {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-   
-    
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+
 }
 
 .addService {
@@ -19,7 +19,7 @@
   align-items: center !important;
   gap: 6px !important;
   border: none !important;
-margin-top: -12px !important;
+  margin-top: -7px !important;
 }
 
 .addService:hover {
@@ -28,29 +28,31 @@ margin-top: -12px !important;
   transform: translateY(-2px) !important;
 }
 
-@media screen and (max-width: 968px) {
+@media screen and (max-width: 1150px) {
   .addService {
     width: 55% !important;
     padding: 8px 0 !important;
     font-size: 14px !important;
     border-radius: 25px !important;
     justify-content: center !important;
-  margin-top: 17px !important;
+    
   }
 }
+
 @media screen and (max-width: 1668px) {
   .addService {
-    
-    margin-top: -4px !important;
+    margin-top: 8px !important;
   }
 }
+
 @media screen and (max-width: 768px) {
-    .button {
-        display: flex;
-        justify-content: flex-start;
-        align-content: center;
-    }
-    .title :global(.MuiInputBase-root) {
+  .button {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+  }
+
+  .title :global(.MuiInputBase-root) {
     width: 100%;
   }
 

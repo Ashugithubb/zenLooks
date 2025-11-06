@@ -1,18 +1,18 @@
-interface propValue{
-    logo:string,
-    title:string,
-    description:string,
-    duration:number,
-    serviceimagelink:string
+interface propValue {
+    logo: string,
+    title: string,
+    description: string,
+    duration: number,
+    serviceimagelink: string
 }
 
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import style from "./service.module.css"
 
 
-function MyImageBelowCard(prop:propValue) {
+function MyImageBelowCard(prop: propValue) {
     return (
-        <Card
+        <Card className={style.mainCrad}
             sx={{
                 backgroundColor: "rgb(25, 35, 63)",
                 width: "396px",
@@ -34,17 +34,17 @@ function MyImageBelowCard(prop:propValue) {
 
                 <CardContent className={style.content}>
                     <Typography gutterBottom variant="h5" sx={{ color: "white", margin: "28px", fontWeight: 900 }}>
-                     { prop.title}
+                        {prop.title}
                     </Typography>
                     <Typography className={style.description} variant="body2" sx={{ color: "#FFFFFF99", fontSize: "16px" }}>
-                        { prop.description}
+                        {prop.description}
                     </Typography>
 
- 
+
                 </CardContent>
 
             </Box>
-           <Box className={style.duration}>{prop.duration}MIN</Box>
+            <Box className={style.duration}>{prop.duration}MIN</Box>
             <CardMedia
                 component="img"
                 height="160"
@@ -54,7 +54,7 @@ function MyImageBelowCard(prop:propValue) {
                     marginTop: "auto",
                     position: "relative",
                     zIndex: 3,
-                    height:"280px"
+                    height: "280px"
                 }}
             />
         </Card>
