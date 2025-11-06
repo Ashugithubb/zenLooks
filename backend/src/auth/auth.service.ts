@@ -33,7 +33,7 @@ export class AuthService {
         const token = await this.jwtService.sign(payload)
         res.cookie('access_token', token, {
             httpOnly: false,
-            secure: true,
+            secure: false,
             sameSite: 'none',
             domain: 'zen-looks.vercel.app',
             maxAge: 60 * 60 * 1000,

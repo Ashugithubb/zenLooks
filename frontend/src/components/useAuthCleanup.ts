@@ -1,7 +1,10 @@
+"use client"
 import { useEffect } from "react";
-import { useAppDispatch } from "./hook";
+
 import Cookies from "js-cookie";
-import { clearUser } from "../slice/login.slice";
+import { useAppDispatch } from "@/app/redux/hook/hook";
+import { clearUser } from "@/app/redux/slice/login.slice";
+
 
 export default function useAuthCleanup() {
   const dispatch = useAppDispatch()
