@@ -89,8 +89,8 @@ const FiltersComponent = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ paddingTop: "80px", paddingLeft: "40px" }}><UnavailableSlotForm /></Box>
-      <Box sx={{ mt: 2, px: 4 }}>
+      <Box sx={{ paddingTop: "90px", paddingLeft: "53px" }}><UnavailableSlotForm /></Box>
+      <Box sx={{ mt: 2, px: 7 }}>
         <Card
           sx={{
             borderRadius: 3,
@@ -99,7 +99,7 @@ const FiltersComponent = () => {
             mb: 4,
           }}
         >
-          <CardContent>
+          <CardContent >
             <Typography
               variant="h5"
               fontWeight="bold"

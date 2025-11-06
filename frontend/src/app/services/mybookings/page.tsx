@@ -33,7 +33,7 @@ export default function MyBookings() {
     const role = useAppSelector((state) => state.login.auth?.role)
     const router = useRouter()
     useEffect(() => {
-        if (role === undefined || role === "User") {
+        if (role === undefined || role === "Admin") {
             router.push("/services");
         }
     }, [role, router]);
