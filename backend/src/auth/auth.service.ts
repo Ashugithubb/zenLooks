@@ -32,7 +32,7 @@ export class AuthService {
 
         const token = await this.jwtService.sign(payload)
         res.cookie('access_token', token, {
-            httpOnly: false,
+            httpOnly: true,
             secure: true,
             sameSite: 'none',
              maxAge: 60 * 60 * 1000,
