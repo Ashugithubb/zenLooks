@@ -9,7 +9,7 @@ import { BookingRepository } from '../booking/repository/booking.repo';
 import { BookingService } from '../booking/booking.service';
 import { UserService } from '../user/user.service';
 import { Multer } from 'multer';
-import { JwtAuthGuard } from 'src/auth/guard/jwt.auth';
+
 
 @Injectable()
 export class ServicesService {
@@ -60,12 +60,12 @@ export class ServicesService {
     return await this.serviceRepo.findOneBy({ serviceId: id })
   }
 
-  @UseGuards(JwtAuthGuard)
+
   async update(id: number, updateServiceDto: UpdateServiceDto) {
     return await this.serviceRepo.update(id, updateServiceDto);
   }
 
-   @UseGuards(JwtAuthGuard)
+
   async remove(id: number) {
     return await this.serviceRepo.softDelete(id);
   }
