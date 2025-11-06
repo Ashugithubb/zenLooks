@@ -21,7 +21,7 @@ export class AuthController {
     logout(@Res({ passthrough: true }) res: Response) {
         res.clearCookie('access_token', {
             httpOnly: true,
-            secure: false,
+            secure: true,
             sameSite: 'none',
             path: '/',
         });
