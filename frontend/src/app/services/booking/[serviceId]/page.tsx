@@ -79,13 +79,11 @@ export default function Bookings() {
         return disabledRanges.some((range) => {
             const rangeStart = normalize(range.start);
             const rangeEnd = normalize(range.end);
-
-            // allow back-to-back
             const noOverlap =
                 requestedEnd.isSame(rangeStart) || requestedEnd.isBefore(rangeStart) ||
                 requestedStart.isSame(rangeEnd) || requestedStart.isAfter(rangeEnd);
 
-            return !noOverlap; // means overlap → disable
+            return !noOverlap; 
         });
     };
 

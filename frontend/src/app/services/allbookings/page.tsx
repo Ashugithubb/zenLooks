@@ -89,8 +89,51 @@ const FiltersComponent = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ paddingTop: "90px", paddingLeft: "53px" }}><UnavailableSlotForm /></Box>
-      <Box sx={{ mt: 2, px: 7 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "column", md: "row" },
+          justifyContent: "space-between",
+          alignItems: { xs: "center", md: "center" },
+          gap: { xs: 0, sm: 1, md: 0 },
+          mx: { xs: 2, sm: 5, md: 10 },
+          mt: { xs: 13, sm: 10, md: 12 },
+          textAlign: { xs: "center", md: "left" },
+        }}
+      >
+        <Box>
+          <Typography
+            variant="h4"
+            fontSize={{ xs: 24, sm: 30, md: 40 }}
+            fontWeight={700}
+            color="#eea84f"
+          >
+            Salon Bookings
+          </Typography>
+          <Typography
+            variant="caption"
+            fontSize={{ xs: 13, sm: 15, md: 17 }}
+            fontWeight={300}
+            color="#99838f"
+          >
+            Manage and track all your appointments
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-end" },
+            width: { xs: "auto", sm: "auto", md: "auto" },
+            mt: { xs: 2, md: 0 },
+          }}
+        >
+          <UnavailableSlotForm />
+        </Box>
+      </Box>
+
+
+      <Box sx={{ mt: 3, px: 7 }}>
         <Card
           sx={{
             borderRadius: 3,
