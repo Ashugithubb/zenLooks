@@ -15,10 +15,10 @@ export default function MyBookings() {
     const router = useRouter()
     useEffect(() => {
         if (role === undefined || role === "Admin") {
-            router.push("/services");
+            router.replace("/services");
         }
     }, [role, router]);
-    
+
     const booking = useAppSelector((state) => state.allBooking.bookings);
     const dispatch = useAppDispatch();
 

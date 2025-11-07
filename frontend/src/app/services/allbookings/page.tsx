@@ -31,7 +31,7 @@ const FiltersComponent = () => {
   const router = useRouter()
   useEffect(() => {
     if (role === undefined || role === "User") {
-      router.push("/services");
+      router.replace("/services");
     }
   }, [role, router]);
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
