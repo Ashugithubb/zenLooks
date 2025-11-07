@@ -70,8 +70,8 @@ export default function Bookings() {
         }));
 
 
-    const isTimeDisabled = (time:any) => {
-        const serviceDuration = clickedService !.time;
+    const isTimeDisabled = (time: any) => {
+        const serviceDuration = clickedService!.time;
 
         const requestedStart = normalize(time);
         const requestedEnd = normalize(time.add(serviceDuration, "minute"));
@@ -83,7 +83,7 @@ export default function Bookings() {
                 requestedEnd.isSame(rangeStart) || requestedEnd.isBefore(rangeStart) ||
                 requestedStart.isSame(rangeEnd) || requestedStart.isAfter(rangeEnd);
 
-            return !noOverlap; 
+            return !noOverlap;
         });
     };
 
@@ -170,10 +170,15 @@ export default function Bookings() {
         <>
             <Navbar />
             <ToastContainer />
-            <Box sx={{
-                textAlign: "center", mt: 8, py: 6,
-                background: "linear-gradient(180deg, #fffaf3, #ffffff)",
-            }}>
+            <Box
+                sx={{
+                    textAlign: "center",
+                    mt: { xs: 6, sm: 6, md: 8 },
+                    py: { xs: 4, sm: 5, md: 6 },
+                    background: "linear-gradient(180deg, #fffaf3, #ffffff)",
+                    px: { xs: 2, sm: 4 }, // padding for small screens
+                }}
+            >
                 <Typography
                     variant="h3"
                     sx={{
@@ -181,6 +186,12 @@ export default function Bookings() {
                         color: "#1a1a1a",
                         letterSpacing: "0.5px",
                         fontFamily: "'Playfair Display', serif",
+                        fontSize: {
+                            xs: "1.8rem",
+                            sm: "2.4rem",
+                            md: "3rem",
+                        },
+                        lineHeight: { xs: 1.2, sm: 1.3 },
                     }}
                 >
                     Book Your{" "}
@@ -201,9 +212,12 @@ export default function Bookings() {
                     variant="subtitle1"
                     sx={{
                         color: "#6b6b6b",
-                        mt: 1,
+                        mt: { xs: 1, sm: 2 },
                         fontFamily: "'Poppins', sans-serif",
-
+                        fontSize: { xs: "0.9rem", sm: "1rem" },
+                        maxWidth: "600px",
+                        mx: "auto", // center the text
+                        px: { xs: 1, sm: 0 },
                     }}
                 >
                     Reserve your appointment with our expert stylists and transform your look today

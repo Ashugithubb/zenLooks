@@ -99,6 +99,10 @@
   .searchField {
     width: 55% !important;
   }
+  .allBooking{
+    margin-left: 10px !important;
+    background-color: aquamarine;
+  }
 
   .myBooking {
     width: 55% !important;
@@ -124,4 +128,10 @@
 
 
 
+}
+@media screen and (max-width: 480px) {
+  .allBooking{
+    margin-left: 10px !important;
+    background-color: aquamarine;
+  }
 }
