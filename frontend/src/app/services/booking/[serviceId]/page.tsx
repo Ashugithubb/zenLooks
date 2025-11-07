@@ -402,9 +402,9 @@ export default function Bookings() {
                                 <TimePicker
                                     value={selectedSlot}
                                     onChange={(newTime) => {
-                                        if (newTime) {
+                                        if (newTime && !shouldDisableTime(newTime, "minutes"))
                                             setSelectedSlot(newTime);
-                                        }
+
                                     }}
                                     shouldDisableTime={shouldDisableTime}
                                     minutesStep={15}
