@@ -26,6 +26,14 @@ interface FilterValues {
 }
 
 const FiltersComponent = () => {
+
+  const role = useAppSelector((state) => state.login.auth?.role)
+  const router = useRouter()
+  useEffect(() => {
+    if (role === undefined || role === "User") {
+      router.push("/services");
+    }
+  }, [role, router]);
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
   const { total, page, limit } = useAppSelector((state) => state.allBooking);
   const dispatch = useAppDispatch();
@@ -95,13 +103,7 @@ const FiltersComponent = () => {
     };
   }, [loading]);
 
-  const role = useAppSelector((state) => state.login.auth?.role)
-  const router = useRouter()
-  useEffect(() => {
-    if (role === undefined || role === "User") {
-      router.push("/services");
-    }
-  }, [role, router]);
+
   return (
     <>
       <Navbar />
