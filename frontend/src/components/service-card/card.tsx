@@ -31,25 +31,16 @@ export default function ImgMediaCard(prop: cardProp) {
   const role = useAppSelector((state) => state.login.auth?.role);
   const router = useRouter();
 
+  
   const handleDelete = async () => {
     if (confirm(`Are you sure you want to delete "${prop.title}"?`)) {
       const res = await dispatch(deleteServiceThunk(prop.serviceId));
       if (res.meta.requestStatus === "fulfilled") {
         toast.success("Service deleted successfully!");
-      } else {
-        if (res.meta.requestStatus == "rejected") {
-          toast.error("Session expired. Please log in again.")
-
-          setTimeout(() => {
-            localStorage.clear();
-            dispatch(clearUser())
-          }, 3000)
-
-        }
-        toast.error("Failed to delete service");
-      }
+      } else {toast.error((res.payload as string) || "Failed to delete service");}
     }
   };
+
 
   const handleEdit = () => {
     dispatch(setEditOpen(true));

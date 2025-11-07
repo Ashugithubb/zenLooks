@@ -57,7 +57,7 @@ export default function Navbar() {
           position: "sticky",
           top: 0,
           backgroundColor: "black",
-          zIndex: 1000,
+          zIndex: 10000000 ,
         }}
       >
         {/* Logo */}

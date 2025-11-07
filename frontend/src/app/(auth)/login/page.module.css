@@ -17,10 +17,10 @@
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 700 !important;
   color: #c49a3a;
-  margin-bottom: 10px;
+ 
 }
 
 .subtitle {
@@ -41,7 +41,7 @@
 
 .btn {
   background-color: #c49a3a !important;
-  color: #2d2d2d !important;
+  color: white !important;
   font-weight: 600 !important;
   border-radius: 10px !important;
   text-transform: none !important;
