@@ -5,7 +5,7 @@ import { Service } from '../services/entities/service.entity';
 import { Booking } from '../booking/entities/booking.entity';
 import { UnavailableSlot } from '../unavailable-slots/entities/unavailable-slot.entity';
 import { ServiceDelivered } from '../service-delivered/entities/service-delivered.entity';
-import { EmailVerifiaction } from 'src/email-verifiaction/entities/email-verifiaction.entity';
+import { EmailVerifiaction } from '../email-verifiaction/entities/email-verifiaction.entity';
 
 export const typeOrmConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],

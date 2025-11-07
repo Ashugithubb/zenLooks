@@ -12,7 +12,7 @@ import { BookingService } from '../booking/booking.service';
 import { AuthService } from '../auth/auth.service';
 import { Response } from 'express';
 
-import { MailService } from 'src/mail/mail.service';
+import { MailService } from '../mail/mail.service';
 @Injectable()
 export class UserService {
   constructor(private readonly userRepo: UserRepository,

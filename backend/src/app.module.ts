@@ -40,8 +40,8 @@ import { EmailVerifiactionModule } from './email-verifiaction/email-verifiaction
 
 
       template: {
-        dir: process.cwd() + '/src/mail/template',
-        // dir: join(__dirname, 'mail', 'template'),
+        // dir: process.cwd() + '/src/mail/template',
+        dir: join(__dirname, 'mail', 'template'),
         adapter: new HandlebarsAdapter(),
         options: {
           strict: true,

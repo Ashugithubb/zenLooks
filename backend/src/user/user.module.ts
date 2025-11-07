@@ -7,7 +7,7 @@ import { User } from './entities/user.entity';
 import { HasingModule } from '../hasing/hasing.module';
 import { BookingModule } from '../booking/booking.module';
 import { AuthModule } from '../auth/auth.module';
-import { MailModule } from 'src/mail/mail.module';
+import { MailModule } from '../mail/mail.module';
 
 
 

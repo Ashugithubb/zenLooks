@@ -1,13 +1,13 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEmailVerifiactionDto } from './dto/create-email-verifiaction.dto';
 import { UpdateEmailVerifiactionDto } from './dto/update-email-verifiaction.dto';
-import { MailService } from 'src/mail/mail.service';
+import { MailService } from '../mail/mail.service';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 import { VerifyOtpDto } from './dto/verify-otp';
 import { EmailVerifiaction } from './entities/email-verifiaction.entity';
-import { UserRepository } from 'src/user/repository/user.repo';
+import { UserRepository } from '../user/repository/user.repo';
 
 @Injectable()
 export class EmailVerifiactionService {
