@@ -70,8 +70,8 @@ export default function Bookings() {
         }));
 
 
-    const isTimeDisabled = (time:any) => {
-        const serviceDuration = clickedService !.time;
+    const isTimeDisabled = (time: any) => {
+        const serviceDuration = clickedService!.time;
 
         const requestedStart = normalize(time);
         const requestedEnd = normalize(time.add(serviceDuration, "minute"));
@@ -83,7 +83,7 @@ export default function Bookings() {
                 requestedEnd.isSame(rangeStart) || requestedEnd.isBefore(rangeStart) ||
                 requestedStart.isSame(rangeEnd) || requestedStart.isAfter(rangeEnd);
 
-            return !noOverlap; 
+            return !noOverlap;
         });
     };
 
@@ -152,7 +152,11 @@ export default function Bookings() {
 
         const testStart = normalize(dayjs(bookingDate).hour(timeValue.hour()).minute(timeValue.minute()));
         const testEnd = normalize(testStart.add(serviceDuration, "minute"));
-
+        
+        const now = dayjs();
+        if (bookingDate.isSame(now, "day") && testStart.isBefore(now)) {
+            return true;
+        }
         return disabledRanges.some(range => {
             const rangeStart = normalize(range.start);
             const rangeEnd = normalize(range.end);
