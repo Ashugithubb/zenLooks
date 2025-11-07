@@ -110,7 +110,7 @@ export default function SignupForm() {
 
     return (
         <>
-            <ToastContainer />
+          
             <Box className={style.signupContainer}>
                 <Box className={style.signupCard}>
                     <Typography className={style.title}>Create Account</Typography>

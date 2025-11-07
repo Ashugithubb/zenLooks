@@ -45,7 +45,7 @@ export class MailService {
       });
 
     } catch (error) {
-      console.error('Failed to send NewsLetter email:', error);
+      console.error('Failed to send  email:', error);
     }
   }
 

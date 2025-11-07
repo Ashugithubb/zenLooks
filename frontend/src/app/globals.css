@@ -6,6 +6,7 @@
 html, body {
   overflow-x: hidden;
 }
+
 .swiper-pagination-bullet-active {
   background: #d5a275 !important;   /* apna color */
 }

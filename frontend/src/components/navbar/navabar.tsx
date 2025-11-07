@@ -44,7 +44,7 @@ export default function Navbar() {
 
   return (
     <>
-      <ToastContainer />
+     
       <Box
         className={style.navbar}
         sx={{
@@ -201,6 +201,7 @@ export default function Navbar() {
           )}
         </Box>
       </Drawer>
+       <ToastContainer />
     </>
   );
 }

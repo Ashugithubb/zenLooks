@@ -27,6 +27,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
   const dispatch = useAppDispatch();
   const handleGenerateOtp = async () => {
     setLoading(true);
+    setOtp("");
     try {
       await dispatch(sendOtpThunk({ id: booking.bookingId }));
       setOtpGenerated(true);
@@ -185,10 +186,21 @@ export default function BookingCard({ booking }: BookingCardProps) {
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <TextField
                 label="Enter OTP"
+                type="number"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
                 size="small"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value.length <= 6) {
+                    setOtp(value);
+                  }
+                }}
+                inputProps={{
+                  inputMode: "numeric",
+                  pattern: "[0-9]*",
+                }}
               />
+
               <Button variant="contained" onClick={handleVerifyOtp} disabled={loading} sx={{ backgroundColor: "#ffb703" }}>
                 Verify OTP
               </Button>

@@ -44,15 +44,10 @@ export default function RootLayout({
           <ToastContainer
             position="top-right"
             autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-
+            className="my-toast"
+            style={{top: '50px',right: '1rem', zIndex: 999999999 }}
           />
+
         </ReduxProvider>
         <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" strategy="beforeInteractive" />
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" strategy="afterInteractive" />

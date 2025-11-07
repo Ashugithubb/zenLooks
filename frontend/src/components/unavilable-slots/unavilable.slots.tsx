@@ -70,14 +70,14 @@ export default function AddUnavailableSlotDialog() {
 
   return (
     <>
-      <ToastContainer />
+
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Button variant="contained" onClick={handleOpen} sx={{ backgroundColor: "#eea84f" }}>
+        <Button variant="contained" onClick={handleOpen} sx={{ backgroundColor: "#eea84f", }}>
           Add Unavailable Slot
         </Button>
 
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-          <DialogTitle>Add Unavailable Slot</DialogTitle>
+          <DialogTitle >Add Unavailable Slot</DialogTitle>
 
           <DialogContent
             sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}
@@ -88,22 +88,25 @@ export default function AddUnavailableSlotDialog() {
               control={control}
               render={({ field }) => (
                 <DatePicker
-                  label="Select Date"
+
                   value={field.value ? dayjs(field.value) : null}
                   onChange={(newDate: Dayjs | null) =>
-                    field.onChange(newDate ? newDate.format("YYYY-MM-DD") : "")
+                    field.onChange(newDate ? newDate.format("YYYY-MM-DD") : null)
                   }
-
                   disablePast
                   slotProps={{
                     textField: {
                       error: !!errors.date,
                       helperText: errors.date?.message,
+                      variant: "outlined",
+                      placeholder: "",
+                      InputLabelProps: { shrink: true },
                     },
                   }}
                 />
               )}
             />
+
 
 
             <Controller
