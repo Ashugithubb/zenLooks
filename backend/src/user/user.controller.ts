@@ -5,6 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateBookingDto } from '../booking/dto/create-booking.dto';
 import { JwtAuthGuard } from '../auth/guard/jwt.auth';
 import { Response } from 'express';
+
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
@@ -13,6 +14,9 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto, @Res({ passthrough: true }) res: Response) {
     return this.userService.create(createUserDto, res);
   }
+
+
+
 
   @Get()
   findAll() {

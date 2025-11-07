@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Verification OTP</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .header {
+        background-color: #1976d2;
+        color: #ffffff;
+        text-align: center;
+        padding: 24px 16px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+      }
+
+      .content {
+        padding: 30px;
+        color: #333333;
+        text-align: left;
+      }
+
+      .content h2 {
+        margin-top: 0;
+        color: #1976d2;
+        font-size: 20px;
+      }
+
+      .otp-box {
+        background-color: #f0f6ff;
+        border: 1px dashed #1976d2;
+        color: #1976d2;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 8px;
+        text-align: center;
+        margin: 24px 0;
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .content p {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .footer {
+        background-color: #f1f1f1;
+        text-align: center;
+        padding: 16px;
+        font-size: 14px;
+        color: #777777;
+      }
+
+      .footer a {
+        color: #1976d2;
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .content {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Verify Your Email</h1>
+      </div>
+
+      <div class="content">
+        <h2>Hello {{name}},</h2>
+        <p>
+          Thank you for registering with <strong>ZenLook</strong>!  
+          To complete your signup, please use the OTP below to verify your email address.
+        </p>
+
+        <div class="otp-box">
+          {{otp}}
+        </div>
+
+        <p> 
+          Please do not share it with anyone.
+        </p>
+
+        <p>
+          If you didn’t request this, you can safely ignore this email.
+        </p>
+      </div>
+
+      <div class="footer">
+        <p>
+          &copy; {{year}} zenLook. All rights reserved.  
+          <br />
+          Need help? <a href="mailto:support@yourapp.com">Contact Support</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

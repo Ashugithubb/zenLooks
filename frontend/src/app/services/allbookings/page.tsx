@@ -15,6 +15,7 @@ import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots"
 import Grid from "@mui/material/Grid";
 import style from "./page.module.css"
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface FilterValues {
   search: string;
@@ -57,8 +58,24 @@ const FiltersComponent = () => {
       endDate: filterValues.endDate ? filterValues.endDate.toISOString() : undefined,
     };
 
-    dispatch(getAllBookings(formattedFilters));
+    const fetchBookings = async () => {
+      try {
+        const res = await dispatch(getAllBookings(formattedFilters));
+        if (res.meta.requestStatus === "rejected") {
+          localStorage.clear();
+          toast.error(res.payload || "seesion Expired");
+          return;
+        }
+
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+        toast.error("Something went wrong while fetching bookings");
+      }
+
+    };
+    fetchBookings()
   }, [filterValues, dispatch, currentPage]);
+
 
   const [open, setOpen] = useState(false);
 
@@ -82,7 +99,6 @@ const FiltersComponent = () => {
   const router = useRouter()
   useEffect(() => {
     if (role === undefined || role === "User") {
-      console.log("object")
       router.push("/services");
     }
   }, [role, router]);

@@ -11,15 +11,19 @@ import { CreateBookingDto } from '../booking/dto/create-booking.dto';
 import { BookingService } from '../booking/booking.service';
 import { AuthService } from '../auth/auth.service';
 import { Response } from 'express';
+
+import { MailService } from 'src/mail/mail.service';
 @Injectable()
 export class UserService {
   constructor(private readonly userRepo: UserRepository,
     private readonly hasingRepo: HasingService,
     @Inject(forwardRef(() => AuthService))
-    private readonly authService: AuthService) { }
+    private readonly authService: AuthService,
+   ) { }
 
 
-  async create(createUserDto: CreateUserDto,res: Response) {
+
+  async create(createUserDto: CreateUserDto, res: Response) {
     const { email, password } = createUserDto;
     const existing = await this.userRepo.findOneBy({ email });
     if (existing) throw new ForbiddenException("already exists");
@@ -31,12 +35,12 @@ export class UserService {
       throw new ConflictException();
     }
 
-   const user =  await this.userRepo.save(createUserDto);
+    const user = await this.userRepo.save(createUserDto);
 
     if (createUserDto.firebase) {
-    const payload = { id: user.userId, email: user.email, role: user.role };
-    await this.authService.login(payload, res); 
-}
+      const payload = { id: user.userId, email: user.email, role: user.role };
+      await this.authService.login(payload, res);
+    }
     return { "msg": "User Registred Successfully" }
   }
 

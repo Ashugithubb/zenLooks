@@ -5,6 +5,7 @@ import { Service } from './services/entities/service.entity';
 import { Booking } from './booking/entities/booking.entity';
 import { UnavailableSlot } from './unavailable-slots/entities/unavailable-slot.entity';
 import { ServiceDelivered } from './service-delivered/entities/service-delivered.entity';
+import { EmailVerifiaction } from './email-verifiaction/entities/email-verifiaction.entity';
 
 dotenv.config();
 const isProduction = process.env.NODE_ENV === 'production';
@@ -16,7 +17,7 @@ const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [User, Service, Booking, UnavailableSlot, ServiceDelivered],
+    entities: [User, Service, Booking, UnavailableSlot, ServiceDelivered,EmailVerifiaction],
     migrations: [__dirname + '/migrations/*.{ts,js}'],
     synchronize: true,
     ssl: isProduction

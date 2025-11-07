@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateMailDto } from './dto/create-mail.dto';
 import { UpdateMailDto } from './dto/update-mail.dto';
 import { MailerService } from '@nestjs-modules/mailer';
+import { send } from 'process';
 @Injectable()
 export class MailService {
   constructor(private readonly mailerService: MailerService) { }
@@ -112,5 +113,26 @@ export class MailService {
     }
   }
 
+  async sendOtpEmail(email: string, userName: string, otp: string): Promise<void> {
+    try {
+      const context = {
+        name: userName,
+        otp: otp,
+        year: new Date().getFullYear(),
+      };
 
+      await this.mailerService.sendMail({
+        to: email,
+        subject: 'Your ZenLook Email Verification OTP',
+        template: 'emailv', 
+        context,
+      });
+
+
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
+
