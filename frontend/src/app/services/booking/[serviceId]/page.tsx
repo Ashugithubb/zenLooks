@@ -176,7 +176,7 @@ export default function Bookings() {
                     mt: { xs: 6, sm: 6, md: 8 },
                     py: { xs: 4, sm: 5, md: 6 },
                     background: "linear-gradient(180deg, #fffaf3, #ffffff)",
-                    px: { xs: 2, sm: 4 }, // padding for small screens
+                    px: { xs: 2, sm: 4 }, 
                 }}
             >
                 <Typography
