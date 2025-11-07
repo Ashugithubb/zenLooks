@@ -404,19 +404,26 @@ export default function Bookings() {
                                     onChange={(newTime) => {
                                         if (!newTime) return;
 
-                                        // Extract hour
-                                        const selectedHour = newTime.hour();
-
-                                        // Get all minute options (0, 15, 30, 45)
                                         const minuteOptions = [0, 15, 30, 45];
 
-                                        // Find the first minute in this hour that is NOT disabled
+                                        // Check if ALL minutes in this hour are disabled
+                                        const allMinutesDisabled = minuteOptions.every((m) => {
+                                            const testTime = dayjs(newTime).minute(m);
+                                            return shouldDisableTime(testTime, "minutes");
+                                        });
+
+                                        if (allMinutesDisabled) {
+                                            // If all minutes are disabled for that hour → reset selection
+                                            setSelectedSlot(null);
+                                            return;
+                                        }
+
+                                        // Otherwise, find the first available minute and use it
                                         const firstAvailableMinute = minuteOptions.find((m) => {
                                             const testTime = dayjs(newTime).minute(m);
                                             return !shouldDisableTime(testTime, "minutes");
                                         });
 
-                                        // If the selected time’s minutes are disabled, switch to the first available minute
                                         const finalTime = shouldDisableTime(newTime, "minutes")
                                             ? dayjs(newTime).minute(firstAvailableMinute ?? 0)
                                             : newTime;
@@ -429,7 +436,6 @@ export default function Bookings() {
                                     maxTime={dayjs("21:00", "HH:mm")}
                                     ampm={false}
                                 />
-
 
                             </LocalizationProvider>
 
