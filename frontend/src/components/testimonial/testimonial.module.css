@@ -99,7 +99,7 @@
     }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1500px) {
 
     .left {
         display: flex;
@@ -110,28 +110,28 @@
     .right {
         display: flex;
         flex-direction: column;
-        gap: 200px;
+        gap: 250px;
     }
 
     .shapeA {
-        width: 155px;
-        height: 161px;
+        width: 150px !important;
+        height: 156px !important;
     }
 
     .shapeB {
-        width: 160px;
-        height: 171px;
+        width: 155px !important;
+        height: 166px !important;
         transform: translateX(80px);
     }
 
     .shapeC {
-        width: 161px;
-        height: 171px;
+        width: 156px;
+        height: 166px;
     }
 
     .leafShape {
-        width: 94px;
-        height: 114px;
+        width: 89px;
+        height: 109px;
         transform: translateY(16px);
     }
 
@@ -200,3 +200,4 @@
         font-size: 16px;
     }
 }
+

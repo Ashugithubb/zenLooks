@@ -69,7 +69,7 @@ export default function Services() {
             </Typography>
 
             <Box className={style.body}>
-                <ToastContainer />
+              
                 <Box className={style.mainBOX}
                     sx={{
 

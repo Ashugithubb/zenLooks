@@ -71,11 +71,11 @@
 
 @media screen and (max-width: 768px) {
   .logo {
-    font-size: 12px !important;
+    font-size: 20px !important;
   }
 
   .link {
-    font-size: 9px !important;
+    font-size: 19px !important;
   }
 
   .right {
@@ -100,11 +100,11 @@
 
 @media screen and (max-width: 328px) {
   .logo {
-    font-size: 11px !important;
+    font-size: 15px !important;
   }
 
   .link {
-    font-size: 9px !important;
+    font-size: 15px !important;
   }
 
   .right {
@@ -113,15 +113,9 @@
     align-items: center;
   }
 
-  .loginBtn {
-    padding: 2px 7px !important;
-    border-radius: 10px !important;
-    font-size: 6px !important;
-
-  }
 
   .navbar {
-    padding: 0 18px !important;
+    padding: 0 20px !important;
 
   }
 

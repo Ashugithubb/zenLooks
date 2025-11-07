@@ -44,3 +44,51 @@ export const verifyOtpThunk = createAsyncThunk(
         }
     }
 );
+
+
+interface emailOtpSchema {
+    name?:string
+    email:string
+    otp?:string
+}
+
+export const sendEmailOtpThunk = createAsyncThunk(
+    "auth/sendOtp",
+    async (data: emailOtpSchema, thunkAPI) => {
+        try {
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/email-verifiaction`,
+                data,
+                { withCredentials: true }
+            );
+            return response.data;
+        } catch (error: any) {
+            const errorMessage =
+                error.response?.data?.message || 'Something went wrong';
+            return thunkAPI.rejectWithValue(errorMessage);
+        }
+    }
+);
+
+
+export const verifyEmailOtpThunk = createAsyncThunk(
+   "auth/verifyOtp",
+    async (data: emailOtpSchema, thunkAPI) => {
+        try {
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/email-verifiaction/otp`,
+                data,
+                { withCredentials: true }
+            );
+            return response.data;
+        } catch (error: any) {
+            const errorMessage =
+                error.response?.data?.message || 'Something went wrong';
+            return thunkAPI.rejectWithValue(errorMessage);
+        }
+    }
+);
+
+
+
+

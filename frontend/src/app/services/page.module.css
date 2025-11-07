@@ -66,6 +66,7 @@
 @media screen and (max-width: 1050px) {
   .seeAll {
     margin-top: 80px !important;
+
   }
 
   .cardBox {
@@ -99,6 +100,10 @@
   .searchField {
     width: 55% !important;
   }
+  .allBooking{
+    margin-left: 10px !important;
+    background-color: aquamarine;
+  }
 
   .myBooking {
     width: 55% !important;
@@ -124,4 +129,14 @@
 
 
 
+}
+@media screen and (max-width: 480px) {
+  .allBooking{
+    margin-left: 10px !important;
+    background-color: aquamarine;
+  }
+  .seeAll {
+    font-size: 40px !important;
+    
+  }
 }

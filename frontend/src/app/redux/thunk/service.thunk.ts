@@ -28,7 +28,8 @@ export const deleteServiceThunk = createAsyncThunk(
   async (serviceId: number, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/services/${serviceId}`
+        `${process.env.NEXT_PUBLIC_API_URL}/services/${serviceId}`,
+           { withCredentials: true }
       );
       return serviceId;
     } catch (error: any) {

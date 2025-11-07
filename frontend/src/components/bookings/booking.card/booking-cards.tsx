@@ -9,64 +9,69 @@ import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { toast } from "react-toastify";
 import style from './booking.module.css'
 interface BookingCardProps {
-    booking: Booking;
+  booking: Booking;
 }
 import PersonIcon from '@mui/icons-material/Person';
 import StyleIcon from '@mui/icons-material/Style';
 export default function BookingCard({ booking }: BookingCardProps) {
-    const [otp, setOtp] = useState("");
-    const [otpGenerated, setOtpGenerated] = useState(false);
-    const [otpVerified, setOtpVerified] = useState(false);
-    const [loading, setLoading] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpGenerated, setOtpGenerated] = useState(false);
+  const [otpVerified, setOtpVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const bookingDateTime = new Date(`${booking?.date}T${booking?.slot}`);
-    const gracePeriodMs = (booking?.service?.time + 5) * 60 * 1000;
-    const bookingEndTime = new Date(bookingDateTime.getTime() + gracePeriodMs);
-    const isExpired = bookingEndTime.getTime() < new Date().getTime();
+  const bookingDateTime = new Date(`${booking?.date}T${booking?.slot}`);
+  const gracePeriodMs = (booking?.service?.time + 5) * 60 * 1000;
+  const bookingEndTime = new Date(bookingDateTime.getTime() + gracePeriodMs);
+  const isExpired = bookingEndTime.getTime() < new Date().getTime();
 
-    const dispatch = useAppDispatch();
-    const handleGenerateOtp = async () => {
-        setLoading(true);
-        try {
-            await dispatch(sendOtpThunk({ id: booking.bookingId }));
-            setOtpGenerated(true);
-        } catch (err) {
-            console.error(err);
-            alert("Failed to generate OTP");
-        } finally {
-            setLoading(false);
-        }
-    };
+  const dispatch = useAppDispatch();
+  const handleGenerateOtp = async () => {
+    setLoading(true);
+    setOtp("");
+    try {
+      await dispatch(sendOtpThunk({ id: booking.bookingId }));
+      setOtpGenerated(true);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to generate OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleVerifyOtp = async () => {
+    setLoading(true);
+    if (otp.trim().length == 0) {
+      alert("Please Enter Otp");
+      setLoading(false);
+      return
+    }
+    const res = await dispatch(verifyOtpThunk({ id: booking?.bookingId, otp }));
+    if (res.meta.requestStatus === "fulfilled") {
+      dispatch(getAllBookings({}))
+      setOtpVerified(true);
+      alert("OTP verified successfully!");
+      window.location.reload();
+    }
+    else {
+      toast.error(res.payload || "Invalid OTP");
+      setLoading(false);
+    }
+  };
 
-    const handleVerifyOtp = async () => {
-        setLoading(true);
-        const res = await dispatch(verifyOtpThunk({ id: booking?.bookingId, otp }));
-        if (res.meta.requestStatus === "fulfilled") {
-            dispatch(getAllBookings({}))
-            setOtpVerified(true);
-            alert("OTP verified successfully!");
-            window.location.reload();
-        }
-        else {
-            toast.error(res.payload || "Invalid OTP");
-            setLoading(false);
-        }
-    };
-  
   const discountedPrice =
     booking?.service?.price -
     (booking?.service?.price * booking?.service?.discount) / 100;
 
 
-    return (
-        <Card className={style.booking}>
-      
+  return (
+    <Card className={style.booking}>
+
       <Box sx={{ position: "relative" }}>
         <CardMedia
-          component="img"  
+          component="img"
           image={booking?.service?.imageUrl ?? ""}
           alt={booking?.service?.title}
-          sx={{ borderRadius: "16px 16px 0 0" , objectFit: "cover",height:300}}
+          sx={{ borderRadius: "16px 16px 0 0", objectFit: "cover", height: 300 }}
         />
         {booking?.service?.discount > 0 && (
           <Box
@@ -95,21 +100,21 @@ export default function BookingCard({ booking }: BookingCardProps) {
         </Typography>
 
         <Typography
-  variant="body2"
-  color="text.secondary"
-  sx={{
-    display: "-webkit-box",
-    WebkitLineClamp: 4, 
-    WebkitBoxOrient: "vertical",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    minHeight: "60px", 
-  }}
->
-  {booking?.service?.description}
-</Typography>
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: "-webkit-box",
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            minHeight: "60px",
+          }}
+        >
+          {booking?.service?.description}
+        </Typography>
 
-       
+
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography sx={{ fontSize: "1.2rem", fontWeight: 700 }}>
             ₹{discountedPrice.toFixed(1)}
@@ -132,7 +137,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
           {booking?.service?.time} min
         </Typography>
 
-       
+
 
         {/* Booking Info */}
         <Box>
@@ -149,7 +154,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
           </Typography>
         </Box>
 
-   
+
 
         {/* User Info */}
         <Box>
@@ -181,11 +186,22 @@ export default function BookingCard({ booking }: BookingCardProps) {
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <TextField
                 label="Enter OTP"
+                type="number"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
                 size="small"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value.length <= 6) {
+                    setOtp(value);
+                  }
+                }}
+                inputProps={{
+                  inputMode: "numeric",
+                  pattern: "[0-9]*",
+                }}
               />
-              <Button variant="contained" onClick={handleVerifyOtp} disabled={loading}>
+
+              <Button variant="contained" onClick={handleVerifyOtp} disabled={loading} sx={{ backgroundColor: "#ffb703" }}>
                 Verify OTP
               </Button>
               <Button
@@ -216,5 +232,5 @@ export default function BookingCard({ booking }: BookingCardProps) {
         </Box>
       </CardContent>
     </Card>
-    );
+  );
 }

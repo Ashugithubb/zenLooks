@@ -39,10 +39,10 @@ export default function Footer() {
                         </Box>
 
                         <Box className={style.social}>
-                            <a href="https://instagram.com" target="_blank"><InstagramIcon className={style.iconWhite} /></a>
-                            <a href="https://facebook.com" target="_blank"><FacebookOutlinedIcon className={style.fbIcon} /></a>
-                            <a href="https://twitter.com" target="_blank"><img src="./x-social-media-logo-icon 1.svg" className={style.socialImg} /></a>
-                            <a href="https://twitter.com" target="_blank"><img src="./69cb8fbc8de12644eb9dd67bae58ce68.jpg" className={style.socialImg} /></a>
+                            <a href="https://instagram.com" target="_blank"><img src="./i.svg" height={"30px"} width={"30px"} /></a>
+                            <a href="https://facebook.com" target="_blank"><img src="./f.svg" height={"30px"} width={"30px"} /></a>
+                            <a href="https://twitter.com" target="_blank"><img src="./x-social-media-logo-icon 1.svg" height={"30px"} width={"30px"} /></a>
+                            <a href="https://youtube.com" target="_blank"><img src="./u.svg" height={"30px"} width={"30px"} /></a>
                         </Box>
                     </Box>
 
@@ -57,7 +57,7 @@ export default function Footer() {
 
                     <Box className={style.second}>
                         <h3>Services</h3>
-                        <Link href="/"  className={style.link}>Oil Massage</Link>
+                        <Link href="/" className={style.link}>Oil Massage</Link>
                         <Link href="/#about" className={style.link}>Skin Protection</Link>
                         <Link href="/#footer" className={style.link}>Body Massage</Link>
                         <Link href="/services" className={style.link}>Revitalize Facial</Link>
@@ -66,10 +66,10 @@ export default function Footer() {
 
                     <Box className={style.third}>
                         <h3>Working Hrs</h3>
-                        <p  className={style.third}>Monday – Thursday: 10:00 AM – 5:00 PM</p>
-                        <p  className={style.third}>Saturday: 10:00 AM – 5:00 PM</p>
-                        <p  className={style.third}>Sunday: 10:00 AM – 5:00 PM</p>
-                        <p  className={style.third}>Off Day: 2:00 PM – 5:00 PM</p>
+                        <p className={style.third}>Monday – Thursday: 10:00 AM – 5:00 PM</p>
+                        <p className={style.third}>Saturday: 10:00 AM – 5:00 PM</p>
+                        <p className={style.third}>Sunday: 10:00 AM – 5:00 PM</p>
+                        <p className={style.third}>Off Day: 2:00 PM – 5:00 PM</p>
                     </Box>
                 </Box>
 

@@ -9,6 +9,16 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function MyBookings() {
+
+
+    const role = useAppSelector((state) => state.login.auth?.role)
+    const router = useRouter()
+    useEffect(() => {
+        if (role === undefined || role === "Admin") {
+            router.replace("/services");
+        }
+    }, [role, router]);
+
     const booking = useAppSelector((state) => state.allBooking.bookings);
     const dispatch = useAppDispatch();
 
@@ -30,13 +40,7 @@ export default function MyBookings() {
     }, [loading]);
 
 
-    const role = useAppSelector((state) => state.login.auth?.role)
-    const router = useRouter()
-    useEffect(() => {
-        if (role === undefined || role === "Admin") {
-            router.push("/services");
-        }
-    }, [role, router]);
+
     return (
         <>
             <Navbar />

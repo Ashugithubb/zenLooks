@@ -7,6 +7,7 @@ import { User } from './entities/user.entity';
 import { HasingModule } from '../hasing/hasing.module';
 import { BookingModule } from '../booking/booking.module';
 import { AuthModule } from '../auth/auth.module';
+import { MailModule } from '../mail/mail.module';
 
 
 
@@ -14,6 +15,6 @@ import { AuthModule } from '../auth/auth.module';
   imports:[TypeOrmModule.forFeature([User]),HasingModule,forwardRef(()=>AuthModule)],
   controllers: [UserController],
   providers: [UserService,UserRepository],
-  exports:[UserService]
+  exports:[UserService,UserRepository]
 })
 export class UserModule {}

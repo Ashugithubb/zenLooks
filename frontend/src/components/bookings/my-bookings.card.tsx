@@ -54,24 +54,35 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
           <Typography variant="body2" color="textSecondary">
             {booking?.service?.description}
           </Typography>
-          <Typography variant="subtitle1">
-            Price: <CurrencyRupeeIcon fontSize="small" />
-            {booking?.service?.price}
-            {booking?.service?.discount != 0 && (
+          <Typography variant="subtitle1" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            Price:
+            {booking?.service?.discount ? (
               <>
-                {" "}
-                <span style={{ color: "black", fontWeight: 500 }}>
-                  (Discount: {booking?.service?.discount}%)
+                <span
+                  style={{
+                    textDecoration: "line-through",
+                    color: "#888",
+                  }}
+                >
+                  <CurrencyRupeeIcon fontSize="small" />
+                  {booking?.service?.price}
                 </span>
-                {" "}Paid:{" "}
                 <span style={{ color: "green", fontWeight: 600 }}>
                   <CurrencyRupeeIcon fontSize="small" />
-                  {booking?.service?.price -
-                    (booking?.service?.price * booking?.service?.discount) / 100}
+                  {(
+                    booking?.service?.price -
+                    (booking?.service?.price * booking?.service?.discount) / 100
+                  ).toFixed(2)}
                 </span>
               </>
+            ) : (
+              <span style={{ fontWeight: 600 }}>
+                <CurrencyRupeeIcon fontSize="small" />
+                {booking?.service?.price}
+              </span>
             )}
           </Typography>
+
 
           <Typography variant="subtitle2">
             Duration: {booking?.service?.time} mins | Category: {booking?.service?.category}

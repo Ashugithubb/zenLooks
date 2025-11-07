@@ -235,7 +235,7 @@ export default function CreateServiceDialog() {
             <Button variant="outlined" className={style.addService} onClick={handleClickOpen}>
                 Add Services<AddIcon />
             </Button>
-            <ToastContainer />
+           
             <Dialog open={open}
                 onClose={handleClose}
                 className={style.form}

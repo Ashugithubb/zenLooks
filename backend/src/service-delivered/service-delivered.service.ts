@@ -50,7 +50,7 @@ export class ServiceDeliveredService {
       },
     });
     if (!latestOtp) throw new NotFoundException();
-console.log("latestOtp",latestOtp," comming otp",otp);
+
     if (otp === latestOtp.otp) {
       await this.serviceDeleviredRepo.update(latestOtp.id, { verified: true });
       await this.bookingRepository.update(booking.bookingId, { bookingStatus: BookingStatus.COMPLETED });

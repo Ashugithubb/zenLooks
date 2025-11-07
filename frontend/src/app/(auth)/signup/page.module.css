@@ -56,7 +56,7 @@
 }
 
 .footerText {
-  margin-top: 25px;
+  margin-top: 15px !important;
   color: #666;
   font-size: 0.95rem;
 }

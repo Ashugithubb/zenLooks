@@ -62,32 +62,6 @@ export default function Bookings() {
     }, [bookingDate, selectedSlot, mobileNumber, id, dispatch]);
 
 
-    const disabledRanges = slots
-        .filter((slot) => bookingDate && dayjs(slot.date).isSame(bookingDate, "day"))
-        .map((slot) => ({
-            start: dayjs(`${slot.date}T${slot.start_time}`),
-            end: dayjs(`${slot.date}T${slot.end_time}`),
-        }));
-
-
-    const isTimeDisabled = (time: any) => {
-        const serviceDuration = clickedService!.time;
-
-        const requestedStart = normalize(time);
-        const requestedEnd = normalize(time.add(serviceDuration, "minute"));
-
-        return disabledRanges.some((range) => {
-            const rangeStart = normalize(range.start);
-            const rangeEnd = normalize(range.end);
-            const noOverlap =
-                requestedEnd.isSame(rangeStart) || requestedEnd.isBefore(rangeStart) ||
-                requestedStart.isSame(rangeEnd) || requestedStart.isAfter(rangeEnd);
-
-            return !noOverlap;
-        });
-    };
-
-
 
     const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -101,11 +75,7 @@ export default function Bookings() {
         setPay(true);
         if (!bookingDate) return setError("Please select a booking date.");
         if (!selectedSlot) return setError("Please select a time.");
-        if (mobileNumber.length !== 10) return setError("Enter a valid 10-digit mobile number.");
-        if (isTimeDisabled(selectedSlot)) {
-            setPay(false);
-            return toast.error("Selected time is unavailable. Please choose another time.");
-        }
+        if (mobileNumber.length !== 10) return setError("Enter a valid 10-digit mobile number.")
 
         try {
             const res = await dispatch(
@@ -141,31 +111,104 @@ export default function Bookings() {
     }
 
     const amount = clickedService.price - (clickedService.price * clickedService.discount) / 100;
-    function normalize(t: any) {
-        return t.second(0).millisecond(0);
-    }
 
-    const shouldDisableTime = (timeValue: any) => {
+
+    //Time Logic
+    // function normalize(t: any) {
+    //     return t.second(0).millisecond(0);
+    // }
+
+    // const disabledRanges = slots
+    //     .filter((slot) => bookingDate && dayjs(slot.date).isSame(bookingDate, "day"))
+    //     .map((slot) => ({
+    //         start: dayjs(`${slot.date}T${slot.start_time}`),
+    //         end: dayjs(`${slot.date}T${slot.end_time}`),
+    //     }));
+
+
+    // const isTimeDisabled = (time: any) => {
+    //     const serviceDuration = clickedService!.time;
+
+    //     const requestedStart = normalize(time);
+    //     const requestedEnd = normalize(time.add(serviceDuration, "minute"));
+
+    //     return disabledRanges.some((range) => {
+    //         const rangeStart = normalize(range.start);
+    //         const rangeEnd = normalize(range.end);
+    //         const noOverlap =
+    //             requestedEnd.isSame(rangeStart) || requestedEnd.isBefore(rangeStart) ||
+    //             requestedStart.isSame(rangeEnd) || requestedStart.isAfter(rangeEnd);
+
+    //         return !noOverlap;
+    //     });
+    // };
+
+    // const shouldDisableTime = (timeValue: any) => {
+    //     if (!bookingDate) return false;
+
+    //     const serviceDuration = clickedService.time;
+    //     const testStart = normalize(dayjs(bookingDate).hour(timeValue.hour()).minute(timeValue.minute()));
+    //     const testEnd = normalize(testStart.add(serviceDuration, "minute"));
+
+
+    //     return disabledRanges.some((range) => {
+    //         const rangeStart = normalize(range.start);
+    //         const rangeEnd = normalize(range.end);
+
+
+    //         const overlaps =
+    //             testStart.isBefore(rangeEnd) &&
+    //             testEnd.isAfter(rangeStart) &&
+    //             !testStart.isSame(rangeEnd);
+
+    //         return overlaps;
+    //     });
+    // };
+
+
+
+    const normalize = (time: any) => dayjs(time).second(0).millisecond(0);
+
+    const disabledRanges = slots
+        .filter(
+            (slot) => bookingDate && dayjs(slot.date).isSame(bookingDate, "day")
+        )
+        .map((slot) => ({
+            start: dayjs(`${slot.date}T${slot.start_time}`),
+            end: dayjs(`${slot.date}T${slot.end_time}`),
+        }));
+
+
+    const shouldDisableTime = (timeValue: any, view: "hours" | "minutes" | "seconds") => {
         if (!bookingDate) return false;
 
-        const serviceDuration = clickedService.time;
-
-        const testStart = normalize(dayjs(bookingDate).hour(timeValue.hour()).minute(timeValue.minute()));
-        const testEnd = normalize(testStart.add(serviceDuration, "minute"));
-        
+        const serviceDuration = clickedService?.time || 0;
         const now = dayjs();
-        if (bookingDate.isSame(now, "day") && testStart.isBefore(now)) {
+
+        if (view === "hours" || view === "seconds") return false;
+
+        const testStart = normalize(
+            dayjs(bookingDate)
+                .hour(timeValue.hour())
+                .minute(timeValue.minute())
+        );
+        const testEnd = normalize(testStart.add(serviceDuration, "minute"));
+
+        if (dayjs(bookingDate).isSame(now, "day") && testStart.isBefore(now)) {
             return true;
         }
-        return disabledRanges.some(range => {
-            const rangeStart = normalize(range.start);
-            const rangeEnd = normalize(range.end);
-            const noOverlap =
-                testEnd.isSame(rangeStart) || testEnd.isBefore(rangeStart) ||
-                testStart.isSame(rangeEnd) || testStart.isAfter(rangeEnd);
+        const overlaps = disabledRanges.some(({ start, end }) => {
+            const rangeStart = normalize(start);
+            const rangeEnd = normalize(end);
 
-            return !noOverlap;
+            return (
+                testStart.isBefore(rangeEnd) &&
+                testEnd.isAfter(rangeStart) &&
+                !testStart.isSame(rangeEnd)
+            );
         });
+
+        return overlaps;
     };
 
 
@@ -174,10 +217,15 @@ export default function Bookings() {
         <>
             <Navbar />
             <ToastContainer />
-            <Box sx={{
-                textAlign: "center", mt: 8, py: 6,
-                background: "linear-gradient(180deg, #fffaf3, #ffffff)",
-            }}>
+            <Box
+                sx={{
+                    textAlign: "center",
+                    mt: { xs: 6, sm: 6, md: 8 },
+                    py: { xs: 4, sm: 5, md: 6 },
+                    background: "linear-gradient(180deg, #fffaf3, #ffffff)",
+                    px: { xs: 2, sm: 4 },
+                }}
+            >
                 <Typography
                     variant="h3"
                     sx={{
@@ -185,6 +233,12 @@ export default function Bookings() {
                         color: "#1a1a1a",
                         letterSpacing: "0.5px",
                         fontFamily: "'Playfair Display', serif",
+                        fontSize: {
+                            xs: "1.8rem",
+                            sm: "2.4rem",
+                            md: "3rem",
+                        },
+                        lineHeight: { xs: 1.2, sm: 1.3 },
                     }}
                 >
                     Book Your{" "}
@@ -205,9 +259,12 @@ export default function Bookings() {
                     variant="subtitle1"
                     sx={{
                         color: "#6b6b6b",
-                        mt: 1,
+                        mt: { xs: 1, sm: 2 },
                         fontFamily: "'Poppins', sans-serif",
-
+                        fontSize: { xs: "0.9rem", sm: "1rem" },
+                        maxWidth: "600px",
+                        mx: "auto", // center the text
+                        px: { xs: 1, sm: 0 },
                     }}
                 >
                     Reserve your appointment with our expert stylists and transform your look today
@@ -336,7 +393,7 @@ export default function Bookings() {
                             </LocalizationProvider>
                         </Box>
 
-                        {/* Time Picker */}
+
                         <Box sx={{ mt: 3 }}>
                             <Typography variant="h6" sx={{ mb: 1 }}>
                                 Select Time
@@ -345,25 +402,43 @@ export default function Bookings() {
                                 <TimePicker
                                     value={selectedSlot}
                                     onChange={(newTime) => {
-                                        if (newTime && !isTimeDisabled(newTime)) setSelectedSlot(newTime);
-                                        else {
-                                            toast.error("This Time slot is Booked");
+                                        if (!newTime) return;
+
+                                        const minuteOptions = [0, 15, 30, 45];
+
+                                        // Check if ALL minutes in this hour are disabled
+                                        const allMinutesDisabled = minuteOptions.every((m) => {
+                                            const testTime = dayjs(newTime).minute(m);
+                                            return shouldDisableTime(testTime, "minutes");
+                                        });
+
+                                        if (allMinutesDisabled) {
+                                            // If all minutes are disabled for that hour → reset selection
                                             setSelectedSlot(null);
+                                            return;
                                         }
+
+                                        // Otherwise, find the first available minute and use it
+                                        const firstAvailableMinute = minuteOptions.find((m) => {
+                                            const testTime = dayjs(newTime).minute(m);
+                                            return !shouldDisableTime(testTime, "minutes");
+                                        });
+
+                                        const finalTime = shouldDisableTime(newTime, "minutes")
+                                            ? dayjs(newTime).minute(firstAvailableMinute ?? 0)
+                                            : newTime;
+
+                                        setSelectedSlot(finalTime);
                                     }}
+                                    shouldDisableTime={shouldDisableTime}
                                     minutesStep={15}
                                     minTime={dayjs("09:00", "HH:mm")}
                                     maxTime={dayjs("21:00", "HH:mm")}
                                     ampm={false}
-                                    slotProps={{
-                                        textField: {
-                                            fullWidth: true,
-                                            sx: { backgroundColor: "#fff", borderRadius: 2 },
-                                        },
-                                    }}
-                                    shouldDisableTime={shouldDisableTime}
                                 />
+
                             </LocalizationProvider>
+
                         </Box>
 
                         {/* Disabled Slots */}

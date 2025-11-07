@@ -19,7 +19,7 @@
   align-items: center !important;
   gap: 6px !important;
   border: none !important;
-  margin-top: -7px !important;
+  margin-top: -1px !important;
 }
 
 .addService:hover {
@@ -41,7 +41,7 @@
 
 @media screen and (max-width: 1668px) {
   .addService {
-    margin-top: 8px !important;
+    margin-top: 1px !important;
   }
 }
 
