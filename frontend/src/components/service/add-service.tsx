@@ -239,6 +239,7 @@ export default function CreateServiceDialog() {
             <Dialog open={open}
                 onClose={handleClose}
                 className={style.form}
+                sx={{zIndex:100000000}}
             >
                 <DialogTitle> Add New Services Details</DialogTitle>
 
