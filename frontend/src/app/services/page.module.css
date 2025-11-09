@@ -156,11 +156,19 @@
 @media screen and (max-width: 480px) {
   .allBooking{
     margin-left: 2px !important;
-    background-color: aquamarine;
+  
+     width: 250px !important;
   }
   .seeAll {
     font-size: 40px !important;
-    
+  }
+  .searchBox{
+    font-size: 0px !important;
+   
+    width: 450px !important;
+  }
+  .myBooking{
+     width: 250px !important;
   }
 }
 @media screen and (min-width: 1900px) {

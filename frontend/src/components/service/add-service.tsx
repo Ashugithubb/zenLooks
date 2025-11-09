@@ -233,7 +233,7 @@ export default function CreateServiceDialog() {
     return (
         <>
             <Button variant="outlined" className={style.addService} onClick={handleClickOpen}>
-                Add Services<AddIcon />
+               <AddIcon /> Add Services
             </Button>
            
             <Dialog open={open}
