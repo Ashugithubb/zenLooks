@@ -37,7 +37,7 @@ const FiltersComponent = () => {
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
   const { total, page, limit } = useAppSelector((state) => state.allBooking);
   const dispatch = useAppDispatch();
-
+  
   const { control, watch, setValue } = useForm<FilterValues>({
     defaultValues: {
       search: "",

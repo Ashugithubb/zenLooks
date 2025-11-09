@@ -124,7 +124,28 @@ export class MailService {
       await this.mailerService.sendMail({
         to: email,
         subject: 'Your ZenLook Email Verification OTP',
-        template: 'emailv', 
+        template: 'emailv',
+        context,
+      });
+
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async sendForgotPasswordOtp(email: string, userName: string, otp: string) {
+    try {
+      const context = {
+        name: userName,
+        otp: otp,
+        year: new Date().getFullYear(),
+      };
+
+      await this.mailerService.sendMail({
+        to: email,
+        subject: 'Email Password Reset   OTP',
+        template: 'emailf',
         context,
       });
 

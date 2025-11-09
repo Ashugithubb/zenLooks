@@ -50,6 +50,7 @@ interface emailOtpSchema {
     name?:string
     email:string
     otp?:string
+    password?:string
 }
 
 export const sendEmailOtpThunk = createAsyncThunk(
@@ -88,6 +89,52 @@ export const verifyEmailOtpThunk = createAsyncThunk(
         }
     }
 );
+
+
+
+
+export const sendForgotOtpThunk = createAsyncThunk(
+    "auth/fsendOtp",
+    async (data: emailOtpSchema, thunkAPI) => {
+        try {
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/email-verifiaction/forgot-password`,
+                data,
+                { withCredentials: true }
+            );
+            return response.data;
+        } catch (error: any) {
+            const errorMessage =
+                error.response?.data?.message || 'Something went wrong';
+            return thunkAPI.rejectWithValue(errorMessage);
+        }
+    }
+);
+
+
+export const resetPasswordThunk = createAsyncThunk(
+    "auth/reset",
+    async (data: emailOtpSchema, thunkAPI) => {
+        try {
+            const response = await axios.patch(
+                `${process.env.NEXT_PUBLIC_API_URL}/user`,
+                data,
+                { withCredentials: true }
+            );
+            return response.data;
+        } catch (error: any) {
+            const errorMessage =
+                error.response?.data?.message || 'Something went wrong';
+            return thunkAPI.rejectWithValue(errorMessage);
+        }
+    }
+);
+
+
+
+
+
+
 
 
 

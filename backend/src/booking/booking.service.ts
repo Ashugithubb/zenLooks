@@ -67,73 +67,59 @@ export class BookingService {
 
     const qb = this.bookingRepo
       .createQueryBuilder("bookings")
-      .leftJoinAndSelect("bookings.user", "users")
       .withDeleted()
-      .orderBy('bookings.bookingId', 'DESC')
+      .leftJoinAndSelect("bookings.user", "users")
+      .leftJoinAndSelect("bookings.service", "service");
 
 
+    qb.expressionMap.joinAttributes
+      .filter(({ condition }) => condition && /service.deletedAt IS NULL/gi.test(condition))
+      .forEach(joinAttribute => {
+        joinAttribute.condition = undefined;
+      });
+
+    qb.orderBy("bookings.bookingId", "DESC");
 
     if (slot) {
       qb.andWhere("bookings.slot = :slot", { slot });
     }
 
     if (startDate && endDate) {
-      qb.andWhere("bookings.date BETWEEN :start AND :end", {
-        start: startDate,
-        end: endDate,
-      });
+      qb.andWhere("bookings.date BETWEEN :start AND :end", { start: startDate, end: endDate });
     } else if (startDate) {
       qb.andWhere("bookings.date >= :start", { start: startDate });
     } else if (endDate) {
       qb.andWhere("bookings.date <= :end", { end: endDate });
     }
 
+    if (category) {
+      qb.andWhere("service.category = :category", { category });
+    }
+
+    if (search) {
+      qb.andWhere(
+        "(LOWER(service.title) LIKE :search OR LOWER(service.description) LIKE :search OR bookings.phoneNo LIKE :search)",
+        { search: `%${search.toLowerCase()}%` }
+      );
+    }
 
     const [bookings, total] = await qb
       .skip((page - 1) * limit)
       .take(limit)
       .getManyAndCount();
 
-    if (!bookings.length) {
-      return { total, page, limit, bookings: [] };
-    }
-
-
-    const bookingIds = bookings.map((b) => b.bookingId);
-
-    const result = await this.bookingRepo.find({
-      where: { bookingId: In(bookingIds) },
-      relations: ["service", "user"],
-      withDeleted: true,
-    });
-
-    const orderedResult = bookingIds.map(
-      id => result.find(b => b.bookingId === id)!
-    );
-    let filteredResult = orderedResult;
-    if (category) {
-      filteredResult = result.filter(
-        (b) => b.service?.category === category
-      );
-    }
-
-    if (search) {
-      const lowerSearch = search.toLowerCase();
-      filteredResult = filteredResult.filter(
-        (b) =>
-          b.service?.title?.toLowerCase().includes(lowerSearch) ||
-          b.service?.description?.toLowerCase().includes(lowerSearch) ||
-          b.phoneNo?.includes(search)
-      );
-    }
-
     return {
       total,
       page,
       limit,
-      bookings: filteredResult,
+      bookings
     };
   }
+
+
+
+
+
 
 
 

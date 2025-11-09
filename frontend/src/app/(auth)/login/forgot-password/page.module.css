@@ -1,0 +1,130 @@
+.forgotContainer {
+  width: 100%;
+  min-height: 100vh;
+  background: #fbf3e8;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+
+.forgotCard {
+  width: 350px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 40px 50px !important;
+  display: flex;
+  gap: 8 !important;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #b38b33;
+
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #555555;
+  text-align: center;
+  margin-bottom: 28px;
+  line-height: 1.4;
+}
+
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+.input {
+  background: #fff;
+  border-radius: 8px !important;
+}
+
+.input .MuiOutlinedInput-root fieldset {
+  border-color: #d8c59d;
+}
+
+.input .MuiOutlinedInput-root:hover fieldset {
+  border-color: #b38b33;
+}
+
+.input .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #b38b33;
+}
+
+.input label.Mui-focused {
+  color: #b38b33;
+}
+
+.input :global(.MuiOutlinedInput-root) {
+  border-radius: 10px;
+}
+
+.btn {
+  background: #b38b33 !important;
+
+  color: #fff !important;
+  padding: 10px 0 !important;
+  border-radius: 10px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  box-shadow: 0 3px 5px rgba(179, 139, 51, 0.3);
+}
+
+.btn:hover {
+  background: #a07a2d !important;
+}
+
+.footerText {
+  margin-top: 24px;
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.footerText span {
+  color: #b38b33;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footerText span:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 480px) {
+  .forgotCard {
+    width: 100%;
+    padding: 28px 22px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 15px !important;
+  }
+}

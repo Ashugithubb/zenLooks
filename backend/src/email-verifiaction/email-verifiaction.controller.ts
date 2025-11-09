@@ -14,7 +14,14 @@ export class EmailVerifiactionController {
   }
 
   @Post("/otp")
-  verifyOtp(@Body() dto:VerifyOtpDto) {
-      return this.emailVerifiactionService.verifyOtp(dto);
+  verifyOtp(@Body() dto: VerifyOtpDto) {
+    return this.emailVerifiactionService.verifyOtp(dto);
   }
+
+  @Post('/forgot-password')
+  forgotPasswordOtp(@Body('email') email: string) {
+    console.log(email);
+    return this.emailVerifiactionService.sendForgotPasswordOtp(email);
+  }
+
 }

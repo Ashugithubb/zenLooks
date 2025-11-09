@@ -19,7 +19,7 @@ export class UserService {
     private readonly hasingRepo: HasingService,
     @Inject(forwardRef(() => AuthService))
     private readonly authService: AuthService,
-   ) { }
+  ) { }
 
 
 
@@ -54,6 +54,14 @@ export class UserService {
   }
 
 
+  async update(updateUserDto: UpdateUserDto) {
+     const { email, password } = updateUserDto;
+       updateUserDto.password = await this.hasingRepo.hashPassword(password!);
+    await this.userRepo.update({ email: updateUserDto.email }, updateUserDto);
+
+    return { "msg": "Paasword reset  Successfully" }
+  }
+
 
 
   findAll() {
@@ -62,9 +70,7 @@ export class UserService {
 
 
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+
 
   remove(id: number) {
     return `This action removes a #${id} user`;

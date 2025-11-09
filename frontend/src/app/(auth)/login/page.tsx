@@ -75,10 +75,10 @@ export default function LoginForm() {
 
       if (additionalInfo?.isNewUser) {
 
-       await dispatch(
+        await dispatch(
           signupUser({ name, email, password, confirmPassword: password, firebase })
         );
-         const res = await dispatch(loginUser({email, password}));
+        const res = await dispatch(loginUser({ email, password }));
         if (res.meta.requestStatus === "fulfilled") {
           toast.success("Account created successfully!");
           router.push("/");
@@ -106,7 +106,7 @@ export default function LoginForm() {
   return (
 
     <>
-     
+
       <Box className={style.loginContainer}>
         <Box className={style.loginCard}>
           <Typography className={style.title}>Welcome Back!</Typography>
@@ -136,6 +136,13 @@ export default function LoginForm() {
                 helperText={errors.password?.message}
                 className={style.input}
               />
+              <Typography
+                onClick={() => router.push("login/forgot-password")}
+                sx={{ cursor: "pointer", textAlign: "right", marginTop: "5px", fontSize: "14px", color: "#4A55A2" }}
+              >
+                Forgot Password?
+              </Typography>
+
 
               {loading ? (
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
