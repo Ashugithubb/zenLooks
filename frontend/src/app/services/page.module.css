@@ -97,6 +97,14 @@
     padding-right: 2% !important;
   
   }
+  @media (max-width: 1266px) and (min-width: 1110px) {
+ .cardBox{
+  gap:20px !important;
+
+ 
+ }
+}
+
 @media screen and (max-width: 1050px) {
   .seeAll {
     margin-top: 80px !important;

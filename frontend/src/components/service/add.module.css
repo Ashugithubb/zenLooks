@@ -5,7 +5,10 @@
 
 
 }
-
+.form{
+  z-index: 10001 !important;
+  margin-top: 50px !important;
+}
 .addService {
   background-color: #eea84f !important;
   color: white !important;
