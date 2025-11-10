@@ -59,7 +59,7 @@ export default function MyBookings() {
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        justifyContent: "center",
+                        justifyContent: "flex-start",
                         gap: 3,
                         mt: 3,
                         px: 2,
