@@ -44,7 +44,7 @@ export default function Navbar() {
 
   return (
     <>
-     
+
       <Box
         className={style.navbar}
         sx={{
@@ -57,7 +57,7 @@ export default function Navbar() {
           position: "sticky",
           top: 0,
           backgroundColor: "black",
-          zIndex: 10000000 ,
+          zIndex: 10000000,
         }}
       >
         {/* Logo */}
@@ -115,12 +115,13 @@ export default function Navbar() {
           )}
         </Box>
 
-        {/* Mobile Menu Button */}
+
         <IconButton
           sx={{ display: { xs: "block", md: "none" } }}
-          onClick={() => setOpen(true)}
+          onClick={() => setOpen(!open)}
         >
-          <MenuIcon sx={{color:"white",fontSize: 28 }} />
+          {!open ? (<MenuIcon sx={{ color: "white", fontSize: 28, }} />) : (<CloseIcon sx={{ color: "white", fontSize: 30, marginLeft: "150px" }} />)}
+
         </IconButton>
       </Box>
 
