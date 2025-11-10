@@ -1,9 +1,6 @@
 .cardBut {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 25;
-  padding-left: 10%;
+ 
+
 
 }
 
@@ -78,7 +75,17 @@
   }
 }
 
-
+@media screen and (max-width: 1580px) {
+  .cardBut {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25;
+    padding-left: 140px !important;
+    padding-right: 50px !important;
+    background-color: #eea84f;
+  
+  }}
 
 @media screen and (max-width: 1150px) {
   .cardBut {

@@ -10,6 +10,7 @@ import {
     Stack,
     CircularProgress,
     InputAdornment,
+    Container,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch, useAppSelector } from "../redux/hook/hook";
@@ -68,11 +69,11 @@ export default function Services() {
                 Our Services
             </Typography>
 
-            <Box className={style.body}>
-                <Box className={style.cardBut}>
+       
+                <Container maxWidth="xl"  >
                     <Box className={style.mainBOX}
                         sx={{
-
+                            mb:3,
                             display: "flex",
                             justifyContent: "flex-start",
                             alignItems: "center",
@@ -170,7 +171,7 @@ export default function Services() {
                         {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center",marginLeft:"50%" }}>
                             <CircularProgress />
                         </Box>) : services?.length === 0 ? (
-                            <Typography sx={{ mt: 5 }}>No Services found</Typography>
+                            <Typography sx={{ mt: 5 , ml:"50%"}}>No Services found</Typography>
                         ) : (
                             services.map((s) => (
                                 <ServiceCard
@@ -186,7 +187,7 @@ export default function Services() {
                         )}
                     </Box>
 
-                </Box>
+                </Container>
                 {!loading && total > limit && (
                     <Stack spacing={2} alignItems="center" sx={{ pb: 5,mt:3 }}>
                         <Pagination
@@ -209,7 +210,7 @@ export default function Services() {
                     </Stack>
 
                 )}
-            </Box>
+          
         </>
     );
 

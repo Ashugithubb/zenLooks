@@ -26,6 +26,7 @@ export default function Home() {
           alt="Hero background"
           style={{ width: "100%", height: "auto", objectFit: "cover" }}
         />
+       
 
         <div className={style.textBox}>
           <p className={style.tagline}>hair salon</p>
