@@ -120,7 +120,24 @@ export default function Navbar() {
           sx={{ display: { xs: "block", md: "none" } }}
           onClick={() => setOpen(!open)}
         >
-          {!open ? (<MenuIcon sx={{ color: "white", fontSize: 28, }} />) : (<CloseIcon sx={{ color: "white", fontSize: 30, marginLeft: "150px" }} />)}
+         <IconButton
+  onClick={() => setOpen(!open)}
+  sx={{
+    display: { xs: "block", md: "none" },
+    position: "fixed",
+    top: 3,
+    right: open ? "10px" : "20px", // when open, move it 45px out
+    transition: "right 0.3s ease",
+    zIndex: 2000,
+  }}
+>
+  {!open ? (
+    <MenuIcon sx={{ color: "white", fontSize: 28 }} />
+  ) : (
+    <CloseIcon sx={{ color: "white", fontSize: 30 }} />
+  )}
+</IconButton>
+
 
         </IconButton>
       </Box>
