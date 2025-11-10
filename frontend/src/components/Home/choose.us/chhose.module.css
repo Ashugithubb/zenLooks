@@ -121,19 +121,20 @@
 /* -------- Responsive -------- */
 
 /* Tablets */
-@media (max-width: 1250px) {
+@media (max-width: 1350px) {
   .chooseSection {
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
     height: auto !important;
-    gap: 28px !important;
+    gap: 38px !important;
     margin: 0 auto !important;
     padding: 60px 20px !important;
   }
 
   .mainImage {
     margin-left: 0 !important;
+ 
   }
 
   .textContainer {
@@ -152,6 +153,7 @@
   .smallImage {
     left: -60px !important;
     top: 180px !important;
+    width: 160px !important;
   }
     .statsContainer {
     
