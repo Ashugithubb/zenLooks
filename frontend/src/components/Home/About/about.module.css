@@ -1,6 +1,6 @@
 .aboutContainer {
   background-color: #f8f5f0;
-  padding: 80px 12px 100px 12px;
+  padding: 80px 33px 80px 33px !important;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -9,10 +9,10 @@
 }
 
 .aboutImage {
-    width: 60% !important;
-    max-width: 680px;
-    height: auto;
-  }
+  width: 60% !important;
+  max-width: 680px;
+  height: auto;
+}
 
 .aboutContent {
   max-width: 600px;
@@ -67,8 +67,81 @@
   color: #333;
 }
 
+@media (max-width: 1350px) {
+  .aboutContainer {
+  background-color: #f8f5f0;
+  padding: 80px 33px 80px 33px !important;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+  .aboutImage {
+    margin-top: 100px !important;
+    width: 50% !important;
+    height:80% !important;
+    max-width: 680px;
+    height: auto;
+  }
 
-@media (max-width: 868px) {
+  .aboutContent {
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px !important;
+  }
+
+
+  .aboutus {
+    font-size: 18px !important;
+    padding-left: 36px !important;
+    display: inline-block !important;
+    color: #f68043 !important;
+    font-weight: 400 !important;
+    margin: 0 0 17px !important;
+    font-family: "Carattere", cursive !important;
+    margin-left: -40px !important;
+  }
+
+  .pursuit {
+    font-size: 12px !important;
+    font-weight: bolder !important;
+    color: black;
+  }
+  
+
+  .description {
+    line-height: 22px;
+    margin: 15px 0 0 0;
+    color: #8b8b8b;
+  }
+
+
+  .featuresRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .featureItem {
+ 
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .featureItem p {
+    margin: 0;
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+  }
+}
+
+@media (max-width: 788px) {
   .aboutContainer {
     flex-direction: column;
     justify-content: center;
@@ -80,7 +153,7 @@
     display: block;
     margin: 0 auto !important;
     padding: 0 !important;
-    width: 90% !important;
+    width: 100% !important;
   }
 
   .aboutus {

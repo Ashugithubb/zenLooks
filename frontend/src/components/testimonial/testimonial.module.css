@@ -49,33 +49,29 @@
 
 
 .shapeA {
-    width: 205px;
-    height: 261px;
+    width: 200px;
+    height: 256px;
 }
 
 .shapeB {
-    width: 160px;
-    height: 171px;
+    width: 155px;
+    height: 166px;
     transform: translateX(80px);
 }
 
 .shapeC {
-    width: 161px;
-    height: 171px;
+    width: 156px;
+    height: 166px;
 }
 
 .leafShape {
-    width: 294px;
-    height: 214px;
+    width: 289px;
+    height: 209px;
     transform: translateY(80px);
 }
 
 
-/* ---------------------------- */
-/* ✅ RESPONSIVENESS */
-/* ---------------------------- */
 
-/* Large screens (1200px-) */
 @media (max-width: 1200px) {
     .mainBox {
         padding: 80px 40px;
@@ -88,7 +84,7 @@
 
 }
 
-@media(max-width:1390px) {
+@media(max-width:1395px) {
 
     .shapeA,
     .shapeB,

@@ -69,148 +69,159 @@ export default function Services() {
                 Our Services
             </Typography>
 
-       
-                <Container  className={style.container}sx={{padding:"0px 28px" }}>
-                    <Box className={style.mainBOX}
-                        sx={{
-                            mb:3,
-                            display: "flex",
-                            justifyContent: "flex-start",
-                            alignItems: "center",
-                            gap: "30px",
-                        }}
-                    >
-                        <Box className={style.searchBox}>
-                            <TextField
-                                placeholder="Search services..."
-                                variant="outlined"
-                                size="small"
-                                value={searchTerm}
-                                onChange={handleSearchChange}
-                                className={style.searchField}
-                                sx={{
-                                    width: "500px",
-                                    backgroundColor: "#fff",
-                                    borderRadius: "50px",
-                                    "& .MuiOutlinedInput-root": {
-                                        borderRadius: "50px",
-                                        paddingLeft: "8px",
-                                        "& fieldset": {
-                                            borderColor: "#e0e0e0",
-                                        },
-                                        "&:hover fieldset": {
-                                            borderColor: "#f68043",
-                                        },
-                                        "&.Mui-focused fieldset": {
-                                            borderColor: "#f68043",
-                                        },
-                                    },
-                                    "& .MuiInputBase-input": {
-                                        padding: "8px 12px 8px 0",
-                                    },
-                                    '& .MuiInputBase-root': {
-                                        paddingLeft: 0,  
-                                    },
-                                    '& .MuiInputAdornment-root': {
-                                        marginRight: '-10px', 
-                                    }
-                                }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon sx={{ color: "#6e6e6e", ml: 1, }} />
-                                        </InputAdornment>
-                                    ),
-                                }}
 
-                            />
-                        </Box>
-
-
-
-
-                        {role === "Admin" ? (
-                            <>
-
-                                <CreateServiceDialog />
-                                <Button
-                                    onClick={handleAllBookings}
-                                    variant="contained"
-                                    className={style.allBooking}
-                                    sx={{ top: -2, marginLeft: "-20px" }}
-                                >
-                                    <EventIcon sx={{ marginRight: "6px" }} /> All Bookings
-                                </Button></>
-
-                        ) : (role == "User") ? (
-                            <Button
-                                className={style.myBooking}
-                                onClick={() => router.push("/services/mybookings")}
-                                variant="contained"
-                            >
-                                <EventIcon sx={{ marginRight: "6px" }} /> My Bookings
-                            </Button>
-
-                        ) : (<></>)}
-
-                    </Box>
-
-
-                    <Box
-                        className={style.cardBox}
-                        sx={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: 5,
-                            justifyContent: "flex-start",
-                            alignItems: "center",
-                            minHeight: "300px",
-
-                        }}
-                    >
-                        {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center",marginLeft:"50%" }}>
-                            <CircularProgress />
-                        </Box>) : services?.length === 0 ? (
-                            <Typography sx={{ mt: 5 , ml:"50%"}}>No Services found</Typography>
-                        ) : (
-                            services.map((s) => (
-                                <ServiceCard
-                                    key={s.serviceId}
-                                    serviceId={s.serviceId}
-                                    title={s.title}
-                                    description={s.description}
-                                    price={s.price}
-                                    discount={s.discount}
-                                    imageUrl={s.imageUrl}
-                                />
-                            ))
-                        )}
-                    </Box>
-
-                </Container>
-                {!loading && total > limit && (
-                    <Stack spacing={2} alignItems="center" sx={{ pb: 5,mt:3 }}>
-                        <Pagination
-                            count={Math.ceil(total / limit)}
-                            page={currentPage}
-                            onChange={handlePageChange}
+            <Container
+                sx={{
+                    paddingLeft: {
+                        xs: "24px !important",
+                        md: "58px !important",
+                    },
+                    paddingRight: {
+                        xs: "24px !important",
+                        md: "58px !important",
+                    },
+                }}
+            >
+                <Box className={style.mainBOX}
+                    sx={{
+                        mb: 3,
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        gap: "30px",
+                    }}
+                >
+                    <Box className={style.searchBox}>
+                        <TextField
+                            placeholder="Search services..."
+                            variant="outlined"
+                            size="small"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            className={style.searchField}
                             sx={{
-                                "& .MuiPaginationItem-root": {
-                                    color: "black",
+                                width: "500px",
+                                backgroundColor: "#fff",
+                                borderRadius: "50px",
+                                "& .MuiOutlinedInput-root": {
+                                    borderRadius: "50px",
+                                    paddingLeft: "8px",
+                                    "& fieldset": {
+                                        borderColor: "#e0e0e0",
+                                    },
+                                    "&:hover fieldset": {
+                                        borderColor: "#f68043",
+                                    },
+                                    "&.Mui-focused fieldset": {
+                                        borderColor: "#f68043",
+                                    },
                                 },
-                                "& .MuiPaginationItem-root.Mui-selected": {
-                                    backgroundColor: "#e59b68",
-                                    color: "white",
+                                "& .MuiInputBase-input": {
+                                    padding: "8px 12px 8px 0",
                                 },
-                                "& .MuiPaginationItem-root:hover": {
-                                    backgroundColor: "#f2c19a",
+                                '& .MuiInputBase-root': {
+                                    paddingLeft: 0,
                                 },
+                                '& .MuiInputAdornment-root': {
+                                    marginRight: '-10px',
+                                }
                             }}
-                        />
-                    </Stack>
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon sx={{ color: "#6e6e6e", ml: 1, }} />
+                                    </InputAdornment>
+                                ),
+                            }}
 
-                )}
-          
+                        />
+                    </Box>
+
+
+
+
+                    {role === "Admin" ? (
+                        <>
+
+                            <CreateServiceDialog />
+                            <Button
+                                onClick={handleAllBookings}
+                                variant="contained"
+                                className={style.allBooking}
+                                sx={{ top: -2, marginLeft: "-20px" }}
+                            >
+                                <EventIcon sx={{ marginRight: "6px" }} /> All Bookings
+                            </Button></>
+
+                    ) : (role == "User") ? (
+                        <Button
+                            className={style.myBooking}
+                            onClick={() => router.push("/services/mybookings")}
+                            variant="contained"
+                        >
+                            <EventIcon sx={{ marginRight: "6px" }} /> My Bookings
+                        </Button>
+
+                    ) : (<></>)}
+
+                </Box>
+
+
+                <Box
+                    className={style.cardBox}
+                    sx={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 5,
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        minHeight: "300px",
+
+                    }}
+                >
+                    {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center", marginLeft: "50%" }}>
+                        <CircularProgress />
+                    </Box>) : services?.length === 0 ? (
+                        <Typography sx={{ mt: 5, ml: "50%" }}>No Services found</Typography>
+                    ) : (
+                        services.map((s) => (
+                            <ServiceCard
+                                key={s.serviceId}
+                                serviceId={s.serviceId}
+                                title={s.title}
+                                description={s.description}
+                                price={s.price}
+                                discount={s.discount}
+                                imageUrl={s.imageUrl}
+                            />
+                        ))
+                    )}
+                </Box>
+
+            </Container>
+            {!loading && total > limit && (
+                <Stack spacing={2} alignItems="center" sx={{ pb: 5, mt: 3 }}>
+                    <Pagination
+                        count={Math.ceil(total / limit)}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        sx={{
+                            "& .MuiPaginationItem-root": {
+                                color: "black",
+                            },
+                            "& .MuiPaginationItem-root.Mui-selected": {
+                                backgroundColor: "#e59b68",
+                                color: "white",
+                            },
+                            "& .MuiPaginationItem-root:hover": {
+                                backgroundColor: "#f2c19a",
+                            },
+                        }}
+                    />
+                </Stack>
+
+            )}
+
         </>
     );
 
