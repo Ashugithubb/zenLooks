@@ -148,6 +148,8 @@
     align-items: center;
     padding-top: 60px  !important;
     padding-bottom: 60px !important;
+    padding-left: 33px !important;
+     padding-right: 33px !important;
   }
 
   .aboutImage {
