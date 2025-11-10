@@ -1,11 +1,12 @@
-.cardBut{
+.cardBut {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 25;
- padding-left: 10%;
- 
+  padding-left: 10%;
+
 }
+
 .searchField {
   width: 280px !important;
   background-color: #fff !important;
@@ -82,29 +83,30 @@
     gap: 0;
     justify-content: center !important;
     align-items: center !important;
-    
+
 
   }
-  .cardBut{
- 
- padding-left: 1%;
- padding-right: 1%;
-}
-  
+
+  .cardBut {
+
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+
 
 
 }
 
 @media screen and (max-width: 1150px) {
-.cardBut{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 25;
- padding-left: 13%;
- padding-right: 10%;
-}
-  
+  .cardBut {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25;
+    padding-left: 13%;
+    padding-right: 10%;
+  }
+
   .mainBOX {
     flex-direction: column !important;
     align-items: center !important;
@@ -123,7 +125,8 @@
   .searchField {
     width: 55% !important;
   }
-  .allBooking{
+
+  .allBooking {
     margin-left: 10px !important;
     background-color: aquamarine;
   }
@@ -153,26 +156,33 @@
 
 
 }
+
 @media screen and (max-width: 480px) {
-  .allBooking{
+  .allBooking {
     margin-left: 2px !important;
-  
-     width: 250px !important;
+
+    width: 250px !important;
   }
+
   .seeAll {
     font-size: 40px !important;
   }
-  .searchBox{
+
+  .searchBox {
     font-size: 0px !important;
-   
+
     width: 450px !important;
   }
-  .myBooking{
-     width: 250px !important;
+
+  .myBooking {
+    width: 250px !important;
   }
 }
-@media screen and (min-width: 1900px) {
-.cardBut{
- 
- background-color: aqua !important;
-  }}
+
+@media screen and (max-width: 1900px) {
+  .cardBut {
+    padding-left: 18% !important;
+    padding-right: 5% !important;
+   
+  }
+}
