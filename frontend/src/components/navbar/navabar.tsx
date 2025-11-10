@@ -51,8 +51,9 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          px: { xs: 2, sm: 4, md: 8 },
-          py: 2,
+          // px: { xs: 2, sm: 4, md: 8 },
+
+          // py: 2,
           boxShadow: "0px 2px 6px rgba(0,0,0,0.05)",
           position: "sticky",
           top: 0,
@@ -78,7 +79,7 @@ export default function Navbar() {
         <Box
           className={style.right}
           sx={{
-            display: { xs: "none", md: "flex" },
+           
             alignItems: "center",
             gap: 3,
           }}
@@ -116,30 +117,20 @@ export default function Navbar() {
         </Box>
 
 
-        <IconButton
-          sx={{ display: { xs: "block", md: "none" } }}
-          onClick={() => setOpen(!open)}
-        >
-         <IconButton
-  onClick={() => setOpen(!open)}
-  sx={{
-    display: { xs: "block", md: "none" },
-    position: "fixed",
-    top: 3,
-    right: open ? "10px" : "20px", // when open, move it 45px out
-    transition: "right 0.3s ease",
-    zIndex: 2000,
-  }}
->
-  {!open ? (
-    <MenuIcon sx={{ color: "white", fontSize: 28 }} />
-  ) : (
-    <CloseIcon sx={{ color: "white", fontSize: 30 }} />
-  )}
-</IconButton>
+      
+          <IconButton
+            onClick={() => setOpen(!open)}
+              className={style.hamburger}
+              sx={{p:0,m:0}}
+          >
+            {!open ? (
+              <MenuIcon sx={{ color: "white", fontSize: 28 }} />
+            ) : (
+              <CloseIcon sx={{ color: "white", fontSize: 28 }} />
+            )}
+          </IconButton>
 
 
-        </IconButton>
       </Box>
 
       {/* Drawer for Mobile */}
@@ -153,6 +144,7 @@ export default function Navbar() {
             gap: 2,
             height: "100%",
             backgroundColor: "black",
+
           }}
         >
           <Box

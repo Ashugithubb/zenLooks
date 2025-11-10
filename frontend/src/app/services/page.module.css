@@ -87,6 +87,15 @@
   
   }}
 
+  @media screen and (min-width:768px) and (max-width:1256px) {
+    .container{
+      /* background-color: aqua; */
+      /* margin-left: 35px !important;
+      margin-right: 35px !important; */
+       
+    }
+    
+  }
 @media screen and (max-width: 1150px) {
   .cardBut {
     display: flex;
@@ -141,7 +150,7 @@
 
   .allBooking {
     margin-left: 10px !important;
-    background-color: aquamarine;
+    
   }
 
   .myBooking {
@@ -193,10 +202,10 @@
 }
 
 
-@media (max-width: 1266px) and (min-width: 1110px) {
+/* @media (max-width: 1266px) and (min-width: 1110px) {
   .cardBox {
    padding-left: 75px !important;
    padding-right: 75px !important;
-  }}
+  }} */
 
 

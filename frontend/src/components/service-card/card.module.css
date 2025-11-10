@@ -1,6 +1,7 @@
 .card {
-  min-width: 380px !important;
+  min-width: 300px !important;
   max-width: 500px !important;
+  width: 300px;
   flex: 1;
   border-radius: 16px !important;
   overflow: hidden !important;
@@ -14,7 +15,7 @@
 }
 
 
- .card:hover {
+.card:hover {
   transform: scale(1.04);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -26,7 +27,7 @@
 
 .image {
   width: 100% !important;
- height: 250px !important;
+  height: 250px !important;
   object-fit: cover !important;
 }
 
@@ -63,9 +64,9 @@
 }
 
 .price {
-  font-size: 1.2rem  !important; 
+  font-size: 1.2rem !important;
   font-weight: 800 !important;
-  color: #111  !important;
+  color: #111 !important;
 }
 
 .oldPrice {
@@ -84,7 +85,7 @@
 
 
 .bookNowBtn {
-  background:#f1ac48 !important;
+  background: #f1ac48 !important;
   color: #fff !important;
   font-weight: 600 !important;
   border-radius: 12px !important;
@@ -109,8 +110,20 @@
   padding: 8px 16px 16px !important;
 }
 
+
+
+@media screen and (max-width: 1250px) {
+  .card {
+    min-width: 258.5px !important;
+    max-width: 400px !important;
+   
+   
+  }
+}
+
 @media screen and (max-width: 1051px) {
   .card {
+
     max-width: 100% !important;
   }
 }
@@ -167,4 +180,3 @@
   transform: translateY(-5px) !important;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
 }
-

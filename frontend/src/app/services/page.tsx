@@ -70,7 +70,7 @@ export default function Services() {
             </Typography>
 
        
-                <Container maxWidth="xl"  >
+                <Container  className={style.container}sx={{padding:"0px 28px" }}>
                     <Box className={style.mainBOX}
                         sx={{
                             mb:3,
