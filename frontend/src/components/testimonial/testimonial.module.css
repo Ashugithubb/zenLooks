@@ -84,7 +84,7 @@
 
 }
 
-@media(max-width:1350px) {
+@media(max-width:1354px) {
 
     .shapeA,
     .shapeB,
@@ -154,13 +154,13 @@
 
     .shapeB {
         width: 145px !important;
-        height: 126px !important;
+        height: 156px !important;
         transform: translateX(80px);
     }
 
     .shapeC {
-        width: 120px;
-        height: 100px;
+        width: 146px;
+        height: 90px;
     }
 
     .leafShape {
