@@ -84,6 +84,7 @@
 
 }
 
+
 @media(max-width:1354px) {
 
     .shapeA,
@@ -160,7 +161,8 @@
 
     .shapeC {
         width: 146px;
-        height: 90px;
+        height: 190px;
+        
     }
 
     .leafShape {

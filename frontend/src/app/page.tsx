@@ -21,12 +21,22 @@ export default function Home() {
     <>
       <Navbar />
       <div style={{ position: "relative", width: "100%", marginTop: "15px" }}>
-        <img
+        import Image from "next/image";
+
+        <Image
           src="https://haires.like-themes.com/wp-content/uploads/2025/09/SLIDE_01.jpg"
           alt="Hero background"
-          style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          width={1920}
+          height={1080}
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+          }}
+          priority
         />
-       
+
+
 
         <div className={style.textBox}>
           <p className={style.tagline}>hair salon</p>

@@ -9,6 +9,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Image from "next/image";
 export default function Testinomial() {
     const testimonials = [
         {
@@ -36,8 +37,11 @@ export default function Testinomial() {
                         className={style.shapeA}
                     />
 
-                    <img
+                    <Image
                         src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-shape1.png"
+                        alt="Decorative shape"
+                        width={155}
+                        height={166}
                         className={style.shapeB}
                     />
                 </Box>
@@ -52,7 +56,7 @@ export default function Testinomial() {
                             delay: 3000,
                             disableOnInteraction: false
                         }}
-                        pagination={{ clickable: true,  }}
+                        pagination={{ clickable: true, }}
                         breakpoints={{
                             768: { slidesPerView: 1 }
                         }}
@@ -62,7 +66,7 @@ export default function Testinomial() {
 
                         {testimonials.map((t, index) => (
                             <SwiperSlide key={index}>
-                                <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png" style={{marginLeft:"45%"}} />
+                                <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png" style={{ marginLeft: "45%" }} />
 
                                 <p className={style.p}>{t.text}</p>
                                 <h4 className={style.juklin}>{t.name}</h4>
