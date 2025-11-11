@@ -8,7 +8,7 @@ import { cancelBookingThunk } from "@/app/redux/thunk/cancel.booking.thunk";
 import { toast } from "react-toastify";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { useRouter } from "next/navigation";
-
+import style from "./mybooking.module.css";
 interface BookingCardProps {
   booking: Booking;
 }
@@ -41,7 +41,7 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 400, height: "auto", margin: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+    <Card  className={style.card}sx={{ maxWidth: 400, height: "auto", margin: 1, display: "flex", flexDirection: "column", justifyContent: "space-between",maxHeight:"auto !important" }}>
       <Box>
         <CardMedia
           component="img"

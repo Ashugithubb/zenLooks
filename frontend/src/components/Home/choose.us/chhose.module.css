@@ -134,14 +134,11 @@
     margin-left: 0 !important;
     max-width: 90%;
   }
-  .smallImage{
-    width:40% !important
+
+  .smallImage {
+    width: 40% !important
   }
 
-  .textContainer {
-    align-items: center !important;
-    text-align: center !important;
-  }
 
   .mainHeading {
     font-size: 22px !important;
@@ -162,14 +159,77 @@
   }
 }
 
+@media (max-width: 1020px) {
+  .statsContainer {
+    gap: 2px !important
+  }
+
+  .statBox {
+    display: flex;
+    gap: 10px !important;
+    align-items: center;
+  }
+
+  .tradeImage {
+    width: 40px !important;
+    height: 40px !important
+  }
+
+  .number {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+  }
+
+  .statTitle {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+  }
+
+}
+
+@media (max-width: 865px) {
+  .statsContainer {
+   
+     flex-direction: column;
+     gap: 20px !important;
+  }
+
+  .statBox {
+    display: flex;
+   
+    gap: 20px !important;
+    align-items: center;
+  }
+
+  .tradeImage {
+    width: 40px !important;
+    height: 40px !important
+  }
+
+  .number {
+   
+    font-size: 20px !important;
+    font-weight: 800 !important;
+  }
+
+  .statTitle {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+  }
+
+}
+
+
 /* Mobile */
 @media (max-width: 788px) {
+
 
   .imageContainer {
     flex: 1 1 100%;
     justify-content: center !important;
     align-items: center !important;
-   
+
   }
 
   .textContainer {
@@ -206,14 +266,12 @@
   }
 
 }
+
 @media (min-width:680px) and (max-width: 788px) {
-.imageContainer {
+  .imageContainer {
     flex: 1 1 100%;
     justify-content: center !important;
     align-items: center !important;
-    left:7%
-   
-   
+    left: 7%
   }
 }
-

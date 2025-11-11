@@ -61,11 +61,11 @@ export default function WhyToChoose() {
 
                     <Box className={style.statsContainer}>
                         <Box className={style.statBox}>
-                            <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon1.png" />
+                            <img className={style.tradeImage} src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon1.png" />
                             <Box>
 
                                 <div ref={ref} style={{ textAlign: "center", }}>
-                                    <Typography sx={{ color: "black", fontSize: "30px", fontWeight: 800 }}>
+                                    <Typography className={style.number} sx={{ color: "black", fontSize: "30px", fontWeight: 800 }}>
                                         <span style={{ color: "black" }}>
                                             {inView && <CountUp end={1200} duration={2} />}
                                         </span>{" "}
@@ -79,7 +79,7 @@ export default function WhyToChoose() {
                         </Box>
 
                         <Box className={style.statBox}>
-                            <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon2.png" />
+                            <img  className={style.tradeImage} src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon2.png" />
                             <Box>
                                 <Typography className={style.statTitle} sx={{ color: "black", fontSize: "30px", fontWeight: 800 }}>100%</Typography>
                                 <Typography className={style.statSubtitle}>

@@ -1,0 +1,167 @@
+  .card {
+      min-width: 300px;
+      max-width: 450px !important;
+  }
+
+  @media (min-width:1856px) and (max-width:2000) {
+      .allCardBox {
+          gap: 80 !important;
+      }
+
+      .card {
+          min-width: 300px;
+          max-width: 450px !important;
+      }
+  }
+
+  @media (max-width:1856px) {
+      .allCardBox {
+          gap: 120px !important;
+      }
+
+      .card {
+          min-width: 300px;
+          max-width: 400px !important;
+      }
+
+  }
+
+
+  @media (max-width:1735px) {
+      .allCardBox {
+          gap: 80px !important;
+      }
+
+      .card {
+          min-width: 300px;
+          max-width: 400px !important;
+      }
+
+  }
+
+  @media (max-width:1665px) {
+      .allCardBox {
+          gap: 80px !important;
+      }
+
+      .card {
+          min-width: 290px !important;
+          max-width: 370px !important;
+      }
+
+  }
+
+  @media (max-width:1573px) {
+      .allCardBox {
+          gap: 100px !important;
+      }
+
+      .card {
+          min-width: 200px !important;
+          max-width: 320px !important;
+      }
+
+  }
+
+  @media (max-width:1460px) {
+      .allCardBox {
+          gap: 290px !important;
+      }
+
+      .card {
+          min-width: 250px !important;
+          max-width: 420px !important;
+      }
+
+  }
+
+ @media (min-width:1357) and (max-width:1460px)  {
+      .allCardBox {
+          gap: 270px !important;
+      }
+
+      .card {
+          min-width: 250px !important;
+          max-width: 400px !important;
+      }
+
+  }
+  @media (max-width:1357px) {
+      .allCardBox {
+          gap:220px !important;
+      }
+
+      .card {
+          min-width: 250px !important;
+          max-width: 380px !important;
+      }
+
+  }
+
+
+  @media (max-width:1270px) {
+      .allCardBox {
+          gap: 180px !important;
+      }
+
+      .card {
+          min-width: 250px !important;
+          max-width: 340px !important;
+      }
+
+  }
+
+  @media (max-width:1145px) {
+      .allCardBox {
+          gap: 120px !important;
+      }
+
+      .card {
+          min-width: 250px !important;
+          max-width: 310px !important;
+      }
+
+  }
+
+  @media (max-width:1026px) {
+      .allCardBox {
+          gap: 120px !important;
+      }
+
+      .card {
+          min-width: 300px !important;
+          max-width:100% !important;
+      }
+
+  }
+  @media( max-width:600px){
+    .allBookings{
+        font-size: 35px !important;
+    }
+  }
+    /* Tablet portrait (768px and below) */
+@media (max-width: 768px) {
+  .allCardBox {
+    padding-left: 24px !important;
+    padding-right : 24px !important
+  }
+  
+}
+
+/* Mobile screens (480px and below) */
+@media (max-width: 480px) {
+      .allBookings{
+        font-size: 30px !important;
+    }
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+    border-radius: 12px !important;
+  }
+  .allCardBox {
+    gap: 16px !important;
+    padding: 0 8px !important;
+  }
+}
+

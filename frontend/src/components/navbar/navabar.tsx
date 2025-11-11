@@ -195,7 +195,8 @@ export default function Navbar() {
               onClick={handleLogin}
               variant="contained"
               className={style.loginBtn}
-              sx={{ mt: 2 }}
+              
+              sx={{ mt: 2 ,fontSize:"17px !important"}}
             >
               Login
             </Button>

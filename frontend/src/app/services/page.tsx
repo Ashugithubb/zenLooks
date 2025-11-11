@@ -25,6 +25,7 @@ import { clearUser } from "../redux/slice/login.slice";
 
 import EventIcon from '@mui/icons-material/Event';
 import SearchIcon from "@mui/icons-material/Search";
+import Footer from "@/components/newFooter/footer";
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const { loading } = useAppSelector((state) => state.service);
@@ -221,7 +222,6 @@ export default function Services() {
                         }}
                     />
                 </Stack>
-
             )}
 
         </>

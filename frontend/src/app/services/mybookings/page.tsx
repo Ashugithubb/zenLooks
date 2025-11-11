@@ -1,13 +1,14 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hook/hook";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
-import SingleBookingCard from "@/components/bookings/my-bookings.card";
+import SingleBookingCard from "@/components/bookings/mybookings/my-bookings.card";
 import Navbar from "@/components/navbar/navabar";
+import Footer from "@/components/newFooter/footer";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { Teachers } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
+import style from "../../../components/bookings/mybookings/mybooking.module.css"
 export default function MyBookings() {
 
 
@@ -44,7 +45,7 @@ export default function MyBookings() {
     return (
         <>
             <Navbar />
-            <Typography sx={{ fontSize: "60px", textAlign: "center", mt: 10, fontWeight: 800 }}>
+            <Typography className={style.allBookings} sx={{ fontSize: "60px", textAlign: "center", mt: 10, fontWeight: 800 }}>
                 All Your Bookings
             </Typography>
 
@@ -60,17 +61,21 @@ export default function MyBookings() {
                         display: "flex",
                         flexWrap: "wrap",
                         justifyContent: "flex-start",
-                        gap: 3,
+                        paddingLeft: "128px",
+                        paddingRight: "128px",
+                        gap: 22,
                         mt: 3,
-                        px: 2,
-                        mb: 5
+                        mb: 5,
+                       
                     }}
+                    className={style.allCardBox}
                 >
                     {booking.map((b: any) => (
                         <SingleBookingCard key={b.bookingId} booking={b} />
                     ))}
                 </Box>
             )}
+
         </>
     );
 }

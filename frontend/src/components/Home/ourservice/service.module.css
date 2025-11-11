@@ -76,7 +76,17 @@
   }
 }
 
+@media (max-width: 597px) {
+  .heading {
+    font-size: 22px;
+    padding: 0 16px;
+  }
 
+  .mainCrad {
+    width: 356px !important;
+    height: 561px !important
+  }
+}
 
 
 

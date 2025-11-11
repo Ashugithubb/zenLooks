@@ -31,24 +31,24 @@ export default function About() {
           <Box className={style.featuresRow}>
             <Box className={style.featureItem}>
               <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/08/icon1.png" />
-              <p>Premium & Modern Herbal Product</p>
+              <p style={{textAlign:"left"}}>Premium & Modern Herbal Product</p>
             </Box>
 
             <Box className={style.featureItem}>
               <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/about-icon2.png" />
-              <p>Highly Qualified Staffs SPAS Services</p>
+              <p style={{textAlign:"left"}} >Highly Qualified Staffs SPAS Services</p>
             </Box>
           </Box>
 
           <hr />
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box className={style.premium} sx={{ display: "flex",alignItems: "center", gap: 1 }}>
             <img
               src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/08/check.png"
               alt="check"
               width={18}
               height={18}
             />
-            <h5 style={{ margin: 0 }}>Premium & Modern Herbal Product</h5>
+            <h5 style={{ margin: 0}} >Premium & Modern Herbal Product</h5>
           </Box>
 
         </Box>
