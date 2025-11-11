@@ -1,11 +1,11 @@
 .aboutContainer {
   background-color: #f8f5f0;
-  padding: 80px 33px 80px 33px !important;
+  padding: 80px 128px 80px 128px !important;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 40px;
+  
 }
 
 .aboutImage {
@@ -69,18 +69,19 @@
 
 @media (max-width: 1400px) {
   .aboutContainer {
-  background-color: #f8f5f0;
-  padding: 80px 33px 80px 33px !important;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 60px !important;
-}
+    background-color: #f8f5f0;
+    padding: 80px 33px 80px 33px !important;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px !important;
+  }
+
   .aboutImage {
     margin-top: 20px !important;
     width: 50% !important;
-   
+
     max-width: 880px;
     height: auto;
 
@@ -110,7 +111,7 @@
     font-weight: bolder !important;
     color: black;
   }
-  
+
 
   .description {
     line-height: 22px;
@@ -128,7 +129,7 @@
   }
 
   .featureItem {
- 
+
     display: flex;
     gap: 10px;
     align-items: center;
@@ -147,10 +148,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 60px  !important;
+    padding-top: 60px !important;
     padding-bottom: 60px !important;
     padding-left: 33px !important;
-     padding-right: 33px !important;
+    padding-right: 33px !important;
   }
 
   .aboutImage {
