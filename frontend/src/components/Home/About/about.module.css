@@ -67,7 +67,7 @@
   color: #333;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1400px) {
   .aboutContainer {
   background-color: #f8f5f0;
   padding: 80px 33px 80px 33px !important;
@@ -75,14 +75,15 @@
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 60px !important;
 }
   .aboutImage {
-    margin-top: 100px !important;
+    margin-top: 20px !important;
     width: 50% !important;
-    height:80% !important;
-    max-width: 680px;
+   
+    max-width: 880px;
     height: auto;
+
   }
 
   .aboutContent {
@@ -141,7 +142,7 @@
   }
 }
 
-@media (max-width: 788px) {
+@media (max-width: 827px) {
   .aboutContainer {
     flex-direction: column;
     justify-content: center;

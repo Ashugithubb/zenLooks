@@ -70,7 +70,7 @@
   max-width: 600px;
 }
 
-/* -------- Features -------- */
+
 .featureBox {
   display: flex;
   flex-wrap: wrap;
@@ -94,7 +94,6 @@
   height: 18px;
 }
 
-/* -------- Stats Section -------- */
 .statsContainer {
   display: flex;
   max-width: 500px;
@@ -120,9 +119,7 @@
   font-weight: bolder;
 }
 
-/* -------- Responsive -------- */
 
-/* Tablets */
 @media (max-width: 1350px) {
   .chooseSection {
     justify-content: center !important;
@@ -170,7 +167,8 @@
 
   .imageContainer {
     flex: 1 1 100%;
-    justify-content: center;
+    justify-content: center !important;
+    align-items: center !important;
    
   }
 
@@ -208,3 +206,14 @@
   }
 
 }
+@media (min-width:680px) and (max-width: 788px) {
+.imageContainer {
+    flex: 1 1 100%;
+    justify-content: center !important;
+    align-items: center !important;
+    left:7%
+   
+   
+  }
+}
+

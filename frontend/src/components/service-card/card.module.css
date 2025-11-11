@@ -1,7 +1,8 @@
 .card {
-  min-width: 300px !important;
-  max-width: 500px !important;
-  width: 300px;
+  min-width: 410px !important;
+  max-width: 450px !important;
+  width: 320px !important;
+  
   flex: 1;
   border-radius: 16px !important;
   overflow: hidden !important;
@@ -120,6 +121,16 @@
    
   }
 }
+
+@media (min-width: 1200px) and (max-width:1542px) {
+   .card {
+    min-width: 360.5px !important;
+    max-width: 100% !important;
+   
+   
+  }
+}
+
 
 @media screen and (max-width: 1051px) {
   .card {

@@ -71,14 +71,16 @@ export default function Services() {
 
 
             <Container
+               maxWidth={false}
                 sx={{
+                    
                     paddingLeft: {
                         xs: "24px !important",
-                        md: "58px !important",
+                        md: "128px !important",
                     },
                     paddingRight: {
                         xs: "24px !important",
-                        md: "58px !important",
+                        md: "128px !important",
                     },
                 }}
             >
@@ -172,7 +174,7 @@ export default function Services() {
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: 5,
+                        gap: 14,
                         justifyContent: "flex-start",
                         alignItems: "center",
                         minHeight: "300px",
