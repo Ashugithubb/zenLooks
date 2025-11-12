@@ -122,20 +122,20 @@
 
   }
 
-  .mainBOX {
+  /* .mainBOX {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 15px !important;
     padding: 15px 20px !important;
     height: auto !important;
-  }
+  } */
 
-  .searchBox {
+  /* .searchBox {
     width: 100% !important;
     display: flex;
     justify-content: center !important;
-  }
+  } */
 
   .searchField {
     width: 55% !important;
