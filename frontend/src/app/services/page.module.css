@@ -237,21 +237,22 @@
     gap: 28 !important;
     justify-content: flex-start;
     align-items: center;
-    min-height: 400px !important;
+    min-height: 390px !important;
 
 
   }
 
 }
 
-@media (min-width: 1200px) and (max-width:1542px) {
+@media (min-width: 1200px) and (max-width:1545px) {
   .cardBox {
     display: flex;
     flex-wrap: wrap;
-    gap: 32 !important;
+    gap: 28 !important;
     justify-content: flex-start;
     align-items: center;
-    min-height: 400px !important;
+
+    min-height: 390px !important;
   }
 
 }
@@ -259,7 +260,7 @@
   .cardBox {
     display: flex;
     flex-wrap: wrap;
-    gap: 40 !important;
+    gap: 50 !important;
     justify-content: flex-start;
     align-items: center;
     min-height: 400px !important;
