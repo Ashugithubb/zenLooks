@@ -103,7 +103,7 @@ export default function Services() {
                             onChange={handleSearchChange}
                             className={style.searchField}
                             sx={{
-                                width: "500px",
+                                width: role === undefined ? "350px !important" : "500px",
                                 backgroundColor: "#fff",
                                 borderRadius: "50px",
                                 "& .MuiOutlinedInput-root": {
@@ -175,7 +175,7 @@ export default function Services() {
                     sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: 14,
+                        gap: 26,
                         justifyContent: "flex-start",
                         alignItems: "center",
                         minHeight: "300px",

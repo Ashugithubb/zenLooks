@@ -16,11 +16,11 @@ export default function About() {
           <p  className={style.aboutus}>About Us</p>
 
           <Box    className={style.pursuit}>
-            <h3>Pursuit of Perfect Relaxation Crafting Oasis Calm</h3>
+            <h3 className={style.pursuit} >Pursuit of Perfect Relaxation Crafting Oasis Calm</h3>
           </Box>
 
           <Box className={style.description}>
-            <p>
+            <p className={style.description}>
               Globally morph an expanded array of internal or organic sources main envisioneer
               performance based action into administrate leverage into rather than maintainable spa works
             </p>
@@ -30,12 +30,12 @@ export default function About() {
 
           <Box className={style.featuresRow}>
             <Box className={style.featureItem}>
-              <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/08/icon1.png" />
+              <img  className={style.image} src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/08/icon1.png" />
               <p style={{textAlign:"left"}}>Premium & Modern Herbal Product</p>
             </Box>
 
             <Box className={style.featureItem}>
-              <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/about-icon2.png" />
+              <img className={style.image} src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/about-icon2.png" />
               <p style={{textAlign:"left"}} >Highly Qualified Staffs SPAS Services</p>
             </Box>
           </Box>
@@ -48,7 +48,7 @@ export default function About() {
               width={18}
               height={18}
             />
-            <h5 style={{ margin: 0}} >Premium & Modern Herbal Product</h5>
+            <h5  className={style.premium} style={{ margin: 0}} >Premium & Modern Herbal Product</h5>
           </Box>
 
         </Box>

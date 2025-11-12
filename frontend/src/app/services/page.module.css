@@ -86,15 +86,6 @@
   }
 }
 
-@media screen and (min-width:768px) and (max-width:1256px) {
-  .container {
-    /* background-color: aqua; */
-    /* margin-left: 35px !important;
-      margin-right: 35px !important; */
-
-  }
-
-}
 
 @media screen and (max-width: 1150px) {
   .cardBut {
@@ -203,12 +194,25 @@
   }
 }
 
+@media screen and (min-width:1800px) and (max-width:1901) {
+ .cardBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 95 !important;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 300px;
+   
+
+  }
+
+}
 
 @media (min-width: 1727px) and (max-width:1800px) {
   .cardBox {
     display: flex;
     flex-wrap: wrap;
-    gap: 120 !important;
+    gap: 122 !important;
     justify-content: flex-start;
     align-items: center;
     min-height: 300px;
@@ -217,7 +221,7 @@
 
 }
 
-@media (min-width: 1545px) and (max-width:1710px) {
+@media (min-width: 1545px) and (max-width:1727px) {
   .cardBox {
     display: flex;
     flex-wrap: wrap;
