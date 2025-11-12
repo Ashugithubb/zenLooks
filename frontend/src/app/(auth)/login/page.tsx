@@ -138,7 +138,7 @@ export default function LoginForm() {
               />
               <Typography
                 onClick={() => router.push("login/forgot-password")}
-                sx={{ cursor: "pointer", textAlign: "right", marginTop: "5px", fontSize: "14px", color: "#4A55A2" }}
+                sx={{ cursor: "pointer", textAlign: "right", marginTop: "-13px", fontSize: "14px", color: "#4A55A2" }}
               >
                 Forgot Password?
               </Typography>

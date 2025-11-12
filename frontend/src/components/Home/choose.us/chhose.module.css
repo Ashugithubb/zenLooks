@@ -238,6 +238,7 @@
     flex: 1 1 100%;
     align-items: center;
     text-align: center;
+    gap:25px !important
   }
 
   .mainHeading {

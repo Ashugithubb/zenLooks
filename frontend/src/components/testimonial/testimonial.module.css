@@ -1,9 +1,9 @@
 .mainBox {
     display: flex !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     padding: 101px 90px;
     align-items: center;
-    gap: 40px;
+    
 }
 
 
@@ -28,7 +28,7 @@
     margin: 0 auto;
     text-align: center;
     line-height: 1.9;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #7e7e7e;
     font-weight: 500;
     padding: 10px 20px;
@@ -83,18 +83,18 @@
     .left {
         display: flex;
         flex-direction: column;
-        gap: 300px;
+        gap: 120px;
     }
 
     .right {
         display: flex;
         flex-direction: column;
-        gap: 250px;
+        gap: 200px;
     }
 
     .shapeA {
-        width: 150px !important;
-        height: 156px !important;
+        width: 190px !important;
+        height: 196px !important;
     }
 
     .shapeB {
@@ -109,8 +109,8 @@
     }
 
     .leafShape {
-        width: 89px;
-        height: 109px;
+        width: 109px  !important;
+        height: 150px !important;
         transform: translateY(16px);
     }
 
@@ -147,7 +147,7 @@
     }
 
     .leafShape {
-        width: 79px !important;
+        width: 105px !important;
         height: 99px !important;
         transform: translateY(16px);
     }

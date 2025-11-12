@@ -65,16 +65,16 @@ export default function Testinomial() {
                     >
 
                         {testimonials.map((t, index) => (
-                            <Box className={style.testimonial }>
-                            <SwiperSlide key={index} >
-                                <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png" style={{ marginLeft: "45%" }} />
+                            <Box className={style.testimonial}>
+                                <SwiperSlide key={index} >
+                                    <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png" style={{ marginLeft: "45%" }} />
 
-                                <p className={style.p}>{t.text}</p>
-                                <h4 className={style.juklin}>{t.name}</h4>
-                                <p style={{ textAlign: "center", color: "#acacac", fontWeight: 600 }}>
-                                    {t.role}
-                                </p>
-                            </SwiperSlide></Box>
+                                    <p className={style.p}>{t.text}</p>
+                                    <h4 className={style.juklin}>{t.name}</h4>
+                                    <p style={{ textAlign: "center", color: "#acacac", fontWeight: 600 }}>
+                                        {t.role}
+                                    </p>
+                                </SwiperSlide></Box>
                         ))}
 
                     </Swiper>

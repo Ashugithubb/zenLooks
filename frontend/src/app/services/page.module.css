@@ -1,5 +1,14 @@
 .cardBut {}
+ .cardBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 130 !important;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 300px;
+   
 
+  }
 .searchField {
   width: 280px !important;
   background-color: #fff !important;
@@ -198,7 +207,7 @@
  .cardBox {
     display: flex;
     flex-wrap: wrap;
-    gap: 95 !important;
+    gap: 70 !important;
     justify-content: flex-start;
     align-items: center;
     min-height: 300px;

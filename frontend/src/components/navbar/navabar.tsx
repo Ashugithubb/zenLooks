@@ -79,7 +79,7 @@ export default function Navbar() {
         <Box
           className={style.right}
           sx={{
-           
+
             alignItems: "center",
             gap: 3,
           }}
@@ -117,24 +117,24 @@ export default function Navbar() {
         </Box>
 
 
-      
-          <IconButton
-            onClick={() => setOpen(!open)}
-              className={style.hamburger}
-              sx={{p:0,m:0}}
-          >
-            {!open ? (
-              <MenuIcon sx={{ color: "white", fontSize: 28 }} />
-            ) : (
-              <CloseIcon sx={{ color: "white", fontSize: 28 }} />
-            )}
-          </IconButton>
+
+        <IconButton
+          onClick={() => setOpen(!open)}
+          className={style.hamburger}
+          sx={{ p: 0, m: 0 }}
+        >
+          {!open ? (
+            <MenuIcon sx={{ color: "white", fontSize: 28 }} />
+          ) : (
+            <CloseIcon sx={{ color: "white", fontSize: 28 }} />
+          )}
+        </IconButton>
 
 
       </Box>
 
       {/* Drawer for Mobile */}
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)} sx={{  zIndex:1000000}}>
         <Box
           sx={{
             width: 250,
@@ -144,6 +144,7 @@ export default function Navbar() {
             gap: 2,
             height: "100%",
             backgroundColor: "black",
+          
 
           }}
         >
@@ -195,8 +196,8 @@ export default function Navbar() {
               onClick={handleLogin}
               variant="contained"
               className={style.loginBtn}
-              
-              sx={{ mt: 2 ,fontSize:"17px !important"}}
+
+              sx={{ mt: 2, fontSize: "17px !important" }}
             >
               Login
             </Button>
