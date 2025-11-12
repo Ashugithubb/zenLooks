@@ -30,33 +30,33 @@ export default function WhyToChoose() {
                     </Box>
 
                     <Box className={style.featureBox}>
-                        <Typography className={style.feature}>
+                        <Box className={style.feature}>
                             <img
                                 src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/check1.png"
                             />
                             Experience Serenity
-                        </Typography>
+                        </Box>
 
-                        <Typography className={style.feature}>
+                        <Box className={style.feature}>
                             <img
                                 src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/check1.png"
                             />
                             Rejuvenation Awaits
-                        </Typography>
+                        </Box>
 
-                        <Typography className={style.feature}>
+                        <Box className={style.feature}>
                             <img
                                 src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/check1.png"
                             />
-                             Revitalize Your Senses
-                        </Typography>
+                            Revitalize Your Senses
+                        </Box>
 
-                        <Typography className={style.feature}>
+                        <Box className={style.feature}>
                             <img
                                 src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/check1.png"
                             />
                             Exclusive Spa Services
-                        </Typography>
+                        </Box>
                     </Box>
 
                     <Box className={style.statsContainer}>

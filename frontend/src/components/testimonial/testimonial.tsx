@@ -65,7 +65,8 @@ export default function Testinomial() {
                     >
 
                         {testimonials.map((t, index) => (
-                            <SwiperSlide key={index}>
+                            <Box className={style.testimonial }>
+                            <SwiperSlide key={index} >
                                 <img src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/teasti-quote.png" style={{ marginLeft: "45%" }} />
 
                                 <p className={style.p}>{t.text}</p>
@@ -73,7 +74,7 @@ export default function Testinomial() {
                                 <p style={{ textAlign: "center", color: "#acacac", fontWeight: 600 }}>
                                     {t.role}
                                 </p>
-                            </SwiperSlide>
+                            </SwiperSlide></Box>
                         ))}
 
                     </Swiper>

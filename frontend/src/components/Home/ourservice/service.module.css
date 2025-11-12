@@ -6,6 +6,7 @@
 
 .serviceContainer {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 100px;
   justify-content: center;
@@ -38,17 +39,32 @@
 }
 
 /* Responsive */
+
+
 @media (max-width: 1234px) {
-  .our{
+  .serviceSection {
+    background-color: #0a132e;
+    width: 100%;
+    padding: 73px 15px 73px 15px !important;
+  }
+
+  .our {
     font-size: 45px !important;
   }
+
   .heading {
     font-size: 38px;
   }
 
   .cardContainer {
-    flex-direction: column;
-    gap: 34px !important;
+
+    gap: 23px !important;
+  }
+}
+
+@media (max-width:1300px) {
+  .mainCrad {
+    width: "15px" !important
   }
 }
 
@@ -71,19 +87,23 @@
   }
 
   .mainCrad {
-    width: 356px !important;
+    width: 300px !important;
     height: 561px !important
   }
 }
 
 @media (max-width: 597px) {
+  .cardContainer {
+
+    gap: 25px !important;
+  }
   .heading {
     font-size: 22px;
     padding: 0 16px;
   }
 
   .mainCrad {
-    width: 356px !important;
+    width: 346px !important;
     height: 561px !important
   }
 }

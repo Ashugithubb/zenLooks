@@ -87,7 +87,9 @@
   gap: 8px;
   font-weight: bolder;
   color: black;
+  width: 200px !important;
 }
+
 
 .feature img {
   width: 18px;
@@ -190,14 +192,14 @@
 
 @media (max-width: 865px) {
   .statsContainer {
-   
-     flex-direction: column;
-     gap: 20px !important;
+
+    flex-direction: column;
+    gap: 20px !important;
   }
 
   .statBox {
     display: flex;
-   
+
     gap: 20px !important;
     align-items: center;
   }
@@ -208,7 +210,7 @@
   }
 
   .number {
-   
+
     font-size: 20px !important;
     font-weight: 800 !important;
   }

@@ -28,7 +28,7 @@
     margin: 0 auto;
     text-align: center;
     line-height: 1.9;
-    font-size: 22px;
+    font-size: 1rem;
     color: #7e7e7e;
     font-weight: 500;
     padding: 10px 20px;
@@ -69,7 +69,7 @@
 .shapeB,
 .shapeC,
 .leafShape {
-    width: clamp(100px, 10vw, 160px);
+    width: clamp(120px, 14vw, 180px);
     /* scales smoothly between 100px–160px */
     height: auto;
     /* keeps correct proportions */
@@ -121,13 +121,13 @@
     .left {
         display: flex;
         flex-direction: column;
-        gap: 300px;
+        gap: 130px;
     }
 
     .right {
         display: flex;
         flex-direction: column;
-        gap: 290px;
+        gap: 130px;
     }
 
     .shapeA {
@@ -142,65 +142,19 @@
     }
 
     .shapeC {
-        width: 126px;
-
+        width: 126px !important;
 
     }
 
     .leafShape {
-        width: 79px;
-        height: 99px;
+        width: 79px !important;
+        height: 99px !important;
         transform: translateY(16px);
     }
 
 }
 
-@media (max-width: 1426px) {
-
-    .shapeB {
-        width: 145px !important;
-        height: 140px !important;
-        transform: translateX(80px);
-    }
-
-    .shapeC {
-        width: 124px;
-        height: 117px;
-
-    }
-}
-
-@media (max-width: 1397px) {
-
-    .shapeB {
-        width: 147px !important;
-        height: 129px !important;
-        transform: translateX(80px);
-    }
-
-    .shapeC {
-        width: 129x;
-        height: 110px;
-
-    }
-}
-
-@media (max-width: 1367px) {
-
-    .shapeB {
-        width: 143px !important;
-        height: 126px !important;
-        transform: translateX(80px);
-    }
-
-    .shapeC {
-        width: 124px;
-        height: 97.4px;
-
-    }
-}
-
-@media(max-width:1300px) {
+@media (max-width:1345px) {
 
     .shapeA,
     .shapeB,
@@ -209,10 +163,20 @@
         display: none;
 
     }
+
+    .mainBox {
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 35px 80px;
+        align-items: center;
+        gap: 40px;
+    }
+
 }
 
-/* Tablets */
 @media (max-width: 900px) {
+
+
     .mainBox {
         padding: 60px 30px;
         gap: 30px;

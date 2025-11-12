@@ -55,7 +55,7 @@ export default function SignupForm() {
         }
 
         setLoading(true);
-        setDisableFields(true); // disable fields during request
+        setDisableFields(true); 
 
         const res = await dispatch(sendEmailOtpThunk({ name, email }));
 
@@ -66,11 +66,11 @@ export default function SignupForm() {
             setStep('otp');
         } else {
             toast.error(res.payload as string);
-            setDisableFields(false); // re-enable if failed
+            setDisableFields(false); 
         }
     };
 
-    /** Step 2 - Verify OTP */
+  
     const handleVerifyOtp = async () => {
         if (!otp) {
             toast.error("Please enter OTP");

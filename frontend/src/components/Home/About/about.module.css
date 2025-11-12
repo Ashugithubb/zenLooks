@@ -2,9 +2,9 @@
   background-color: #f8f5f0;
   padding: 80px 254px 80px 128px !important;
   display: flex;
+  flex: 1;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 250px !important;
   flex-wrap: wrap;
 }
 
@@ -68,6 +68,7 @@
   margin-top: 20px;
   color: #333;
 }
+
 
 @media (max-width:1911px) {
   .aboutContainer {
@@ -414,6 +415,10 @@
   .premium {
     font-size: 15px !important;
   }
+
+  .image {
+    width: 3rem !important
+  }
 }
 
 @media (max-width:1010px) {
@@ -472,8 +477,8 @@
   }
 
   .image {
-    width:40px !important;
-    height:40px !important
+    width: 40px !important;
+    height: 40px !important
   }
 
   .featuresRow {
@@ -549,9 +554,10 @@
   .featureItem {
     justify-content: center;
   }
-  .premium{
-   justify-content: center !important;
-   font-size: 20px !important;
+
+  .premium {
+    justify-content: center !important;
+    font-size: 20px !important;
   }
 }
 
@@ -587,9 +593,10 @@
     font-size: 13px;
     margin-top: 10px;
   }
-    .premium{
-   justify-content: center !important;
-   font-size: 16px !important;
+
+  .premium {
+    justify-content: center !important;
+    font-size: 16px !important;
   }
 }
 

@@ -15,7 +15,7 @@ function MyImageBelowCard(prop: propValue) {
         <Card className={style.mainCrad}
             sx={{
                 backgroundColor: "rgb(25, 35, 63)",
-                width: "396px",
+                width: "340px",
                 height: "561px",
                 display: "flex",
                 flexDirection: "column",
