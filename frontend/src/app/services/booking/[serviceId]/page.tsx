@@ -213,10 +213,21 @@ export default function Bookings() {
 
 
 
+    const filteredRanges = [...disabledRanges]
+        // Hide past slots for today
+        .filter((range) => {
+            const now = dayjs();
+            const isToday = range.start.isSame(now, "day");
+            return !isToday || range.end.isAfter(now);
+        })
+        // Sort ascending by start time
+        .sort((a, b) => a.start.diff(b.start));
+
+
     return (
         <>
             <Navbar />
-            <ToastContainer />
+
             <Box
                 sx={{
                     textAlign: "center",
@@ -442,7 +453,7 @@ export default function Bookings() {
                         </Box>
 
                         {/* Disabled Slots */}
-                        {disabledRanges.length > 0 && (
+                        {/* {disabledRanges.length > 0 && (
                             <Box sx={{ mt: 2 }}>
                                 <Typography variant="subtitle2" color="error" gutterBottom>
                                     Unavailable Slots:
@@ -465,7 +476,69 @@ export default function Bookings() {
                                     ))}
                                 </Box>
                             </Box>
+                        )} */}
+
+
+                        {/* {disabledRanges.length > 0 && (
+                            <Box sx={{ mt: 2 }}>
+                                <Typography variant="subtitle2" color="error" gutterBottom>
+                                    Unavailable Slots:
+                                </Typography>
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                                    {[...disabledRanges]
+
+                                        .filter((range) => {
+                                            const now = dayjs();
+                                            const isToday = range.start.isSame(now, "day");
+
+                                            return !isToday || range.end.isAfter(now);
+                                        })
+
+                                        .sort((a, b) => a.start.diff(b.start))
+
+                                        .map((range, index) => (
+                                            <Paper
+                                                key={index}
+                                                sx={{
+                                                    px: 1.5,
+                                                    py: 0.5,
+                                                    borderRadius: 1,
+                                                    backgroundColor: "#fee2e2",
+                                                    color: "#b91c1c",
+                                                    fontSize: "0.85rem",
+                                                }}
+                                            >
+                                                {range.start.format("HH:mm")} - {range.end.format("HH:mm")}
+                                            </Paper>
+                                        ))}
+                                </Box>
+                            </Box>
+                        )} */}
+                        {filteredRanges.length > 0 && (
+                            <Box sx={{ mt: 2 }}>
+                                <Typography variant="subtitle2" color="error" gutterBottom>
+                                    Unavailable Slots:
+                                </Typography>
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                                    {filteredRanges.map((range, index) => (
+                                        <Paper
+                                            key={index}
+                                            sx={{
+                                                px: 1.5,
+                                                py: 0.5,
+                                                borderRadius: 1,
+                                                backgroundColor: "#fee2e2",
+                                                color: "#b91c1c",
+                                                fontSize: "0.85rem",
+                                            }}
+                                        >
+                                            {range.start.format("HH:mm")} - {range.end.format("HH:mm")}
+                                        </Paper>
+                                    ))}
+                                </Box>
+                            </Box>
                         )}
+
 
                         {/* Mobile Number */}
                         <Box sx={{ mt: 3 }}>
@@ -552,7 +625,7 @@ export default function Bookings() {
                                 On Site Payment
                             </Button>
 
-                            {selectedSlot && bookingDate && mobileNumber.length === 10 && (
+                            {!pay && selectedSlot && bookingDate && mobileNumber.length === 10 && (
                                 <PaymentSystem amount={amount} />
                             )}
                         </Box>

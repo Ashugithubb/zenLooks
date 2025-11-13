@@ -32,7 +32,7 @@ type FormData = z.infer<typeof createUnavailableSlotSchema>;
 export default function AddUnavailableSlotDialog() {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
-
+  const [save, setSave] = useState(false);
   const {
     control,
     register,
@@ -57,14 +57,17 @@ export default function AddUnavailableSlotDialog() {
   };
 
   const onSubmit = async (data: FormData) => {
+    setSave(true);
     const res = await dispatch(createUnavailableSlot(data));
     if (res.meta.requestStatus === "fulfilled") {
       toast.success("Unavailable slot added successfully!");
+      setSave(false);
       setTimeout(() => {
         handleClose();
       }, 200)
     } else {
       toast.error(res.payload || "Failed to add slot");
+      setSave(false)
     }
   };
 
@@ -187,8 +190,8 @@ export default function AddUnavailableSlotDialog() {
             <Button variant="contained" onClick={handleSubmit(onSubmit)} sx={{
               backgroundColor: "#eea84f",
               "&:hover": { backgroundColor: "#d9652f" }
-            }}>
-              Save
+            }} disabled={save}>
+              {save ? "Saving..." : "Save"}
             </Button>
           </DialogActions>
         </Dialog>
