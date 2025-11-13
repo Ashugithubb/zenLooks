@@ -133,7 +133,7 @@ export default function Services() {
 
 
                                 "@media (max-width: 380px)": {
-                                    width: "240px !important",
+                                    width: "260px !important",
                                 },
 
                             }}
