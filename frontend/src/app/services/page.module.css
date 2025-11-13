@@ -6,7 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     min-height: 300px;
-   
+  
 
   }
 .searchField {
@@ -202,6 +202,7 @@
     width: 250px !important;
   }
 }
+
 
 @media screen and (min-width:1800px) and (max-width:1901) {
  .cardBox {

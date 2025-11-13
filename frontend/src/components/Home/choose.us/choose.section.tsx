@@ -64,7 +64,7 @@ export default function WhyToChoose() {
                             <img className={style.tradeImage} src="https://aonetheme.com/spaclubwp/wp-content/uploads/2024/09/choose-us-icon1.png" />
                             <Box>
 
-                                <div ref={ref} style={{ textAlign: "center", }}>
+                                <div ref={ref} >
                                     <Typography className={style.number} sx={{ color: "black", fontSize: "30px", fontWeight: 800 }}>
                                         <span style={{ color: "black" }}>
                                             {inView && <CountUp end={1200} duration={2} />}

@@ -55,7 +55,7 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  gap: 59px;
+  gap: 5vh;
   flex: 1 1 45%;
 }
 
@@ -99,7 +99,7 @@
 .statsContainer {
   display: flex;
   max-width: 500px;
-  justify-content: space-between;
+  gap:20px;
   flex-wrap: wrap;
 
 }
@@ -163,12 +163,12 @@
 
 @media (max-width: 1020px) {
   .statsContainer {
-    gap: 2px !important
+    gap: 12px !important
   }
 
   .statBox {
     display: flex;
-    gap: 10px !important;
+    gap: 6px !important;
     align-items: center;
   }
 
@@ -185,49 +185,51 @@
   .statTitle {
     font-size: 18px !important;
     font-weight: 600 !important;
-    text-align: center !important;
+   
   }
 
   .featureBox {
     padding: 10px !important;
     padding-left: 1.5px !important;
     padding-right: 1.5px !important;
-    gap:1;
+    gap: 1;
     font-weight: 300 !important;
   }
 
 }
 
-@media (max-width: 865px) {
+@media (max-width: 870px) {
   .statsContainer {
 
-    flex-direction: column;
-    gap: 20px !important;
+    
+    gap: 28px !important;
   }
 
   .statBox {
     display: flex;
 
-    gap: 20px !important;
+    gap: 10px !important;
     align-items: center;
   }
 
   .tradeImage {
-    width: 40px !important;
-    height: 40px !important
+    width: 30px !important;
+    height: 30px !important
   }
 
   .number {
 
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: 800 !important;
   }
 
   .statTitle {
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: 800 !important;
   }
-
+  .statSubtitle{
+    font-size: 12px !important;
+  }
 }
 
 
@@ -255,7 +257,7 @@
   }
 
   .statsContainer {
-    flex-direction: column;
+    
     align-items: center;
     gap: 30px;
   }
@@ -284,5 +286,12 @@
     justify-content: center !important;
     align-items: center !important;
     left: 7%
+  }
+}
+@media (max-width:380px){
+   .statsContainer {
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
   }
 }

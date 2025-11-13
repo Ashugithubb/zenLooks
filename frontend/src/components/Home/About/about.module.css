@@ -8,7 +8,7 @@
   flex-wrap: wrap; */
 
   padding: 80px 128px !important;
-  padding-right: 15% !important;
+  padding-right: 9% !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,7 +77,7 @@
 }
 
 
-@media (max-width:1911px) {
+/* @media (max-width:1911px) {
   .aboutContainer {
     background-color: #f8f5f0;
     padding: 80px 128px 80px 128px !important;
@@ -149,7 +149,7 @@
     color: #333;
   }
 
-}
+} */
 
 @media (max-width:1786px) {
   .aboutContainer {

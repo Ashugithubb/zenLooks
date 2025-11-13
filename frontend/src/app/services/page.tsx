@@ -72,9 +72,9 @@ export default function Services() {
 
 
             <Container
-               maxWidth={false}
+                maxWidth={false}
                 sx={{
-                    
+
                     paddingLeft: {
                         xs: "24px !important",
                         md: "128px !important",
@@ -103,7 +103,7 @@ export default function Services() {
                             onChange={handleSearchChange}
                             className={style.searchField}
                             sx={{
-                                width: role === undefined ? "350px !important" : "500px",
+                                width: role === undefined ? "300px !important" : "500px",
                                 backgroundColor: "#fff",
                                 borderRadius: "50px",
                                 "& .MuiOutlinedInput-root": {
@@ -127,7 +127,12 @@ export default function Services() {
                                 },
                                 '& .MuiInputAdornment-root': {
                                     marginRight: '-10px',
-                                }
+                                },
+
+
+                                "@media (max-width: 380px)": {
+                                    width: "240px !important",
+                                },
                             }}
                             InputProps={{
                                 startAdornment: (
@@ -182,7 +187,15 @@ export default function Services() {
 
                     }}
                 >
-                    {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center", marginLeft: "50%" }}>
+                    {loading ? (<Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "50vh", // full viewport height
+                            width: "100vw",  // full viewport width
+                        }}
+                    >
                         <CircularProgress />
                     </Box>) : services?.length === 0 ? (
                         <Typography sx={{ mt: 5, ml: "50%" }}>No Services found</Typography>

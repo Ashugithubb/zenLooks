@@ -1,17 +1,17 @@
 .serviceSection {
   background-color: #0a132e;
   width: 100%;
-  padding: 73px 0 73px 0 !important;
+  padding: 93px 0 93px 0 !important;
 }
 
 .serviceContainer {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 100px;
+  gap: 60px;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px !important;
+  
 }
 
 .header {
