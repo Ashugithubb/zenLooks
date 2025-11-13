@@ -1,5 +1,7 @@
 .cardBut {}
 
+
+
 .cardBox {
   display: flex;
   flex-wrap: wrap;
@@ -117,6 +119,21 @@
     gap: 15px !important;
     padding: 15px 20px !important;
     height: auto !important;
+  }
+
+  .undefinedRoleBox {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+
+    gap: 10px;
+
+    padding: 10px;
+  }
+
+  .undefinedSearchBox {
+
+    display: flex;
+    justify-content: center !important;
   }
 
   .searchBox {

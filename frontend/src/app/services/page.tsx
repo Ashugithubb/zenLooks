@@ -85,7 +85,9 @@ export default function Services() {
                     },
                 }}
             >
-                <Box className={style.mainBOX}
+                <Box className={
+                    role === undefined ? style.undefinedRoleBox : style.mainBOX
+                }
                     sx={{
                         mb: 3,
                         display: "flex",
@@ -94,7 +96,7 @@ export default function Services() {
                         gap: "30px",
                     }}
                 >
-                    <Box className={style.searchBox}>
+                    <Box className={role === undefined ? style.undefinedSearchBox : style.searchBox}>
                         <TextField
                             placeholder="Search services..."
                             variant="outlined"
@@ -133,6 +135,7 @@ export default function Services() {
                                 "@media (max-width: 380px)": {
                                     width: "240px !important",
                                 },
+
                             }}
                             InputProps={{
                                 startAdornment: (
