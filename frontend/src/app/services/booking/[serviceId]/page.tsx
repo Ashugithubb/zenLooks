@@ -614,10 +614,10 @@ export default function Bookings() {
                                     py: 1.2,
                                     textTransform: "none",
                                     fontSize: "1rem",
-                                    backgroundColor: "#d9a521", // gold shade
+                                    backgroundColor: "#d9a521", 
                                     boxShadow: "0 4px 14px rgba(25, 118, 210, 0.3)",
                                     "&:hover": {
-                                        backgroundColor: "#b5891b", // darker gold on hover
+                                        backgroundColor: "#b5891b", 
                                         boxShadow: "0 6px 18px rgba(25, 118, 210, 0.4)",
                                     },
                                 }}

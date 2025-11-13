@@ -166,5 +166,12 @@
     "receipt": "receipt#1",
     "status": "paid",
     "payment_id": "pay_RTj490aunkofFY"
+  },
+  {
+    "order_id": "order_RfE59LwFSrkKWv",
+    "amount": 101200,
+    "currency": "INR",
+    "receipt": "receipt#1",
+    "status": "created"
   }
 ]
