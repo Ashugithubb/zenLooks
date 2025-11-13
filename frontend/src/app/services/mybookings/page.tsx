@@ -73,7 +73,7 @@ export default function MyBookings() {
                     <Box
                         sx={{
                             display: "flex",
-                            
+
                             paddingLeft: "128px",
                             paddingRight: "128px",
                             gap: 3,
@@ -88,16 +88,18 @@ export default function MyBookings() {
                     </Box>
 
 
-                    <Stack spacing={1} alignItems="center" sx={{ mb: 5 }}>
-                        <Pagination
-                            count={totalPages}
-                            page={currentPage}
-                            onChange={handlePageChange}
-                            color="primary"
 
-                        />
 
-                    </Stack>
+                    {!loading && total > limit && (
+                        <Stack spacing={1} alignItems="center" sx={{ pb: 5, }}>
+                            <Pagination
+                                count={Math.ceil(total / limit)}
+                                page={currentPage}
+                                onChange={handlePageChange}
+                                color="primary"
+                            />
+                        </Stack>
+                    )}
                 </>
             )}
         </>

@@ -41,7 +41,7 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
   };
 
   return (
-    <Card  className={style.card}sx={{ maxWidth: 400, height: "auto", margin: 1, display: "flex", flexDirection: "column", justifyContent: "space-between",maxHeight:"auto !important" }}>
+    <Card className={style.card} sx={{ maxWidth: 400, height: "auto", margin: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", maxHeight: "auto !important" }}>
       <Box>
         <CardMedia
           component="img"
