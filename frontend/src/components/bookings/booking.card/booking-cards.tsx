@@ -104,7 +104,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
           color="text.secondary"
           sx={{
             display: "-webkit-box",
-            WebkitLineClamp: 4,
+            WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
             textOverflow: "ellipsis",
