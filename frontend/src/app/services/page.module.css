@@ -1,14 +1,16 @@
 .cardBut {}
- .cardBox {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 130 !important;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 300px;
-  
 
-  }
+.cardBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 130 !important;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 300px;
+
+
+}
+
 .searchField {
   width: 280px !important;
   background-color: #fff !important;
@@ -107,44 +109,21 @@
 
   }
 
-  @media screen and (max-width: 1050px) {
-    .seeAll {
-      margin-top: 80px !important;
 
-    }
-
-    .cardBox {
-      display: flex !important;
-      gap: 0;
-      justify-content: center !important;
-      align-items: center !important;
-
-
-    }
-
-    .cardBut {
-      padding-left: 15% !important;
-      padding-right: 15% !important;
-    }
-
-
-
-  }
-
-  /* .mainBOX {
+  .mainBOX {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 15px !important;
     padding: 15px 20px !important;
     height: auto !important;
-  } */
+  }
 
-  /* .searchBox {
+  .searchBox {
     width: 100% !important;
     display: flex;
     justify-content: center !important;
-  } */
+  }
 
   .searchField {
     width: 55% !important;
@@ -181,6 +160,31 @@
 
 }
 
+@media screen and (max-width: 1050px) {
+  .seeAll {
+    margin-top: 80px !important;
+
+  }
+
+  .cardBox {
+    display: flex !important;
+    gap: 0;
+    justify-content: center !important;
+    align-items: center !important;
+
+
+  }
+
+  .cardBut {
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+  }
+
+
+
+}
+
+
 @media screen and (max-width: 480px) {
   .allBooking {
     margin-left: 2px !important;
@@ -205,14 +209,14 @@
 
 
 @media screen and (min-width:1800px) and (max-width:1901) {
- .cardBox {
+  .cardBox {
     display: flex;
     flex-wrap: wrap;
     gap: 70 !important;
     justify-content: flex-start;
     align-items: center;
     min-height: 300px;
-   
+
 
   }
 
@@ -257,6 +261,7 @@
   }
 
 }
+
 @media (min-width: 200px) and (max-width:1403px) {
   .cardBox {
     display: flex;
@@ -265,7 +270,7 @@
     justify-content: flex-start;
     align-items: center;
     min-height: 400px !important;
- 
+
   }
 
 }

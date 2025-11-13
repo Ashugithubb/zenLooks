@@ -192,8 +192,8 @@ export default function Services() {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            height: "50vh", // full viewport height
-                            width: "100vw",  // full viewport width
+                            height: "50vh",
+                            width: "100vw",
                         }}
                     >
                         <CircularProgress />
