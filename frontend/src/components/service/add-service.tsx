@@ -348,6 +348,7 @@ export default function CreateServiceDialog() {
                                 helperText={errors.category?.message}
                                 fullWidth
                                 className={style.title}
+                                sx={{zIndex:105}}
 
                             >
                                 <MenuItem value="Male">Male</MenuItem>

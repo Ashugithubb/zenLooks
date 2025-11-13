@@ -6,7 +6,7 @@
 
 }
 .form{
-  z-index: 10001 !important;
+  z-index: 100 !important;
   margin-top: 50px !important;
 }
 .addService {
