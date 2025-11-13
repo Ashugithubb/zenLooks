@@ -3,7 +3,7 @@
     justify-content: center !important;
     padding: 101px 90px;
     align-items: center;
-    
+
 }
 
 
@@ -99,7 +99,6 @@
 
     .shapeB {
         width: 155px !important;
-
         transform: translateX(80px);
     }
 
@@ -109,7 +108,7 @@
     }
 
     .leafShape {
-        width: 109px  !important;
+        width: 109px !important;
         height: 150px !important;
         transform: translateY(16px);
     }
@@ -174,7 +173,7 @@
 
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1090px) {
 
 
     .mainBox {

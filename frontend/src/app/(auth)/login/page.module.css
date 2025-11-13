@@ -20,7 +20,7 @@
   font-size: 3rem;
   font-weight: 700 !important;
   color: #c49a3a;
- 
+
 }
 
 .subtitle {
@@ -59,7 +59,7 @@
   margin-top: 25px;
   color: #666;
   font-size: 0.95rem;
-   margin-top: 10px!important;
+  margin-top: 10px !important;
 }
 
 .footerText span {
@@ -67,7 +67,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: color 0.3s ease;
- 
+
 }
 
 .footerText span:hover {
@@ -80,6 +80,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -92,6 +93,7 @@
     width: 90%;
     padding: 30px 25px;
   }
+
   .title {
     font-size: 1.8rem;
   }
