@@ -13,10 +13,19 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-@media screen and (max-width: 903px) {
+@media screen and (max-width: 1415px) {
   .booking {
-    width: 100%;
+    width: 90%;
     margin: 8px 0;
     border-radius: 12px;
   }
 }
+
+@media screen and (max-width: 1215px) {
+  .booking {
+    width: 110%;
+    margin: 8px 0;
+    border-radius: 12px;
+  }
+}
+
