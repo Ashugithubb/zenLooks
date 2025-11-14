@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/app/redux/hook/hook";
 import style from "./page.module.css"
 import { resetPasswordThunk, sendForgotOtpThunk, verifyEmailOtpThunk } from "@/app/redux/thunk/otp-verification/otp";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function ForgotPassword() {
   const dispatch = useAppDispatch();
@@ -53,6 +53,13 @@ export default function ForgotPassword() {
   };
 
   const updatePassword = async (data: any) => {
+
+
+    if (data.newPassword.length < 6) {
+      return toast.error("Password must be at least 6 characters");
+    }
+
+
     if (data.newPassword !== data.confirmPassword)
       return toast.error("Passwords do not match");
 
@@ -112,7 +119,7 @@ export default function ForgotPassword() {
               </>
             )}
 
-            {/* STEP 3 - NEW PASSWORD */}
+
             {step === "password" && (
               <>
                 <TextField

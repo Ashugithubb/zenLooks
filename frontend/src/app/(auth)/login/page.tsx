@@ -128,13 +128,22 @@ export default function LoginForm() {
               />
               <TextField
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 variant="outlined"
                 fullWidth
                 {...register('password')}
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 className={style.input}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={togglePasswordVisibility} edge="end">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />
               <Typography
                 onClick={() => router.push("login/forgot-password")}
