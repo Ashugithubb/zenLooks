@@ -128,6 +128,8 @@ export default function AddUnavailableSlotDialog() {
                         newDate ? newDate.format("HH:mm:ss") : ""
                       )
                     }
+                    minTime={dayjs("09:00", "HH:mm")}
+                    maxTime={dayjs("21:00", "HH:mm")}
                     slotProps={{
                       textField: {
                         error: !!errors.start_time,
@@ -157,6 +159,8 @@ export default function AddUnavailableSlotDialog() {
                         newDate ? newDate.format("HH:mm:ss") : ""
                       )
                     }
+                    minTime={dayjs("09:00", "HH:mm")}
+                    maxTime={dayjs("21:00", "HH:mm")}
                     slotProps={{
                       textField: {
                         error: !!errors.end_time,
