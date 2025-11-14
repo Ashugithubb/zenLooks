@@ -162,7 +162,7 @@ export default function ForgotPassword() {
         </Typography>
       </Box>
 
-      <ToastContainer />
+     
     </Box>
   );
 }
