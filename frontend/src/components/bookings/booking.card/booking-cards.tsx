@@ -62,6 +62,25 @@ export default function BookingCard({ booking }: BookingCardProps) {
     booking?.service?.price -
     (booking?.service?.price * booking?.service?.discount) / 100;
 
+ function formatToIST(dateString: string | Date | undefined | null): string {
+  if (!dateString) return ""; // safety
+
+  const jsDate = new Date(dateString);
+
+  const options: Intl.DateTimeFormatOptions = {
+    timeZone: "Asia/Kolkata",
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+
+  return jsDate.toLocaleString("en-GB", options).replace(/\//g, "-");
+}
+
 
   return (
     <Card className={style.booking}>
@@ -143,10 +162,16 @@ export default function BookingCard({ booking }: BookingCardProps) {
         <Box>
           <Typography sx={{ fontWeight: 700, mb: 0.5 }}><StyleIcon sx={{ fontSize: 18, verticalAlign: "middle" }} /> Booking Details</Typography>
           <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
-          <Typography variant="body2">Date: {booking?.date}</Typography>
+          <Typography variant="body2">Date: {
+            booking?.date
+              ?.split("-")        // ["2025", "11", "15"]
+              .reverse()          // ["15", "11", "2025"]
+              .join("-")          // "15-11-2025"
+          }
+          </Typography>
           <Typography variant="body2">Slot: {booking?.slot}</Typography>
           <Typography variant="body2">
-            Booked At: {new Date(booking?.bookedAt).toLocaleString()}
+             Booked At: {formatToIST(booking?.bookedAt)}
           </Typography>
           <Typography variant="body2">
             Payment:{" "}
