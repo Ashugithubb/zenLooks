@@ -89,7 +89,10 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
           </Typography>
           <hr />
           <Typography variant="body1">
-            <strong>Booking Date:</strong> {booking?.date}
+            <strong>Booking Date:</strong> {booking?.date
+              ?.split("-")        // ["2025", "11", "15"]
+              .reverse()          // ["15", "11", "2025"]
+              .join("-")}
           </Typography>
           <Typography variant="body1">
             <strong>Slot:</strong> {booking?.slot}
