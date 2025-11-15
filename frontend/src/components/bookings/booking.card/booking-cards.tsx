@@ -143,7 +143,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
         <Box>
           <Typography sx={{ fontWeight: 700, mb: 0.5 }}><StyleIcon sx={{ fontSize: 18, verticalAlign: "middle" }} /> Booking Details</Typography>
           <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
-          <Typography variant="body2">Date: {new Date(booking?.date).toLocaleString()}</Typography>
+          <Typography variant="body2">Date: {booking?.date}</Typography>
           <Typography variant="body2">Slot: {booking?.slot}</Typography>
           <Typography variant="body2">
             Booked At: {new Date(booking?.bookedAt).toLocaleString()}
