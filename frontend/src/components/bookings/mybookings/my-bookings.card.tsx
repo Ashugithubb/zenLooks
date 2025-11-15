@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { useRouter } from "next/navigation";
 import style from "./mybooking.module.css";
+import { formatToIST } from "../formatToIST/formatToIST";
 interface BookingCardProps {
   booking: Booking;
 }
@@ -102,7 +103,7 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
           </Typography>
           <Typography variant="body1">
             <strong>Booked At:</strong>{" "}
-            {new Date(booking?.bookedAt).toLocaleString()}
+            {formatToIST(booking?.bookedAt)}
           </Typography>
           <Typography variant="body1">
             <strong>Payment:</strong> {booking?.paymentStatus === 'Pending' ? (" Cash") : booking?.paymentStatus}
