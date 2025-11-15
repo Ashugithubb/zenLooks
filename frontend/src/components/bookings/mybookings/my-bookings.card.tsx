@@ -123,17 +123,30 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
             }}>
             Booking Completed
           </Typography>
-        ) : isExpired ? (
-          <Typography
-            variant="body1"
+        ) : booking.deletedAt ? (
+          <Box
             sx={{
-              color: "red",
-              fontWeight: "bold",
+              backgroundColor: "#ffebee",
+              color: "#c62828",
+
+              display: "inline-block",
+              padding: "8px 14px",
+              fontWeight: 500,
+              fontSize: "14px",
             }}
           >
-            Booking Expired
-          </Typography>
-        ) : (
+            Canceled at {formatToIST(booking.deletedAt)}
+          </Box>) : isExpired ? (
+            <Typography
+              variant="body1"
+              sx={{
+                color: "red",
+                fontWeight: "bold",
+              }}
+            >
+              Booking Expired
+            </Typography>
+          ) : (
           <Button
             variant="contained"
             color="error"

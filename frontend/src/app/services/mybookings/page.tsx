@@ -8,16 +8,12 @@ import { Box, CircularProgress, Typography, Pagination, Stack } from "@mui/mater
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import style from "../../../components/bookings/mybookings/mybooking.module.css";
+import ProtectedRoute from "@/components/pr0tectecR0utes/pr0tected";
 
 export default function MyBookings() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const router = useRouter();
 
-    useEffect(() => {
-        if (role === undefined || role === "Admin") {
-            router.replace("/services");
-        }
-    }, [role, router]);
 
     const booking = useAppSelector((state) => state.allBooking.bookings);
     const { total, page, limit } = useAppSelector((state) => state.allBooking);
@@ -51,6 +47,7 @@ export default function MyBookings() {
     };
 
     return (
+         <ProtectedRoute>
         <>
             <Navbar />
             <Typography
@@ -103,5 +100,6 @@ export default function MyBookings() {
                 </>
             )}
         </>
+        </ProtectedRoute>
     );
 }

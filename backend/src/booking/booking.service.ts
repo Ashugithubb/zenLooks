@@ -137,6 +137,7 @@ export class BookingService {
       .createQueryBuilder("bookings")
       .leftJoinAndSelect("bookings.user", "users")
       .orderBy('bookings.bookingId', 'DESC')
+      .withDeleted()
 
     qb.andWhere("users.userId = :userId", { userId });
 

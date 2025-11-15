@@ -8,12 +8,15 @@ import { bookServiceThunk } from "@/app/redux/thunk/book.service.thunk";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { toast } from "react-toastify";
 import style from './booking.module.css'
-interface BookingCardProps {
-  booking: Booking;
-}
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import { Alert } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import StyleIcon from '@mui/icons-material/Style';
 import { formatToIST } from "../formatToIST/formatToIST";
+
+interface BookingCardProps {
+  booking: Booking;
+}
 export default function BookingCard({ booking }: BookingCardProps) {
   const [otp, setOtp] = useState("");
   const [otpGenerated, setOtpGenerated] = useState(false);
@@ -63,7 +66,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
     booking?.service?.price -
     (booking?.service?.price * booking?.service?.discount) / 100;
 
- 
+
 
   return (
     <Card className={style.booking}>
@@ -154,7 +157,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
           </Typography>
           <Typography variant="body2">Slot: {booking?.slot}</Typography>
           <Typography variant="body2">
-             Booked At: {formatToIST(booking?.bookedAt)}
+            Booked At: {formatToIST(booking?.bookedAt)}
           </Typography>
           <Typography variant="body2">
             Payment:{" "}
@@ -185,7 +188,21 @@ export default function BookingCard({ booking }: BookingCardProps) {
               Booking Expired
             </Button>
           ) : booking.deletedAt ? (
-            <Typography color="error">Booking is canceled</Typography>
+            <Box
+              sx={{
+                backgroundColor: "#ffebee",
+                color: "#c62828",
+
+                display: "inline-block",
+                padding: "8px 14px",
+                fontWeight: 500,
+                fontSize: "14px",
+              }}
+            >
+              Canceled at {formatToIST(booking.deletedAt)}
+            </Box>
+
+
           ) : otpVerified ? (
             <Button variant="outlined" color="success" disabled>
               OTP Verified

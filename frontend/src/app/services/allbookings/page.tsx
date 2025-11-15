@@ -16,6 +16,7 @@ import Grid from "@mui/material/Grid";
 import style from "./page.module.css"
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import ProtectedRoute from "@/components/pr0tectecR0utes/pr0tected";
 
 interface FilterValues {
   search: string;
@@ -29,11 +30,7 @@ const FiltersComponent = () => {
 
   const role = useAppSelector((state) => state.login.auth?.role)
   const router = useRouter()
-  useEffect(() => {
-    if (role === undefined || role === "User") {
-      router.replace("/services");
-    }
-  }, [role, router]);
+ 
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
   const { total, page, limit } = useAppSelector((state) => state.allBooking);
   const dispatch = useAppDispatch();
@@ -105,180 +102,182 @@ const FiltersComponent = () => {
 
 
   return (
-    <>
-      <Navbar />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "column", md: "row" },
-          justifyContent: "space-between",
-          alignItems: { xs: "center", md: "center" },
-          gap: { xs: 0, sm: 1, md: 0 },
-          mx: { xs: 2, sm: 5, md: 10 },
-          mt: { xs: 13, sm: 10, md: 12 },
-          textAlign: { xs: "center", md: "left" },
-        }}
-      >
-        <Box>
-          <Typography
-            variant="h4"
-            fontSize={{ xs: 24, sm: 30, md: 40 }}
-            fontWeight={700}
-            color="#eea84f"
-          >
-            Salon Bookings
-          </Typography>
-          <Typography
-            variant="caption"
-            fontSize={{ xs: 13, sm: 15, md: 17 }}
-            fontWeight={300}
-            color="#99838f"
-          >
-            Manage and track all your appointments
-          </Typography>
-        </Box>
-
+    <ProtectedRoute>
+      <>
+        <Navbar />
         <Box
           sx={{
             display: "flex",
-            justifyContent: { xs: "center", md: "flex-end" },
-            width: { xs: "auto", sm: "auto", md: "auto" },
-            mt: { xs: 2, md: 0 },
+            flexDirection: { xs: "column", sm: "column", md: "row" },
+            justifyContent: "space-between",
+            alignItems: { xs: "center", md: "center" },
+            gap: { xs: 0, sm: 1, md: 0 },
+            mx: { xs: 2, sm: 5, md: 10 },
+            mt: { xs: 13, sm: 10, md: 12 },
+            textAlign: { xs: "center", md: "left" },
           }}
         >
-          <UnavailableSlotForm />
-        </Box>
-      </Box>
-
-
-      <Box sx={{ mt: 3, px: 7 }}>
-        <Card
-          sx={{
-            borderRadius: 3,
-            boxShadow: 3,
-            backgroundColor: "#fafafa",
-            mb: 4,
-          }}
-        >
-          <CardContent >
+          <Box>
             <Typography
-              variant="h5"
-              fontWeight="bold"
-              gutterBottom
-              sx={{ textAlign: "center", mb: 3 }}
+              variant="h4"
+              fontSize={{ xs: 24, sm: 30, md: 40 }}
+              fontWeight={700}
+              color="#eea84f"
             >
-              Bookings Filter
+              Salon Bookings
             </Typography>
+            <Typography
+              variant="caption"
+              fontSize={{ xs: 13, sm: 15, md: 17 }}
+              fontWeight={300}
+              color="#99838f"
+            >
+              Manage and track all your appointments
+            </Typography>
+          </Box>
 
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: { xs: "center", md: "flex-end" },
+              width: { xs: "auto", sm: "auto", md: "auto" },
+              mt: { xs: 2, md: 0 },
+            }}
+          >
+            <UnavailableSlotForm />
+          </Box>
+        </Box>
+
+
+        <Box sx={{ mt: 3, px: 7 }}>
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: 3,
+              backgroundColor: "#fafafa",
+              mb: 4,
+            }}
+          >
+            <CardContent >
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                gutterBottom
+                sx={{ textAlign: "center", mb: 3 }}
+              >
+                Bookings Filter
+              </Typography>
+
+              <Box
+                display="flex"
+                flexWrap="wrap"
+                justifyContent="center"
+                gap={2}
+                className={style.filter}
+              >
+                <Box>
+                  <Controller
+                    name="search"
+                    control={control}
+                    render={({ field }) => (
+                      <SearchComponent {...field} placeholder="Search bookings..." />
+                    )}
+                  />
+                </Box>
+
+                <Box
+
+                >
+                  <Controller
+                    name="category"
+                    control={control}
+                    render={({ field }) => (
+                      <GenderSelectComponent {...field} placeholder="Select Gender" />
+                    )}
+                  />
+                </Box>
+
+                <Box
+
+                >
+                  <Controller
+                    name="slot"
+                    control={control}
+                    render={({ field }) => (
+                      <TimeSelector {...field} label="Select Time" />
+                    )}
+                  />
+                </Box>
+
+                <Box
+
+                >
+                  <Controller
+                    name="startDate"
+                    control={control}
+                    render={({ field }) => (
+                      <DateRangeFilter
+                        startDate={field.value}
+                        endDate={filterValues.endDate}
+                        onStartChange={field.onChange}
+                        onEndChange={(val) => setValue("endDate", val)}
+                      />
+                    )}
+                  />
+                </Box>
+              </Box>
+
+            </CardContent>
+          </Card>
+
+          {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
+            <CircularProgress />
+          </Box>) : bookings.length === 0 ? (
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              align="center"
+              sx={{ mt: 8 }}
+            >
+              No Booking Found
+            </Typography>
+          ) : (
             <Box
               display="flex"
               flexWrap="wrap"
+              gap={2.5}
               justifyContent="center"
-              gap={2}
-              className={style.filter}
             >
-              <Box>
-                <Controller
-                  name="search"
-                  control={control}
-                  render={({ field }) => (
-                    <SearchComponent {...field} placeholder="Search bookings..." />
-                  )}
-                />
-              </Box>
-
-              <Box
-
-              >
-                <Controller
-                  name="category"
-                  control={control}
-                  render={({ field }) => (
-                    <GenderSelectComponent {...field} placeholder="Select Gender" />
-                  )}
-                />
-              </Box>
-
-              <Box
-
-              >
-                <Controller
-                  name="slot"
-                  control={control}
-                  render={({ field }) => (
-                    <TimeSelector {...field} label="Select Time" />
-                  )}
-                />
-              </Box>
-
-              <Box
-
-              >
-                <Controller
-                  name="startDate"
-                  control={control}
-                  render={({ field }) => (
-                    <DateRangeFilter
-                      startDate={field.value}
-                      endDate={filterValues.endDate}
-                      onStartChange={field.onChange}
-                      onEndChange={(val) => setValue("endDate", val)}
-                    />
-                  )}
-                />
-              </Box>
+              {bookings.map((b: any) => (
+                <Box
+                  key={b.bookingId}
+                  flexBasis={{ xs: "100%", sm: "68%", md: "31%" }}
+                  flexGrow={1}
+                  display="flex"
+                  justifyContent="center"
+                >
+                  <BookingCard booking={b} />
+                </Box>
+              ))}
             </Box>
 
-          </CardContent>
-        </Card>
 
-        {loading ? (<Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
-          <CircularProgress />
-        </Box>) : bookings.length === 0 ? (
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            align="center"
-            sx={{ mt: 8 }}
-          >
-            No Booking Found
-          </Typography>
-        ) : (
-          <Box
-            display="flex"
-            flexWrap="wrap"
-            gap={2.5}
-            justifyContent="center"
-          >
-            {bookings.map((b) => (
-              <Box
-                key={b.bookingId}
-                flexBasis={{ xs: "100%", sm: "68%", md: "31%" }}
-                flexGrow={1}
-                display="flex"
-                justifyContent="center"
-              >
-                <BookingCard booking={b} />
-              </Box>
-            ))}
-          </Box>
+          )}
+        </Box>
 
 
+        {!loading && total > limit && (
+          <Stack spacing={1} alignItems="center" sx={{ pb: 5, marginTop: "30px" }}>
+            <Pagination
+              count={Math.ceil(total / limit)}
+              page={currentPage}
+              onChange={handlePageChange}
+              color="primary"
+            />
+          </Stack>
         )}
-      </Box>
-
-
-      {!loading && total > limit && (
-        <Stack spacing={1} alignItems="center" sx={{ pb: 5, marginTop: "30px" }}>
-          <Pagination
-            count={Math.ceil(total / limit)}
-            page={currentPage}
-            onChange={handlePageChange}
-            color="primary"
-          />
-        </Stack>
-      )}
-    </>
+      </>
+    </ProtectedRoute>
   );
 };
 
