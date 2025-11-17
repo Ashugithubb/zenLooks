@@ -8,6 +8,7 @@ import { Box, CircularProgress, Typography, Pagination, Stack } from "@mui/mater
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import style from "../../../components/bookings/mybookings/mybooking.module.css";
+import ProtectedRoute from "@/app/redux/protectedRoutes/protectedRoute";
 
 export default function MyBookings() {
     const role = useAppSelector((state) => state.login.auth?.role);
@@ -51,7 +52,7 @@ export default function MyBookings() {
     };
 
     return (
-        <>
+        <ProtectedRoute>
             <Navbar />
             <Typography
                 className={style.allBookings}
@@ -102,6 +103,8 @@ export default function MyBookings() {
                     )}
                 </>
             )}
-        </>
+
+        </ProtectedRoute >
+
     );
 }
