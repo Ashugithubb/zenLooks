@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { useRouter } from "next/navigation";
 import style from "./mybooking.module.css";
+import { formatToIST } from "../formatToIST/formatToIST";
 interface BookingCardProps {
   booking: Booking;
 }
@@ -89,7 +90,10 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
           </Typography>
           <hr />
           <Typography variant="body1">
-            <strong>Booking Date:</strong> {booking?.date}
+            <strong>Booking Date:</strong> {booking?.date
+              ?.split("-")        // ["2025", "11", "15"]
+              .reverse()          // ["15", "11", "2025"]
+              .join("-")}
           </Typography>
           <Typography variant="body1">
             <strong>Slot:</strong> {booking?.slot}
@@ -99,7 +103,7 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
           </Typography>
           <Typography variant="body1">
             <strong>Booked At:</strong>{" "}
-            {new Date(booking?.bookedAt).toLocaleString()}
+            {formatToIST(booking?.bookedAt)}
           </Typography>
           <Typography variant="body1">
             <strong>Payment:</strong> {booking?.paymentStatus === 'Pending' ? (" Cash") : booking?.paymentStatus}
@@ -119,17 +123,30 @@ const SingleBookingCard = ({ booking }: BookingCardProps) => {
             }}>
             Booking Completed
           </Typography>
-        ) : isExpired ? (
-          <Typography
-            variant="body1"
+        ) : booking.deletedAt ? (
+          <Box
             sx={{
-              color: "red",
-              fontWeight: "bold",
+              backgroundColor: "#ffebee",
+              color: "#c62828",
+
+              display: "inline-block",
+              padding: "8px 14px",
+              fontWeight: 500,
+              fontSize: "14px",
             }}
           >
-            Booking Expired
-          </Typography>
-        ) : (
+            Canceled at {formatToIST(booking.deletedAt)}
+          </Box>) : isExpired ? (
+            <Typography
+              variant="body1"
+              sx={{
+                color: "red",
+                fontWeight: "bold",
+              }}
+            >
+              Booking Expired
+            </Typography>
+          ) : (
           <Button
             variant="contained"
             color="error"

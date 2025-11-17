@@ -416,6 +416,7 @@ export default function Bookings() {
                             </Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <TimePicker
+                                    sx={{width:"100%"}}
                                     value={selectedSlot}
                                     onChange={(newTime) => {
                                         if (!newTime) return;

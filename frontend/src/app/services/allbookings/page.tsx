@@ -16,6 +16,7 @@ import Grid from "@mui/material/Grid";
 import style from "./page.module.css"
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import ProtectedRoute from "@/components/pr0tectecR0utes/pr0tected";
 
 
 interface FilterValues {
@@ -30,11 +31,7 @@ const FiltersComponent = () => {
 
   const role = useAppSelector((state) => state.login.auth?.role)
   const router = useRouter()
-  // useEffect(() => {
-  //   if (role === undefined || role === "User") {
-  //     router.replace("/services");
-  //   }
-  // }, [role, router]);
+ 
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
   const { total, page, limit } = useAppSelector((state) => state.allBooking);
   const dispatch = useAppDispatch();
@@ -106,9 +103,8 @@ const FiltersComponent = () => {
 
 
   return (
- 
+    <ProtectedRoute>
       <>
-
         <Navbar />
         <Box
           sx={{
@@ -253,7 +249,7 @@ const FiltersComponent = () => {
               gap={2.5}
               justifyContent="center"
             >
-              {bookings.map((b) => (
+              {bookings.map((b: any) => (
                 <Box
                   key={b.bookingId}
                   flexBasis={{ xs: "100%", sm: "68%", md: "31%" }}
@@ -282,7 +278,7 @@ const FiltersComponent = () => {
           </Stack>
         )}
       </>
-  
+    </ProtectedRoute>
   );
 };
 

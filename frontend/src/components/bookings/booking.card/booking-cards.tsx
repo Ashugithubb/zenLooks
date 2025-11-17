@@ -8,11 +8,15 @@ import { bookServiceThunk } from "@/app/redux/thunk/book.service.thunk";
 import { getAllBookings } from "@/app/redux/thunk/booking.thunk";
 import { toast } from "react-toastify";
 import style from './booking.module.css'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import { Alert } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import StyleIcon from '@mui/icons-material/Style';
+import { formatToIST } from "../formatToIST/formatToIST";
+
 interface BookingCardProps {
   booking: Booking;
 }
-import PersonIcon from '@mui/icons-material/Person';
-import StyleIcon from '@mui/icons-material/Style';
 export default function BookingCard({ booking }: BookingCardProps) {
   const [otp, setOtp] = useState("");
   const [otpGenerated, setOtpGenerated] = useState(false);
@@ -61,6 +65,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
   const discountedPrice =
     booking?.service?.price -
     (booking?.service?.price * booking?.service?.discount) / 100;
+
 
 
   return (
@@ -143,10 +148,16 @@ export default function BookingCard({ booking }: BookingCardProps) {
         <Box>
           <Typography sx={{ fontWeight: 700, mb: 0.5 }}><StyleIcon sx={{ fontSize: 18, verticalAlign: "middle" }} /> Booking Details</Typography>
           <Typography variant="body2">Booking ID: {booking?.bookingId}</Typography>
-          <Typography variant="body2">Date: {new Date(booking?.date).toLocaleString()}</Typography>
+          <Typography variant="body2">Date: {
+            booking?.date
+              ?.split("-")        // ["2025", "11", "15"]
+              .reverse()          // ["15", "11", "2025"]
+              .join("-")          // "15-11-2025"
+          }
+          </Typography>
           <Typography variant="body2">Slot: {booking?.slot}</Typography>
           <Typography variant="body2">
-            Booked At: {new Date(booking?.bookedAt).toLocaleString()}
+            Booked At: {formatToIST(booking?.bookedAt)}
           </Typography>
           <Typography variant="body2">
             Payment:{" "}
@@ -177,7 +188,21 @@ export default function BookingCard({ booking }: BookingCardProps) {
               Booking Expired
             </Button>
           ) : booking.deletedAt ? (
-            <Typography color="error">Booking is canceled</Typography>
+            <Box
+              sx={{
+                backgroundColor: "#ffebee",
+                color: "#c62828",
+
+                display: "inline-block",
+                padding: "8px 14px",
+                fontWeight: 500,
+                fontSize: "14px",
+              }}
+            >
+              Canceled at {formatToIST(booking.deletedAt)}
+            </Box>
+
+
           ) : otpVerified ? (
             <Button variant="outlined" color="success" disabled>
               OTP Verified
