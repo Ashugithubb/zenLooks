@@ -70,6 +70,7 @@ const FiltersComponent = () => {
         if (res.meta.requestStatus === "rejected") {
           localStorage.clear();
           toast.error(res.payload || "seesion Expired");
+          router.push("/");
           return;
         }
 
