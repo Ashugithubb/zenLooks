@@ -31,7 +31,7 @@ const FiltersComponent = () => {
 
   const role = useAppSelector((state) => state.login.auth?.role)
   const router = useRouter()
- 
+
   const bookings = useAppSelector((state) => state.allBooking.bookings) ?? [];
   const { total, page, limit } = useAppSelector((state) => state.allBooking);
   const dispatch = useAppDispatch();
@@ -274,7 +274,18 @@ const FiltersComponent = () => {
               count={Math.ceil(total / limit)}
               page={currentPage}
               onChange={handlePageChange}
-              color="primary"
+              sx={{
+                "& .MuiPaginationItem-root": {
+                  color: "black",
+                },
+                "& .MuiPaginationItem-root.Mui-selected": {
+                  backgroundColor: "#e59b68",
+                  color: "white",
+                },
+                "& .MuiPaginationItem-root:hover": {
+                  backgroundColor: "#f2c19a",
+                },
+              }}
             />
           </Stack>
         )}

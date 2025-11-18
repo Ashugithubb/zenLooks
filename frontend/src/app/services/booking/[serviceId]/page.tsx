@@ -392,7 +392,7 @@ export default function Bookings() {
                                     minDate={dayjs()}
                                     onChange={(newDate) => {
                                         setBookingDate(newDate);
-                                        setSelectedSlot(null);         
+                                        setSelectedSlot(null);
                                     }}
 
 
@@ -416,7 +416,7 @@ export default function Bookings() {
                             </Typography>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <TimePicker
-                                    sx={{width:"100%"}}
+                                    sx={{ width: "100%" }}
                                     value={selectedSlot}
                                     onChange={(newTime) => {
                                         if (!newTime) return;

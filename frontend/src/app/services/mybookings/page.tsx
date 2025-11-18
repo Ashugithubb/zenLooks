@@ -47,59 +47,70 @@ export default function MyBookings() {
     };
 
     return (
-         <ProtectedRoute>
-        <>
-            <Navbar />
-            <Typography
-                className={style.allBookings}
-                sx={{ fontSize: "60px", textAlign: "center", mt: 10, fontWeight: 800 }}
-            >
-                All Your Bookings
-            </Typography>
-
-            {loading ? (
-                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <CircularProgress />
-                </Box>
-            ) : booking.length === 0 ? (
-                <Typography sx={{ fontSize: "20px", textAlign: "center", mt: 5 }}>
-                    No bookings found.
+        <ProtectedRoute>
+            <>
+                <Navbar />
+                <Typography
+                    className={style.allBookings}
+                    sx={{ fontSize: "60px", textAlign: "center", mt: 10, fontWeight: 800 }}
+                >
+                    All Your Bookings
                 </Typography>
-            ) : (
-                <>
-                    <Box
-                        sx={{
-                            display: "flex",
 
-                            paddingLeft: "128px",
-                            paddingRight: "128px",
-                            gap: 3,
-                            mt: 3,
-                            mb: 5,
-                        }}
-                        className={style.allCardBox}
-                    >
-                        {booking.map((b: any) => (
-                            <SingleBookingCard key={b.bookingId} booking={b} />
-                        ))}
+                {loading ? (
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <CircularProgress />
                     </Box>
+                ) : booking.length === 0 ? (
+                    <Typography sx={{ fontSize: "20px", textAlign: "center", mt: 5 }}>
+                        No bookings found.
+                    </Typography>
+                ) : (
+                    <>
+                        <Box
+                            sx={{
+                                display: "flex",
+
+                                paddingLeft: "128px",
+                                paddingRight: "128px",
+                                gap: 3,
+                                mt: 3,
+                                mb: 5,
+                            }}
+                            className={style.allCardBox}
+                        >
+                            {booking.map((b: any) => (
+                                <SingleBookingCard key={b.bookingId} booking={b} />
+                            ))}
+                        </Box>
 
 
 
 
-                    {!loading && total > limit && (
-                        <Stack spacing={1} alignItems="center" sx={{ pb: 5, }}>
-                            <Pagination
-                                count={Math.ceil(total / limit)}
-                                page={currentPage}
-                                onChange={handlePageChange}
-                                color="primary"
-                            />
-                        </Stack>
-                    )}
-                </>
-            )}
-        </>
+                        {!loading && total > limit && (
+                            <Stack spacing={1} alignItems="center" sx={{ pb: 5, }}>
+                                <Pagination
+                                    count={Math.ceil(total / limit)}
+                                    page={currentPage}
+                                    onChange={handlePageChange}
+                                    sx={{
+                                        "& .MuiPaginationItem-root": {
+                                            color: "black",
+                                        },
+                                        "& .MuiPaginationItem-root.Mui-selected": {
+                                            backgroundColor: "#e59b68",
+                                            color: "white",
+                                        },
+                                        "& .MuiPaginationItem-root:hover": {
+                                            backgroundColor: "#f2c19a",
+                                        },
+                                    }}
+                                />
+                            </Stack>
+                        )}
+                    </>
+                )}
+            </>
         </ProtectedRoute>
     );
 }
