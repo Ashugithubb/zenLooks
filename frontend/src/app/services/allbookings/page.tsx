@@ -17,6 +17,7 @@ import style from "./page.module.css"
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import ProtectedRoute from "@/components/pr0tectecR0utes/pr0tected";
+import useDebounce from "@/app/redux/hook/debounce";
 
 
 interface FilterValues {
@@ -48,7 +49,16 @@ const FiltersComponent = () => {
 
   const watchedValues = watch();
 
-  const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedValues)]);
+  const debouncedSearch = useDebounce(watchedValues.search, 500);
+
+  // const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedValues)]);
+  const filterValues = React.useMemo(() => {
+  return {
+    ...watchedValues,
+    search: debouncedSearch, 
+  };
+}, [debouncedSearch, watchedValues.category, watchedValues.slot, watchedValues.startDate, watchedValues.endDate]);
+
   const [currentPage, setCurrentPage] = useState(page);
   useEffect(() => {
 

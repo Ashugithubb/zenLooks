@@ -26,6 +26,7 @@ import { clearUser } from "../redux/slice/login.slice";
 import EventIcon from '@mui/icons-material/Event';
 import SearchIcon from "@mui/icons-material/Search";
 import Footer from "@/components/newFooter/footer";
+import useDebounce from "../redux/hook/debounce";
 export default function Services() {
     const role = useAppSelector((state) => state.login.auth?.role);
     const { loading } = useAppSelector((state) => state.service);
@@ -38,12 +39,20 @@ export default function Services() {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(page);
 
+    const debouncedSearch = useDebounce(searchTerm, 500);
+
     useEffect(() => {
-        const trimmedSearch = searchTerm.trim();
-        if (trimmedSearch.length > 0 || searchTerm === "") {
-            dispatch(getServiceThunk({ page: currentPage, limit: 6, search: trimmedSearch || undefined }));
-        }
-    }, [dispatch, currentPage, searchTerm]);
+        const trimmedSearch = debouncedSearch.trim();
+
+        dispatch(
+            getServiceThunk({
+                page: currentPage,
+                limit: 6,
+                search: trimmedSearch || undefined,
+            })
+        );
+    }, [dispatch, currentPage, debouncedSearch]);
+
 
 
 
@@ -60,6 +69,7 @@ export default function Services() {
     const handleAllBookings = () => {
         router.push("/services/allbookings");
     };
+
 
 
     return (
