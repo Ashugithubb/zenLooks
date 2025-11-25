@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: process.env.AI_API_KEY,
+    apiKey: "AIzaSyBn0JspkkCRqbp1kxK3QAIerybBuR299ss",
     authDomain: "zenlook-ba8d9.firebaseapp.com",
     projectId: "zenlook-ba8d9",
     storageBucket: "zenlook-ba8d9.firebasestorage.app",
